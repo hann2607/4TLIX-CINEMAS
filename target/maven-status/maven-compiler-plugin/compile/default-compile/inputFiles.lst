@@ -1,39 +1,7 @@
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\XDate.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\Warning_Delete.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\RECEIPT.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\DELIVERYDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\Invoice.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\loading.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\QLDHDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\CHECKIN.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\Chart.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\INVENTORY.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\MsgBox.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\ChangePassword.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\DELIVERY.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\QLDH.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\Auth.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewOrder_Details.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\XImage.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\home.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewItems_Inventory.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\getInfo.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\QLKHODAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\login.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\CheckIn.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\EMPLOYEE.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewCustomer.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\EditInfo.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewOrder.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\QLBHDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\CUSTOMERDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewShipping.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\XJdbc.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\DOANHTHUDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\RECEIPTDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\CHECKINDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\dao\QLNVDAO.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\SendMail.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\entity\CUSTOMER.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\ui\NewEmployee.java
-C:\Users\duong\OneDrive\Máy tính\123\4TLIX\src\main\java\com\qlbh\utils\Slide.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\dao\QLBHDAO.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XJdbc.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XImage.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\Chart.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XDate.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\Slide.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\MsgBox.java

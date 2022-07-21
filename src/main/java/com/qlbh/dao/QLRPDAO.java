@@ -12,7 +12,7 @@ import java.util.List;
  * @param <EntityType>
  * @param <KeyType>
  */
-abstract public class QLBHDAO<EntityType, KeyType> {
+abstract public class QLRPDAO<EntityType, KeyType> {
 
     abstract public void insert(EntityType entity);
 
