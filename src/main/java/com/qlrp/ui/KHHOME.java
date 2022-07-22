@@ -4,6 +4,8 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.utils.XImage;
+
 /**
  *
  * @author HAN-PC
@@ -16,6 +18,8 @@ public class KHHOME extends javax.swing.JFrame {
     public KHHOME() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        init();
     }
 
     /**
@@ -44,6 +48,11 @@ public class KHHOME extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void init() {
+        
+        this.setIconImage(XImage.getAppIcon());
+        
+    }
     /**
      * @param args the command line arguments
      */
