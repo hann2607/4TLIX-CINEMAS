@@ -40,11 +40,10 @@ public class KHHOME extends javax.swing.JFrame {
     private void initComponents() {
 
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        pnl_main = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        lbl_poster = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btn_SoLuong = new com.k33ptoo.components.KButton();
@@ -53,8 +52,7 @@ public class KHHOME extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cbo_TheLoaiFilm = new javax.swing.JComboBox<>();
         cbo_QuocGia_Film = new javax.swing.JComboBox<>();
-        txt_NgayKhoiChieu = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
+        cbo_QuocGia_Film1 = new javax.swing.JComboBox<>();
         btn_Avatar = new javax.swing.JButton();
         btn_Cart = new javax.swing.JButton();
         pnl_film = new javax.swing.JScrollPane();
@@ -153,35 +151,32 @@ public class KHHOME extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("4TLIX CINEMAS");
+        setResizable(false);
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(204, 204, 204)));
-        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+
+        lbl_poster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1359, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(lbl_poster, javax.swing.GroupLayout.DEFAULT_SIZE, 1365, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addComponent(lbl_poster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_START);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        pnl_main.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_main.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane4.setBorder(null);
-        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -224,13 +219,7 @@ public class KHHOME extends javax.swing.JFrame {
 
         cbo_QuocGia_Film.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUỐC GIA", "VIỆT NAM", "MỸ", "TRUNG QUỐC", "NHẬT BẢN", "HÀN QUỐC" }));
 
-        txt_NgayKhoiChieu.setBackground(new java.awt.Color(255, 255, 255));
-        txt_NgayKhoiChieu.setToolTipText("");
-        txt_NgayKhoiChieu.setDateFormatString("dd,MM,YYYY");
-        txt_NgayKhoiChieu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel5.setText("NGÀY KHỞI CHIẾU:");
+        cbo_QuocGia_Film1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY KHỞI CHIẾU", "30/07/2022" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -243,11 +232,9 @@ public class KHHOME extends javax.swing.JFrame {
                 .addComponent(cbo_TheLoaiFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(cbo_QuocGia_Film, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_NgayKhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(cbo_QuocGia_Film1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,13 +244,10 @@ public class KHHOME extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbo_QuocGia_Film, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbo_TheLoaiFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(txt_NgayKhoiChieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbo_QuocGia_Film1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        txt_NgayKhoiChieu.getAccessibleContext().setAccessibleName("");
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 980, -1));
 
@@ -1015,15 +999,15 @@ public class KHHOME extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_DoAn)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 1356, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnl_KhuyenMai)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, 1356, Short.MAX_VALUE))
+                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(pnl_film, javax.swing.GroupLayout.DEFAULT_SIZE, 1356, Short.MAX_VALUE)
+                    .addComponent(pnl_film, javax.swing.GroupLayout.DEFAULT_SIZE, 1347, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1046,23 +1030,38 @@ public class KHHOME extends javax.swing.JFrame {
                     .addContainerGap(1055, Short.MAX_VALUE)))
         );
 
-        jScrollPane4.setViewportView(jPanel7);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        pnl_main.add(jScrollPane4, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(pnl_main, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1359, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1359, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1124,6 +1123,8 @@ public class KHHOME extends javax.swing.JFrame {
         lbl_KM3.setIcon(XImage.ResizeImage(lbl_KM3.getWidth(), lbl_KM3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\pepsi.jpg"));
         lbl_KM4.setIcon(XImage.ResizeImage(lbl_KM4.getWidth(), lbl_KM4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve doi.jpg"));
         lbl_KM5.setIcon(XImage.ResizeImage(lbl_KM5.getWidth(), lbl_KM5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\THOR 4 - LOVE AND THUNDER.jpg"));
+        
+//        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\poster.gif"));
     }
 
     /**
@@ -1169,6 +1170,7 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbo_LoaiDoAn;
     private javax.swing.JComboBox<String> cbo_LoaiKhuyenMai;
     private javax.swing.JComboBox<String> cbo_QuocGia_Film;
+    private javax.swing.JComboBox<String> cbo_QuocGia_Film1;
     private javax.swing.JComboBox<String> cbo_TheLoaiFilm;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1186,13 +1188,11 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
@@ -1222,7 +1222,7 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTextArea1;
@@ -1266,11 +1266,10 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_film3;
     private javax.swing.JLabel lbl_film4;
     private javax.swing.JLabel lbl_film5;
+    private javax.swing.JLabel lbl_poster;
     private javax.swing.JScrollPane pnl_DoAn;
     private javax.swing.JScrollPane pnl_KhuyenMai;
     private javax.swing.JScrollPane pnl_film;
-    private javax.swing.JPanel pnl_main;
-    private com.toedter.calendar.JDateChooser txt_NgayKhoiChieu;
     private javax.swing.JTextField txt_Search_DoAn;
     private javax.swing.JTextField txt_Search_Film;
     private javax.swing.JTextField txt_Search_KhuyenMai;
