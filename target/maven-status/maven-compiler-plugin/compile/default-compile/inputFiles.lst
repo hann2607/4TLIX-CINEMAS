@@ -1,7 +1,8 @@
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\dao\QLBHDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XJdbc.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XImage.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\Chart.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\XDate.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\Slide.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlbh\utils\MsgBox.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Slide.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLRPDAO.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Chart.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XDate.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XJdbc.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\MsgBox.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\KHHOME.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
