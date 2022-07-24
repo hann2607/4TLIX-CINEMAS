@@ -50,9 +50,9 @@ public class login extends javax.swing.JFrame {
         this.setIconImage(XImage.getAppIcon());
     }
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String url = "database-4tl.cxhu9lb6n3tu.ap-southeast-1.rds.amazonaws.com,1433";
-    static String user = "admin";
-    static String password = "123";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=QLRP_NHOM1;encrypt=true;trustServerCertificate=true;";
+    String user = "sa";
+    String password = "caokhanhvy2084";
     Statement st;
     ResultSet rs;
 
@@ -417,11 +417,12 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!!!!!!!!!!", JOptionPane.ERROR_MESSAGE);
         } else {
             Auth.user = epl;
-            MsgBox.alert(this, "Login successfully!");
+            MsgBox.alert(this, "ĐĂNG NHẬP THÀNH CÔNG!");
             SplashScreen sp = new SplashScreen();
             sp.setVisible(true);
-//            this.setVisible(false);
-            this.dispose();
+            this.setVisible(false);
+            
+
         }
 //        KHACHHANG cus = qlkhdao.selectebyID(tk);
 //        if (cus == null ) {

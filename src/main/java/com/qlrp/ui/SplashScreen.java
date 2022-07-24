@@ -57,7 +57,7 @@ public class SplashScreen extends javax.swing.JFrame {
         LoadingValue.setText("0 %");
         jPanel1.add(LoadingValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 30));
 
-        LoadingBar.setBackground(new java.awt.Color(255, 0, 0));
+        LoadingBar.setForeground(new java.awt.Color(169, 224, 49));
         LoadingBar.setBorderPainted(false);
         LoadingBar.setFocusable(false);
         LoadingBar.setRequestFocusEnabled(false);
@@ -112,52 +112,56 @@ public class SplashScreen extends javax.swing.JFrame {
 
         /* Create and display the form */
         SplashScreen sp = new SplashScreen();
-        
         sp.setVisible(true);
 
-        try {
-            for (int row = 0; row <=100; row++) {
-                Thread.sleep(100);
-                sp.LoadingValue.setText(Integer.toString(row)+"%");
-                sp.LoadingBar.setValue(row);
-                if (row == 100) {
-                    
-                    sp.setVisible(false);
-//                    login.setVisible(true);
-                }
-            }
-        } catch (Exception e) {
-        }
 //        try {
-//            for (int i = 0; i <= 100; i++) {
+//            for (int row = 0; row <= 100; row++) {
 //                Thread.sleep(100);
-//                sp.LoadingValue.setText(i + "%");
+//                sp.LoadingValue.setText(Integer.toString(row) + "%");
+//                sp.LoadingBar.setValue(row);
+//                if (row == 100) {
 //
-//                if (i == 10) {
-//                    sp.LoadingLabel.setText("Turning On Module...");
+//                    sp.setVisible(false);
+//
+////                    login.setVisible(true);
 //                }
-//                if (i == 20) {
-//                    sp.LoadingLabel.setText("Loading On Module...");
-//                }
-//                if (i == 50) {
-//                    sp.LoadingLabel.setText("Connecting To The Database...");
-//                }
-//                if (i == 70) {
-//                    sp.LoadingLabel.setText("Connecting Successful...");
-//                }
-//                if (i == 90) {
-//                    sp.LoadingLabel.setText("Launching Application...");
-//                }
-//                sp.LoadingBar.setValue(i);
 //            }
 //        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
 //        }
+        try {
+            for (int i = 0; i <= 100; i++) {
+                Thread.sleep(100);
+                sp.LoadingValue.setText(i + "%");
+
+                if (i == 10) {
+                    sp.LoadingLabel.setText("Turning On Module...");
+                }
+                if (i == 20) {
+                    sp.LoadingLabel.setText("Loading On Module...");
+                }
+                if (i == 50) {
+                    sp.LoadingLabel.setText("Connecting To The Database...");
+                }
+                if (i == 70) {
+                    sp.LoadingLabel.setText("Connecting Successful...");
+                }
+                if (i == 90) {
+                    sp.LoadingLabel.setText("Launching Application...");
+                }
+                sp.LoadingBar.setValue(i);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        sp.dispose();
+        KHHOME kh = new KHHOME();
+        kh.setVisible(true);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JProgressBar LoadingBar;
+    public javax.swing.JProgressBar LoadingBar;
     private javax.swing.JLabel LoadingLabel;
     private javax.swing.JLabel LoadingValue;
     private javax.swing.JLabel jLabel1;

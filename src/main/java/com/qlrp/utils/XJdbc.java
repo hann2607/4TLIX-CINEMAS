@@ -16,9 +16,9 @@ import java.sql.SQLException;
  */
 public class XJdbc {
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String dburl = "database-4tl.cxhu9lb6n3tu.ap-southeast-1.rds.amazonaws.com,1433";
-    static String user = "admin";
-    static String pass = "123";
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLRP_NHOM1;encrypt=true;trustServerCertificate=true;";
+    static String user = "sa";
+    static String password = "caokhanhvy2084";
     static {
         try {
             Class.forName(driver);
@@ -29,7 +29,7 @@ public class XJdbc {
     
     public static PreparedStatement getStmt(String sql, Object...args) throws SQLException{
         try {
-            Connection conn = DriverManager.getConnection(dburl, user, pass);
+            Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement stmt;
             if(sql.trim().startsWith("{")){
                 stmt = conn.prepareCall(sql); // PROC
