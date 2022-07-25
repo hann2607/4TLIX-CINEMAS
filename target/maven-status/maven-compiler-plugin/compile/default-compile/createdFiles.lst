@@ -13,6 +13,7 @@ com\qlrp\utils\Chart.class
 com\qlrp\ui\KHHOME$1.class
 com\qlrp\utils\XImage.class
 com\qlrp\utils\MsgBox.class
+com\qlrp\ui\login$7.class
 com\qlrp\utils\XJdbc.class
 com\qlrp\ui\login$4.class
 com\qlrp\utils\Slide.class
@@ -22,4 +23,5 @@ com\qlrp\ui\KHHOME$3.class
 com\qlrp\ui\login$1.class
 com\qlrp\utils\Slide$1.class
 com\qlrp\ui\login.class
+com\qlrp\ui\login$8.class
 com\qlrp\entity\NHANVIEN.class
