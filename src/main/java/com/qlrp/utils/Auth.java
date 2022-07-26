@@ -14,7 +14,7 @@ import com.qlrp.entity.KHACHHANG;
 public class Auth {
 
     public static NHANVIEN user = null;
-
+    
     public static void clear() {
         Auth.user = null;
     }

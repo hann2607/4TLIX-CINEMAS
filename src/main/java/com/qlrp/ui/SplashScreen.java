@@ -5,23 +5,22 @@
 package com.qlrp.ui;
 
 import com.qlrp.utils.XImage;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author duong
  */
-public class SplashScreen extends javax.swing.JFrame {
+public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form splashloading
      */
     public SplashScreen() {
         initComponents();
-        ImageIcon img = new ImageIcon("C:\\Users\\duong\\OneDrive\\Máy tính\\4TL_CINEMA\\src\\main\\resources\\com\\qlrp\\icon\\Sys\\Icon_app.png");
+        runLoading();
         this.setIconImage(XImage.getAppIcon());
-
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -42,6 +41,7 @@ public class SplashScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("4TLIX CINEMAS");
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,7 +50,7 @@ public class SplashScreen extends javax.swing.JFrame {
         LoadingLabel.setForeground(new java.awt.Color(51, 51, 255));
         LoadingLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LoadingLabel.setText("LOADING...");
-        jPanel1.add(LoadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 280, 30));
+        jPanel1.add(LoadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 280, 30));
 
         LoadingValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LoadingValue.setForeground(new java.awt.Color(51, 51, 255));
@@ -76,6 +76,46 @@ public class SplashScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void runLoading() {
+        Thread load = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    for (int i = 0; i <= 100; i++) {
+                        Thread.sleep(100);
+                        LoadingValue.setText(i + "%");
+
+                        if (i == 10) {
+                            LoadingLabel.setText("Turning On Module...");
+                        }
+                        if (i == 20) {
+                            LoadingLabel.setText("Loading On Module...");
+                        }
+                        if (i == 50) {
+                            LoadingLabel.setText("Connecting To The Database...");
+                        }
+                        if (i == 70) {
+                            LoadingLabel.setText("Connecting Successful...");
+                        }
+                        if (i == 90) {
+                            LoadingLabel.setText("Launching Application...");
+                        }
+                        LoadingBar.setValue(i);
+                    }
+                    thoat();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        };
+        load.start();
+    }
+
+    private void thoat() {
+        this.setVisible(false);
+        KHHOME kh = new KHHOME();
+        kh.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -111,52 +151,11 @@ public class SplashScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        SplashScreen sp = new SplashScreen();
-        sp.setVisible(true);
-
-//        try {
-//            for (int row = 0; row <= 100; row++) {
-//                Thread.sleep(100);
-//                sp.LoadingValue.setText(Integer.toString(row) + "%");
-//                sp.LoadingBar.setValue(row);
-//                if (row == 100) {
-//
-//                    sp.setVisible(false);
-//
-////                    login.setVisible(true);
-//                }
-//            }
-//        } catch (Exception e) {
-//        }
-        try {
-            for (int i = 0; i <= 100; i++) {
-                Thread.sleep(100);
-                sp.LoadingValue.setText(i + "%");
-
-                if (i == 10) {
-                    sp.LoadingLabel.setText("Turning On Module...");
-                }
-                if (i == 20) {
-                    sp.LoadingLabel.setText("Loading On Module...");
-                }
-                if (i == 50) {
-                    sp.LoadingLabel.setText("Connecting To The Database...");
-                }
-                if (i == 70) {
-                    sp.LoadingLabel.setText("Connecting Successful...");
-                }
-                if (i == 90) {
-                    sp.LoadingLabel.setText("Launching Application...");
-                }
-                sp.LoadingBar.setValue(i);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SplashScreen().setVisible(true);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-        sp.dispose();
-        KHHOME kh = new KHHOME();
-        kh.setVisible(true);
+        });
     }
 
 
@@ -168,4 +167,10 @@ public class SplashScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
