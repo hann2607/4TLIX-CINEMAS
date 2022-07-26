@@ -5,6 +5,8 @@
  */
 package com.qlrp.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author pc
@@ -16,10 +18,10 @@ public class NHANVIEN {
     private boolean GIOI_TINH;
     private String SDT;
     private String DIA_CHI;
-    private boolean TEN_VAI_TRO;
+    private String TEN_VAI_TRO;
     private String HINH;
-    private String NGAY_VAO_LAM;
-    private String TRANG_THAI;
+    private Date NGAY_VAO_LAM;
+    private boolean TRANG_THAI;
     private String MAT_KHAU;
     private String EMAIL;
     private String CCCD_CMND;
@@ -28,7 +30,7 @@ public class NHANVIEN {
 
     }
 
-    public NHANVIEN(String MA_NHAN_VIEN, String HO_TEN, boolean GIOI_TINH, String SDT, String DIA_CHI, boolean TEN_VAI_TRO, String HINH, String NGAY_VAO_LAM, String TRANG_THAI, String MAT_KHAU, String EMAIL, String CCCD_CMND) {
+    public NHANVIEN(String MA_NHAN_VIEN, String HO_TEN, boolean GIOI_TINH, String SDT, String DIA_CHI, String TEN_VAI_TRO, String HINH, Date NGAY_VAO_LAM, boolean TRANG_THAI, String MAT_KHAU, String EMAIL, String CCCD_CMND) {
         this.MA_NHAN_VIEN = MA_NHAN_VIEN;
         this.HO_TEN = HO_TEN;
         this.GIOI_TINH = GIOI_TINH;
@@ -83,11 +85,11 @@ public class NHANVIEN {
         this.DIA_CHI = DIA_CHI;
     }
 
-    public boolean getTEN_VAI_TRO() {
+    public String getTEN_VAI_TRO() {
         return TEN_VAI_TRO;
     }
 
-    public void setTEN_VAI_TRO(boolean TEN_VAI_TRO) {
+    public void setTEN_VAI_TRO(String TEN_VAI_TRO) {
         this.TEN_VAI_TRO = TEN_VAI_TRO;
     }
 
@@ -99,19 +101,19 @@ public class NHANVIEN {
         this.HINH = HINH;
     }
 
-    public String getNGAY_VAO_LAM() {
+    public Date getNGAY_VAO_LAM() {
         return NGAY_VAO_LAM;
     }
 
-    public void setNGAY_VAO_LAM(String NGAY_VAO_LAM) {
+    public void setNGAY_VAO_LAM(Date NGAY_VAO_LAM) {
         this.NGAY_VAO_LAM = NGAY_VAO_LAM;
     }
 
-    public String getTRANG_THAI() {
+    public boolean isTRANG_THAI() {
         return TRANG_THAI;
     }
 
-    public void setTRANG_THAI(String TRANG_THAI) {
+    public void setTRANG_THAI(boolean TRANG_THAI) {
         this.TRANG_THAI = TRANG_THAI;
     }
 
@@ -127,7 +129,7 @@ public class NHANVIEN {
         return EMAIL;
     }
 
-    public void setEMAIL(String GMAIL) {
+    public void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
     }
 
@@ -138,6 +140,8 @@ public class NHANVIEN {
     public void setCCCD_CMND(String CCCD_CMND) {
         this.CCCD_CMND = CCCD_CMND;
     }
+
+    
 
 
 

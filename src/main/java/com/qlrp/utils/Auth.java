@@ -24,7 +24,7 @@ public class Auth {
     }
 
     public static boolean isManager() {
-        return Auth.isLogin() && user.getTEN_VAI_TRO();
+        return Auth.isLogin();
     }
 
     public static KHACHHANG cus = null;

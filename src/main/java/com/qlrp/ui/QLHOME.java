@@ -4,11 +4,19 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.QLNVDAO;
+import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XImage;
+import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -67,8 +75,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Home = new javax.swing.JButton();
         btn_EmployeeManagement = new javax.swing.JButton();
         btn_CustomerManagement = new javax.swing.JButton();
+        btn_FoodManagement = new javax.swing.JButton();
         btn_AccountManagement = new javax.swing.JButton();
-        btn_ShippingManagement = new javax.swing.JButton();
         btn_InventoryManagement = new javax.swing.JButton();
         btn_IntergradedManagement = new javax.swing.JButton();
         btn_OrderManagement = new javax.swing.JButton();
@@ -98,6 +106,18 @@ public class QLHOME extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        pnl_AccountManagement = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        lbl_AccMana_search = new javax.swing.JLabel();
+        txt_AccMana_search = new javax.swing.JTextField();
+        cbo_OrderMana_OrderBy1 = new javax.swing.JComboBox<>();
+        jPanel17 = new javax.swing.JPanel();
+        btn_AccountMana_Add = new com.k33ptoo.components.KButton();
+        btn_AccountMana_Refresh = new com.k33ptoo.components.KButton();
+        btn_AccountMana_sendMail = new com.k33ptoo.components.KButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pnl_AccountMana_ShowListAcc = new javax.swing.JPanel();
 
         jMenu1.setText("jMenu1");
 
@@ -345,17 +365,44 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
+        btn_FoodManagement.setBackground(new java.awt.Color(2, 16, 86));
+        btn_FoodManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_FoodManagement.setForeground(new java.awt.Color(255, 255, 255));
+        btn_FoodManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/popcorn-40x40.png"))); // NOI18N
+        btn_FoodManagement.setText("QUẢN LÝ ĐỒ ĂN");
+        btn_FoodManagement.setAlignmentY(10.0F);
+        btn_FoodManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_FoodManagement.setContentAreaFilled(false);
+        btn_FoodManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_FoodManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_FoodManagement.setIconTextGap(33);
+        btn_FoodManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_FoodManagement.setOpaque(true);
+        btn_FoodManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_FoodManagementMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_FoodManagementMouseExited(evt);
+            }
+        });
+        btn_FoodManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_FoodManagementActionPerformed(evt);
+            }
+        });
+
         btn_AccountManagement.setBackground(new java.awt.Color(2, 16, 86));
         btn_AccountManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_AccountManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_AccountManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/popcorn-40x40.png"))); // NOI18N
-        btn_AccountManagement.setText("QUẢN LÝ ĐỒ ĂN");
+        btn_AccountManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/hr-40x40.png"))); // NOI18N
+        btn_AccountManagement.setText("  QUẢN LÝ  NHÂN VIÊN");
         btn_AccountManagement.setAlignmentY(10.0F);
-        btn_AccountManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_AccountManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_AccountManagement.setContentAreaFilled(false);
         btn_AccountManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_AccountManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_AccountManagement.setIconTextGap(33);
+        btn_AccountManagement.setIconTextGap(25);
         btn_AccountManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
         btn_AccountManagement.setOpaque(true);
         btn_AccountManagement.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -369,33 +416,6 @@ public class QLHOME extends javax.swing.JFrame {
         btn_AccountManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AccountManagementActionPerformed(evt);
-            }
-        });
-
-        btn_ShippingManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_ShippingManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_ShippingManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ShippingManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/hr-40x40.png"))); // NOI18N
-        btn_ShippingManagement.setText("  QUẢN LÝ  NHÂN VIÊN");
-        btn_ShippingManagement.setAlignmentY(10.0F);
-        btn_ShippingManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_ShippingManagement.setContentAreaFilled(false);
-        btn_ShippingManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_ShippingManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_ShippingManagement.setIconTextGap(25);
-        btn_ShippingManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_ShippingManagement.setOpaque(true);
-        btn_ShippingManagement.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_ShippingManagementMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_ShippingManagementMouseExited(evt);
-            }
-        });
-        btn_ShippingManagement.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ShippingManagementActionPerformed(evt);
             }
         });
 
@@ -594,8 +614,8 @@ public class QLHOME extends javax.swing.JFrame {
             .addComponent(btn_Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_EmployeeManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_CustomerManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_FoodManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_AccountManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_ShippingManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_InventoryManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_IntergradedManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
             .addComponent(btn_OrderManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -613,9 +633,9 @@ public class QLHOME extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(btn_CustomerManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_AccountManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_FoodManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_ShippingManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_AccountManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_InventoryManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -873,6 +893,161 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_AccountManagement.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_AccMana_search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_AccMana_searchMouseClicked(evt);
+            }
+        });
+        jPanel16.add(lbl_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 40, 40));
+
+        txt_AccMana_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_AccMana_searchKeyReleased(evt);
+            }
+        });
+        jPanel16.add(txt_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 0, 890, 40));
+
+        cbo_OrderMana_OrderBy1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cbo_OrderMana_OrderBy1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FILTER", "EMPLOYEE", "MANAGER" }));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_AccountMana_Add.setText("ADD");
+        btn_AccountMana_Add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_Add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_Add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_Add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_Add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_AddActionPerformed(evt);
+            }
+        });
+
+        btn_AccountMana_Refresh.setText("REFRESH");
+        btn_AccountMana_Refresh.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_Refresh.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_Refresh.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Refresh.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_Refresh.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Refresh.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_Refresh.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_RefreshActionPerformed(evt);
+            }
+        });
+
+        btn_AccountMana_sendMail.setText("SEND MAIL");
+        btn_AccountMana_sendMail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_sendMail.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_sendMail.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_sendMail.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_sendMail.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_sendMail.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_sendMail.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_sendMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_sendMailActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnl_AccountMana_ShowListAcc.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout());
+        jScrollPane1.setViewportView(pnl_AccountMana_ShowListAcc);
+
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addComponent(cbo_OrderMana_OrderBy1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbo_OrderMana_OrderBy1))
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 19, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnl_AccountManagementLayout = new javax.swing.GroupLayout(pnl_AccountManagement);
+        pnl_AccountManagement.setLayout(pnl_AccountManagementLayout);
+        pnl_AccountManagementLayout.setHorizontalGroup(
+            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_AccountManagementLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnl_AccountManagementLayout.setVerticalGroup(
+            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_AccountManagementLayout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pnl_Main.add(pnl_AccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -917,15 +1092,15 @@ public class QLHOME extends javax.swing.JFrame {
     DefaultTableModel model;
     
 
-
+    QLNVDAO qlnvdao = new QLNVDAO();
     private void init() {
         btn_CheckClickMenu = btn_Home;
         showPanelMenu(pnl_Home);
         this.setIconImage(XImage.getAppIcon());
         setImageSlide();
         RunSlide();
-//        List<EMPLOYEE> listNV = qlnvdao.selectAll();
-//        addToPanelAccMana(listNV);
+        List<NHANVIEN> listNV = qlnvdao.selectAll();
+        addToPanelAccMana(listNV);
 //
 //        List<INVENTORY> listSP = qlkhodao.selectAll();
 //        fillToTable_Kho(listSP);
@@ -947,8 +1122,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Home.setBackground(new Color(2, 16, 86));
         btn_EmployeeManagement.setBackground(new Color(2, 16, 86));
         btn_CustomerManagement.setBackground(new Color(2, 16, 86));
+        btn_FoodManagement.setBackground(new Color(2, 16, 86));
         btn_AccountManagement.setBackground(new Color(2, 16, 86));
-        btn_ShippingManagement.setBackground(new Color(2, 16, 86));
         btn_InventoryManagement.setBackground(new Color(2, 16, 86));
         btn_IntergradedManagement.setBackground(new Color(2, 16, 86));
         btn_OrderManagement.setBackground(new Color(2, 16, 86));
@@ -962,8 +1137,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Home.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
         btn_EmployeeManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
         btn_CustomerManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_AccountManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_ShippingManagement.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
+        btn_FoodManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
+        btn_AccountManagement.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
         btn_InventoryManagement.setBorder(BorderFactory.createMatteBorder(1, 43, 1, 1, new Color(2, 16, 86)));
         btn_IntergradedManagement.setBorder(BorderFactory.createMatteBorder(1, 37, 1, 1, new Color(2, 16, 86)));
         btn_OrderManagement.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
@@ -993,7 +1168,7 @@ public class QLHOME extends javax.swing.JFrame {
 //        pnl_CustomerManagement.setVisible(false);
 //        pnl_Account.setVisible(false);
 //        pnl_EmployeeManagement.setVisible(false);
-//        pnl_AccountManagement.setVisible(false);
+        pnl_AccountManagement.setVisible(false);
 //        pnl_InventoryManagement.setVisible(false);
 //        pnl_Setting.setVisible(false);
         // show form lên khi click vào menu
@@ -1108,85 +1283,85 @@ public class QLHOME extends javax.swing.JFrame {
 //        Slide.RunSlide(lbl_Slide1);
     }
 
-//    public void addToPanelAccMana(List<EMPLOYEE> listNV) {
-//        Font font = new Font("SansSerif", Font.BOLD, 12);
-//        pnl_AccountMana_ShowListAcc.removeAll();
-//        for (int i = 0; i < listNV.size(); i++) {
-//            if (listNV.size() < 4) {
-//                pnl_AccountMana_ShowListAcc.setLayout(new GridLayout(4, 2));
-//            } else {
-//                pnl_AccountMana_ShowListAcc.setLayout(new GridLayout(listNV.size() / 2 + 1, 2));
-//            }
-//            try {
-//                // panel
-//                JPanel pnl = new JPanel();
-//                pnl.setLayout(new GridLayout(1, 2));
-//
-//                // Add Image 
-//                JPanel pnlImage = new JPanel();
-//                pnlImage.setBackground(new Color(255, 255, 255));
-//                JLabel lbl = new JLabel();
-//                lbl.setSize(100, 100);
-//                File f = new File("");
-//                String duongdanBanner = "\\src\\main\\resources\\com\\qlbh\\icon\\Employee\\ImageEmployee\\";
-//                lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), f.getAbsolutePath() + duongdanBanner + listNV.get(i).getHINH()));
-//                pnlImage.add(lbl);
-//
-//                // Add Id, name, Role
-//                JPanel pnlInfo = new JPanel();
-//                pnlInfo.setBackground(new Color(255, 255, 255));
-//                JLabel ID = new JLabel("ID: " + listNV.get(i).getMANV());
-//                JLabel fullName = new JLabel("FULLNAME: " + listNV.get(i).getHOTENNV());
-//                JLabel Role = new JLabel("ROLE: Employee");
-//                if (listNV.get(i).isVAITRO()) {
-//                    Role.setText("ROLE: Manager");
-//                }
-//                JLabel Gmail = new JLabel("GMAIL: " + listNV.get(i).getGMAIL());
-//
-//                // Set font
-//                ID.setFont(font);
-//                fullName.setFont(font);
-//                Role.setFont(font);
-//                Gmail.setFont(font);
-//
-//                // Add Id, name, role to panel
-//                pnlInfo.setLayout(new GridLayout(4, 1));
-//                pnlInfo.add(ID);
-//                pnlInfo.add(fullName);
-//                pnlInfo.add(Gmail);
-//                pnlInfo.add(Role);
-//
-//                // Add property for panel
-//                pnl.add(pnlImage);
-//                pnl.add(pnlInfo);
-//
-//                // Set color panel
-//                pnl.setBackground(new Color(255, 255, 255));
-//                pnl.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 10));
-//
-//                // Add event show form edit when click on panel
-//                EMPLOYEE epl = listNV.get(i);
-//                pnl.addMouseListener(new MouseAdapter() {
-//                    @Override
-//                    public void mousePressed(MouseEvent e) {
-//                        if (e.getClickCount() == 1 && !e.isConsumed()) {
-//                            NewEmployee npl = new NewEmployee();
-//                            npl.setVisible(true);
-//                            npl.setEnableButton("edit");
-//                            npl.setForm(epl);
-//                            getInfo.employee = epl;
-//                        }
-//                    }
-//                });
-//
-//                // Add panel to panel Parent
-//                pnl_AccountMana_ShowListAcc.add(pnl);
-//            } catch (Exception e) {
-//            }
-//        }
-//        pnl_AccountMana_ShowListAcc.revalidate();
-//        pnl_AccountMana_ShowListAcc.repaint();
-//    }
+    public void addToPanelAccMana(List<NHANVIEN> listNV) {
+        Font font = new Font("SansSerif", Font.BOLD, 12);
+        pnl_AccountMana_ShowListAcc.removeAll();
+        for (int i = 0; i < listNV.size(); i++) {
+            if (listNV.size() < 4) {
+                pnl_AccountMana_ShowListAcc.setLayout(new GridLayout(4, 2));
+            } else {
+                pnl_AccountMana_ShowListAcc.setLayout(new GridLayout(listNV.size() / 2 + 1, 2));
+            }
+            try {
+                // panel
+                JPanel pnl = new JPanel();
+                pnl.setLayout(new GridLayout(1, 2));
+
+                // Add Image 
+                JPanel pnlImage = new JPanel();
+                pnlImage.setBackground(new Color(255, 255, 255));
+                JLabel lbl = new JLabel();
+                lbl.setSize(100, 100);
+                File f = new File("");
+                String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
+                lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), f.getAbsolutePath() + duongdanBanner + listNV.get(i).getHINH()));
+                pnlImage.add(lbl);
+
+                // Add Id, name, Role
+                JPanel pnlInfo = new JPanel();
+                pnlInfo.setBackground(new Color(255, 255, 255));
+                JLabel ID = new JLabel("ID: " + listNV.get(i).getMA_NHAN_VIEN());
+                JLabel fullName = new JLabel("FULLNAME: " + listNV.get(i).getHO_TEN());
+                JLabel Role = new JLabel("ROLE: Employee");
+                if (listNV.get(i).getTEN_VAI_TRO().equalsIgnoreCase("Quản lý rạp")) {
+                    Role.setText("ROLE: Quản Lý Rạp");
+                }
+                JLabel Gmail = new JLabel("GMAIL: " + listNV.get(i).getEMAIL());
+
+                // Set font
+                ID.setFont(font);
+                fullName.setFont(font);
+                Role.setFont(font);
+                Gmail.setFont(font);
+
+                // Add Id, name, role to panel
+                pnlInfo.setLayout(new GridLayout(4, 1));
+                pnlInfo.add(ID);
+                pnlInfo.add(fullName);
+                pnlInfo.add(Gmail);
+                pnlInfo.add(Role);
+
+                // Add property for panel
+                pnl.add(pnlImage);
+                pnl.add(pnlInfo);
+
+                // Set color panel
+                pnl.setBackground(new Color(255, 255, 255));
+                pnl.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 10));
+
+                // Add event show form edit when click on panel
+                NHANVIEN epl = listNV.get(i);
+                pnl.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (e.getClickCount() == 1 && !e.isConsumed()) {
+                            NewEmployee npl = new NewEmployee();
+                            npl.setVisible(true);
+                            npl.setEnableButton("edit");
+                            npl.setForm(epl);
+                            getInfo.nv = epl;
+                        }
+                    }
+                });
+
+                // Add panel to panel Parent
+                pnl_AccountMana_ShowListAcc.add(pnl);
+            } catch (Exception e) {
+            }
+        }
+        pnl_AccountMana_ShowListAcc.revalidate();
+        pnl_AccountMana_ShowListAcc.repaint();
+    }
 
 //    public void fillToTable_Kho(List<INVENTORY> listSP) {
 ////            Khanh
@@ -1292,15 +1467,15 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_CustomerManagement, 41);
     }//GEN-LAST:event_btn_CustomerManagementMouseEntered
 
+    private void btn_FoodManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FoodManagementMouseEntered
+        // TODO add your handling code here:
+        hoverMenu(btn_FoodManagement, 41);
+    }//GEN-LAST:event_btn_FoodManagementMouseEntered
+
     private void btn_AccountManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountManagementMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_AccountManagement, 41);
+        hoverMenu(btn_AccountManagement, 40);
     }//GEN-LAST:event_btn_AccountManagementMouseEntered
-
-    private void btn_ShippingManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ShippingManagementMouseEntered
-        // TODO add your handling code here:
-        hoverMenu(btn_ShippingManagement, 40);
-    }//GEN-LAST:event_btn_ShippingManagementMouseEntered
 
     private void btn_InventoryManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InventoryManagementMouseEntered
         // TODO add your handling code here:
@@ -1370,7 +1545,7 @@ public class QLHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_CustomerManagementActionPerformed
 
-    private void btn_AccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountManagementActionPerformed
+    private void btn_FoodManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FoodManagementActionPerformed
         // TODO add your handling code here:
         // code change Tab here
 //        EMPLOYEE epl = Auth.user;
@@ -1389,17 +1564,15 @@ public class QLHOME extends javax.swing.JFrame {
 //            hoverMenu(btn_AccountManagement, 41);
 //            showPanelMenu(pnl_AccountManagement);
 //        }
-    }//GEN-LAST:event_btn_AccountManagementActionPerformed
+    }//GEN-LAST:event_btn_FoodManagementActionPerformed
 
-    private void btn_ShippingManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ShippingManagementActionPerformed
+    private void btn_AccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountManagementActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_ShippingManagement;
-        this.sizeBorder = 40;
-        hoverMenu(btn_ShippingManagement, 40);
-
-        // code change Tab here
-//        showPanelMenu(pnl_ShippingManagement);
-    }//GEN-LAST:event_btn_ShippingManagementActionPerformed
+        this.btn_CheckClickMenu = btn_AccountManagement;
+            this.sizeBorder = 41;
+            hoverMenu(btn_AccountManagement, 41);
+            showPanelMenu(pnl_AccountManagement);
+    }//GEN-LAST:event_btn_AccountManagementActionPerformed
 
     private void btn_InventoryManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InventoryManagementActionPerformed
         // TODO add your handling code here:
@@ -1502,15 +1675,15 @@ public class QLHOME extends javax.swing.JFrame {
         setColorMenuItem();
     }//GEN-LAST:event_btn_CustomerManagementMouseExited
 
+    private void btn_FoodManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FoodManagementMouseExited
+        // TODO add your handling code here:
+        setColorMenuItem();
+    }//GEN-LAST:event_btn_FoodManagementMouseExited
+
     private void btn_AccountManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountManagementMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
     }//GEN-LAST:event_btn_AccountManagementMouseExited
-
-    private void btn_ShippingManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ShippingManagementMouseExited
-        // TODO add your handling code here:
-        setColorMenuItem();
-    }//GEN-LAST:event_btn_ShippingManagementMouseExited
 
     private void btn_InventoryManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InventoryManagementMouseExited
         // TODO add your handling code here:
@@ -1601,6 +1774,41 @@ public class QLHOME extends javax.swing.JFrame {
 //        filter_AccMana();
     }//GEN-LAST:event_cbo_AccMana_SapXepActionPerformed
 
+    private void lbl_AccMana_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_AccMana_searchMouseClicked
+        // TODO add your handling code here:
+        //        if (!txt_AccMana_search.getText().equals("")) {
+            //            EMPLOYEE epl = qlnvdao.selectebyID(txt_AccMana_search.getText());
+            //            List<EMPLOYEE> listNV = new ArrayList<>();
+            //            listNV.add(epl);
+            //            addToPanelAccMana(listNV);
+            //
+            //        }
+    }//GEN-LAST:event_lbl_AccMana_searchMouseClicked
+
+    private void txt_AccMana_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_AccMana_searchKeyReleased
+        // TODO add your handling code here:
+//        searchAccMana();
+    }//GEN-LAST:event_txt_AccMana_searchKeyReleased
+
+    private void btn_AccountMana_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountMana_AddActionPerformed
+        // TODO add your handling code here:
+        NewEmployee npl = new NewEmployee();
+        npl.setVisible(true);
+        npl.setEnableButton("add");
+    }//GEN-LAST:event_btn_AccountMana_AddActionPerformed
+
+    private void btn_AccountMana_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountMana_RefreshActionPerformed
+        // TODO add your handling code here:
+        List<NHANVIEN> listNV = qlnvdao.selectAll();
+        addToPanelAccMana(listNV);
+    }//GEN-LAST:event_btn_AccountMana_RefreshActionPerformed
+
+    private void btn_AccountMana_sendMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountMana_sendMailActionPerformed
+        // TODO add your handling code here:
+        SendMail sm = new SendMail();
+        sm.setVisible(true);
+    }//GEN-LAST:event_btn_AccountMana_sendMailActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1640,6 +1848,9 @@ public class QLHOME extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Account;
+    private com.k33ptoo.components.KButton btn_AccountMana_Add;
+    private com.k33ptoo.components.KButton btn_AccountMana_Refresh;
+    private com.k33ptoo.components.KButton btn_AccountMana_sendMail;
     private javax.swing.JButton btn_AccountManagement;
     private javax.swing.JButton btn_CustomerManagement;
     private javax.swing.JButton btn_Dot1;
@@ -1648,6 +1859,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_Dot4;
     private javax.swing.JButton btn_EmployeeManagement;
     private javax.swing.JButton btn_Exit;
+    private javax.swing.JButton btn_FoodManagement;
     private javax.swing.JButton btn_Home;
     private javax.swing.JButton btn_IntergradedManagement;
     private javax.swing.JButton btn_InventoryManagement;
@@ -1656,7 +1868,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_OrderManagement;
     private javax.swing.JButton btn_PrevSlide;
     private javax.swing.JButton btn_Setting;
-    private javax.swing.JButton btn_ShippingManagement;
+    private javax.swing.JComboBox<String> cbo_OrderMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1671,8 +1883,11 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1680,6 +1895,8 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_AccMana_search;
     private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_FullName;
     private javax.swing.JLabel lbl_ID;
@@ -1691,10 +1908,13 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Slide3;
     private javax.swing.JLabel lbl_Slide4;
     private javax.swing.JPanel pnl_Acc;
+    private javax.swing.JPanel pnl_AccountMana_ShowListAcc;
+    private javax.swing.JPanel pnl_AccountManagement;
     private javax.swing.JPanel pnl_Home;
     private javax.swing.JPanel pnl_Main;
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_Slide;
+    private javax.swing.JTextField txt_AccMana_search;
     // End of variables declaration//GEN-END:variables
 
 }
