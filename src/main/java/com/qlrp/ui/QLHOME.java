@@ -10,23 +10,32 @@ import com.qlrp.entity.DOAN;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -75,17 +84,17 @@ public class QLHOME extends javax.swing.JFrame {
         lbl_Slide4 = new javax.swing.JLabel();
         pnl_Menu = new javax.swing.JPanel();
         btn_Home = new javax.swing.JButton();
-        btn_EmployeeManagement = new javax.swing.JButton();
-        btn_CustomerManagement = new javax.swing.JButton();
-        btn_FoodManagement = new javax.swing.JButton();
-        btn_AccountManagement = new javax.swing.JButton();
-        btn_InventoryManagement = new javax.swing.JButton();
-        btn_IntergradedManagement = new javax.swing.JButton();
-        btn_OrderManagement = new javax.swing.JButton();
-        btn_Account = new javax.swing.JButton();
-        btn_Setting = new javax.swing.JButton();
-        btn_LogOut = new javax.swing.JButton();
-        btn_Exit = new javax.swing.JButton();
+        btn_QLPhim = new javax.swing.JButton();
+        btn_QLDatVe = new javax.swing.JButton();
+        btn_QLDoAn = new javax.swing.JButton();
+        btn_QLNV = new javax.swing.JButton();
+        btn_QLKH = new javax.swing.JButton();
+        btn_QLTrailer = new javax.swing.JButton();
+        btn_QLTK = new javax.swing.JButton();
+        btn_Thoat = new javax.swing.JButton();
+        btn_TK = new javax.swing.JButton();
+        btn_CaiDat = new javax.swing.JButton();
+        btn_DangXuat = new javax.swing.JButton();
         pnl_Main = new javax.swing.JPanel();
         pnl_Home = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -126,10 +135,8 @@ public class QLHOME extends javax.swing.JFrame {
         cbo_INVENMANA_OrderBy = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        tbl_INVENMANA = new rojerusan.RSTableMetro();
+        tbl_QLDA = new rojerusan.RSTableMetro();
         btn_INVENMANA_add = new com.k33ptoo.components.KButton();
-        btn_INVENMANA_edit = new com.k33ptoo.components.KButton();
-        btn_INVENMANA_delete = new com.k33ptoo.components.KButton();
         jLabel17 = new javax.swing.JLabel();
         btn_InvenMana_Refresh = new com.k33ptoo.components.KButton();
 
@@ -325,299 +332,297 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
-        btn_EmployeeManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_EmployeeManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_EmployeeManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_EmployeeManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/film-40x40.png"))); // NOI18N
-        btn_EmployeeManagement.setText(" QUẢN LÝ PHIM");
-        btn_EmployeeManagement.setAlignmentY(10.0F);
-        btn_EmployeeManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_EmployeeManagement.setContentAreaFilled(false);
-        btn_EmployeeManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_EmployeeManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_EmployeeManagement.setIconTextGap(28);
-        btn_EmployeeManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_EmployeeManagement.setOpaque(true);
-        btn_EmployeeManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLPhim.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLPhim.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLPhim.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLPhim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/film-40x40.png"))); // NOI18N
+        btn_QLPhim.setText(" QUẢN LÝ PHIM");
+        btn_QLPhim.setAlignmentY(10.0F);
+        btn_QLPhim.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLPhim.setContentAreaFilled(false);
+        btn_QLPhim.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLPhim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLPhim.setIconTextGap(28);
+        btn_QLPhim.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLPhim.setOpaque(true);
+        btn_QLPhim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_EmployeeManagementMouseEntered(evt);
+                btn_QLPhimMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_EmployeeManagementMouseExited(evt);
+                btn_QLPhimMouseExited(evt);
             }
         });
-        btn_EmployeeManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLPhim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EmployeeManagementActionPerformed(evt);
+                btn_QLPhimActionPerformed(evt);
             }
         });
 
-        btn_CustomerManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_CustomerManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_CustomerManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_CustomerManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"))); // NOI18N
-        btn_CustomerManagement.setText(" QUẢN LÝ ĐẶT VÉ");
-        btn_CustomerManagement.setAlignmentY(10.0F);
-        btn_CustomerManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_CustomerManagement.setContentAreaFilled(false);
-        btn_CustomerManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_CustomerManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_CustomerManagement.setIconTextGap(28);
-        btn_CustomerManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_CustomerManagement.setOpaque(true);
-        btn_CustomerManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLDatVe.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLDatVe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLDatVe.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLDatVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"))); // NOI18N
+        btn_QLDatVe.setText(" QUẢN LÝ ĐẶT VÉ");
+        btn_QLDatVe.setAlignmentY(10.0F);
+        btn_QLDatVe.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLDatVe.setContentAreaFilled(false);
+        btn_QLDatVe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLDatVe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLDatVe.setIconTextGap(28);
+        btn_QLDatVe.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLDatVe.setOpaque(true);
+        btn_QLDatVe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_CustomerManagementMouseEntered(evt);
+                btn_QLDatVeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_CustomerManagementMouseExited(evt);
+                btn_QLDatVeMouseExited(evt);
             }
         });
-        btn_CustomerManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLDatVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CustomerManagementActionPerformed(evt);
+                btn_QLDatVeActionPerformed(evt);
             }
         });
 
-        btn_FoodManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_FoodManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_FoodManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_FoodManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/popcorn-40x40.png"))); // NOI18N
-        btn_FoodManagement.setText("QUẢN LÝ ĐỒ ĂN");
-        btn_FoodManagement.setAlignmentY(10.0F);
-        btn_FoodManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_FoodManagement.setContentAreaFilled(false);
-        btn_FoodManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_FoodManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_FoodManagement.setIconTextGap(33);
-        btn_FoodManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_FoodManagement.setOpaque(true);
-        btn_FoodManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLDoAn.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLDoAn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLDoAn.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLDoAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/popcorn-40x40.png"))); // NOI18N
+        btn_QLDoAn.setText("QUẢN LÝ ĐỒ ĂN");
+        btn_QLDoAn.setAlignmentY(10.0F);
+        btn_QLDoAn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLDoAn.setContentAreaFilled(false);
+        btn_QLDoAn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLDoAn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLDoAn.setIconTextGap(33);
+        btn_QLDoAn.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLDoAn.setOpaque(true);
+        btn_QLDoAn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_FoodManagementMouseEntered(evt);
+                btn_QLDoAnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_FoodManagementMouseExited(evt);
+                btn_QLDoAnMouseExited(evt);
             }
         });
-        btn_FoodManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLDoAn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_FoodManagementActionPerformed(evt);
+                btn_QLDoAnActionPerformed(evt);
             }
         });
 
-        btn_AccountManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_AccountManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_AccountManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_AccountManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/hr-40x40.png"))); // NOI18N
-        btn_AccountManagement.setText("  QUẢN LÝ  NHÂN VIÊN");
-        btn_AccountManagement.setAlignmentY(10.0F);
-        btn_AccountManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_AccountManagement.setContentAreaFilled(false);
-        btn_AccountManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_AccountManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_AccountManagement.setIconTextGap(25);
-        btn_AccountManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_AccountManagement.setOpaque(true);
-        btn_AccountManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLNV.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLNV.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLNV.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/hr-40x40.png"))); // NOI18N
+        btn_QLNV.setText("  QUẢN LÝ  NHÂN VIÊN");
+        btn_QLNV.setAlignmentY(10.0F);
+        btn_QLNV.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLNV.setContentAreaFilled(false);
+        btn_QLNV.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLNV.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLNV.setIconTextGap(25);
+        btn_QLNV.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLNV.setOpaque(true);
+        btn_QLNV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_AccountManagementMouseEntered(evt);
+                btn_QLNVMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_AccountManagementMouseExited(evt);
+                btn_QLNVMouseExited(evt);
             }
         });
-        btn_AccountManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AccountManagementActionPerformed(evt);
+                btn_QLNVActionPerformed(evt);
             }
         });
 
-        btn_InventoryManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_InventoryManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_InventoryManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_InventoryManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/costumer-40x40.png"))); // NOI18N
-        btn_InventoryManagement.setText("QUẢN LÝ KHÁCH HÀNG");
-        btn_InventoryManagement.setAlignmentY(10.0F);
-        btn_InventoryManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 43, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_InventoryManagement.setContentAreaFilled(false);
-        btn_InventoryManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_InventoryManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_InventoryManagement.setIconTextGap(31);
-        btn_InventoryManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_InventoryManagement.setOpaque(true);
-        btn_InventoryManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLKH.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLKH.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLKH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/costumer-40x40.png"))); // NOI18N
+        btn_QLKH.setText("QUẢN LÝ KHÁCH HÀNG");
+        btn_QLKH.setAlignmentY(10.0F);
+        btn_QLKH.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 43, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLKH.setContentAreaFilled(false);
+        btn_QLKH.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLKH.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLKH.setIconTextGap(31);
+        btn_QLKH.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLKH.setOpaque(true);
+        btn_QLKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_InventoryManagementMouseEntered(evt);
+                btn_QLKHMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_InventoryManagementMouseExited(evt);
+                btn_QLKHMouseExited(evt);
             }
         });
-        btn_InventoryManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_InventoryManagementActionPerformed(evt);
+                btn_QLKHActionPerformed(evt);
             }
         });
 
-        btn_IntergradedManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_IntergradedManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_IntergradedManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_IntergradedManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/trend-40x40.png"))); // NOI18N
-        btn_IntergradedManagement.setText("  THỐNG KÊ");
-        btn_IntergradedManagement.setAlignmentY(10.0F);
-        btn_IntergradedManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_IntergradedManagement.setContentAreaFilled(false);
-        btn_IntergradedManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_IntergradedManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_IntergradedManagement.setIconTextGap(27);
-        btn_IntergradedManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_IntergradedManagement.setOpaque(true);
-        btn_IntergradedManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLTrailer.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLTrailer.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLTrailer.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLTrailer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/video_40px.png"))); // NOI18N
+        btn_QLTrailer.setText("  QUẢN LÝ TRAILER");
+        btn_QLTrailer.setAlignmentY(10.0F);
+        btn_QLTrailer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLTrailer.setContentAreaFilled(false);
+        btn_QLTrailer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLTrailer.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLTrailer.setIconTextGap(27);
+        btn_QLTrailer.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLTrailer.setOpaque(true);
+        btn_QLTrailer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_IntergradedManagementMouseEntered(evt);
+                btn_QLTrailerMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_IntergradedManagementMouseExited(evt);
+                btn_QLTrailerMouseExited(evt);
             }
         });
-        btn_IntergradedManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLTrailer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_IntergradedManagementActionPerformed(evt);
+                btn_QLTrailerActionPerformed(evt);
             }
         });
 
-        btn_OrderManagement.setBackground(new java.awt.Color(2, 16, 86));
-        btn_OrderManagement.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_OrderManagement.setForeground(new java.awt.Color(255, 255, 255));
-        btn_OrderManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/personal-data-40x40.png"))); // NOI18N
-        btn_OrderManagement.setText("TÀI KHOẢN");
-        btn_OrderManagement.setAlignmentY(10.0F);
-        btn_OrderManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_OrderManagement.setContentAreaFilled(false);
-        btn_OrderManagement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_OrderManagement.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_OrderManagement.setIconTextGap(32);
-        btn_OrderManagement.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_OrderManagement.setOpaque(true);
-        btn_OrderManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLTK.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLTK.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLTK.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/trend-40x40.png"))); // NOI18N
+        btn_QLTK.setText("THỐNG KÊ");
+        btn_QLTK.setAlignmentY(10.0F);
+        btn_QLTK.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLTK.setContentAreaFilled(false);
+        btn_QLTK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLTK.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLTK.setIconTextGap(32);
+        btn_QLTK.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLTK.setOpaque(true);
+        btn_QLTK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_OrderManagementMouseEntered(evt);
+                btn_QLTKMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_OrderManagementMouseExited(evt);
+                btn_QLTKMouseExited(evt);
             }
         });
-        btn_OrderManagement.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_OrderManagementActionPerformed(evt);
+                btn_QLTKActionPerformed(evt);
             }
         });
 
-        btn_Account.setBackground(new java.awt.Color(2, 16, 86));
-        btn_Account.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Account.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Account.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/settings-40x40.png"))); // NOI18N
-        btn_Account.setText("CÀI ĐẶT");
-        btn_Account.setAlignmentY(10.0F);
-        btn_Account.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_Account.setContentAreaFilled(false);
-        btn_Account.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_Account.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_Account.setIconTextGap(30);
-        btn_Account.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_Account.setOpaque(true);
-        btn_Account.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Thoat.setBackground(new java.awt.Color(2, 16, 86));
+        btn_Thoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_Thoat.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"))); // NOI18N
+        btn_Thoat.setText("THOÁT");
+        btn_Thoat.setAlignmentY(10.0F);
+        btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_Thoat.setContentAreaFilled(false);
+        btn_Thoat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_Thoat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_Thoat.setIconTextGap(29);
+        btn_Thoat.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_Thoat.setOpaque(true);
+        btn_Thoat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_AccountMouseEntered(evt);
+                btn_ThoatMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_AccountMouseExited(evt);
+                btn_ThoatMouseExited(evt);
             }
         });
-        btn_Account.addActionListener(new java.awt.event.ActionListener() {
+        btn_Thoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AccountActionPerformed(evt);
+                btn_ThoatActionPerformed(evt);
             }
         });
 
-        btn_Setting.setBackground(new java.awt.Color(2, 16, 86));
-        btn_Setting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Setting.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
-        btn_Setting.setText("  ĐĂNG XUẤT");
-        btn_Setting.setAlignmentY(10.0F);
-        btn_Setting.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_Setting.setContentAreaFilled(false);
-        btn_Setting.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_Setting.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_Setting.setIconTextGap(27);
-        btn_Setting.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_Setting.setOpaque(true);
-        btn_Setting.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_TK.setBackground(new java.awt.Color(2, 16, 86));
+        btn_TK.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_TK.setForeground(new java.awt.Color(255, 255, 255));
+        btn_TK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/personal-data-40x40.png"))); // NOI18N
+        btn_TK.setText("TÀI KHOẢN");
+        btn_TK.setAlignmentY(10.0F);
+        btn_TK.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_TK.setContentAreaFilled(false);
+        btn_TK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_TK.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_TK.setIconTextGap(30);
+        btn_TK.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_TK.setOpaque(true);
+        btn_TK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_SettingMouseEntered(evt);
+                btn_TKMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_SettingMouseExited(evt);
+                btn_TKMouseExited(evt);
             }
         });
-        btn_Setting.addActionListener(new java.awt.event.ActionListener() {
+        btn_TK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_SettingActionPerformed(evt);
+                btn_TKActionPerformed(evt);
             }
         });
 
-        btn_LogOut.setBackground(new java.awt.Color(2, 16, 86));
-        btn_LogOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_LogOut.setForeground(new java.awt.Color(255, 255, 255));
-        btn_LogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"))); // NOI18N
-        btn_LogOut.setText("THOÁT");
-        btn_LogOut.setAlignmentY(10.0F);
-        btn_LogOut.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 45, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_LogOut.setContentAreaFilled(false);
-        btn_LogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_LogOut.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_LogOut.setIconTextGap(27);
-        btn_LogOut.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_LogOut.setOpaque(true);
-        btn_LogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_CaiDat.setBackground(new java.awt.Color(2, 16, 86));
+        btn_CaiDat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_CaiDat.setForeground(new java.awt.Color(255, 255, 255));
+        btn_CaiDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/settings-40x40.png"))); // NOI18N
+        btn_CaiDat.setText("  CÀI ĐẶT");
+        btn_CaiDat.setAlignmentY(10.0F);
+        btn_CaiDat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_CaiDat.setContentAreaFilled(false);
+        btn_CaiDat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_CaiDat.setIconTextGap(27);
+        btn_CaiDat.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_CaiDat.setOpaque(true);
+        btn_CaiDat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_LogOutMouseEntered(evt);
+                btn_CaiDatMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_LogOutMouseExited(evt);
+                btn_CaiDatMouseExited(evt);
             }
         });
-        btn_LogOut.addActionListener(new java.awt.event.ActionListener() {
+        btn_CaiDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_LogOutActionPerformed(evt);
+                btn_CaiDatActionPerformed(evt);
             }
         });
 
-        btn_Exit.setBackground(new java.awt.Color(2, 16, 86));
-        btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Exit.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Exit.setText("EXIT");
-        btn_Exit.setAlignmentY(10.0F);
-        btn_Exit.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_Exit.setContentAreaFilled(false);
-        btn_Exit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_Exit.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_Exit.setIconTextGap(29);
-        btn_Exit.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_Exit.setOpaque(true);
-        btn_Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_DangXuat.setBackground(new java.awt.Color(2, 16, 86));
+        btn_DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_DangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
+        btn_DangXuat.setText("ĐĂNG XUẤT");
+        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 45, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_DangXuat.setContentAreaFilled(false);
+        btn_DangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_DangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_DangXuat.setIconTextGap(27);
+        btn_DangXuat.setOpaque(true);
+        btn_DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_ExitMouseEntered(evt);
+                btn_DangXuatMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_ExitMouseExited(evt);
+                btn_DangXuatMouseExited(evt);
             }
         });
-        btn_Exit.addActionListener(new java.awt.event.ActionListener() {
+        btn_DangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExitActionPerformed(evt);
+                btn_DangXuatActionPerformed(evt);
             }
         });
 
@@ -626,44 +631,44 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_MenuLayout.setHorizontalGroup(
             pnl_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btn_Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_EmployeeManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_CustomerManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_FoodManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_AccountManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_InventoryManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_IntergradedManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-            .addComponent(btn_OrderManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_Account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_Setting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_LogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLPhim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLDatVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLDoAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLTrailer, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(btn_QLTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_TK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_CaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_DangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_Thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnl_MenuLayout.setVerticalGroup(
             pnl_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_MenuLayout.createSequentialGroup()
                 .addComponent(btn_Home, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_EmployeeManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_CustomerManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_FoodManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLDoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_AccountManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLNV, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_InventoryManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLKH, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_IntergradedManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLTrailer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_OrderManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLTK, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_Account, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_Setting, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CaiDat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_DangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnl_Main.setBackground(new java.awt.Color(255, 255, 255));
@@ -1085,7 +1090,7 @@ public class QLHOME extends javax.swing.JFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         pnl_QLDoAn.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 64, 1230, -1));
 
-        tbl_INVENMANA.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_QLDA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"COCA", "COCA.png", null, "500", "30000", ""},
                 {null, null, null, null, null, null},
@@ -1110,27 +1115,27 @@ public class QLHOME extends javax.swing.JFrame {
                 "TÊN ĐỒ ĂN", "HÌNH ẢNH", "KÍCH CỠ", "SỐ LƯỢNG", "ĐƠN GIÁ", "MÃ KHUYẾN MÃI"
             }
         ));
-        tbl_INVENMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_INVENMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        tbl_INVENMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tbl_INVENMANA.setColorSelBackgound(new java.awt.Color(255, 255, 153));
-        tbl_INVENMANA.setColorSelForeground(new java.awt.Color(0, 0, 0));
-        tbl_INVENMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tbl_INVENMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        tbl_INVENMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        tbl_INVENMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        tbl_INVENMANA.setRowHeight(70);
-        tbl_INVENMANA.setSelectionBackground(new java.awt.Color(0, 112, 192));
-        tbl_INVENMANA.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_QLDA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_QLDA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_QLDA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_QLDA.setColorSelBackgound(new java.awt.Color(255, 255, 153));
+        tbl_QLDA.setColorSelForeground(new java.awt.Color(0, 0, 0));
+        tbl_QLDA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_QLDA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLDA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLDA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_QLDA.setRowHeight(70);
+        tbl_QLDA.setSelectionBackground(new java.awt.Color(0, 112, 192));
+        tbl_QLDA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_INVENMANAMouseClicked(evt);
+                tbl_QLDAMouseClicked(evt);
             }
         });
-        jScrollPane12.setViewportView(tbl_INVENMANA);
+        jScrollPane12.setViewportView(tbl_QLDA);
 
         pnl_QLDoAn.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
 
-        btn_INVENMANA_add.setText("ADD");
+        btn_INVENMANA_add.setText("THÊM");
         btn_INVENMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_INVENMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_INVENMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -1144,36 +1149,6 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
         pnl_QLDoAn.add(btn_INVENMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 580, -1, -1));
-
-        btn_INVENMANA_edit.setText("EDIT");
-        btn_INVENMANA_edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_INVENMANA_edit.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_INVENMANA_edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_INVENMANA_edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_INVENMANA_edit.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_INVENMANA_edit.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_INVENMANA_edit.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_INVENMANA_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_INVENMANA_editActionPerformed(evt);
-            }
-        });
-        pnl_QLDoAn.add(btn_INVENMANA_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 580, -1, -1));
-
-        btn_INVENMANA_delete.setText("DELETE");
-        btn_INVENMANA_delete.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_INVENMANA_delete.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_INVENMANA_delete.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_INVENMANA_delete.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_INVENMANA_delete.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_INVENMANA_delete.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_INVENMANA_delete.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_INVENMANA_delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_INVENMANA_deleteActionPerformed(evt);
-            }
-        });
-        pnl_QLDoAn.add(btn_INVENMANA_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 580, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel17.setText("QUẢN LÝ ĐỒ ĂN");
@@ -1250,7 +1225,7 @@ public class QLHOME extends javax.swing.JFrame {
         RunSlide();
         List<NHANVIEN> listNV = qlnvdao.selectAll();
         addToPanelAccMana(listNV);
-        
+
         List<DOAN> listDA = qldadao.selectAll();
         fillToTable_DA(listDA);
         //        List<CUSTOMER> listKH = qlkhachhang.selectAll();
@@ -1265,32 +1240,32 @@ public class QLHOME extends javax.swing.JFrame {
     private void setColorMenuItem() {
         // set color button
         btn_Home.setBackground(new Color(2, 16, 86));
-        btn_EmployeeManagement.setBackground(new Color(2, 16, 86));
-        btn_CustomerManagement.setBackground(new Color(2, 16, 86));
-        btn_FoodManagement.setBackground(new Color(2, 16, 86));
-        btn_AccountManagement.setBackground(new Color(2, 16, 86));
-        btn_InventoryManagement.setBackground(new Color(2, 16, 86));
-        btn_IntergradedManagement.setBackground(new Color(2, 16, 86));
-        btn_OrderManagement.setBackground(new Color(2, 16, 86));
-        btn_Account.setBackground(new Color(2, 16, 86));
-        btn_Setting.setBackground(new Color(2, 16, 86));
-        btn_LogOut.setBackground(new Color(2, 16, 86));
-        btn_Exit.setBackground(new Color(2, 16, 86));
+        btn_QLPhim.setBackground(new Color(2, 16, 86));
+        btn_QLDatVe.setBackground(new Color(2, 16, 86));
+        btn_QLDoAn.setBackground(new Color(2, 16, 86));
+        btn_QLNV.setBackground(new Color(2, 16, 86));
+        btn_QLKH.setBackground(new Color(2, 16, 86));
+        btn_QLTrailer.setBackground(new Color(2, 16, 86));
+        btn_QLTK.setBackground(new Color(2, 16, 86));
+        btn_TK.setBackground(new Color(2, 16, 86));
+        btn_CaiDat.setBackground(new Color(2, 16, 86));
+        btn_DangXuat.setBackground(new Color(2, 16, 86));
+        btn_Thoat.setBackground(new Color(2, 16, 86));
         this.btn_CheckClickMenu.setBackground(new Color(166, 166, 166));
 
         // set color border
         btn_Home.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_EmployeeManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_CustomerManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_FoodManagement.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_AccountManagement.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
-        btn_InventoryManagement.setBorder(BorderFactory.createMatteBorder(1, 43, 1, 1, new Color(2, 16, 86)));
-        btn_IntergradedManagement.setBorder(BorderFactory.createMatteBorder(1, 37, 1, 1, new Color(2, 16, 86)));
-        btn_OrderManagement.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
-        btn_Account.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
-        btn_Setting.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
-        btn_LogOut.setBorder(BorderFactory.createMatteBorder(1, 45, 1, 1, new Color(2, 16, 86)));
-        btn_Exit.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
+        btn_QLPhim.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
+        btn_QLDatVe.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
+        btn_QLDoAn.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
+        btn_QLNV.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
+        btn_QLKH.setBorder(BorderFactory.createMatteBorder(1, 43, 1, 1, new Color(2, 16, 86)));
+        btn_QLTrailer.setBorder(BorderFactory.createMatteBorder(1, 37, 1, 1, new Color(2, 16, 86)));
+        btn_QLTK.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
+        btn_TK.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
+        btn_CaiDat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
+        btn_DangXuat.setBorder(BorderFactory.createMatteBorder(1, 45, 1, 1, new Color(2, 16, 86)));
+        btn_Thoat.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
         this.btn_CheckClickMenu.setBorder(BorderFactory.createMatteBorder(1, sizeBorder, 1, 1, new Color(166, 166, 166)));
 
     }
@@ -1509,16 +1484,17 @@ public class QLHOME extends javax.swing.JFrame {
 
     public void fillToTable_DA(List<DOAN> listDA) {
 //        clear table va do du lieu len table
-        tbl_INVENMANA.removeAll();
-        model = (DefaultTableModel) tbl_INVENMANA.getModel();
+        tbl_QLDA.removeAll();
+        model = (DefaultTableModel) tbl_QLDA.getModel();
         model.setRowCount(0);
         listDA = new QLDADAO().selectAll();
         for (DOAN da : listDA) {
-            model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(),da.getKICHCO(), da.getSOLUONG(),
+            model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(), da.getKICHCO(), da.getSOLUONG(),
                 da.getDONGIA(), da.getMAKHUYENMAI()});
         }
         // show IMG product
-        tbl_INVENMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+
+        tbl_QLDA.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
     }
 
     private class ImageRenderer extends DefaultTableCellRenderer {
@@ -1598,60 +1574,60 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_Home, 41);
     }//GEN-LAST:event_btn_HomeMouseEntered
 
-    private void btn_EmployeeManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EmployeeManagementMouseEntered
+    private void btn_QLPhimMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLPhimMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_EmployeeManagement, 41);
-    }//GEN-LAST:event_btn_EmployeeManagementMouseEntered
+        hoverMenu(btn_QLPhim, 41);
+    }//GEN-LAST:event_btn_QLPhimMouseEntered
 
-    private void btn_CustomerManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CustomerManagementMouseEntered
+    private void btn_QLDatVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDatVeMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_CustomerManagement, 41);
-    }//GEN-LAST:event_btn_CustomerManagementMouseEntered
+        hoverMenu(btn_QLDatVe, 41);
+    }//GEN-LAST:event_btn_QLDatVeMouseEntered
 
-    private void btn_FoodManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FoodManagementMouseEntered
+    private void btn_QLDoAnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDoAnMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_FoodManagement, 41);
-    }//GEN-LAST:event_btn_FoodManagementMouseEntered
+        hoverMenu(btn_QLDoAn, 41);
+    }//GEN-LAST:event_btn_QLDoAnMouseEntered
 
-    private void btn_AccountManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountManagementMouseEntered
+    private void btn_QLNVMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLNVMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_AccountManagement, 40);
-    }//GEN-LAST:event_btn_AccountManagementMouseEntered
+        hoverMenu(btn_QLNV, 40);
+    }//GEN-LAST:event_btn_QLNVMouseEntered
 
-    private void btn_InventoryManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InventoryManagementMouseEntered
+    private void btn_QLKHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLKHMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_InventoryManagement, 43);
-    }//GEN-LAST:event_btn_InventoryManagementMouseEntered
+        hoverMenu(btn_QLKH, 43);
+    }//GEN-LAST:event_btn_QLKHMouseEntered
 
-    private void btn_IntergradedManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_IntergradedManagementMouseEntered
+    private void btn_QLTrailerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTrailerMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_IntergradedManagement, 37);
-    }//GEN-LAST:event_btn_IntergradedManagementMouseEntered
+        hoverMenu(btn_QLTrailer, 37);
+    }//GEN-LAST:event_btn_QLTrailerMouseEntered
 
-    private void btn_OrderManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_OrderManagementMouseEntered
+    private void btn_QLTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTKMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_OrderManagement, 40);
-    }//GEN-LAST:event_btn_OrderManagementMouseEntered
+        hoverMenu(btn_QLTK, 40);
+    }//GEN-LAST:event_btn_QLTKMouseEntered
 
-    private void btn_AccountMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountMouseEntered
+    private void btn_TKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TKMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_Account, 42);
-    }//GEN-LAST:event_btn_AccountMouseEntered
+        hoverMenu(btn_TK, 42);
+    }//GEN-LAST:event_btn_TKMouseEntered
 
-    private void btn_SettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SettingMouseEntered
+    private void btn_CaiDatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CaiDatMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_Setting, 35);
-    }//GEN-LAST:event_btn_SettingMouseEntered
+        hoverMenu(btn_CaiDat, 35);
+    }//GEN-LAST:event_btn_CaiDatMouseEntered
 
-    private void btn_LogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LogOutMouseEntered
+    private void btn_DangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_LogOut, 45);
-    }//GEN-LAST:event_btn_LogOutMouseEntered
+        hoverMenu(btn_DangXuat, 45);
+    }//GEN-LAST:event_btn_DangXuatMouseEntered
 
-    private void btn_ExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExitMouseEntered
+    private void btn_ThoatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThoatMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_Exit, 42);
-    }//GEN-LAST:event_btn_ExitMouseEntered
+        hoverMenu(btn_Thoat, 42);
+    }//GEN-LAST:event_btn_ThoatMouseEntered
 
     private void btn_HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HomeActionPerformed
         // TODO add your handling code here:
@@ -1664,37 +1640,37 @@ public class QLHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_HomeActionPerformed
 
-    private void btn_EmployeeManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EmployeeManagementActionPerformed
+    private void btn_QLPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLPhimActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_EmployeeManagement;
+        this.btn_CheckClickMenu = btn_QLPhim;
         this.sizeBorder = 41;
-        hoverMenu(btn_EmployeeManagement, 41);
+        hoverMenu(btn_QLPhim, 41);
 //        showPanelMenu(pnl_EmployeeManagement);
 
         // code change Tab here
 
-    }//GEN-LAST:event_btn_EmployeeManagementActionPerformed
+    }//GEN-LAST:event_btn_QLPhimActionPerformed
 
-    private void btn_CustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CustomerManagementActionPerformed
+    private void btn_QLDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLDatVeActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_CustomerManagement;
+        this.btn_CheckClickMenu = btn_QLDatVe;
         this.sizeBorder = 41;
-        hoverMenu(btn_CustomerManagement, 41);
+        hoverMenu(btn_QLDatVe, 41);
 
         // code change Tab here
 //        showPanelMenu(pnl_CustomerManagement);
 
-    }//GEN-LAST:event_btn_CustomerManagementActionPerformed
+    }//GEN-LAST:event_btn_QLDatVeActionPerformed
 
-    private void btn_FoodManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FoodManagementActionPerformed
+    private void btn_QLDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLDoAnActionPerformed
         // TODO add your handling code here:
         // code change Tab here
 //        EMPLOYEE epl = Auth.user;
 //        if (epl != null) {
 //            if (Auth.isManager()) {
-        this.btn_CheckClickMenu = btn_FoodManagement;
+        this.btn_CheckClickMenu = btn_QLDoAn;
         this.sizeBorder = 41;
-        hoverMenu(btn_FoodManagement, 41);
+        hoverMenu(btn_QLDoAn, 41);
         showPanelMenu(pnl_QLDoAn);
 //            } else {
 //                JOptionPane.showMessageDialog(this, "You can't access this page!", "SHOP MANAGEMENT", JOptionPane.INFORMATION_MESSAGE);
@@ -1705,27 +1681,27 @@ public class QLHOME extends javax.swing.JFrame {
 //            hoverMenu(btn_AccountManagement, 41);
 //            showPanelMenu(pnl_AccountManagement);
 //        }
-    }//GEN-LAST:event_btn_FoodManagementActionPerformed
+    }//GEN-LAST:event_btn_QLDoAnActionPerformed
 
-    private void btn_AccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountManagementActionPerformed
+    private void btn_QLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLNVActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_AccountManagement;
+        this.btn_CheckClickMenu = btn_QLNV;
         this.sizeBorder = 41;
-        hoverMenu(btn_AccountManagement, 41);
+        hoverMenu(btn_QLNV, 41);
         showPanelMenu(pnl_AccountManagement);
-    }//GEN-LAST:event_btn_AccountManagementActionPerformed
+    }//GEN-LAST:event_btn_QLNVActionPerformed
 
-    private void btn_InventoryManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InventoryManagementActionPerformed
+    private void btn_QLKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLKHActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_InventoryManagement;
+        this.btn_CheckClickMenu = btn_QLKH;
         this.sizeBorder = 43;
-        hoverMenu(btn_InventoryManagement, 43);
+        hoverMenu(btn_QLKH, 43);
 
         // code change Tab here
 //        showPanelMenu(pnl_InventoryManagement);
-    }//GEN-LAST:event_btn_InventoryManagementActionPerformed
+    }//GEN-LAST:event_btn_QLKHActionPerformed
 
-    private void btn_IntergradedManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IntergradedManagementActionPerformed
+    private void btn_QLTrailerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLTrailerActionPerformed
         // TODO add your handling code here:
         // code change Tab here
 //        EMPLOYEE epl = Auth.user;
@@ -1744,41 +1720,41 @@ public class QLHOME extends javax.swing.JFrame {
 //            hoverMenu(btn_IntergradedManagement, 37);
 //            showPanelMenu(pnl_IntergratedManagement);
 //        }
-    }//GEN-LAST:event_btn_IntergradedManagementActionPerformed
+    }//GEN-LAST:event_btn_QLTrailerActionPerformed
 
-    private void btn_OrderManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OrderManagementActionPerformed
+    private void btn_QLTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLTKActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_OrderManagement;
+        this.btn_CheckClickMenu = btn_QLTK;
         this.sizeBorder = 40;
-        hoverMenu(btn_OrderManagement, 40);
+        hoverMenu(btn_QLTK, 40);
 
         // code change Tab here
 //        showPanelMenu(pnl_OrderManagement);
 
-    }//GEN-LAST:event_btn_OrderManagementActionPerformed
+    }//GEN-LAST:event_btn_QLTKActionPerformed
 
-    private void btn_AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountActionPerformed
+    private void btn_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TKActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_Account;
+        this.btn_CheckClickMenu = btn_TK;
         this.sizeBorder = 42;
-        hoverMenu(btn_Account, 42);
+        hoverMenu(btn_TK, 42);
 
         // code change Tab here
 //        showPanelMenu(pnl_Account);
-    }//GEN-LAST:event_btn_AccountActionPerformed
+    }//GEN-LAST:event_btn_TKActionPerformed
 
-    private void btn_SettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SettingActionPerformed
+    private void btn_CaiDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CaiDatActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_Setting;
+        this.btn_CheckClickMenu = btn_CaiDat;
         this.sizeBorder = 35;
-        hoverMenu(btn_Setting, 35);
+        hoverMenu(btn_CaiDat, 35);
 
         // code change Tab here
 //        showPanelMenu(pnl_Setting);
 
-    }//GEN-LAST:event_btn_SettingActionPerformed
+    }//GEN-LAST:event_btn_CaiDatActionPerformed
 
-    private void btn_LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LogOutActionPerformed
+    private void btn_DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangXuatActionPerformed
         // TODO add your handling code here:
         // code change Tab here
 //        if (MsgBox.confirm(this, "Do you want to check out before exit?")) {
@@ -1791,81 +1767,80 @@ public class QLHOME extends javax.swing.JFrame {
 //            this.setVisible(false);
 //            lg.setVisible(true);
 //        }
-    }//GEN-LAST:event_btn_LogOutActionPerformed
+    }//GEN-LAST:event_btn_DangXuatActionPerformed
 
-    private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
+    private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
         // TODO add your handling code here:
 //        // code change Tab here
 //        if (MsgBox.confirm(this, "Are you sure want to exit ?")) {
 //            System.exit(0);
 //        }
-    }//GEN-LAST:event_btn_ExitActionPerformed
+    }//GEN-LAST:event_btn_ThoatActionPerformed
 
     private void btn_HomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_HomeMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
     }//GEN-LAST:event_btn_HomeMouseExited
 
-    private void btn_EmployeeManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EmployeeManagementMouseExited
+    private void btn_QLPhimMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLPhimMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_EmployeeManagementMouseExited
+    }//GEN-LAST:event_btn_QLPhimMouseExited
 
-    private void btn_CustomerManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CustomerManagementMouseExited
+    private void btn_QLDatVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDatVeMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_CustomerManagementMouseExited
+    }//GEN-LAST:event_btn_QLDatVeMouseExited
 
-    private void btn_FoodManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FoodManagementMouseExited
+    private void btn_QLDoAnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDoAnMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_FoodManagementMouseExited
+    }//GEN-LAST:event_btn_QLDoAnMouseExited
 
-    private void btn_AccountManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountManagementMouseExited
+    private void btn_QLNVMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLNVMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_AccountManagementMouseExited
+    }//GEN-LAST:event_btn_QLNVMouseExited
 
-    private void btn_InventoryManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InventoryManagementMouseExited
+    private void btn_QLKHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLKHMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_InventoryManagementMouseExited
+    }//GEN-LAST:event_btn_QLKHMouseExited
 
-    private void btn_IntergradedManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_IntergradedManagementMouseExited
+    private void btn_QLTrailerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTrailerMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_IntergradedManagementMouseExited
+    }//GEN-LAST:event_btn_QLTrailerMouseExited
 
-    private void btn_OrderManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_OrderManagementMouseExited
+    private void btn_QLTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLTKMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_OrderManagementMouseExited
+    }//GEN-LAST:event_btn_QLTKMouseExited
 
-    private void btn_AccountMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AccountMouseExited
+    private void btn_TKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TKMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_AccountMouseExited
+    }//GEN-LAST:event_btn_TKMouseExited
 
-    private void btn_SettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SettingMouseExited
+    private void btn_CaiDatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CaiDatMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_SettingMouseExited
+    }//GEN-LAST:event_btn_CaiDatMouseExited
 
-    private void btn_LogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LogOutMouseExited
+    private void btn_DangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_LogOutMouseExited
+    }//GEN-LAST:event_btn_DangXuatMouseExited
 
-    private void btn_ExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExitMouseExited
+    private void btn_ThoatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThoatMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_ExitMouseExited
+    }//GEN-LAST:event_btn_ThoatMouseExited
 
     private void cbo_IntergratedMana_CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_IntergratedMana_CategoryActionPerformed
         // TODO add your handling code here:
 //        showChart();
     }//GEN-LAST:event_cbo_IntergratedMana_CategoryActionPerformed
-//    NewItems_Inventory items = new NewItems_Inventory();
 
 //    public void searchAccMana() {
 //        QLNVDAO qlnvdao = new QLNVDAO();
@@ -1953,31 +1928,32 @@ public class QLHOME extends javax.swing.JFrame {
     private void txt_INVENMANA_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_INVENMANA_SearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_INVENMANA_SearchActionPerformed
+    private void tbl_QLDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QLDAMouseClicked
+        NewFOOD nf = new NewFOOD();
+        try {
+            int index = tbl_QLDA.getSelectedRow();
+            DOAN datu = qldadao.selectebyID(tbl_QLDA.getValueAt(index, 0).toString());
+            getInfo.da = datu;
+            if (nf.isShowing()) {
+                nf.fillToForm();
+                nf.setEnableButton("edit");
+            } else {
+                nf.setVisible(true);
+                nf.fillToForm();
+                nf.setEnableButton("edit");
+            }
 
-    private void tbl_INVENMANAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_INVENMANAMouseClicked
+        } catch (Exception e) {
+            e.printStackTrace();
 
-        int index = tbl_INVENMANA.getSelectedRow();
-        DOAN datu = qldadao.selectebyID(tbl_INVENMANA.getValueAt(index, 0).toString());
-        getInfo.da = datu;
-//        items.setEnableButton("edit");
-//        items.fillToForm();
-        System.out.println(datu.getTENDOAN());
-    }//GEN-LAST:event_tbl_INVENMANAMouseClicked
+        }
+    }//GEN-LAST:event_tbl_QLDAMouseClicked
 
     private void btn_INVENMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_addActionPerformed
-//        items.setVisible(true);
-//        items.setEnableButton("add");
+        NewFOOD nf = new NewFOOD();
+        nf.setVisible(true);
+        nf.setEnableButton("add");
     }//GEN-LAST:event_btn_INVENMANA_addActionPerformed
-
-    private void btn_INVENMANA_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_editActionPerformed
-//        items.setVisible(true);
-//        items.setEnableButton("edit");
-    }//GEN-LAST:event_btn_INVENMANA_editActionPerformed
-
-    private void btn_INVENMANA_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_deleteActionPerformed
-//        Warning_Delete wid = new Warning_Delete();
-//        wid.show();
-    }//GEN-LAST:event_btn_INVENMANA_deleteActionPerformed
 
     private void btn_InvenMana_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InvenMana_RefreshActionPerformed
         List<DOAN> listDA = qldadao.selectAll();
@@ -2021,31 +1997,29 @@ public class QLHOME extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Account;
     private com.k33ptoo.components.KButton btn_AccountMana_Add;
     private com.k33ptoo.components.KButton btn_AccountMana_Refresh;
     private com.k33ptoo.components.KButton btn_AccountMana_sendMail;
-    private javax.swing.JButton btn_AccountManagement;
-    private javax.swing.JButton btn_CustomerManagement;
+    private javax.swing.JButton btn_CaiDat;
+    private javax.swing.JButton btn_DangXuat;
     private javax.swing.JButton btn_Dot1;
     private javax.swing.JButton btn_Dot2;
     private javax.swing.JButton btn_Dot3;
     private javax.swing.JButton btn_Dot4;
-    private javax.swing.JButton btn_EmployeeManagement;
-    private javax.swing.JButton btn_Exit;
-    private javax.swing.JButton btn_FoodManagement;
     private javax.swing.JButton btn_Home;
     private com.k33ptoo.components.KButton btn_INVENMANA_add;
-    private com.k33ptoo.components.KButton btn_INVENMANA_delete;
-    private com.k33ptoo.components.KButton btn_INVENMANA_edit;
-    private javax.swing.JButton btn_IntergradedManagement;
     private com.k33ptoo.components.KButton btn_InvenMana_Refresh;
-    private javax.swing.JButton btn_InventoryManagement;
-    private javax.swing.JButton btn_LogOut;
     private javax.swing.JButton btn_NextSlide;
-    private javax.swing.JButton btn_OrderManagement;
     private javax.swing.JButton btn_PrevSlide;
-    private javax.swing.JButton btn_Setting;
+    private javax.swing.JButton btn_QLDatVe;
+    private javax.swing.JButton btn_QLDoAn;
+    private javax.swing.JButton btn_QLKH;
+    private javax.swing.JButton btn_QLNV;
+    private javax.swing.JButton btn_QLPhim;
+    private javax.swing.JButton btn_QLTK;
+    private javax.swing.JButton btn_QLTrailer;
+    private javax.swing.JButton btn_TK;
+    private javax.swing.JButton btn_Thoat;
     private javax.swing.JComboBox<String> cbo_INVENMANA_OrderBy;
     private javax.swing.JComboBox<String> cbo_OrderMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
@@ -2098,7 +2072,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_QLDoAn;
     private javax.swing.JPanel pnl_Slide;
-    private rojerusan.RSTableMetro tbl_INVENMANA;
+    private rojerusan.RSTableMetro tbl_QLDA;
     private javax.swing.JTextField txt_AccMana_search;
     private javax.swing.JTextField txt_INVENMANA_Search;
     // End of variables declaration//GEN-END:variables
