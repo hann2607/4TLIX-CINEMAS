@@ -44,6 +44,11 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lbl_poster = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        pnl_cart = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        rSTableMetro1 = new rojerusan.RSTableMetro();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btn_SoLuong = new com.k33ptoo.components.KButton();
         txt_Search_Film = new javax.swing.JTextField();
@@ -150,11 +155,6 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel44 = new javax.swing.JPanel();
         lbl_KM5 = new javax.swing.JLabel();
         jTextArea30 = new javax.swing.JTextArea();
-        pnl_cart = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojerusan.RSTableMetro();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("4TLIX CINEMAS");
@@ -187,6 +187,70 @@ public class KHHOME extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnl_cart.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_cart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "SPIDER - NO WAY HOME", "100.000 VNĐ"},
+                {null, "THOR 4 - LOVE AND THUNDER", "200.000 VNĐ"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "HÌNH", "TÊN SP", "GIÁ"
+            }
+        ));
+        rSTableMetro1.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        rSTableMetro1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        rSTableMetro1.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rSTableMetro1.setRowHeight(60);
+        jScrollPane2.setViewportView(rSTableMetro1);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setText("GIỎ HÀNG");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("TỔNG TIỀN: 300.000 VNĐ");
+
+        javax.swing.GroupLayout pnl_cartLayout = new javax.swing.GroupLayout(pnl_cart);
+        pnl_cart.setLayout(pnl_cartLayout);
+        pnl_cartLayout.setHorizontalGroup(
+            pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_cartLayout.createSequentialGroup()
+                .addContainerGap(168, Short.MAX_VALUE)
+                .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(157, 157, 157))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap())))
+            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_cartLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        pnl_cartLayout.setVerticalGroup(
+            pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_cartLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
+                    .addContainerGap(49, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(76, Short.MAX_VALUE)))
+        );
+
+        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 130, 450, 470));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1151,70 +1215,6 @@ public class KHHOME extends javax.swing.JFrame {
 
         jPanel7.add(pnl_KhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1035, 1359, 325));
 
-        pnl_cart.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_cart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "SPIDER - NO WAY HOME", "100.000 VNĐ"},
-                {null, "THOR 4 - LOVE AND THUNDER", "200.000 VNĐ"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "HÌNH", "TÊN SP", "GIÁ"
-            }
-        ));
-        rSTableMetro1.setColorBordeFilas(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        rSTableMetro1.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        rSTableMetro1.setRowHeight(60);
-        jScrollPane2.setViewportView(rSTableMetro1);
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setText("GIỎ HÀNG");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("TỔNG TIỀN: 300.000 VNĐ");
-
-        javax.swing.GroupLayout pnl_cartLayout = new javax.swing.GroupLayout(pnl_cart);
-        pnl_cart.setLayout(pnl_cartLayout);
-        pnl_cartLayout.setHorizontalGroup(
-            pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_cartLayout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(157, 157, 157))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap())))
-            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_cartLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        pnl_cartLayout.setVerticalGroup(
-            pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_cartLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                    .addContainerGap(49, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(76, Short.MAX_VALUE)))
-        );
-
-        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 130, 450, 470));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1245,7 +1245,7 @@ public class KHHOME extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1852, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
