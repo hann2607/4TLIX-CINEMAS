@@ -1,16 +1,19 @@
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\NHANVIEN.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Chart.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XJdbc.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Auth.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\QLHOME.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\login.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KHACHHANG.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Slide.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLRPDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XDate.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\SplashScreen.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\MsgBox.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLNVDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKHDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\KHHOME.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\MsgBox.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\Slide.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\SendMail.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\dao\QLNVDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\QLHOME.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\SplashScreen.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\dao\QLRPDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\Chart.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\XDate.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\entity\KHACHHANG.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\entity\NHANVIEN.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\Auth.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\XJdbc.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\login.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKHDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\NewEmployee.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\ui\KHHOME.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\123\123\4TL_CINEMA\src\main\java\com\qlrp\utils\getInfo.java

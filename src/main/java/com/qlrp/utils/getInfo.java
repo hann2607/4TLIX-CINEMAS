@@ -4,6 +4,7 @@
  */
 package com.qlrp.utils;
 
+import com.qlrp.entity.DOAN;
 import com.qlrp.entity.NHANVIEN;
 
 /**
@@ -11,5 +12,8 @@ import com.qlrp.entity.NHANVIEN;
  * @author HAN-PC
  */
 public class getInfo {
+
     public static NHANVIEN nv = null;
+    public static DOAN da = null;
+
 }

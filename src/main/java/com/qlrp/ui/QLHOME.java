@@ -4,7 +4,9 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLNVDAO;
+import com.qlrp.entity.DOAN;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
@@ -118,6 +120,18 @@ public class QLHOME extends javax.swing.JFrame {
         btn_AccountMana_sendMail = new com.k33ptoo.components.KButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnl_AccountMana_ShowListAcc = new javax.swing.JPanel();
+        pnl_QLDoAn = new javax.swing.JPanel();
+        lbl_INVENMANA_Search = new javax.swing.JLabel();
+        txt_INVENMANA_Search = new javax.swing.JTextField();
+        cbo_INVENMANA_OrderBy = new javax.swing.JComboBox<>();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tbl_INVENMANA = new rojerusan.RSTableMetro();
+        btn_INVENMANA_add = new com.k33ptoo.components.KButton();
+        btn_INVENMANA_edit = new com.k33ptoo.components.KButton();
+        btn_INVENMANA_delete = new com.k33ptoo.components.KButton();
+        jLabel17 = new javax.swing.JLabel();
+        btn_InvenMana_Refresh = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -988,7 +1002,7 @@ public class QLHOME extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         pnl_AccountMana_ShowListAcc.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout());
+        pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(pnl_AccountMana_ShowListAcc);
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
@@ -1048,6 +1062,140 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_AccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_QLDoAn.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_QLDoAn.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_QLDoAn.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_QLDoAn.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_QLDoAn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_INVENMANA_Search.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_QLDoAn.add(lbl_INVENMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 40, 40));
+
+        txt_INVENMANA_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_INVENMANA_SearchActionPerformed(evt);
+            }
+        });
+        pnl_QLDoAn.add(txt_INVENMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 40));
+
+        cbo_INVENMANA_OrderBy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbo_INVENMANA_OrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order By", "Item 2", "Item 3", "Item 4" }));
+        pnl_QLDoAn.add(cbo_INVENMANA_OrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 110, 40));
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_QLDoAn.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 64, 1230, -1));
+
+        tbl_INVENMANA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"COCA", "COCA.png", null, "500", "30000", ""},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "TÊN ĐỒ ĂN", "HÌNH ẢNH", "KÍCH CỠ", "SỐ LƯỢNG", "ĐƠN GIÁ", "MÃ KHUYẾN MÃI"
+            }
+        ));
+        tbl_INVENMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_INVENMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_INVENMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_INVENMANA.setColorSelBackgound(new java.awt.Color(255, 255, 153));
+        tbl_INVENMANA.setColorSelForeground(new java.awt.Color(0, 0, 0));
+        tbl_INVENMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_INVENMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_INVENMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_INVENMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_INVENMANA.setRowHeight(70);
+        tbl_INVENMANA.setSelectionBackground(new java.awt.Color(0, 112, 192));
+        tbl_INVENMANA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_INVENMANAMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(tbl_INVENMANA);
+
+        pnl_QLDoAn.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_INVENMANA_add.setText("ADD");
+        btn_INVENMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_INVENMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_INVENMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_INVENMANA_add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_INVENMANA_add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_INVENMANA_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_INVENMANA_addActionPerformed(evt);
+            }
+        });
+        pnl_QLDoAn.add(btn_INVENMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 580, -1, -1));
+
+        btn_INVENMANA_edit.setText("EDIT");
+        btn_INVENMANA_edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_INVENMANA_edit.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_INVENMANA_edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_INVENMANA_edit.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_edit.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_INVENMANA_edit.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_INVENMANA_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_INVENMANA_editActionPerformed(evt);
+            }
+        });
+        pnl_QLDoAn.add(btn_INVENMANA_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 580, -1, -1));
+
+        btn_INVENMANA_delete.setText("DELETE");
+        btn_INVENMANA_delete.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_INVENMANA_delete.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_INVENMANA_delete.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_delete.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_INVENMANA_delete.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_INVENMANA_delete.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_INVENMANA_delete.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_INVENMANA_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_INVENMANA_deleteActionPerformed(evt);
+            }
+        });
+        pnl_QLDoAn.add(btn_INVENMANA_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 580, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel17.setText("QUẢN LÝ ĐỒ ĂN");
+        pnl_QLDoAn.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
+
+        btn_InvenMana_Refresh.setText("REFRESH");
+        btn_InvenMana_Refresh.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_InvenMana_Refresh.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_InvenMana_Refresh.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_InvenMana_Refresh.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_InvenMana_Refresh.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_InvenMana_Refresh.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_InvenMana_Refresh.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_InvenMana_Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InvenMana_RefreshActionPerformed(evt);
+            }
+        });
+        pnl_QLDoAn.add(btn_InvenMana_Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, -1, -1));
+
+        pnl_Main.add(pnl_QLDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1090,9 +1238,10 @@ public class QLHOME extends javax.swing.JFrame {
     private JButton btn_CheckClickMenu = new JButton();
     private int sizeBorder = 41;
     DefaultTableModel model;
-    
 
     QLNVDAO qlnvdao = new QLNVDAO();
+    QLDADAO qldadao = new QLDADAO();
+
     private void init() {
         btn_CheckClickMenu = btn_Home;
         showPanelMenu(pnl_Home);
@@ -1101,20 +1250,16 @@ public class QLHOME extends javax.swing.JFrame {
         RunSlide();
         List<NHANVIEN> listNV = qlnvdao.selectAll();
         addToPanelAccMana(listNV);
-//
-//        List<INVENTORY> listSP = qlkhodao.selectAll();
-//        fillToTable_Kho(listSP);
-//
-//        List<CUSTOMER> listKH = qlkhachhang.selectAll();
-//        fillToTable_CUSTOMER(listKH);
-
-//        fillTableOrderMana();
-//        fillTableOrderDetails();
-//        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-//        showInfoAccAndPanelAccount();
-
-//        fillToCBOChartYear();
-
+        
+        List<DOAN> listDA = qldadao.selectAll();
+        fillToTable_DA(listDA);
+        //        List<CUSTOMER> listKH = qlkhachhang.selectAll();
+        //        fillToTable_CUSTOMER(listKH);
+        //        fillTableOrderMana();
+        //        fillTableOrderDetails();
+        //        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        //        showInfoAccAndPanelAccount();
+        //        fillToCBOChartYear();
     }
 
     private void setColorMenuItem() {
@@ -1131,7 +1276,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Setting.setBackground(new Color(2, 16, 86));
         btn_LogOut.setBackground(new Color(2, 16, 86));
         btn_Exit.setBackground(new Color(2, 16, 86));
-        this.btn_CheckClickMenu.setBackground(new Color(166,166,166));
+        this.btn_CheckClickMenu.setBackground(new Color(166, 166, 166));
 
         // set color border
         btn_Home.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
@@ -1146,17 +1291,17 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Setting.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
         btn_LogOut.setBorder(BorderFactory.createMatteBorder(1, 45, 1, 1, new Color(2, 16, 86)));
         btn_Exit.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
-        this.btn_CheckClickMenu.setBorder(BorderFactory.createMatteBorder(1, sizeBorder, 1, 1, new Color(166,166,166)));
+        this.btn_CheckClickMenu.setBorder(BorderFactory.createMatteBorder(1, sizeBorder, 1, 1, new Color(166, 166, 166)));
 
     }
 
     private void hoverMenu(JButton btn, int sizeMatteBorder) {
         setColorMenuItem();
         // set color button
-        btn.setBackground(new Color(166,166,166));
+        btn.setBackground(new Color(166, 166, 166));
 
         // set color border
-        btn.setBorder(BorderFactory.createMatteBorder(1, sizeMatteBorder, 1, 1, new Color(166,166,166)));
+        btn.setBorder(BorderFactory.createMatteBorder(1, sizeMatteBorder, 1, 1, new Color(166, 166, 166)));
     }
 
     private void showPanelMenu(JPanel pnl) {
@@ -1169,6 +1314,7 @@ public class QLHOME extends javax.swing.JFrame {
 //        pnl_Account.setVisible(false);
 //        pnl_EmployeeManagement.setVisible(false);
         pnl_AccountManagement.setVisible(false);
+        pnl_QLDoAn.setVisible(false);
 //        pnl_InventoryManagement.setVisible(false);
 //        pnl_Setting.setVisible(false);
         // show form lên khi click vào menu
@@ -1241,7 +1387,6 @@ public class QLHOME extends javax.swing.JFrame {
 //        }
 //
 //    }
-
 //    private void fillToCBOChartYear() {
 //        DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_IntergratedMana_year.getModel();
 //        model.removeAllElements();
@@ -1252,7 +1397,6 @@ public class QLHOME extends javax.swing.JFrame {
 ////                System.out.println(String.valueOf(year));
 //        }
 //    }
-
     private void setImageSlide() {
         File f = new File("");
         String duongdanBanner = "\\src\\main\\resources\\com\\qlbh\\icon\\slide\\";
@@ -1363,20 +1507,19 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_AccountMana_ShowListAcc.repaint();
     }
 
-//    public void fillToTable_Kho(List<INVENTORY> listSP) {
-////            Khanh
-////        clear table va do du lieu len table
-//        tbl_INVENMANA.removeAll();
-//        model = (DefaultTableModel) tbl_INVENMANA.getModel();
-//        model.setRowCount(0);
-//        listSP = new QLKHODAO().selectAll();
-//        for (INVENTORY wh : listSP) {
-//            model.addRow(new Object[]{wh.getMASP(), wh.getTENSP(), wh.getHINH(),
-//                wh.getDONGIA(), wh.getSOLUONG(), wh.getGHICHU()});
-//        }
-//        // show IMG product
-//        tbl_INVENMANA.getColumnModel().getColumn(2).setCellRenderer(new ImageRenderer());
-//    }
+    public void fillToTable_DA(List<DOAN> listDA) {
+//        clear table va do du lieu len table
+        tbl_INVENMANA.removeAll();
+        model = (DefaultTableModel) tbl_INVENMANA.getModel();
+        model.setRowCount(0);
+        listDA = new QLDADAO().selectAll();
+        for (DOAN da : listDA) {
+            model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(),da.getKICHCO(), da.getSOLUONG(),
+                da.getDONGIA(), da.getMAKHUYENMAI()});
+        }
+        // show IMG product
+        tbl_INVENMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+    }
 
     private class ImageRenderer extends DefaultTableCellRenderer {
 
@@ -1385,7 +1528,7 @@ public class QLHOME extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             String photoname = String.valueOf(value);
             ImageIcon ImageIcon = new ImageIcon(
-                    new ImageIcon("src/main/resources/com/qlbh/Image/Inventory/" + photoname).
+                    new ImageIcon("src/main/resources/com/qlrp/image/doan/" + photoname).
                             getImage().getScaledInstance(60, 50, Image.SCALE_SMOOTH));
             //add border for img
             JLabel lb = new JLabel(ImageIcon);
@@ -1407,7 +1550,6 @@ public class QLHOME extends javax.swing.JFrame {
 //        }
 //
 //    }
-
 //    private void fillTableOrderMana() {
 //        tbl_OrderMana.removeAll();
 //        DefaultTableModel model = (DefaultTableModel) tbl_OrderMana.getModel();
@@ -1433,7 +1575,6 @@ public class QLHOME extends javax.swing.JFrame {
 ////        Date ngay = XDate.toDate((String)tbl_OrderMana.getValueAt(2, 5),"dd/MM/yyyy");
 ////        System.out.println(ngay);
 //    }
-
 //    public String cusName(String cusID) {
 //        CUSTOMERDAO customerdao = new CUSTOMERDAO();
 //        CUSTOMER sv = customerdao.selectebyID(cusID);
@@ -1551,10 +1692,10 @@ public class QLHOME extends javax.swing.JFrame {
 //        EMPLOYEE epl = Auth.user;
 //        if (epl != null) {
 //            if (Auth.isManager()) {
-//                this.btn_CheckClickMenu = btn_AccountManagement;
-//                this.sizeBorder = 41;
-//                hoverMenu(btn_AccountManagement, 41);
-//                showPanelMenu(pnl_AccountManagement);
+        this.btn_CheckClickMenu = btn_FoodManagement;
+        this.sizeBorder = 41;
+        hoverMenu(btn_FoodManagement, 41);
+        showPanelMenu(pnl_QLDoAn);
 //            } else {
 //                JOptionPane.showMessageDialog(this, "You can't access this page!", "SHOP MANAGEMENT", JOptionPane.INFORMATION_MESSAGE);
 //            }
@@ -1569,9 +1710,9 @@ public class QLHOME extends javax.swing.JFrame {
     private void btn_AccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountManagementActionPerformed
         // TODO add your handling code here:
         this.btn_CheckClickMenu = btn_AccountManagement;
-            this.sizeBorder = 41;
-            hoverMenu(btn_AccountManagement, 41);
-            showPanelMenu(pnl_AccountManagement);
+        this.sizeBorder = 41;
+        hoverMenu(btn_AccountManagement, 41);
+        showPanelMenu(pnl_AccountManagement);
     }//GEN-LAST:event_btn_AccountManagementActionPerformed
 
     private void btn_InventoryManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InventoryManagementActionPerformed
@@ -1751,7 +1892,7 @@ public class QLHOME extends javax.swing.JFrame {
 
     private void btn_Acc_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_SaveActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btn_Acc_SaveActionPerformed
 
 //    private void filter_AccMana() {
@@ -1777,12 +1918,12 @@ public class QLHOME extends javax.swing.JFrame {
     private void lbl_AccMana_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_AccMana_searchMouseClicked
         // TODO add your handling code here:
         //        if (!txt_AccMana_search.getText().equals("")) {
-            //            EMPLOYEE epl = qlnvdao.selectebyID(txt_AccMana_search.getText());
-            //            List<EMPLOYEE> listNV = new ArrayList<>();
-            //            listNV.add(epl);
-            //            addToPanelAccMana(listNV);
-            //
-            //        }
+        //            EMPLOYEE epl = qlnvdao.selectebyID(txt_AccMana_search.getText());
+        //            List<EMPLOYEE> listNV = new ArrayList<>();
+        //            listNV.add(epl);
+        //            addToPanelAccMana(listNV);
+        //
+        //        }
     }//GEN-LAST:event_lbl_AccMana_searchMouseClicked
 
     private void txt_AccMana_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_AccMana_searchKeyReleased
@@ -1809,6 +1950,39 @@ public class QLHOME extends javax.swing.JFrame {
         sm.setVisible(true);
     }//GEN-LAST:event_btn_AccountMana_sendMailActionPerformed
 
+    private void txt_INVENMANA_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_INVENMANA_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_INVENMANA_SearchActionPerformed
+
+    private void tbl_INVENMANAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_INVENMANAMouseClicked
+
+        int index = tbl_INVENMANA.getSelectedRow();
+        DOAN datu = qldadao.selectebyID(tbl_INVENMANA.getValueAt(index, 0).toString());
+        getInfo.da = datu;
+//        items.setEnableButton("edit");
+//        items.fillToForm();
+        System.out.println(datu.getTENDOAN());
+    }//GEN-LAST:event_tbl_INVENMANAMouseClicked
+
+    private void btn_INVENMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_addActionPerformed
+//        items.setVisible(true);
+//        items.setEnableButton("add");
+    }//GEN-LAST:event_btn_INVENMANA_addActionPerformed
+
+    private void btn_INVENMANA_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_editActionPerformed
+//        items.setVisible(true);
+//        items.setEnableButton("edit");
+    }//GEN-LAST:event_btn_INVENMANA_editActionPerformed
+
+    private void btn_INVENMANA_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_deleteActionPerformed
+//        Warning_Delete wid = new Warning_Delete();
+//        wid.show();
+    }//GEN-LAST:event_btn_INVENMANA_deleteActionPerformed
+
+    private void btn_InvenMana_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InvenMana_RefreshActionPerformed
+        List<DOAN> listDA = qldadao.selectAll();
+        fillToTable_DA(listDA);
+    }//GEN-LAST:event_btn_InvenMana_RefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1861,13 +2035,18 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_Exit;
     private javax.swing.JButton btn_FoodManagement;
     private javax.swing.JButton btn_Home;
+    private com.k33ptoo.components.KButton btn_INVENMANA_add;
+    private com.k33ptoo.components.KButton btn_INVENMANA_delete;
+    private com.k33ptoo.components.KButton btn_INVENMANA_edit;
     private javax.swing.JButton btn_IntergradedManagement;
+    private com.k33ptoo.components.KButton btn_InvenMana_Refresh;
     private javax.swing.JButton btn_InventoryManagement;
     private javax.swing.JButton btn_LogOut;
     private javax.swing.JButton btn_NextSlide;
     private javax.swing.JButton btn_OrderManagement;
     private javax.swing.JButton btn_PrevSlide;
     private javax.swing.JButton btn_Setting;
+    private javax.swing.JComboBox<String> cbo_INVENMANA_OrderBy;
     private javax.swing.JComboBox<String> cbo_OrderMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1877,6 +2056,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1886,6 +2066,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
@@ -1896,10 +2077,12 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JLabel lbl_AccMana_search;
     private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_FullName;
     private javax.swing.JLabel lbl_ID;
+    private javax.swing.JLabel lbl_INVENMANA_Search;
     private javax.swing.JLabel lbl_ImageUser;
     private javax.swing.JLabel lbl_Phone;
     private javax.swing.JLabel lbl_Role;
@@ -1913,8 +2096,11 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Home;
     private javax.swing.JPanel pnl_Main;
     private javax.swing.JPanel pnl_Menu;
+    private javax.swing.JPanel pnl_QLDoAn;
     private javax.swing.JPanel pnl_Slide;
+    private rojerusan.RSTableMetro tbl_INVENMANA;
     private javax.swing.JTextField txt_AccMana_search;
+    private javax.swing.JTextField txt_INVENMANA_Search;
     // End of variables declaration//GEN-END:variables
 
 }
