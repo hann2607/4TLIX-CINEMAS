@@ -17,7 +17,7 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE130</version>
         </dependency>
-<!--         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc 
+        <!--         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc 
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
@@ -145,6 +145,7 @@
             <artifactId>KGradientPanel</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

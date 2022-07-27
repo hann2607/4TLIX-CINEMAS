@@ -4,6 +4,7 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.utils.Auth;
 import com.qlrp.utils.XImage;
 import javax.swing.JOptionPane;
 
@@ -113,9 +114,22 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
     private void thoat() {
         this.setVisible(false);
-        KHHOME kh = new KHHOME();
-        kh.setVisible(true);
+        if (Auth.user == null) {
+            if (Auth.cus != null) {
+                KHHOME kh = new KHHOME();
+                kh.setVisible(true);
+            }
+        } else {
+            if(Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
+                KHHOME kh = new KHHOME();
+                kh.setVisible(true);
+            } else {
+                QLHOME qlhome = new QLHOME();
+                qlhome.setVisible(true);
+            }
+        }
     }
+
     /**
      * @param args the command line arguments
      */

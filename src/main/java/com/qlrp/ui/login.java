@@ -14,15 +14,10 @@ import com.qlrp.utils.MsgBox;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.io.File;
-import java.net.URL;
+import javax.swing.BorderFactory;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 /**
  *
@@ -43,6 +38,7 @@ public class login extends javax.swing.JFrame {
     }
 
     private void init() {
+        setBorderAndMarginJtextfield();
         pnl_containerRight.setVisible(false);
         lbl_leftposter.setVisible(false);
         lbl_sologanLeft.setVisible(false);
@@ -64,19 +60,19 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grp_GioiTinh = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         pnl_left = new keeptoo.KGradientPanel();
         pnl_containerLeft = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_Account = new javax.swing.JTextField();
-        btn_Login = new keeptoo.KGradientPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_newAcc = new javax.swing.JButton();
         btn_HidePass = new javax.swing.JButton();
         txt_Password = new javax.swing.JPasswordField();
+        btn_Login = new com.k33ptoo.components.KButton();
         lbl_sologanLeft = new javax.swing.JLabel();
         lbl_leftposter = new javax.swing.JLabel();
         pnl_right = new keeptoo.KGradientPanel();
@@ -90,7 +86,7 @@ public class login extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         txtsdt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtuser = new javax.swing.JTextField();
+        txthoten = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtgmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -98,14 +94,13 @@ public class login extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtconfirm = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        kGradientPanel4 = new keeptoo.KGradientPanel();
-        btndk = new javax.swing.JLabel();
         btn_TroLai = new javax.swing.JButton();
-        txtconfirm1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        txtDiaChi = new javax.swing.JTextField();
+        rdo_Nam = new javax.swing.JCheckBox();
+        rdo_Nu = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btn_DangKy = new com.k33ptoo.components.KButton();
         lbl_sologanRight = new javax.swing.JLabel();
         lbl_rightposter = new javax.swing.JLabel();
 
@@ -130,10 +125,10 @@ public class login extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/padlock (4).png"))); // NOI18N
         pnl_containerLeft.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 338, -1, -1));
 
-        txt_Account.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txt_Account.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txt_Account.setToolTipText("");
         txt_Account.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_Account.setMargin(new java.awt.Insets(2, 20, 2, 6));
+        txt_Account.setOpaque(true);
         txt_Account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_AccountActionPerformed(evt);
@@ -141,48 +136,14 @@ public class login extends javax.swing.JFrame {
         });
         pnl_containerLeft.add(txt_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 228, 261, 50));
 
-        btn_Login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_Login.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_LoginMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_LoginMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_LoginMouseExited(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("ĐĂNG NHẬP");
-
-        javax.swing.GroupLayout btn_LoginLayout = new javax.swing.GroupLayout(btn_Login);
-        btn_Login.setLayout(btn_LoginLayout);
-        btn_LoginLayout.setHorizontalGroup(
-            btn_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_LoginLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel4)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
-        btn_LoginLayout.setVerticalGroup(
-            btn_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-        );
-
-        pnl_containerLeft.add(btn_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, -1));
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("QUÊN MẬT KHẨU?");
-        pnl_containerLeft.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 388, -1, -1));
+        pnl_containerLeft.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/logo-4tlix2.png"))); // NOI18N
         pnl_containerLeft.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 68, -1, 110));
 
-        btn_newAcc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_newAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_newAcc.setText("TẠO TÀI KHOẢN MỚI");
         btn_newAcc.setContentAreaFilled(false);
         btn_newAcc.setFocusPainted(false);
@@ -202,7 +163,7 @@ public class login extends javax.swing.JFrame {
                 btn_newAccActionPerformed(evt);
             }
         });
-        pnl_containerLeft.add(btn_newAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 170, -1));
+        pnl_containerLeft.add(btn_newAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 190, -1));
 
         btn_HidePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/hide.png"))); // NOI18N
         btn_HidePass.setContentAreaFilled(false);
@@ -214,11 +175,32 @@ public class login extends javax.swing.JFrame {
         });
         pnl_containerLeft.add(btn_HidePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 40, 50));
 
+        txt_Password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txt_Password.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_Password.setToolTipText("");
         txt_Password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Password.setMargin(new java.awt.Insets(2, 10, 2, 6));
         pnl_containerLeft.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 328, 260, 50));
+
+        btn_Login.setToolTipText("");
+        btn_Login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Login.setkEndColor(new java.awt.Color(0, 0, 255));
+        btn_Login.setkHoverColor(new java.awt.Color(255, 0, 255));
+        btn_Login.setkHoverEndColor(new java.awt.Color(0, 0, 255));
+        btn_Login.setkHoverForeGround(new java.awt.Color(51, 255, 0));
+        btn_Login.setkStartColor(new java.awt.Color(255, 0, 255));
+        btn_Login.setLabel("ĐĂNG NHẬP");
+        btn_Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_LoginMouseEntered(evt);
+            }
+        });
+        btn_Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LoginActionPerformed(evt);
+            }
+        });
+        pnl_containerLeft.add(btn_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 210, 40));
 
         pnl_left.add(pnl_containerLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
@@ -241,48 +223,50 @@ public class login extends javax.swing.JFrame {
         pnl_containerRight.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/padlock (4).png"))); // NOI18N
-        pnl_containerRight.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, -1, 37));
+        pnl_containerRight.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, -1, 40));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/unlock.png"))); // NOI18N
         pnl_containerRight.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 40, 40));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/email.png"))); // NOI18N
-        pnl_containerRight.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 180, 40, 37));
+        pnl_containerRight.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 180, 40, 40));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/sex.png"))); // NOI18N
         pnl_containerRight.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, 37));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/home.png"))); // NOI18N
-        pnl_containerRight.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, 37));
+        pnl_containerRight.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 40, 40));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/user.png"))); // NOI18N
         pnl_containerRight.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 110, 40, 40));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/telephone-call.png"))); // NOI18N
-        pnl_containerRight.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, 37));
+        pnl_containerRight.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 40, 40, 40));
 
-        txtsdt.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txtsdt.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtsdt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtsdt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtsdt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         pnl_containerRight.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 310, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("SĐT");
         pnl_containerRight.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        txtuser.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        txtuser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtuser.addActionListener(new java.awt.event.ActionListener() {
+        txthoten.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txthoten.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txthoten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtuserActionPerformed(evt);
+                txthotenActionPerformed(evt);
             }
         });
-        pnl_containerRight.add(txtuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 310, 40));
+        pnl_containerRight.add(txthoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 310, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Họ tên");
         pnl_containerRight.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
-        txtgmail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txtgmail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtgmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtgmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,7 +279,7 @@ public class login extends javax.swing.JFrame {
         jLabel9.setText("Email");
         pnl_containerRight.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
-        txtpass.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txtpass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnl_containerRight.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 310, 40));
 
@@ -303,7 +287,7 @@ public class login extends javax.swing.JFrame {
         jLabel10.setText("Mật khẩu");
         pnl_containerRight.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
 
-        txtconfirm.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txtconfirm.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtconfirm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtconfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,67 +301,38 @@ public class login extends javax.swing.JFrame {
         jLabel11.setText("Nhập lại mật khẩu");
         pnl_containerRight.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, 16));
 
-        kGradientPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        kGradientPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kGradientPanel4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                kGradientPanel4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                kGradientPanel4MouseExited(evt);
-            }
-        });
-
-        btndk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btndk.setForeground(new java.awt.Color(255, 255, 255));
-        btndk.setText("ĐĂNG KÝ");
-
-        javax.swing.GroupLayout kGradientPanel4Layout = new javax.swing.GroupLayout(kGradientPanel4);
-        kGradientPanel4.setLayout(kGradientPanel4Layout);
-        kGradientPanel4Layout.setHorizontalGroup(
-            kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel4Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btndk)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-        kGradientPanel4Layout.setVerticalGroup(
-            kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btndk, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-        );
-
-        pnl_containerRight.add(kGradientPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
-
         btn_TroLai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btn_TroLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/left-arrow.png"))); // NOI18N
         btn_TroLai.setText("   TRỞ LẠI");
         btn_TroLai.setBorder(null);
         btn_TroLai.setBorderPainted(false);
+        btn_TroLai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_TroLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TroLaiActionPerformed(evt);
             }
         });
-        pnl_containerRight.add(btn_TroLai, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 129, 40));
+        pnl_containerRight.add(btn_TroLai, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 129, 40));
 
-        txtconfirm1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        txtconfirm1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtconfirm1.addActionListener(new java.awt.event.ActionListener() {
+        txtDiaChi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtDiaChi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtconfirm1ActionPerformed(evt);
+                txtDiaChiActionPerformed(evt);
             }
         });
-        pnl_containerRight.add(txtconfirm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 310, 40));
+        pnl_containerRight.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 310, 40));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBox1.setText("Nam");
-        pnl_containerRight.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 30));
+        grp_GioiTinh.add(rdo_Nam);
+        rdo_Nam.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rdo_Nam.setSelected(true);
+        rdo_Nam.setText("Nam");
+        pnl_containerRight.add(rdo_Nam, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 30));
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBox2.setText("Nữ");
-        pnl_containerRight.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, 30));
+        grp_GioiTinh.add(rdo_Nu);
+        rdo_Nu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rdo_Nu.setText("Nữ");
+        pnl_containerRight.add(rdo_Nu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -388,6 +343,26 @@ public class login extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Địa chỉ");
         pnl_containerRight.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 71, 20));
+
+        btn_DangKy.setText("ĐĂNG KÝ");
+        btn_DangKy.setToolTipText("");
+        btn_DangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_DangKy.setkEndColor(new java.awt.Color(0, 0, 255));
+        btn_DangKy.setkHoverColor(new java.awt.Color(255, 0, 255));
+        btn_DangKy.setkHoverEndColor(new java.awt.Color(0, 0, 255));
+        btn_DangKy.setkHoverForeGround(new java.awt.Color(51, 255, 0));
+        btn_DangKy.setkStartColor(new java.awt.Color(255, 0, 255));
+        btn_DangKy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_DangKyMouseEntered(evt);
+            }
+        });
+        btn_DangKy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DangKyActionPerformed(evt);
+            }
+        });
+        pnl_containerRight.add(btn_DangKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 190, 40));
 
         pnl_right.add(pnl_containerRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
@@ -412,6 +387,25 @@ public class login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void setBorderAndMarginJtextfield() {
+        txt_Account.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 50)));
+        txt_Password.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 50)));
+        txtsdt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+        txthoten.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+        txtgmail.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+        txtDiaChi.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+        txtpass.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(0, 10, 0, 0)));
+    }
 
     private void btn_HidePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HidePassActionPerformed
         // TODO add your handling code here:
@@ -450,14 +444,24 @@ public class login extends javax.swing.JFrame {
     QLNVDAO qlnvdao = new QLNVDAO();
     QLKHDAO qlkhdao = new QLKHDAO();
 
-    void dangNhap() {
+    private void dangNhap() {
         String tk = txt_Account.getText();
         String matKhau = txt_Password.getText();
         NHANVIEN epl = qlnvdao.selectebyID(tk);
         KHACHHANG cus = qlkhdao.selectebyID(tk);
 
         if (epl == null) {
-            JOptionPane.showMessageDialog(this, "Sai tên đăng nhập!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            if (cus == null) {
+                JOptionPane.showMessageDialog(this, "Sai tên đăng nhập!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            } else if (!matKhau.equals(cus.getMAT_KHAU())) {
+                JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                MsgBox.alert(this, "ĐĂNG NHẬP THÀNH CÔNG!");
+                SplashScreen sp = new SplashScreen();
+                Auth.cus = cus;
+                sp.setVisible(true);
+                this.setVisible(false);
+            }
         } else if (!matKhau.equals(epl.getMAT_KHAU())) {
             JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -466,49 +470,9 @@ public class login extends javax.swing.JFrame {
             Auth.user = epl;
             sp.setVisible(true);
             this.setVisible(false);
-
         }
-//        KHACHHANG cus = qlkhdao.selectebyID(tk);
-//        if (cus == null ) {
-//            JOptionPane.showMessageDialog(this, "Sai tên đăng nhập!", "Lỗi!!!!!!!!!!", JOptionPane.ERROR_MESSAGE);
-//        } else if (!matKhau.equals(cus.getMAT_KHAU())) {
-//            JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!!!!!!!!!!", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            Auth.cus = cus;
-//            MsgBox.alert(this, "Login successfully!");
-////            this.dispose();
-//        }
     }
 
-    void dangKy() {
-        int dk = JOptionPane.showConfirmDialog(this, "bạn có muốn đăng ký không?", "Confirm", JOptionPane.YES_NO_OPTION);
-        if (dk != JOptionPane.YES_OPTION) {
-            return;
-        }
-//        try {
-//            Class.forName(driver);
-//            Connection con = DriverManager.getConnection(url, user, password);
-//            String sql = "insert into NHANVIEN values (?,?,?,?,?)";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, txtsdt.getText());
-//            ps.setString(2, txtuser.getText());
-//            ps.setString(3, txtgmail.getText());
-//            ps.setString(4, txtpass.getText());
-//            ps.setString(5, txtconfirm.getText());
-//
-//            int n = ps.executeUpdate();
-//
-//            if (txtsdt.getText().equals("") | txtuser.getText().equals("") | txtgmail.getText().equals("") | txtpass.getText().equals("") | txtconfirm.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this, "không để thông tin trống");
-//            } else if (n != 0) {
-//                JOptionPane.showMessageDialog(this, "Đăng ký thành công");
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Đăng ký thất bại");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }
     boolean isHidePass = true;
     File f = new File("");
 
@@ -525,18 +489,6 @@ public class login extends javax.swing.JFrame {
             isHidePass = true;
         }
     }
-
-    private void btn_LoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LoginMouseEntered
-        // TODO add your handling code here:
-        jLabel4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel4.setForeground(Color.green);
-    }//GEN-LAST:event_btn_LoginMouseEntered
-
-    private void btn_LoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LoginMouseExited
-        // TODO add your handling code here:
-        jLabel4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel4.setForeground(Color.white);
-    }//GEN-LAST:event_btn_LoginMouseExited
 
     private void btn_newAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_newAccMouseClicked
         // TODO add your handling code here:
@@ -555,29 +507,6 @@ public class login extends javax.swing.JFrame {
         btn_newAcc.setForeground(Color.red);
     }//GEN-LAST:event_btn_newAccMouseEntered
 
-    private void kGradientPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel4MouseEntered
-        // TODO add your handling code here:
-        btndk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btndk.setForeground(Color.green);
-    }//GEN-LAST:event_kGradientPanel4MouseEntered
-
-    private void kGradientPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel4MouseExited
-        // TODO add your handling code here:
-        btndk.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btndk.setForeground(Color.white);
-    }//GEN-LAST:event_kGradientPanel4MouseExited
-
-    private void btn_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LoginMouseClicked
-        // TODO add your handling code here:
-        dangNhap();
-    }//GEN-LAST:event_btn_LoginMouseClicked
-
-    private void kGradientPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel4MouseClicked
-        // TODO add your handling code here:
-        dangKy();
-
-    }//GEN-LAST:event_kGradientPanel4MouseClicked
-
     private void txtgmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtgmailActionPerformed
@@ -586,13 +515,102 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtconfirmActionPerformed
 
-    private void txtconfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconfirm1ActionPerformed
+    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtconfirm1ActionPerformed
+    }//GEN-LAST:event_txtDiaChiActionPerformed
 
-    private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
+    private void txthotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthotenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtuserActionPerformed
+    }//GEN-LAST:event_txthotenActionPerformed
+
+    private boolean validateForm() {
+        String loi = "";
+
+        String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+        if (txtsdt.getText().equals("")) {
+            loi += "SDT không được để trống! \n";
+        } else if (!txtsdt.getText().matches(reg)) {
+            loi += "Số điện thoại không đúng định dạng! \n";
+        }
+
+        if (txthoten.getText().equals("")) {
+            loi += "Họ và tên không được để trống! \n";
+        }
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if (txtgmail.getText().equals("")) {
+            loi += "Gmail không được để trống! \n";
+        } else if (!txtgmail.getText().matches(EMAIL_PATTERN)) {
+            loi += "Gmail không đúng định dạng! \n";
+        }
+
+        if (txtDiaChi.getText().equals("")) {
+            loi += "Địa chỉ không được để trống! \n";
+        }
+        if (txtpass.getText().equals("")) {
+            loi += "Mật khẩu không được để trống! \n";
+        } else if (!txtpass.getText().equalsIgnoreCase(txtconfirm.getText())) {
+            loi += "Xác nhận mật khẩu không khớp! \n";
+        }
+        
+        if(!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } 
+        return true;
+    }
+    
+    private KHACHHANG getform() {
+        KHACHHANG kh = new KHACHHANG();
+        kh.setSDT(txtsdt.getText());
+        kh.setHO_TEN(txthoten.getText());
+        kh.setEMAIL(txtgmail.getText());
+        kh.setDIA_CHI(txtDiaChi.getText());
+        if(rdo_Nam.isSelected()) {
+            kh.setGIOI_TINH(true);
+        } else {
+            kh.setGIOI_TINH(false);
+        }
+        kh.setMAT_KHAU(txtpass.getText());
+        return kh;
+    }
+
+    private void dangKy() {
+        int dk = JOptionPane.showConfirmDialog(this, "bạn có muốn đăng ký không?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (dk != JOptionPane.YES_OPTION) {
+            return;
+        }
+        try {
+            if(validateForm()) {
+                KHACHHANG kh = getform();
+                qlkhdao.insert(kh);
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this, "Đăng ký thất bại!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
+    private void btn_DangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangKyActionPerformed
+        // TODO add your handling code here:
+        dangKy();
+    }//GEN-LAST:event_btn_DangKyActionPerformed
+
+    private void btn_DangKyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangKyMouseEntered
+        // TODO add your handling code here:
+        btn_DangKy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btn_DangKyMouseEntered
+
+    private void btn_LoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LoginMouseEntered
+        // TODO add your handling code here:
+        btn_Login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btn_LoginMouseEntered
+
+    private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
+        // TODO add your handling code here:
+        dangNhap();
+    }//GEN-LAST:event_btn_LoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -608,16 +626,24 @@ public class login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -631,13 +657,12 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.components.KButton btn_DangKy;
     private javax.swing.JButton btn_HidePass;
-    private keeptoo.KGradientPanel btn_Login;
+    private com.k33ptoo.components.KButton btn_Login;
     private javax.swing.JButton btn_TroLai;
     private javax.swing.JButton btn_newAcc;
-    private javax.swing.JLabel btndk;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.ButtonGroup grp_GioiTinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -651,14 +676,12 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private keeptoo.KGradientPanel kGradientPanel4;
     private javax.swing.JLabel lbl_leftposter;
     private javax.swing.JLabel lbl_rightposter;
     private javax.swing.JLabel lbl_sologanLeft;
@@ -667,13 +690,15 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_containerRight;
     private keeptoo.KGradientPanel pnl_left;
     private keeptoo.KGradientPanel pnl_right;
+    private javax.swing.JCheckBox rdo_Nam;
+    private javax.swing.JCheckBox rdo_Nu;
+    private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txt_Account;
     private javax.swing.JPasswordField txt_Password;
     private javax.swing.JTextField txtconfirm;
-    private javax.swing.JTextField txtconfirm1;
     private javax.swing.JTextField txtgmail;
+    private javax.swing.JTextField txthoten;
     private javax.swing.JTextField txtpass;
     private javax.swing.JTextField txtsdt;
-    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

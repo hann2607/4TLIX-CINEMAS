@@ -29,11 +29,11 @@ public class Auth {
 
     public static KHACHHANG cus = null;
 
-    public static void clear1() {
+    public static void clearKH() {
         Auth.cus = null;
     }
 
-    public static boolean isLogin1() {
+    public static boolean isLoginKH() {
         return Auth.cus != null;
     }
 }

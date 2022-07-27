@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
 
     String INSERT_SQL = "INSERT INTO KHACHHANG ( SDT, HO_TEN, EMAIL, DIA_CHI, GIOI_TINH, MAT_KHAU) " + "VALUES(?, ?, ?, ?, ?, ?)";
-    String UPDATE_SQL = "UPDATE KHACHHANG SET HO_TEN=?, EMAIL=?, SDT=?, DIA_CHI=?, GIOI_TINH=?, MAT_KHAU=? WHERE SDT=?";
+    String UPDATE_SQL = "UPDATE KHACHHANG SET HO_TEN=?, EMAIL=?, DIA_CHI=?, GIOI_TINH=?, MAT_KHAU=? WHERE SDT=?";
     String DELETE_SQL = "DELETE FROM KHACHHANG WHERE SDT=?";
     String SELECT_ALL_SQL = "SELECT * FROM KHACHHANG";
     String SELECT_BY_ID_SQL = "SELECT * FROM KHACHHANG WHERE SDT LIKE ?";
@@ -29,7 +29,7 @@ public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
     @Override
     public void insert(KHACHHANG entity) {
         try {
-            XJdbc.update(INSERT_SQL, entity.getHO_TEN(), entity.isGIOI_TINH(), entity.getSDT(), entity.getDIA_CHI(), entity.getEMAIL(), entity.getMAT_KHAU());
+            XJdbc.update(INSERT_SQL, entity.getSDT(), entity.getHO_TEN(), entity.getEMAIL(),entity.getDIA_CHI(), entity.isGIOI_TINH() , entity.getMAT_KHAU());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,7 +38,7 @@ public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
     @Override
     public void update(KHACHHANG entity) {
         try {
-            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.isGIOI_TINH(), entity.getSDT(), entity.getDIA_CHI(), entity.getEMAIL(), entity.getMAT_KHAU());
+            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.getEMAIL(),entity.getDIA_CHI(), entity.isGIOI_TINH() , entity.getMAT_KHAU(), entity.getSDT());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
