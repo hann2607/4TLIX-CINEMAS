@@ -93,6 +93,7 @@ public final class NewFOOD extends javax.swing.JFrame {
         if (validateForm()) {
             doan.setTENDOAN(txt_ten.getText());
             doan.setLOAI(cbo_loai.getSelectedItem().toString());
+            System.out.println(cbo_loai.getSelectedItem().toString());
             doan.setKICHCO(cbo_kichco.getSelectedItem().toString());
             doan.setSOLUONG(sp_soluong.getValue().hashCode());
             doan.setDONGIA(Double.valueOf(txt_donGia.getText()));
@@ -362,7 +363,7 @@ public final class NewFOOD extends javax.swing.JFrame {
             }
         });
 
-        cbo_loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN LOẠI", "ĐỒ ĂN", "THỨC UỐNG" }));
+        cbo_loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN LOẠI", "Đồ ăn", "Đồ uống" }));
         cbo_loai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbo_loaiActionPerformed(evt);

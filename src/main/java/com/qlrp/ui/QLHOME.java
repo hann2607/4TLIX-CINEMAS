@@ -341,7 +341,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLPhim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/film-40x40.png"))); // NOI18N
         btn_QLPhim.setText(" QUẢN LÝ PHIM");
         btn_QLPhim.setAlignmentY(10.0F);
-        btn_QLPhim.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLPhim.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLPhim.setContentAreaFilled(false);
         btn_QLPhim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLPhim.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -535,9 +535,9 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Thoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_Thoat.setForeground(new java.awt.Color(255, 255, 255));
         btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"))); // NOI18N
-        btn_Thoat.setText("THOÁT");
+        btn_Thoat.setText(" THOÁT");
         btn_Thoat.setAlignmentY(10.0F);
-        btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_Thoat.setContentAreaFilled(false);
         btn_Thoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Thoat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -618,8 +618,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_DangXuat.setForeground(new java.awt.Color(255, 255, 255));
         btn_DangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
-        btn_DangXuat.setText("ĐĂNG XUẤT");
-        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 45, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_DangXuat.setText(" ĐĂNG XUẤT");
+        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_DangXuat.setContentAreaFilled(false);
         btn_DangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_DangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

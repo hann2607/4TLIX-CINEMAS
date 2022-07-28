@@ -452,8 +452,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="CH&#x1ecc;N LO&#x1ea0;I"/>
-                <StringItem index="1" value="&#x110;&#x1ed2; &#x102;N"/>
-                <StringItem index="2" value="TH&#x1ee8;C U&#x1ed0;NG"/>
+                <StringItem index="1" value="&#x110;&#x1ed3; &#x103;n"/>
+                <StringItem index="2" value="&#x110;&#x1ed3; u&#x1ed1;ng"/>
               </StringArray>
             </Property>
           </Properties>
