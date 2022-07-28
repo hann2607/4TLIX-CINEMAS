@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class QLDADAO extends QLRPDAO<DOAN, String> {
 
-    String INSERT_SQL = "INSERT INTO DOANTHUCUONG ( TEN_DO_AN,  LOAI,  KICH_CO,  HINH,  SO_LUONG, DON_GIA, MA_KHUYEN_MAI, TRANG_THAI) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    String INSERT_SQL = "INSERT INTO DOANTHUCUONG ( TEN_DO_AN,  LOAI,  KICH_CO,  HINH,  SO_LUONG, DON_GIA, MA_KHUYEN_MAI) VALUES (?, ?, ?, ?, ?, ?, ?)";
     String UPDATE_SQL = "UPDATE DOANTHUCUONG SET LOAI,  KICH_CO=?,  HINH=?,  SO_LUONG=?, DON_GIA=?, MA_KHUYEN_MAI=?, TRANG_THAI=?  WHERE TEN_DO_AN=?";
     String DELETE_SQL = "DELETE FROM DOANTHUCUONG WHERE TEN_DO_AN=?";
     String SELECT_ALL_SQL = "SELECT * FROM DOANTHUCUONG";
@@ -29,7 +29,7 @@ public class QLDADAO extends QLRPDAO<DOAN, String> {
     public void insert(DOAN entity) {
         try {
             XJdbc.update(INSERT_SQL, entity.getTENDOAN(), entity.getLOAI(), entity.getKICHCO(), entity.getHINH(), entity.getSOLUONG(),
-                    entity.getDONGIA(), entity.getMAKHUYENMAI(), entity.getTRANGTHAI());
+                    entity.getDONGIA(), entity.getMAKHUYENMAI());
         } catch (SQLException ex) {
             Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,7 +39,7 @@ public class QLDADAO extends QLRPDAO<DOAN, String> {
     public void update(DOAN entity) {
         try {
             XJdbc.update(UPDATE_SQL, entity.getLOAI(), entity.getKICHCO(), entity.getHINH(), entity.getSOLUONG(),
-                    entity.getDONGIA(), entity.getMAKHUYENMAI(), entity.getTRANGTHAI(), entity.getTENDOAN());
+                    entity.getDONGIA(), entity.getMAKHUYENMAI(), entity.getTENDOAN());
         } catch (SQLException ex) {
             Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,7 +84,6 @@ public class QLDADAO extends QLRPDAO<DOAN, String> {
                 entity.setSOLUONG(rs.getInt("SO_LUONG"));
                 entity.setDONGIA(rs.getDouble("DON_GIA"));
                 entity.setMAKHUYENMAI(rs.getString("MA_KHUYEN_MAI"));
-                entity.setTRANGTHAI(rs.getBoolean("TRANG_THAI"));
 
                 list.add(entity);
             }

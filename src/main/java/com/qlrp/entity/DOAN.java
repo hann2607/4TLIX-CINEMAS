@@ -17,12 +17,11 @@ public class DOAN {
     private int SOLUONG;
     private Double DONGIA;
     private String MAKHUYENMAI;
-    private Boolean TRANGTHAI;
 
     public DOAN() {
     }
 
-    public DOAN(String TENDOAN, String LOAI, String KICHCO, String HINH, int SOLUONG, Double DONGIA, String MAKHUYENMAI, Boolean TRANGTHAI) {
+    public DOAN(String TENDOAN, String LOAI, String KICHCO, String HINH, int SOLUONG, Double DONGIA, String MAKHUYENMAI) {
         this.TENDOAN = TENDOAN;
         this.LOAI = LOAI;
         this.KICHCO = KICHCO;
@@ -30,7 +29,6 @@ public class DOAN {
         this.SOLUONG = SOLUONG;
         this.DONGIA = DONGIA;
         this.MAKHUYENMAI = MAKHUYENMAI;
-        this.TRANGTHAI = TRANGTHAI;
     }
 
     public String getTENDOAN() {
@@ -87,13 +85,5 @@ public class DOAN {
 
     public void setMAKHUYENMAI(String MAKHUYENMAI) {
         this.MAKHUYENMAI = MAKHUYENMAI;
-    }
-
-    public Boolean getTRANGTHAI() {
-        return TRANGTHAI;
-    }
-
-    public void setTRANGTHAI(Boolean TRANGTHAI) {
-        this.TRANGTHAI = TRANGTHAI;
     }
 }

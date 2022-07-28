@@ -10,10 +10,12 @@ import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
 import static com.qlrp.utils.XImage.ResizeImage;
 import com.qlrp.utils.getInfo;
+import java.awt.Color;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.border.MatteBorder;
 
 /**
  *
@@ -38,12 +40,12 @@ public final class NewFOOD extends javax.swing.JFrame {
     public void fillToForm() {
         DOAN datu = getInfo.da;
         if (datu != null) {
-            txt_tenDA.setText(datu.getTENDOAN());
-            cbo_loaiDA.setSelectedItem(datu.getLOAI());
-            cbo_kichcoDA.setSelectedItem(datu.getKICHCO());
-            sp_soluongDA.setValue(datu.getSOLUONG());
-            txt_donGiaDA.setText(datu.getDONGIA() + "");
-            txt_maKMDA.setText(datu.getMAKHUYENMAI());
+            txt_ten.setText(datu.getTENDOAN());
+            cbo_loai.setSelectedItem(datu.getLOAI());
+            cbo_kichco.setSelectedItem(datu.getKICHCO());
+            sp_soluong.setValue(datu.getSOLUONG());
+            txt_donGia.setText(datu.getDONGIA() + "");
+            txt_maKM.setText(datu.getMAKHUYENMAI());
             lbl_img.setIcon((XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\" + datu.getHINH())));
         }
     }
@@ -59,12 +61,12 @@ public final class NewFOOD extends javax.swing.JFrame {
     }
 
     private void clearAll() {
-        txt_tenDA.setText("");
-        cbo_loaiDA.setSelectedIndex(0);
-        cbo_kichcoDA.setSelectedIndex(0);
-        sp_soluongDA.setValue(0);
-        txt_donGiaDA.setText("");
-        txt_maKMDA.setText("");
+        txt_ten.setText("");
+        cbo_loai.setSelectedIndex(0);
+        cbo_kichco.setSelectedIndex(0);
+        sp_soluong.setValue(0);
+        txt_donGia.setText("");
+        txt_maKM.setText("");
         try {
             lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + duongdanBanner + "PopcornCombo.png"));
         } catch (Exception e) {
@@ -73,27 +75,33 @@ public final class NewFOOD extends javax.swing.JFrame {
 
     public void setForm(DOAN doan) {
         try {
-            txt_tenDA.setText(doan.getTENDOAN());
-            cbo_loaiDA.setSelectedItem(doan.getLOAI());
-            cbo_kichcoDA.setSelectedItem(doan.getKICHCO());
-            sp_soluongDA.setValue(doan.getSOLUONG());
-            txt_donGiaDA.setText(doan.getDONGIA() + "");
-            txt_maKMDA.setText(doan.getMAKHUYENMAI());
+            txt_ten.setText(doan.getTENDOAN());
+            cbo_loai.setSelectedItem(doan.getLOAI());
+            cbo_kichco.setSelectedItem(doan.getKICHCO());
+            sp_soluong.setValue(doan.getSOLUONG());
+            txt_donGia.setText(doan.getDONGIA() + "");
+            txt_maKM.setText(doan.getMAKHUYENMAI());
             lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + duongdanBanner + doan.getHINH()));
         } catch (Exception e) {
         }
     }
     String duongDanImage = null;
+    String maKM;
 
     private DOAN getForm() {
         DOAN doan = new DOAN();
         if (validateForm()) {
-            doan.setTENDOAN(txt_tenDA.getText());
-            doan.setLOAI(cbo_loaiDA.getSelectedItem().toString());
-            doan.setKICHCO(cbo_loaiDA.getSelectedItem().toString());
-            doan.setSOLUONG(sp_soluongDA.getValue().hashCode());
-            doan.setDONGIA(Double.valueOf(txt_donGiaDA.getText()));
-            doan.setMAKHUYENMAI(txt_maKMDA.getText());
+            doan.setTENDOAN(txt_ten.getText());
+            doan.setLOAI(cbo_loai.getSelectedItem().toString());
+            doan.setKICHCO(cbo_kichco.getSelectedItem().toString());
+            doan.setSOLUONG(sp_soluong.getValue().hashCode());
+            doan.setDONGIA(Double.valueOf(txt_donGia.getText()));
+            if (txt_maKM.getText().isBlank()) {
+                String maKM = null;
+            } else {
+                maKM = txt_maKM.getText();
+            }
+            doan.setMAKHUYENMAI(maKM);
 
             try {
                 doan.setHINH(duongDanImage.substring(duongDanImage.lastIndexOf("\\") + 1, duongDanImage.length()));
@@ -109,37 +117,50 @@ public final class NewFOOD extends javax.swing.JFrame {
 
     private boolean validateForm() {
         String Error = "";
-        if (txt_tenDA.getText().equals("")) {
+        if (txt_ten.getText().equals("")) {
             Error += "Tên đồ ăn trống! \n";
+            txt_ten.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            txt_ten.grabFocus();
         }
-        if (cbo_loaiDA.getSelectedIndex() == 0) {
+        if (cbo_loai.getSelectedIndex() == 0) {
             Error += "Vui lòng chọn loại! \n";
+            cbo_loai.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            cbo_loai.grabFocus();
         }
-        if (cbo_kichcoDA.getSelectedIndex() == 0) {
+        if (cbo_kichco.getSelectedIndex() == 0) {
             Error += "Vui lòng chọn kích cỡ! \n";
+            cbo_kichco.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            cbo_kichco.grabFocus();
         }
-        int qty = sp_soluongDA.getValue().hashCode();
+        int qty = sp_soluong.getValue().hashCode();
         if (qty
                 <= 0) {
             Error += "Số lượng không được nhỏ hơn 0 ! \n";
+            sp_soluong.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            sp_soluong.grabFocus();
         }
 
-        if (txt_donGiaDA.getText()
+        if (txt_donGia.getText()
                 .equals("")) {
             Error += "Đơn giá trống! \n";
+            txt_donGia.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            txt_donGia.grabFocus();
         } else {
             try {
-                price = Double.parseDouble(txt_donGiaDA.getText());
+                price = Double.parseDouble(txt_donGia.getText());
                 if (price < 0) {
                     Error += "Đơn giá phải lớn hơn 0! \n";
+                    txt_donGia.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+                    txt_donGia.grabFocus();
                 }
             } catch (Exception e) {
                 Error += "Đơn giá phải là số! \n";
+                txt_donGia.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+                txt_donGia.grabFocus();
             }
         }
 
-        if (!Error.equals(
-                "")) {
+        if (!Error.equals("")) {
             JOptionPane.showMessageDialog(this, Error, "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -157,7 +178,7 @@ public final class NewFOOD extends javax.swing.JFrame {
         } else if (addorEdit.equalsIgnoreCase("edit")) {
             btn_Add.setEnabled(false);
             btn_Add.setVisible(false);
-            txt_tenDA.setEditable(false);
+            txt_ten.setEditable(false);
             btn_Edit.setEnabled(true);
             btn_Edit.setVisible(true);
             btn_Delete.setEnabled(true);
@@ -176,43 +197,45 @@ public final class NewFOOD extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txt_tenDA = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txt_maKMDA = new javax.swing.JTextArea();
+        lbl_ten = new javax.swing.JLabel();
+        txt_ten = new javax.swing.JTextField();
+        lbl_soluong = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lbl_img = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        txt_donGiaDA = new javax.swing.JTextField();
-        sp_soluongDA = new javax.swing.JSpinner();
+        lbl_dongia = new javax.swing.JLabel();
+        lbl_maKH = new javax.swing.JLabel();
+        txt_donGia = new javax.swing.JTextField();
+        sp_soluong = new javax.swing.JSpinner();
         btn_Items_chooseFile = new com.k33ptoo.components.KButton();
         jPanel8 = new javax.swing.JPanel();
         btn_Add = new com.k33ptoo.components.KButton();
         btn_Edit = new com.k33ptoo.components.KButton();
         btn_Delete = new com.k33ptoo.components.KButton();
         btn_Clear = new com.k33ptoo.components.KButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        cbo_kichcoDA = new javax.swing.JComboBox<>();
-        cbo_loaiDA = new javax.swing.JComboBox<>();
+        lbl_loai = new javax.swing.JLabel();
+        lbl_kichco = new javax.swing.JLabel();
+        cbo_kichco = new javax.swing.JComboBox<>();
+        cbo_loai = new javax.swing.JComboBox<>();
+        txt_maKM = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ITEMS");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("TÊN ĐỒ ĂN");
+        lbl_ten.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_ten.setText("TÊN ĐỒ ĂN");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("SÓ LƯỢNG");
+        txt_ten.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_ten.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_tenKeyReleased(evt);
+            }
+        });
 
-        txt_maKMDA.setColumns(20);
-        txt_maKMDA.setRows(5);
-        jScrollPane1.setViewportView(txt_maKMDA);
+        lbl_soluong.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_soluong.setText("SÓ LƯỢNG");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("LOẠI ĐỒ ĂN");
@@ -223,14 +246,26 @@ public final class NewFOOD extends javax.swing.JFrame {
         lbl_img.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.add(lbl_img, java.awt.BorderLayout.CENTER);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("ĐƠN GIÁ");
+        lbl_dongia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_dongia.setText("ĐƠN GIÁ");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("MÃ KHUYẾN MÃI");
+        lbl_maKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_maKH.setText("MÃ KHUYẾN MÃI");
 
-        sp_soluongDA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sp_soluongDA.setPreferredSize(new java.awt.Dimension(7, 20));
+        txt_donGia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txt_donGia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_donGiaKeyReleased(evt);
+            }
+        });
+
+        sp_soluong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sp_soluong.setPreferredSize(new java.awt.Dimension(7, 20));
+        sp_soluong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sp_soluongKeyReleased(evt);
+            }
+        });
 
         btn_Items_chooseFile.setText("CHỌN ẢNH");
         btn_Items_chooseFile.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -309,25 +344,37 @@ public final class NewFOOD extends javax.swing.JFrame {
         });
         jPanel8.add(btn_Clear);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("LOẠI");
+        lbl_loai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_loai.setText("LOẠI");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("KÍCH CỠ");
+        lbl_kichco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_kichco.setText("KÍCH CỠ");
 
-        cbo_kichcoDA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN KÍCH CỠ", "S", "M", "L" }));
-        cbo_kichcoDA.addActionListener(new java.awt.event.ActionListener() {
+        cbo_kichco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN KÍCH CỠ", "S", "M", "L" }));
+        cbo_kichco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_kichcoDAActionPerformed(evt);
+                cbo_kichcoActionPerformed(evt);
+            }
+        });
+        cbo_kichco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbo_kichcoKeyReleased(evt);
             }
         });
 
-        cbo_loaiDA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN LOẠI", "SIÊU CAY", "PHÔ MAI", "CAY X2" }));
-        cbo_loaiDA.addActionListener(new java.awt.event.ActionListener() {
+        cbo_loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN LOẠI", "ĐỒ ĂN", "THỨC UỐNG" }));
+        cbo_loai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_loaiDAActionPerformed(evt);
+                cbo_loaiActionPerformed(evt);
             }
         });
+        cbo_loai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbo_loaiKeyReleased(evt);
+            }
+        });
+
+        txt_maKM.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -338,23 +385,28 @@ public final class NewFOOD extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addGap(13, 13, 13)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_ten)
+                            .addComponent(lbl_soluong)
+                            .addComponent(lbl_dongia)
+                            .addComponent(lbl_kichco)
+                            .addComponent(lbl_loai))
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_maKH)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txt_donGiaDA, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sp_soluongDA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(txt_tenDA)
-                    .addComponent(cbo_kichcoDA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbo_loaiDA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 49, Short.MAX_VALUE)
+                    .addComponent(txt_donGia, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sp_soluong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_ten)
+                    .addComponent(cbo_kichco, 0, 249, Short.MAX_VALUE)
+                    .addComponent(cbo_loai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_maKM))
+                .addGap(0, 44, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Items_chooseFile, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
@@ -370,36 +422,43 @@ public final class NewFOOD extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_tenDA, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbo_loaiDA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbo_kichcoDA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sp_soluongDA, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_donGiaDA, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(lbl_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(cbo_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_kichco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbo_kichco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_soluong, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(sp_soluong, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_dongia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_donGia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_maKH, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_maKM, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Items_chooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(56, 56, 56)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -457,9 +516,9 @@ public final class NewFOOD extends javax.swing.JFrame {
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         // TODO add your handling code here:
         if (btn_Edit.isEnabled()) {
-            if (txt_tenDA.getText() != null && !txt_tenDA.getText().equals("")) {
-                if (qldadao.selectebyID(txt_tenDA.getText()) != null) {
-                    qldadao.delete(txt_tenDA.getText());
+            if (txt_ten.getText() != null && !txt_ten.getText().equals("")) {
+                if (qldadao.selectebyID(txt_ten.getText()) != null) {
+                    qldadao.delete(txt_ten.getText());
                     MsgBox.alert(this, "Xóa thành công!");
                     this.dispose();
                 } else {
@@ -488,13 +547,43 @@ public final class NewFOOD extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_Items_chooseFileActionPerformed
 
-    private void cbo_kichcoDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_kichcoDAActionPerformed
+    private void cbo_kichcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_kichcoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_kichcoDAActionPerformed
+    }//GEN-LAST:event_cbo_kichcoActionPerformed
 
-    private void cbo_loaiDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_loaiDAActionPerformed
+    private void cbo_loaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_loaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_loaiDAActionPerformed
+    }//GEN-LAST:event_cbo_loaiActionPerformed
+
+    private void txt_tenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tenKeyReleased
+        // TODO add your handling code here:
+        txt_ten.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+
+    }//GEN-LAST:event_txt_tenKeyReleased
+
+    private void cbo_loaiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbo_loaiKeyReleased
+        // TODO add your handling code here:
+        cbo_loai.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+
+    }//GEN-LAST:event_cbo_loaiKeyReleased
+
+    private void cbo_kichcoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbo_kichcoKeyReleased
+        // TODO add your handling code here:
+        cbo_kichco.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+
+    }//GEN-LAST:event_cbo_kichcoKeyReleased
+
+    private void sp_soluongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_soluongKeyReleased
+        // TODO add your handling code here:
+        sp_soluong.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+
+    }//GEN-LAST:event_sp_soluongKeyReleased
+
+    private void txt_donGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_donGiaKeyReleased
+        // TODO add your handling code here:
+        txt_donGia.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+
+    }//GEN-LAST:event_txt_donGiaKeyReleased
 
     private void chooseImage() {
         duongDanImage = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\";
@@ -597,24 +686,23 @@ public final class NewFOOD extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_Delete;
     private com.k33ptoo.components.KButton btn_Edit;
     private com.k33ptoo.components.KButton btn_Items_chooseFile;
-    private javax.swing.JComboBox<String> cbo_kichcoDA;
-    private javax.swing.JComboBox<String> cbo_loaiDA;
+    private javax.swing.JComboBox<String> cbo_kichco;
+    private javax.swing.JComboBox<String> cbo_loai;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_dongia;
     private javax.swing.JLabel lbl_img;
-    private javax.swing.JSpinner sp_soluongDA;
-    private javax.swing.JTextField txt_donGiaDA;
-    private javax.swing.JTextArea txt_maKMDA;
-    private javax.swing.JTextField txt_tenDA;
+    private javax.swing.JLabel lbl_kichco;
+    private javax.swing.JLabel lbl_loai;
+    private javax.swing.JLabel lbl_maKH;
+    private javax.swing.JLabel lbl_soluong;
+    private javax.swing.JLabel lbl_ten;
+    private javax.swing.JSpinner sp_soluong;
+    private javax.swing.JTextField txt_donGia;
+    private javax.swing.JTextField txt_maKM;
+    private javax.swing.JTextField txt_ten;
     // End of variables declaration//GEN-END:variables
 }
