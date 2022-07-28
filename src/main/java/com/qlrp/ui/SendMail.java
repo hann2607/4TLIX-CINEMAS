@@ -4,8 +4,28 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XImage;
 import java.io.File;
+import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,21 +36,20 @@ public class SendMail extends javax.swing.JFrame {
     /**
      * Creates new form SentMail
      */
-//    ArrayList<SinhVien> listSV = new ArrayList<>();
-//    File file = new File("");
-//    String duongdan = file.getAbsolutePath() + "\\src\\Icons\\App\\iconframe.png";
-//    String linkfile = "";
-//    String duongdananh = "";
+    List<NHANVIEN> listNV = null;
+    File file = new File("");
+    String duongdan = file.getAbsolutePath() + "\\src\\Icons\\App\\iconframe.png";
+    String linkfile = "";
+    String duongdananh = "";
+
     public SendMail() {
         initComponents();
 
-//        SinhVienImpl svi = new SinhVienImpl();
-//        svi.doTuDataXuongList(listSV);
         this.setIconImage(XImage.getAppIcon());
         setLocationRelativeTo(null);
         File f = new File("");
         try {
-            String duongdanBanner = "\\src\\main\\resources\\com\\qlbh\\icon\\Employee\\ImageEmployee\\";
+            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
             lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
         } catch (Exception e) {
         }
@@ -71,20 +90,22 @@ public class SendMail extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel6.setText("MESSAGE:");
+        jLabel6.setText("NỘI DUNG:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel8.setText("TO:");
+        jLabel8.setText("ĐẾN:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("GMAIL:");
+        jLabel4.setText("TÀI KHOẢN:");
 
         txt_Gmail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_Gmail.setMargin(new java.awt.Insets(2, 10, 2, 6));
 
         txt_Subject.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_Subject.setMargin(new java.awt.Insets(2, 10, 2, 6));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel5.setText("SUBJECT:");
+        jLabel5.setText("TIÊU ĐỀ:");
 
         txt_To.setColumns(20);
         txt_To.setRows(5);
@@ -95,25 +116,29 @@ public class SendMail extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txt_Message);
 
         txt_LinkFile.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_LinkFile.setMargin(new java.awt.Insets(2, 10, 2, 6));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel9.setText("FILE:");
+        jLabel9.setText("ĐƯỜNG DẪN:");
 
-        btn_ChonFile.setText("CHOOSE FILE");
+        btn_ChonFile.setText("CHỌN FILE");
+        btn_ChonFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_ChonFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ChonFileActionPerformed(evt);
             }
         });
 
-        btn_Sending.setText("SENDING");
+        btn_Sending.setText("GỬI MAIL");
+        btn_Sending.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Sending.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SendingActionPerformed(evt);
             }
         });
 
-        btn_SendAll.setText("SEND TO ALL STUDENTS");
+        btn_SendAll.setText("GỬI CHO TẤT CẢ NHÂN VIÊN");
+        btn_SendAll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_SendAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SendAllActionPerformed(evt);
@@ -121,9 +146,10 @@ public class SendMail extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel7.setText("PASSWORD:");
+        jLabel7.setText("MẬT KHẨU:");
 
         txt_Password.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_Password.setMargin(new java.awt.Insets(2, 10, 2, 6));
 
         lbl_Image.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -131,7 +157,8 @@ public class SendMail extends javax.swing.JFrame {
             }
         });
 
-        btn_ChonFile1.setText("CHOOSE IMAGE");
+        btn_ChonFile1.setText("CHỌN ẢNH");
+        btn_ChonFile1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_ChonFile1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ChonFile1ActionPerformed(evt);
@@ -146,88 +173,83 @@ public class SendMail extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_LinkFile, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(btn_ChonFile)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btn_ChonFile1)))
-                                .addGap(24, 24, 24)
-                                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane2))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txt_Password))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane1))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_Subject, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel5))
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_Password, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_Subject)
+                                    .addComponent(txt_Gmail)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_ChonFile)
+                                    .addComponent(txt_LinkFile)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_ChonFile1)
+                                .addGap(196, 196, 196))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
+                        .addGap(355, 355, 355)
                         .addComponent(btn_Sending, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(btn_SendAll)))
-                .addGap(40, 40, 40))
+                .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_Subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txt_LinkFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_ChonFile, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_ChonFile1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                            .addComponent(jLabel7)
+                            .addComponent(txt_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_Subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txt_LinkFile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ChonFile1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_ChonFile, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Sending, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_SendAll, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,77 +268,80 @@ public class SendMail extends javax.swing.JFrame {
 
     private void btn_SendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SendingActionPerformed
         // TODO add your handling code here:
-//        try {
-//            // TODO add your handling code here:
-//            Properties p = new Properties();
-//            p.put("mail.smtp.auth", "true");
-//            p.put("mail.smtp.starttls.enable", "true");
-//            p.put("mail.smtp.host", "smtp.gmail.com");
-//            p.put("mail.smtp.port", 587);
-//
-//            //-----
-//            String accountName = txt_Gmail.getText();
-//            String accountPassword = txt_Password.getText();
-//            Session s = Session.getInstance(p,
-//                    new javax.mail.Authenticator() {
-//                protected PasswordAuthentication getPasswordAuthentication() {
-//                    return new PasswordAuthentication(accountName, accountPassword);
-//                }
-//            });
-//            //--------
-//            String from = txt_Gmail.getText();
-//            String to = txt_To.getText();
-//            String subject = txt_Subject.getText();
-//            String body = txt_Message.getText();
-//            Message msg = new MimeMessage(s);
-//            msg.setFrom(new InternetAddress(from));
-//            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-//            msg.setSubject(subject);
-//            msg.setText(body);
-//            //get file
-//            Multipart multipart = new MimeMultipart();
-//            if (!linkfile.equals("")) {
-//                MimeBodyPart messageBodyFile = new MimeBodyPart();
-//                // Duong dan den file cua ban
-//                DataSource source1 = new FileDataSource(linkfile);
-//                messageBodyFile.setDataHandler(new DataHandler(source1));
-//                messageBodyFile.setFileName(linkfile);
-//
-//                multipart.addBodyPart(messageBodyFile);
-//                msg.setContent(multipart);
-//            }
-//            if (!duongdananh.equals("")) {
-//                // phan 3 chua tap tin image
-//                MimeBodyPart messageBodyImage = new MimeBodyPart();
-//                // Duong dan den file cua ban
-//                DataSource source2 = new FileDataSource(duongdananh);
-//                messageBodyImage.setDataHandler(new DataHandler(source2));
-//                messageBodyImage.setFileName(duongdananh);
-//
-//                multipart.addBodyPart(messageBodyImage);
-//                msg.setContent(multipart);
-//            }
-//            //-----------
-//            Transport.send(msg);
-//            JOptionPane.showMessageDialog(null, "Mail Đã được gửi thành công!", "Thông báo",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//        } catch (MessagingException ex) {
-//            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            // TODO add your handling code here:
+
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+            p.put("mail.smtp.port", 587);
+
+            //-----
+            String accountName = txt_Gmail.getText();
+            String accountPassword = txt_Password.getText();
+            Session s = Session.getInstance(p,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication(accountName, accountPassword);
+                }
+            });
+            //--------
+
+            String from = txt_Gmail.getText();
+            String to = txt_To.getText();
+            String subject = txt_Subject.getText();
+            String body = txt_Message.getText();
+            MimeMessage message = new MimeMessage(s);
+            message.setFrom(new InternetAddress(from));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+
+            // Phan 1 gom doan tin nhan
+            BodyPart messageBodyPart1 = new MimeBodyPart();
+            messageBodyPart1.setText(body);
+
+            // Duong dan den file cua ban
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+            DataSource source1 = new FileDataSource(linkfile);
+            messageBodyPart2.setDataHandler(new DataHandler(source1));
+            messageBodyPart2.setFileName(linkfile);
+
+            // phan 3 chua tap tin image
+            MimeBodyPart messageBodyPart3 = new MimeBodyPart();
+            // Duong dan den file cua ban
+            DataSource source2 = new FileDataSource(duongdananh);
+            messageBodyPart3.setDataHandler(new DataHandler(source2));
+            messageBodyPart3.setFileName(duongdananh);
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart1);
+            multipart.addBodyPart(messageBodyPart2);
+            multipart.addBodyPart(messageBodyPart3);
+            message.setContent(multipart);
+
+            //-----------
+            Transport.send(message);
+            JOptionPane.showMessageDialog(null, "Mail Đã được gửi thành công!", "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (MessagingException ex) {
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_SendingActionPerformed
 
     private void btn_ChonFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChonFileActionPerformed
         // TODO add your handling code here:
-//        try {
-//            JFileChooser f = new JFileChooser(file.getAbsolutePath() + "\\src\\image");
-//            f.setDialogTitle("Mở File");
-//            f.showOpenDialog(null);
-//
-//            File link = f.getSelectedFile();
-//            linkfile = link.getAbsolutePath();
-//            txt_LinkFile.setText(linkfile);
-//        } catch (Exception e) {
-//        }
+        try {
+            JFileChooser f = new JFileChooser(file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\sendmail\\file\\");
+            f.setDialogTitle("Mở File");
+            f.showOpenDialog(null);
+
+            File link = f.getSelectedFile();
+            linkfile = link.getAbsolutePath();
+            txt_LinkFile.setText(linkfile);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btn_ChonFileActionPerformed
 
     private void lbl_ImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ImageMouseClicked
@@ -344,83 +369,95 @@ public class SendMail extends javax.swing.JFrame {
 
     private void btn_SendAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SendAllActionPerformed
         // TODO add your handling code here:
-//        String to = "";
-//        for (int i = 0; i < listSV.size(); i++) {
-//            if (i == listSV.size() - 1) {
-//                to += listSV.get(i).getEmail();
-//            } else {
-//                to += listSV.get(i).getEmail() + ",";
-//            }
-//        }
-//        try {
-//            // TODO add your handling code here:
-//            Properties p = new Properties();
-//            p.put("mail.smtp.auth", "true");
-//            p.put("mail.smtp.starttls.enable", "true");
-//            p.put("mail.smtp.host", "smtp.gmail.com");
-//            p.put("mail.smtp.port", 587);
-//
-//            //-----
-//            String accountName = txt_Gmail.getText();
-//            String accountPassword = txt_Password.getText();
-//            Session s = Session.getInstance(p,
-//                    new javax.mail.Authenticator() {
-//                protected PasswordAuthentication getPasswordAuthentication() {
-//                    return new PasswordAuthentication(accountName, accountPassword);
-//                }
-//            });
-//            //--------
-//            String from = txt_Gmail.getText();
-//            String subject = txt_Subject.getText();
-//            String body = txt_Message.getText();
-//            Message msg = new MimeMessage(s);
-//            msg.setFrom(new InternetAddress(from));
-//            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-//            msg.setSubject(subject);
-//            msg.setText(body);
-//            //get file
-//            Multipart multipart = new MimeMultipart();
-//            if (!linkfile.equals("")) {
-//                MimeBodyPart messageBodyFile = new MimeBodyPart();
-//                // Duong dan den file cua ban
-//                DataSource source1 = new FileDataSource(linkfile);
-//                messageBodyFile.setDataHandler(new DataHandler(source1));
-//                messageBodyFile.setFileName(linkfile);
-//
-//                multipart.addBodyPart(messageBodyFile);
-//                msg.setContent(multipart);
-//            }
-//            if (!duongdananh.equals("")) {
-//                // phan 3 chua tap tin image
-//                MimeBodyPart messageBodyImage = new MimeBodyPart();
-//                // Duong dan den file cua ban
-//                DataSource source2 = new FileDataSource(duongdananh);
-//                messageBodyImage.setDataHandler(new DataHandler(source2));
-//                messageBodyImage.setFileName(duongdananh);
-//
-//                multipart.addBodyPart(messageBodyImage);
-//                msg.setContent(multipart);
-//            }
-//            //-----------
-//            Transport.send(msg);
-//            JOptionPane.showMessageDialog(null, "Mail Đã được gửi thành công!", "Thông báo",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//        } catch (MessagingException ex) {
-//            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        String to = "";
+        for (int i = 0; i < listNV.size(); i++) {
+            if (i == listNV.size() - 1) {
+                to += listNV.get(i).getEMAIL();
+            } else {
+                to += listNV.get(i).getEMAIL() + ",";
+            }
+        }
+        try {
+            // TODO add your handling code here:
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+            p.put("mail.smtp.port", 587);
+
+            //-----
+            String accountName = txt_Gmail.getText();
+            String accountPassword = txt_Password.getText();
+            Session s = Session.getInstance(p,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication(accountName, accountPassword);
+                }
+            });
+            //--------
+            String from = txt_Gmail.getText();
+            String subject = txt_Subject.getText();
+            String body = txt_Message.getText();
+            Message msg = new MimeMessage(s);
+            msg.setFrom(new InternetAddress(from));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            msg.setSubject(subject);
+            msg.setText(body);
+            //get file
+            Multipart multipart = new MimeMultipart();
+            if (!linkfile.equals("")) {
+                MimeBodyPart messageBodyFile = new MimeBodyPart();
+                // Duong dan den file cua ban
+                DataSource source1 = new FileDataSource(linkfile);
+                messageBodyFile.setDataHandler(new DataHandler(source1));
+                messageBodyFile.setFileName(linkfile);
+
+                multipart.addBodyPart(messageBodyFile);
+                msg.setContent(multipart);
+            }
+            if (!duongdananh.equals("")) {
+                // phan 3 chua tap tin image
+                MimeBodyPart messageBodyImage = new MimeBodyPart();
+                // Duong dan den file cua ban
+                DataSource source2 = new FileDataSource(duongdananh);
+                messageBodyImage.setDataHandler(new DataHandler(source2));
+                messageBodyImage.setFileName(duongdananh);
+
+                multipart.addBodyPart(messageBodyImage);
+                msg.setContent(multipart);
+            }
+            //-----------
+            Transport.send(msg);
+            JOptionPane.showMessageDialog(null, "Mail Đã được gửi thành công!", "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (MessagingException ex) {
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_SendAllActionPerformed
 
     private void btn_ChonFile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChonFile1ActionPerformed
         // TODO add your handling code here:
+        try {
+            JFileChooser f = new JFileChooser(file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\sendmail\\image\\");
+            f.setDialogTitle("Mở File");
+            f.showOpenDialog(null);
+
+            File fTenAnh = f.getSelectedFile();
+            duongdananh = fTenAnh.getAbsolutePath();
+            if (duongdananh != null) {
+                lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), String.valueOf(duongdananh)));
+                System.out.println(duongdananh);
+            } else {
+                System.out.println("Bạn chưa chọn ảnh");
+            }
+        } catch (Exception e) {
+            System.out.println("Chưa chọn ảnh");
+            System.out.println(duongdananh);
+        }
     }//GEN-LAST:event_btn_ChonFile1ActionPerformed
 
-//    public ImageIcon ResizeImage(int sizeWidth, int sizeHeight, String ImagePath) {
-//        ImageIcon MyImage = new ImageIcon(ImagePath);
-//        Image img = MyImage.getImage();
-//        Image newImg = img.getScaledInstance(sizeWidth, sizeHeight, Image.SCALE_SMOOTH);
-//        ImageIcon image = new ImageIcon(newImg);
-//        return image;
-//    }
     /**
      * @param args the command line arguments
      */

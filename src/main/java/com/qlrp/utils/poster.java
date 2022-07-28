@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  *
  * @author HAN-PC
  */
-public class Slide extends Throwable{
+public class poster extends Throwable{
     public static void RunSlide(JLabel slide) {
         File f = new File("");
         long count = 0;
@@ -28,7 +28,7 @@ public class Slide extends Throwable{
         try ( Stream<Path> files = Files.list(Paths.get(f.getAbsolutePath() + duongdanBanner))) {
             count = files.count();
         } catch (IOException ex) {
-            Logger.getLogger(Slide.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(poster.class.getName()).log(Level.SEVERE, null, ex);
         }
         int sl = (int) count;
         Thread slideThread = new Thread() {

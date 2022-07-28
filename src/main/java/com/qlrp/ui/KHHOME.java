@@ -4,11 +4,14 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.utils.Slide;
 import com.qlrp.utils.XImage;
+import com.qlrp.utils.poster;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
+import static java.lang.Thread.sleep;
 import javax.swing.JTextField;
 
 /**
@@ -43,6 +46,9 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lbl_poster = new javax.swing.JLabel();
+        lbl_poster1 = new javax.swing.JLabel();
+        lbl_poster2 = new javax.swing.JLabel();
+        lbl_poster3 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         pnl_cart = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -168,22 +174,19 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(204, 204, 204)));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_poster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster.gif"))); // NOI18N
+        jPanel3.add(lbl_poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(lbl_poster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_poster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        lbl_poster1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster.gif"))); // NOI18N
+        jPanel3.add(lbl_poster1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        lbl_poster2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster.gif"))); // NOI18N
+        jPanel3.add(lbl_poster2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        lbl_poster3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster.gif"))); // NOI18N
+        jPanel3.add(lbl_poster3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1259,7 +1262,37 @@ public class KHHOME extends javax.swing.JFrame {
         setPlaceHolder(txt_Search_DoAn, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_KhuyenMai, "Nhập để tìm kiếm...");
         pnl_cart.setVisible(false);
+        setImageSlide();
+        RunSlide();
         
+    }
+    
+    private void setImageSlide() {
+        File f = new File("");
+        String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\slide\\";
+        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), f.getAbsolutePath() + duongdanBanner + "slide1.jpg"));
+    }
+
+    private void RunSlide() {
+        Thread slideThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        sleep(3000);
+                        poster.RunSlide(lbl_poster);
+                        sleep(3000);
+                        poster.RunSlide(lbl_poster1);
+                        sleep(3000);
+                        poster.RunSlide(lbl_poster2);
+                        sleep(3000);
+                        poster.RunSlide(lbl_poster3);
+                    }
+                } catch (Exception e) {
+                }
+            }
+        };
+        slideThread.start();
     }
     private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
         // TODO add your handling code here:
@@ -1483,6 +1516,9 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_film4;
     private javax.swing.JLabel lbl_film5;
     private javax.swing.JLabel lbl_poster;
+    private javax.swing.JLabel lbl_poster1;
+    private javax.swing.JLabel lbl_poster2;
+    private javax.swing.JLabel lbl_poster3;
     private javax.swing.JScrollPane pnl_KhuyenMai;
     private javax.swing.JPanel pnl_ShowFilm;
     private javax.swing.JPanel pnl_ShowFilm1;
