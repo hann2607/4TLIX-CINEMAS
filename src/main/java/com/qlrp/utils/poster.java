@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ public class poster extends Throwable{
     public static void RunSlide(JLabel slide) {
         File f = new File("");
         long count = 0;
-        String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\slide\\";
+        String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster";
         try ( Stream<Path> files = Files.list(Paths.get(f.getAbsolutePath() + duongdanBanner))) {
             count = files.count();
         } catch (IOException ex) {
@@ -38,7 +39,7 @@ public class poster extends Throwable{
                     while (true) {
                         for (int i = 0; i < sl; i++) {
                             int a = i + 1;
-                            slide.setIcon(XImage.ResizeImage(slide.getWidth(), slide.getHeight(), f.getAbsolutePath() + duongdanBanner + "slide" + a + ".jpg"));
+                            slide.setIcon( new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + a + ".gif"));
                             sleep(3000);
                         } 
                     }

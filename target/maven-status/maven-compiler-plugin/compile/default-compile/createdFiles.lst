@@ -70,6 +70,7 @@ com\qlrp\ui\NewCustomer$11.class
 com\qlrp\ui\SendMail$2.class
 com\qlrp\ui\KHHOME$4.class
 com\qlrp\ui\QLHOME$29.class
+com\qlrp\entity\BANNER.class
 com\qlrp\entity\KHACHHANG.class
 com\qlrp\entity\DOAN.class
 com\qlrp\utils\poster$1.class
@@ -103,6 +104,7 @@ com\qlrp\ui\QLHOME$3.class
 com\qlrp\ui\login$14.class
 com\qlrp\ui\NewEmployee$7.class
 com\qlrp\ui\QLHOME$31.class
+com\qlrp\dao\QLBANNER.class
 com\qlrp\ui\NewEmployee$9.class
 com\qlrp\dao\QLRPDAO.class
 com\qlrp\ui\QLHOME$4.class
