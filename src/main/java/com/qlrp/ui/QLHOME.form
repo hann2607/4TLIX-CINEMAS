@@ -1057,7 +1057,7 @@
                                       <Component id="jScrollPane1" min="-2" pref="890" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="98" max="32767" attributes="0"/>
+                              <EmptySpace pref="87" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btn_AccountMana_sendMail" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btn_AccountMana_Refresh" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1188,6 +1188,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
+                        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                       </Properties>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -1208,7 +1209,7 @@
                     </Container>
                     <Component class="com.k33ptoo.components.KButton" name="btn_AccountMana_Add">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ADD"/>
+                        <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="16" style="1"/>
                         </Property>
@@ -1237,7 +1238,7 @@
                     </Component>
                     <Component class="com.k33ptoo.components.KButton" name="btn_AccountMana_Refresh">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="REFRESH"/>
+                        <Property name="text" type="java.lang.String" value="L&#xc0;M M&#x1eda;I"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="16" style="1"/>
                         </Property>
@@ -1266,7 +1267,7 @@
                     </Component>
                     <Component class="com.k33ptoo.components.KButton" name="btn_AccountMana_sendMail">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="SEND MAIL"/>
+                        <Property name="text" type="java.lang.String" value="G&#x1eec;I MAIL"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="16" style="1"/>
                         </Property>

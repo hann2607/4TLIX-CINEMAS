@@ -738,12 +738,13 @@ public class QLHOME extends javax.swing.JFrame {
         );
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         pnl_AccountMana_ShowListAcc.setBackground(new java.awt.Color(255, 255, 255));
         pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(pnl_AccountMana_ShowListAcc);
 
-        btn_AccountMana_Add.setText("ADD");
+        btn_AccountMana_Add.setText("THÊM");
         btn_AccountMana_Add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_AccountMana_Add.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_AccountMana_Add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -757,7 +758,7 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
-        btn_AccountMana_Refresh.setText("REFRESH");
+        btn_AccountMana_Refresh.setText("LÀM MỚI");
         btn_AccountMana_Refresh.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_AccountMana_Refresh.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_AccountMana_Refresh.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -771,7 +772,7 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
-        btn_AccountMana_sendMail.setText("SEND MAIL");
+        btn_AccountMana_sendMail.setText("GỬI MAIL");
         btn_AccountMana_sendMail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_AccountMana_sendMail.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_AccountMana_sendMail.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -797,7 +798,7 @@ public class QLHOME extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1513,12 +1514,9 @@ public class QLHOME extends javax.swing.JFrame {
                 // Add Id, name, Role
                 JPanel pnlInfo = new JPanel();
                 pnlInfo.setBackground(new Color(255, 255, 255));
-                JLabel ID = new JLabel("ID: " + listNV.get(i).getMA_NHAN_VIEN());
-                JLabel fullName = new JLabel("FULLNAME: " + listNV.get(i).getHO_TEN());
-                JLabel Role = new JLabel("ROLE: Employee");
-                if (listNV.get(i).getTEN_VAI_TRO().equalsIgnoreCase("Quản lý rạp")) {
-                    Role.setText("ROLE: Quản Lý Rạp");
-                }
+                JLabel ID = new JLabel("MÃ: " + listNV.get(i).getMA_NHAN_VIEN());
+                JLabel fullName = new JLabel("HỌ VÀ TÊN: " + listNV.get(i).getHO_TEN());
+                JLabel Role = new JLabel("QUYỀN: " + listNV.get(i).getTEN_VAI_TRO());
                 JLabel Gmail = new JLabel("GMAIL: " + listNV.get(i).getEMAIL());
 
                 // Set font

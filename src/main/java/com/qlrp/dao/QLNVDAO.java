@@ -25,6 +25,7 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
     String SELECT_ALL_SQL = "SELECT * FROM NHANVIEN";
     String SELECT_BY_ID_SQL = "SELECT * FROM NHANVIEN WHERE MA_NHAN_VIEN LIKE ?";
     String SELECT_By_Role_SQL = "SELECT * FROM NHANVIEN WHERE TEN_VAI_TRO = ?";
+    String SELECT_By_GMAIL_SQL = "SELECT * FROM NHANVIEN WHERE EMAIL like ?";
     @Override
     public void insert(NHANVIEN entity) {
         try {
@@ -102,6 +103,14 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
 
     public List<NHANVIEN> search(String id) {
         List<NHANVIEN> list = this.selectbySql(SELECT_BY_ID_SQL, "%" + id + "%");
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
+    }
+    
+    public List<NHANVIEN> searchGmail(String gmail) {
+        List<NHANVIEN> list = this.selectbySql(SELECT_By_GMAIL_SQL, "%" + gmail + "%");
         if (list.isEmpty()) {
             return null;
         }

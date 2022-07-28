@@ -68,8 +68,9 @@ public class NewEmployee extends javax.swing.JFrame {
         rdo_Female = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        rdo_Employee = new javax.swing.JRadioButton();
-        rdo_Manager = new javax.swing.JRadioButton();
+        rdo_NhanVienBanHang = new javax.swing.JRadioButton();
+        rdo_QLRap = new javax.swing.JRadioButton();
+        rdo_QuanLy = new javax.swing.JRadioButton();
         jPanel6 = new javax.swing.JPanel();
         lbl_Image = new javax.swing.JLabel();
         btn_ChooseImage = new com.k33ptoo.components.KButton();
@@ -225,14 +226,18 @@ public class NewEmployee extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VAI TRÒ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        grp_Role.add(rdo_Employee);
-        rdo_Employee.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdo_Employee.setSelected(true);
-        rdo_Employee.setText("NHÂN VIÊN BÁN HÀNG");
+        grp_Role.add(rdo_NhanVienBanHang);
+        rdo_NhanVienBanHang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rdo_NhanVienBanHang.setSelected(true);
+        rdo_NhanVienBanHang.setText("NHÂN VIÊN BÁN HÀNG");
 
-        grp_Role.add(rdo_Manager);
-        rdo_Manager.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdo_Manager.setText(" QUẢN LÝ RẠP");
+        grp_Role.add(rdo_QLRap);
+        rdo_QLRap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rdo_QLRap.setText(" QUẢN LÝ RẠP");
+
+        grp_Role.add(rdo_QuanLy);
+        rdo_QuanLy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rdo_QuanLy.setText("QUẢN LÝ");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -240,18 +245,21 @@ public class NewEmployee extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(rdo_Employee)
+                .addComponent(rdo_NhanVienBanHang)
                 .addGap(18, 18, 18)
-                .addComponent(rdo_Manager)
-                .addGap(392, 392, 392))
+                .addComponent(rdo_QLRap)
+                .addGap(18, 18, 18)
+                .addComponent(rdo_QuanLy)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdo_Employee)
-                    .addComponent(rdo_Manager))
+                    .addComponent(rdo_NhanVienBanHang)
+                    .addComponent(rdo_QLRap)
+                    .addComponent(rdo_QuanLy))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -527,10 +535,12 @@ public class NewEmployee extends javax.swing.JFrame {
             } else {
                 epl.setGIOI_TINH(false);
             }
-            if (rdo_Employee.isSelected()) {
+            if (rdo_QLRap.isSelected()) {
                 epl.setTEN_VAI_TRO("Quản Lý Rạp");
-            } else {
+            } else if(rdo_NhanVienBanHang.isSelected()){
                 epl.setTEN_VAI_TRO("Nhân viên Bán Hàng");
+            } else {
+                epl.setTEN_VAI_TRO("Quản Lý");
             }
             try {
                 epl.setHINH(duongDanImage.substring(duongDanImage.lastIndexOf("\\") + 1, duongDanImage.length()));
@@ -714,7 +724,7 @@ public class NewEmployee extends javax.swing.JFrame {
         txt_Gmail.setText("");
         txt_cccd.setText("");
         rdo_Male.setSelected(true);
-        rdo_Employee.setSelected(true);
+        rdo_NhanVienBanHang.setSelected(true);
         try {
             String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
             lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
@@ -732,7 +742,7 @@ public class NewEmployee extends javax.swing.JFrame {
         txt_Gmail.setText("");
         txt_cccd.setText("");
         rdo_Male.setSelected(true);
-        rdo_Employee.setSelected(true);
+        rdo_NhanVienBanHang.setSelected(true);
         try {
             String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
             lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
@@ -755,10 +765,12 @@ public class NewEmployee extends javax.swing.JFrame {
             } else {
                 rdo_Female.setSelected(true);
             }
-            if (epl.getTEN_VAI_TRO().equalsIgnoreCase("Quản lý rạp")) {
-                rdo_Manager.setSelected(true);
+            if (epl.getTEN_VAI_TRO().equalsIgnoreCase("Quản Lý Rạp")) {
+                rdo_QLRap.setSelected(true);
+            } else if(epl.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
+                rdo_NhanVienBanHang.setSelected(true);
             } else {
-                rdo_Employee.setSelected(true);
+                rdo_QuanLy.setSelected(true);
             }
             String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
             lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + epl.getHINH()));
@@ -981,10 +993,11 @@ public class NewEmployee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbl_Image;
-    private javax.swing.JRadioButton rdo_Employee;
     private javax.swing.JRadioButton rdo_Female;
     private javax.swing.JRadioButton rdo_Male;
-    private javax.swing.JRadioButton rdo_Manager;
+    private javax.swing.JRadioButton rdo_NhanVienBanHang;
+    private javax.swing.JRadioButton rdo_QLRap;
+    private javax.swing.JRadioButton rdo_QuanLy;
     private javax.swing.JTextField txt_Address;
     private javax.swing.JPasswordField txt_ConfirmPassword;
     private javax.swing.JTextField txt_FullName;

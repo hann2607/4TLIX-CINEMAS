@@ -512,10 +512,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="rdo_Employee" min="-2" max="-2" attributes="0"/>
+                      <Component id="rdo_NhanVienBanHang" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="rdo_Manager" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="392" max="-2" attributes="0"/>
+                      <Component id="rdo_QLRap" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="rdo_QuanLy" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -524,8 +526,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rdo_Employee" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rdo_Manager" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_NhanVienBanHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_QLRap" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_QuanLy" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
@@ -533,7 +536,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JRadioButton" name="rdo_Employee">
+            <Component class="javax.swing.JRadioButton" name="rdo_NhanVienBanHang">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="grp_Role"/>
@@ -545,7 +548,7 @@
                 <Property name="text" type="java.lang.String" value="NH&#xc2;N VI&#xca;N B&#xc1;N H&#xc0;NG"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rdo_Manager">
+            <Component class="javax.swing.JRadioButton" name="rdo_QLRap">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="grp_Role"/>
@@ -554,6 +557,17 @@
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" QU&#x1ea2;N L&#xdd; R&#x1ea0;P"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rdo_QuanLy">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="grp_Role"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd;"/>
               </Properties>
             </Component>
           </SubComponents>
