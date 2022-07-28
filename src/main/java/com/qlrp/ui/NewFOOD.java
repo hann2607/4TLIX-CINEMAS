@@ -96,8 +96,8 @@ public final class NewFOOD extends javax.swing.JFrame {
             doan.setKICHCO(cbo_kichco.getSelectedItem().toString());
             doan.setSOLUONG(sp_soluong.getValue().hashCode());
             doan.setDONGIA(Double.valueOf(txt_donGia.getText()));
-            if (txt_maKM.getText().isBlank()) {
-                String maKM = null;
+            if (txt_maKM.getText().isEmpty()) {
+                maKM = null;
             } else {
                 maKM = txt_maKM.getText();
             }
