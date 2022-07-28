@@ -8,34 +8,30 @@ import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLNVDAO;
 import com.qlrp.entity.DOAN;
 import com.qlrp.entity.NHANVIEN;
+import com.qlrp.utils.Auth;
+import com.qlrp.utils.Chart;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -96,6 +92,12 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CaiDat = new javax.swing.JButton();
         btn_DangXuat = new javax.swing.JButton();
         pnl_Main = new javax.swing.JPanel();
+        pnl_IntergratedManagement = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        cbo_IntergratedMana_chart = new javax.swing.JComboBox<>();
+        cbo_IntergratedMana_year = new javax.swing.JComboBox<>();
+        pnl_Intergrated_chart = new javax.swing.JPanel();
+        cbo_IntergratedMana_Category = new javax.swing.JComboBox<>();
         pnl_Home = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -313,6 +315,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Home.setAlignmentY(10.0F);
         btn_Home.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(166, 166, 166)));
         btn_Home.setContentAreaFilled(false);
+        btn_Home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Home.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_Home.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_Home.setIconTextGap(28);
@@ -340,6 +343,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLPhim.setAlignmentY(10.0F);
         btn_QLPhim.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLPhim.setContentAreaFilled(false);
+        btn_QLPhim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLPhim.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLPhim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLPhim.setIconTextGap(28);
@@ -367,6 +371,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLDatVe.setAlignmentY(10.0F);
         btn_QLDatVe.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLDatVe.setContentAreaFilled(false);
+        btn_QLDatVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLDatVe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLDatVe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLDatVe.setIconTextGap(28);
@@ -394,6 +399,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLDoAn.setAlignmentY(10.0F);
         btn_QLDoAn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLDoAn.setContentAreaFilled(false);
+        btn_QLDoAn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLDoAn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLDoAn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLDoAn.setIconTextGap(33);
@@ -421,6 +427,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLNV.setAlignmentY(10.0F);
         btn_QLNV.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLNV.setContentAreaFilled(false);
+        btn_QLNV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLNV.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLNV.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLNV.setIconTextGap(25);
@@ -448,6 +455,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLKH.setAlignmentY(10.0F);
         btn_QLKH.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 43, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLKH.setContentAreaFilled(false);
+        btn_QLKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLKH.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLKH.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLKH.setIconTextGap(31);
@@ -475,6 +483,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTrailer.setAlignmentY(10.0F);
         btn_QLTrailer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLTrailer.setContentAreaFilled(false);
+        btn_QLTrailer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLTrailer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLTrailer.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLTrailer.setIconTextGap(27);
@@ -502,6 +511,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTK.setAlignmentY(10.0F);
         btn_QLTK.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 40, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLTK.setContentAreaFilled(false);
+        btn_QLTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_QLTK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_QLTK.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_QLTK.setIconTextGap(32);
@@ -529,6 +539,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Thoat.setAlignmentY(10.0F);
         btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_Thoat.setContentAreaFilled(false);
+        btn_Thoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Thoat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_Thoat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_Thoat.setIconTextGap(29);
@@ -556,6 +567,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_TK.setAlignmentY(10.0F);
         btn_TK.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 42, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_TK.setContentAreaFilled(false);
+        btn_TK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_TK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_TK.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_TK.setIconTextGap(30);
@@ -583,6 +595,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CaiDat.setAlignmentY(10.0F);
         btn_CaiDat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_CaiDat.setContentAreaFilled(false);
+        btn_CaiDat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_CaiDat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_CaiDat.setIconTextGap(27);
         btn_CaiDat.setMargin(new java.awt.Insets(2, 40, 2, 14));
@@ -608,6 +621,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_DangXuat.setText("ĐĂNG XUẤT");
         btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 45, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_DangXuat.setContentAreaFilled(false);
+        btn_DangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_DangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_DangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_DangXuat.setIconTextGap(27);
@@ -673,6 +687,72 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnl_IntergratedManagement.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel3.setText("THỐNG KÊ");
+
+        cbo_IntergratedMana_chart.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbo_IntergratedMana_chart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BIỂU ĐỒ", "ĐƯỜNG", "CỘT", "TRÒN" }));
+        cbo_IntergratedMana_chart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_IntergratedMana_chartActionPerformed(evt);
+            }
+        });
+
+        cbo_IntergratedMana_year.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbo_IntergratedMana_year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỜI GIAN", "TUẦN", "THÁNG", "NĂM" }));
+        cbo_IntergratedMana_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_IntergratedMana_yearActionPerformed(evt);
+            }
+        });
+
+        pnl_Intergrated_chart.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_Intergrated_chart.setLayout(new java.awt.BorderLayout());
+
+        cbo_IntergratedMana_Category.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbo_IntergratedMana_Category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỐNG KÊ", "SỐ VÉ BÁN", "SỐ ĐỒ ĂN ĐÃ BÁN", "DOANH THU" }));
+
+        javax.swing.GroupLayout pnl_IntergratedManagementLayout = new javax.swing.GroupLayout(pnl_IntergratedManagement);
+        pnl_IntergratedManagement.setLayout(pnl_IntergratedManagementLayout);
+        pnl_IntergratedManagementLayout.setHorizontalGroup(
+            pnl_IntergratedManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_IntergratedManagementLayout.createSequentialGroup()
+                .addGroup(pnl_IntergratedManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_IntergratedManagementLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(pnl_Intergrated_chart, javax.swing.GroupLayout.PREFERRED_SIZE, 1236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_IntergratedManagementLayout.createSequentialGroup()
+                        .addGap(566, 566, 566)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_IntergratedManagementLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cbo_IntergratedMana_Category, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(cbo_IntergratedMana_chart, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(cbo_IntergratedMana_year, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(288, 288, 288))
+        );
+        pnl_IntergratedManagementLayout.setVerticalGroup(
+            pnl_IntergratedManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_IntergratedManagementLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_IntergratedManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbo_IntergratedMana_chart, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbo_IntergratedMana_year, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbo_IntergratedMana_Category, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pnl_Intergrated_chart, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        pnl_Main.add(pnl_IntergratedManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
         pnl_Home.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Home.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -1283,7 +1363,7 @@ public class QLHOME extends javax.swing.JFrame {
         // Ẩn tất cả các form còn lại
         pnl_Home.setVisible(false);
 //        pnl_OrderManagement.setVisible(false);
-//        pnl_IntergratedManagement.setVisible(false);
+        pnl_IntergratedManagement.setVisible(false);
 //        pnl_ShippingManagement.setVisible(false);
 //        pnl_CustomerManagement.setVisible(false);
 //        pnl_Account.setVisible(false);
@@ -1296,82 +1376,73 @@ public class QLHOME extends javax.swing.JFrame {
         pnl.setVisible(true);
     }
 
-//    private void showChart() {
-//
-//        if (cbo_IntergratedMana_chart.getSelectedIndex() != 0 && cbo_IntergratedMana_year.getSelectedIndex() != 0 && cbo_IntergratedMana_Category.getSelectedIndex() == 1) {
-//            //Thong ke ORDER
-//            pnl_Intergrated_chart.removeAll();
-//            if (cbo_IntergratedMana_chart.getSelectedItem().equals("PIECHART")) {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] percent = {5, 10, 4, 7, 2, 20, 7, 2, 13, 6, 10, 14};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.PieChart("ORDER CHART", element, percent));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            } else if (cbo_IntergratedMana_chart.getSelectedItem().equals("LINECHART")) {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.LineChart("ORDER CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            } else {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.BarChart("ORDER CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            pnl_Intergrated_chart.validate();
-//        } else if (cbo_IntergratedMana_chart.getSelectedIndex() != 0 && cbo_IntergratedMana_year.getSelectedIndex() != 0 && cbo_IntergratedMana_Category.getSelectedIndex() == 2) {
-//            //Thong ke doanh thu
-//            pnl_Intergrated_chart.removeAll();
-//            if (cbo_IntergratedMana_chart.getSelectedItem().equals("PIECHART")) {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] percent = {5, 10, 4, 7, 2, 20, 7, 2, 13, 6, 10, 14};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.PieChart("REVENUE CHART", element, percent));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            } else if (cbo_IntergratedMana_chart.getSelectedItem().equals("LINECHART")) {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.LineChart("REVENUE CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            } else {
-//                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-//                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
-//                try {
-//                    pnl_Intergrated_chart.add(Chart.BarChart("REVENUE CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
-//                } catch (Exception ex) {
-//                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            pnl_Intergrated_chart.validate();
-//        } else {
-//            pnl_Intergrated_chart.removeAll();
-//            showPanelMenu(pnl_IntergratedManagement);
-//        }
-//
-//    }
-//    private void fillToCBOChartYear() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_IntergratedMana_year.getModel();
-//        model.removeAllElements();
-//
-//        List<Object[]> list = doanhthudao.getYear();
-//        for (Object year : list) {
-////                model.addElement(String.valueOf(year));
-////                System.out.println(String.valueOf(year));
-//        }
-//    }
+    private void showChart() {
+
+        if (cbo_IntergratedMana_chart.getSelectedIndex() != 0 && cbo_IntergratedMana_year.getSelectedIndex() != 0 && cbo_IntergratedMana_Category.getSelectedIndex() == 1) {
+            //Thong ke ORDER
+            pnl_Intergrated_chart.removeAll();
+            if (cbo_IntergratedMana_chart.getSelectedItem().equals("TRÒN")) {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] percent = {5, 10, 4, 7, 2, 20, 7, 2, 13, 6, 10, 14};
+                try {
+                    pnl_Intergrated_chart.add(Chart.PieChart("ORDER CHART", element, percent));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (cbo_IntergratedMana_chart.getSelectedItem().equals("ĐƯỜNG")) {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
+                try {
+                    pnl_Intergrated_chart.add(Chart.LineChart("ORDER CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
+                try {
+                    pnl_Intergrated_chart.add(Chart.BarChart("ORDER CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            pnl_Intergrated_chart.validate();
+        } else if (cbo_IntergratedMana_chart.getSelectedIndex() != 0 && cbo_IntergratedMana_year.getSelectedIndex() != 0 && cbo_IntergratedMana_Category.getSelectedIndex() == 2) {
+            //Thong ke doanh thu
+            pnl_Intergrated_chart.removeAll();
+            if (cbo_IntergratedMana_chart.getSelectedItem().equals("TRÒN")) {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] percent = {5, 10, 4, 7, 2, 20, 7, 2, 13, 6, 10, 14};
+                try {
+                    pnl_Intergrated_chart.add(Chart.PieChart("REVENUE CHART", element, percent));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (cbo_IntergratedMana_chart.getSelectedItem().equals("ĐƯỜNG")) {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
+                try {
+                    pnl_Intergrated_chart.add(Chart.LineChart("REVENUE CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                String[] element = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                double[] value = {5, 20, 10, 30, 40, 70, 30, 50, 100, 70, 150, 200};
+                try {
+                    pnl_Intergrated_chart.add(Chart.BarChart("REVENUE CHART", "YEAR " + cbo_IntergratedMana_year.getSelectedItem(), "REVENUE", element, value));
+                } catch (Exception ex) {
+                    Logger.getLogger(QLHOME.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            pnl_Intergrated_chart.validate();
+        } else {
+            pnl_Intergrated_chart.removeAll();
+            showPanelMenu(pnl_IntergratedManagement);
+        }
+
+    }
+
     private void setImageSlide() {
         File f = new File("");
         String duongdanBanner = "\\src\\main\\resources\\com\\qlbh\\icon\\slide\\";
@@ -1724,12 +1795,23 @@ public class QLHOME extends javax.swing.JFrame {
 
     private void btn_QLTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLTKActionPerformed
         // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_QLTK;
-        this.sizeBorder = 40;
-        hoverMenu(btn_QLTK, 40);
 
-        // code change Tab here
-//        showPanelMenu(pnl_OrderManagement);
+        NHANVIEN epl = Auth.user;
+        if (epl != null) {
+            if (Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân Viên Quản Lý")) {
+                this.btn_CheckClickMenu = btn_QLTK;
+                this.sizeBorder = 40;
+                hoverMenu(btn_QLTK, 40);
+                showPanelMenu(pnl_IntergratedManagement);
+            } else {
+                JOptionPane.showMessageDialog(this, "BẠN KHÔNG THỂ TRUY CẬP TRANG NÀY!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            this.btn_CheckClickMenu = btn_QLTK;
+            this.sizeBorder = 40;
+            hoverMenu(btn_QLTK, 40);
+            showPanelMenu(pnl_IntergratedManagement);
+        }
 
     }//GEN-LAST:event_btn_QLTKActionPerformed
 
@@ -1960,6 +2042,16 @@ public class QLHOME extends javax.swing.JFrame {
         fillToTable_DA(listDA);
     }//GEN-LAST:event_btn_InvenMana_RefreshActionPerformed
 
+    private void cbo_IntergratedMana_chartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_IntergratedMana_chartActionPerformed
+        // TODO add your handling code here:
+        showChart();
+    }//GEN-LAST:event_cbo_IntergratedMana_chartActionPerformed
+
+    private void cbo_IntergratedMana_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_IntergratedMana_yearActionPerformed
+        // TODO add your handling code here:
+        showChart();
+    }//GEN-LAST:event_cbo_IntergratedMana_yearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2021,6 +2113,9 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_TK;
     private javax.swing.JButton btn_Thoat;
     private javax.swing.JComboBox<String> cbo_INVENMANA_OrderBy;
+    private javax.swing.JComboBox<String> cbo_IntergratedMana_Category;
+    private javax.swing.JComboBox<String> cbo_IntergratedMana_chart;
+    private javax.swing.JComboBox<String> cbo_IntergratedMana_year;
     private javax.swing.JComboBox<String> cbo_OrderMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2031,6 +2126,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2068,6 +2164,8 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_AccountMana_ShowListAcc;
     private javax.swing.JPanel pnl_AccountManagement;
     private javax.swing.JPanel pnl_Home;
+    private javax.swing.JPanel pnl_IntergratedManagement;
+    private javax.swing.JPanel pnl_Intergrated_chart;
     private javax.swing.JPanel pnl_Main;
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_QLDoAn;
