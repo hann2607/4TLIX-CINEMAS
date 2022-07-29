@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.qlrp.ui;
+
 import com.qlrp.dao.QLKHDAO;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
 import static com.qlrp.utils.XImage.ResizeImage;
+import com.qlrp.utils.getInfo;
 import java.io.File;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,8 +28,12 @@ public class NewCustomer extends javax.swing.JFrame {
      */
     public NewCustomer() {
         initComponents();
-        init();
+        this.setIconImage(XImage.getAppIcon());
+        this.setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        btn_edit.setVisible(false);
+
     }
 
     /**
@@ -45,15 +52,6 @@ public class NewCustomer extends javax.swing.JFrame {
         btn_ShowComfirnPass = new javax.swing.JButton();
         txt_ConfirmPassword = new javax.swing.JPasswordField();
         txt_Gmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        btn_Add = new com.k33ptoo.components.KButton();
-        btn_Edit = new com.k33ptoo.components.KButton();
-        btn_Delete = new com.k33ptoo.components.KButton();
-        btn_Clear = new com.k33ptoo.components.KButton();
-        jPanel4 = new javax.swing.JPanel();
-        rdo_Male = new javax.swing.JRadioButton();
-        rdo_Female = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         txt_FullName = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -65,11 +63,26 @@ public class NewCustomer extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_Address = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        rdo_Male = new javax.swing.JRadioButton();
+        rdo_Female = new javax.swing.JRadioButton();
+        jPanel8 = new javax.swing.JPanel();
+        btn_Add = new com.k33ptoo.components.KButton();
+        btn_edit = new com.k33ptoo.components.KButton();
+        btn_Delete = new com.k33ptoo.components.KButton();
+        btn_Clear = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("GMAIL:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 295, -1, 28));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         lbl_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/logo-4tlix2.png"))); // NOI18N
 
@@ -87,8 +100,10 @@ public class NewCustomer extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+                .addComponent(lbl_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 58, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,15 +121,115 @@ public class NewCustomer extends javax.swing.JFrame {
         txt_ConfirmPassword.setMargin(new java.awt.Insets(2, 5, 2, 35));
         jPanel7.add(txt_ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 30));
 
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 152, -1, -1));
+
         txt_Gmail.setMargin(new java.awt.Insets(2, 5, 2, 6));
         txt_Gmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_GmailActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_Gmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 297, 270, 28));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("XÁC NHẬN MẬT KHẨU:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 152, -1, 28));
+
+        txt_FullName.setMargin(new java.awt.Insets(2, 5, 2, 6));
+        txt_FullName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_FullNameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_FullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 58, 270, 28));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_ShowPass.setBorderPainted(false);
+        btn_ShowPass.setContentAreaFilled(false);
+        btn_ShowPass.setFocusPainted(false);
+        btn_ShowPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ShowPassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_ShowPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 40, 30));
+
+        txt_Password.setMargin(new java.awt.Insets(2, 5, 2, 35));
+        jPanel2.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 30));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 104, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("HỌ TÊN:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, -1, 28));
+
+        txt_Phone.setMargin(new java.awt.Insets(2, 5, 2, 6));
+        txt_Phone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_PhoneActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_Phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 201, 270, 28));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("MẬT KHẨU:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 104, 100, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("SĐT:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 199, -1, 28));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("ĐỊA CHỈ:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 247, -1, 28));
+
+        txt_Address.setMargin(new java.awt.Insets(2, 5, 2, 6));
+        txt_Address.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_AddressActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 249, 270, 28));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("KHÁCH HÀNG");
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GENDER", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        rdo_Male.setBackground(new java.awt.Color(255, 255, 255));
+        rdo_Male.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rdo_Male.setSelected(true);
+        rdo_Male.setText("NAM");
+
+        rdo_Female.setBackground(new java.awt.Color(255, 255, 255));
+        rdo_Female.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rdo_Female.setText("NỮ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(rdo_Male)
+                .addGap(18, 18, 18)
+                .addComponent(rdo_Female)
+                .addContainerGap(735, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdo_Male)
+                    .addComponent(rdo_Female))
+                .addGap(20, 20, 20))
+        );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
@@ -134,20 +249,20 @@ public class NewCustomer extends javax.swing.JFrame {
         });
         jPanel8.add(btn_Add);
 
-        btn_Edit.setText("EDIT");
-        btn_Edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_Edit.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_Edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_Edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_Edit.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_Edit.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_Edit.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_Edit.addActionListener(new java.awt.event.ActionListener() {
+        btn_edit.setText("EDIT");
+        btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_edit.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_edit.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_edit.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_edit.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EditActionPerformed(evt);
+                btn_editActionPerformed(evt);
             }
         });
-        jPanel8.add(btn_Edit);
+        jPanel8.add(btn_edit);
 
         btn_Delete.setText("DELETE");
         btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -179,254 +294,117 @@ public class NewCustomer extends javax.swing.JFrame {
         });
         jPanel8.add(btn_Clear);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GENDER", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-
-        rdo_Male.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdo_Male.setSelected(true);
-        rdo_Male.setText("MALE");
-
-        rdo_Female.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rdo_Female.setText("FEMALE");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(rdo_Male)
-                .addGap(18, 18, 18)
-                .addComponent(rdo_Female)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdo_Male)
-                    .addComponent(rdo_Female))
-                .addGap(20, 20, 20))
-        );
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("CONFIRM PASSWORD:");
-
-        txt_FullName.setMargin(new java.awt.Insets(2, 5, 2, 6));
-        txt_FullName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_FullNameActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_ShowPass.setBorderPainted(false);
-        btn_ShowPass.setContentAreaFilled(false);
-        btn_ShowPass.setFocusPainted(false);
-        btn_ShowPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ShowPassActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_ShowPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 40, 30));
-
-        txt_Password.setMargin(new java.awt.Insets(2, 5, 2, 35));
-        jPanel2.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 30));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("FULLNAME:");
-
-        txt_Phone.setMargin(new java.awt.Insets(2, 5, 2, 6));
-        txt_Phone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_PhoneActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("PASSWORD:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("PHONE:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("ADDRESS:");
-
-        txt_Address.setMargin(new java.awt.Insets(2, 5, 2, 6));
-        txt_Address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_AddressActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(97, 97, 97)
-                                .addComponent(txt_FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(106, 106, 106)
-                                        .addComponent(txt_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(txt_Address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 181, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(315, 315, 315)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(78, 78, 78)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(40, 40, 40)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(358, 358, 358))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Address, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Gmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel3)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(46, 46, 46)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(397, Short.MAX_VALUE)))
+                .addGap(64, 64, 64))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+//    public void setForm(KHACHHANG khl) {
+//        try {
+//            txt_Password.setText(khl.getMAT_KHAU());
+//            txt_ConfirmPassword.setText(khl.getMAT_KHAU());
+//            txt_FullName.setText(khl.getHO_TEN());
+//            txt_Phone.setText(khl.getSDT());
+//            txt_Address.setText(khl.getDIA_CHI());
+//            txt_Gmail.setText(khl.getEMAIL());
+//            if (khl.isGIOI_TINH()) {
+//                rdo_Male.setSelected(true);
+//            } else {
+//                rdo_Female.setSelected(true);
+//            }
+//        } catch (Exception e) {
+//        }
+//
+//    }
+//    private KHACHHANG getForm() {
+//        KHACHHANG khl = new KHACHHANG();
+//        if (validateForm()) {
+//            khl.setMAT_KHAU(txt_Password.getText());
+//            khl.setHO_TEN(txt_FullName.getText());
+//            khl.setSDT(txt_Phone.getText());
+//            khl.setDIA_CHI(txt_Address.getText());
+//            khl.setEMAIL(txt_Gmail.getText());
+//            if (rdo_Male.isSelected()) {
+//                khl.setGIOI_TINH(true);
+//            }
+//        } else {
+//            return null;
+//        }
+//        return khl;
+//    }
+//    public void setEnableButton(String addorEdit) {
+//        if (addorEdit.equalsIgnoreCase("add")) {
+//            btn_Edit.setEnabled(false);
+//            btn_Delete.setEnabled(false);
+//            btn_Edit.setVisible(false);
+//            btn_Delete.setVisible(false);
+//        } else {
+//            btn_Add.setEnabled(false);
+//            btn_Add.setVisible(false);
+//        }
+//    }
+//    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {                                         
+//        // TODO add your handling code here:
+//        if (btn_Edit.isEnabled()) {
+//            KHACHHANG khl = getForm();
+//            if (khl != null) {
+//                if(qlkhdao.selectebyID(khl.getSDT()) != null) {
+//                    qlkhdao.update(khl);
+//                    MsgBox.alert(this, "Update Successfully!");
+//                    this.dispose();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Employee doesn't exist!", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
+//        } else {
+//            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
+//        }
+//
+//    }                                        
+
+    private void btn_ShowComfirnPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ShowComfirnPassActionPerformed
+        // TODO add your handling code here:
+        showConfirmPass();
+    }//GEN-LAST:event_btn_ShowComfirnPassActionPerformed
+
+    private void txt_GmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_GmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_GmailActionPerformed
     File f = new File("");
     QLKHDAO qlkhdao = new QLKHDAO();
-    private void init() {
-        this.setIconImage(XImage.getAppIcon());
-        this.setResizable(false);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-
-    private void clearAll() {
-        txt_Password.setText("");
-        txt_ConfirmPassword.setText("");
-        txt_FullName.setText("");
-        txt_Phone.setText("");
-        txt_Address.setText("");
-        txt_Gmail.setText("");
-        rdo_Male.setSelected(true);
-    }
-
-    private void clearEdit() {
-        txt_Password.setText("");
-        txt_ConfirmPassword.setText("");
-        txt_FullName.setText("");
-        txt_Phone.setText("");
-        txt_Address.setText("");
-        txt_Gmail.setText("");
-        rdo_Male.setSelected(true);
-    }
-
-    public void setForm(KHACHHANG khl) {
-        try {
-            txt_Password.setText(khl.getMAT_KHAU());
-            txt_ConfirmPassword.setText(khl.getMAT_KHAU());
-            txt_FullName.setText(khl.getHO_TEN());
-            txt_Phone.setText(khl.getSDT());
-            txt_Address.setText(khl.getDIA_CHI());
-            txt_Gmail.setText(khl.getEMAIL());
-            if (khl.isGIOI_TINH()) {
-                rdo_Male.setSelected(true);
-            } else {
-                rdo_Female.setSelected(true);
-            }
-        } catch (Exception e) {
-        }
-
-    }
-
-    double salary = 0;
-
-    private KHACHHANG getForm() {
-        KHACHHANG khl = new KHACHHANG();
-        if (validateForm()) {
-            khl.setMAT_KHAU(txt_Password.getText());
-            khl.setHO_TEN(txt_FullName.getText());
-            khl.setSDT(txt_Phone.getText());
-            khl.setDIA_CHI(txt_Address.getText());
-            khl.setEMAIL(txt_Gmail.getText());
-            if (rdo_Male.isSelected()) {
-                khl.setGIOI_TINH(true);
-            }
-        } else {
-            return null;
-        }
-        return khl;
-    }
+    QLHOME hm = new QLHOME();
+    List<KHACHHANG> listKH = qlkhdao.selectAll();
 
     private boolean validateForm() {
         String Error = "";
@@ -460,113 +438,109 @@ public class NewCustomer extends javax.swing.JFrame {
         return true;
     }
 
-    public void setEnableButton(String addorEdit) {
-        if (addorEdit.equalsIgnoreCase("add")) {
-            btn_Edit.setEnabled(false);
-            btn_Delete.setEnabled(false);
-            btn_Edit.setVisible(false);
-            btn_Delete.setVisible(false);
-        } else {
-            btn_Add.setEnabled(false);
-            btn_Add.setVisible(false);
+//    private void init() {
+//        this.setIconImage(XImage.getAppIcon());
+//        this.setResizable(false);
+//        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//    }
+    private void clearAll() {
+        txt_Password.setText("");
+        txt_ConfirmPassword.setText("");
+        txt_FullName.setText("");
+        txt_Phone.setText("");
+        txt_Address.setText("");
+        txt_Gmail.setText("");
+        rdo_Male.setSelected(true);
+    }
+
+    private void clearEdit() {
+        txt_Password.setText("");
+        txt_ConfirmPassword.setText("");
+        txt_FullName.setText("");
+        txt_Phone.setText("");
+        txt_Address.setText("");
+        txt_Gmail.setText("");
+        rdo_Male.setSelected(true);
+    }
+    private void clearform() {
+        txt_FullName.setText("");
+        txt_Password.setText("");
+        txt_ConfirmPassword.setText("");
+        txt_Gmail.setText("");
+        txt_Address.setText("");
+        txt_Phone.setText("");
+
+    }
+    int row = -1;
+    QLKHDAO dao = new QLKHDAO();
+
+    void insert() {
+        KHACHHANG cus = getForm();
+        //    System.out.print("da add");
+
+        try {
+            dao.insert(cus);
+
+            this.clearform();
+            MsgBox.alert(this, "Thêm mới thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm mới thất bại");
+        }
+
+    }
+
+    public void fillToForm() {
+        KHACHHANG kh = getInfo.cus;
+        if (kh != null) {
+            txt_Phone.setText(kh.getSDT());
+            txt_FullName.setText(kh.getHO_TEN());
+            txt_Address.setText(kh.getDIA_CHI());
+            txt_Gmail.setText(kh.getEMAIL());
+            txt_Password.setText(kh.getMAT_KHAU());
         }
     }
 
-//    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {                                         
-//        // TODO add your handling code here:
-//        if (btn_Edit.isEnabled()) {
-//            KHACHHANG khl = getForm();
-//            if (khl != null) {
-//                if(qlkhdao.selectebyID(khl.getSDT()) != null) {
-//                    qlkhdao.update(khl);
-//                    MsgBox.alert(this, "Update Successfully!");
-//                    this.dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Employee doesn't exist!", "ERROR", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        } else {
-//            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
-//        }
-//
-//    }                                        
+    KHACHHANG getForm() {
+        KHACHHANG cus = new KHACHHANG();
+        if (validateForm()) {
 
-    private void btn_ShowComfirnPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ShowComfirnPassActionPerformed
-        // TODO add your handling code here:
-        showConfirmPass();
-    }//GEN-LAST:event_btn_ShowComfirnPassActionPerformed
+            cus.setSDT(txt_Phone.getText());
+            cus.setHO_TEN(txt_FullName.getText());
+            cus.setDIA_CHI(txt_Address.getText());
+            cus.setEMAIL(txt_Gmail.getText());
+            cus.setMAT_KHAU(txt_Password.getText());
 
-    private void txt_GmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_GmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_GmailActionPerformed
-
-    private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-        // TODO add your handling code here:
-        if (btn_Add.isEnabled()) {
-            KHACHHANG khl = getForm();
-            if (khl != null) {
-                if(qlkhdao.selectebyID(khl.getSDT()) == null) {
-                    qlkhdao.insert(khl);
-                    MsgBox.alert(this, "Insert Successfully!");
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Customner already exist!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
         } else {
-            MsgBox.alert(this, "You can only edit. If you want to add please choose again!");
+            return null;
         }
-    }//GEN-LAST:event_btn_AddActionPerformed
+        return cus;
+    }
 
-    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
-        // TODO add your handling code here:
-        if (btn_Edit.isEnabled()) {
-            KHACHHANG khl = getForm();
-            if (khl != null) {
-                if(qlkhdao.selectebyID(khl.getSDT()) != null) {
-                    qlkhdao.update(khl);
-                    MsgBox.alert(this, "Update Successfully!");
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Customner doesn't exist!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } else {
-            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
+    void setForm(KHACHHANG cus) {
+        txt_Phone.setText(cus.getSDT());
+        txt_FullName.setText(cus.getHO_TEN());
+        txt_Address.setText(cus.getDIA_CHI());
+        txt_Gmail.setText(cus.getEMAIL());
+        txt_Password.setText(cus.getMAT_KHAU());
+    }
+
+    public void setEnableButton(String addorEdit) {
+        if (addorEdit.equalsIgnoreCase("add")) {
+            btn_edit.setEnabled(false);
+            btn_edit.setVisible(false);
+            btn_Delete.setEnabled(false);
+            btn_Delete.setVisible(false);
+            clearAll();
+        } else if (addorEdit.equalsIgnoreCase("edit")) {
+            btn_Add.setEnabled(false);
+            btn_Add.setVisible(false);
+            txt_Phone.setEditable(false);
+            btn_edit.setEnabled(true);
+            btn_edit.setVisible(true);
+            btn_Delete.setEnabled(true);
+            btn_Delete.setVisible(true);
         }
-    }//GEN-LAST:event_btn_EditActionPerformed
-
-    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        // TODO add your handling code here:
-//        Warning_Delete wd = new Warning_Delete();
-//        wd.setVisible(true);
-
-        //        if (btn_Edit.isEnabled()) {
-            //            if (txt_MaNV.getText() != null && !txt_MaNV.getText().equals("")) {
-                //                if(qlnvdao.selectebyID(txt_MaNV.getText()) != null) {
-                    //                    qlnvdao.delete(txt_MaNV.getText());
-                    //                    MsgBox.alert(this, "Delete Successfully!");
-                    //                    this.dispose();
-                    //                } else {
-                    //                    JOptionPane.showMessageDialog(this, "Employee doesn't exist!", "Error", JOptionPane.ERROR_MESSAGE);
-                    //                }
-                //            } else {
-                //                JOptionPane.showMessageDialog(this, "Employee ID cannot be blank!", "Error", JOptionPane.ERROR_MESSAGE);
-                //            }
-            //        } else {
-            //            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
-            //        }
-    }//GEN-LAST:event_btn_DeleteActionPerformed
-
-    private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed
-        // TODO add your handling code here:
-        if (btn_Edit.isEnabled()) {
-            clearEdit();
-        } else {
-            this.clearAll();
-        }
-    }//GEN-LAST:event_btn_ClearActionPerformed
-
+    }
     private void txt_FullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_FullNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_FullNameActionPerformed
@@ -583,6 +557,71 @@ public class NewCustomer extends javax.swing.JFrame {
     private void txt_AddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_AddressActionPerformed
+
+    private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed
+        // TODO add your handling code here:
+        if (btn_edit.isEnabled()) {
+            clearEdit();
+        } else {
+            this.clearAll();
+        }
+    }//GEN-LAST:event_btn_ClearActionPerformed
+
+    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
+        // TODO add your handling code here:
+        if (btn_edit.isEnabled()) {
+            if (txt_Phone.getText() != null && !txt_Phone.getText().equals("")) {
+                if (qlkhdao.selectebyID(txt_Phone.getText()) != null) {
+                    qlkhdao.delete(txt_Phone.getText());
+                    MsgBox.alert(this, "Xóa thành công!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Món ăn không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Tên món ăn không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            MsgBox.alert(this, "You can only Add. If you want to edit, please choose again!");
+        }
+    }//GEN-LAST:event_btn_DeleteActionPerformed
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // TODO add your handling code here:
+        if (btn_edit.isEnabled()) {
+            KHACHHANG khl = getForm();
+            if (khl != null) {
+                if (qlkhdao.selectebyID(khl.getSDT()) != null) {
+                    qlkhdao.update(khl);
+                    MsgBox.alert(this, "Update Successfully!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Customner doesn't exist!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
+        }
+    }//GEN-LAST:event_btn_editActionPerformed
+
+    private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
+        // TODO add your handling code here:
+        if (btn_Add.isEnabled()) {
+            KHACHHANG kh = getForm();
+            if (kh != null) {
+                if (qlkhdao.selectebyID(kh.getSDT()) == null) {
+                    qlkhdao.insert(kh);
+                    MsgBox.alert(this, "Thêm thành công!");
+                    hm.fillToTable_CUSTOMER(listKH);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Món ăn đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            MsgBox.alert(this, "You can only edit. If you want to add, please choose again!");
+        }
+    }//GEN-LAST:event_btn_AddActionPerformed
     boolean isHidePass = true;
     boolean isHideConfirmPass = true;
 
@@ -611,6 +650,7 @@ public class NewCustomer extends javax.swing.JFrame {
             isHideConfirmPass = true;
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -638,6 +678,8 @@ public class NewCustomer extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -651,9 +693,9 @@ public class NewCustomer extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_Add;
     private com.k33ptoo.components.KButton btn_Clear;
     private com.k33ptoo.components.KButton btn_Delete;
-    private com.k33ptoo.components.KButton btn_Edit;
     private javax.swing.JButton btn_ShowComfirnPass;
     private javax.swing.JButton btn_ShowPass;
+    private com.k33ptoo.components.KButton btn_edit;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -661,6 +703,7 @@ public class NewCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;

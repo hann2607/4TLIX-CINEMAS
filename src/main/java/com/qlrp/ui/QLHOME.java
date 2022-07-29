@@ -5,8 +5,10 @@
 package com.qlrp.ui;
 
 import com.qlrp.dao.QLDADAO;
+import com.qlrp.dao.QLKHDAO;
 import com.qlrp.dao.QLNVDAO;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.Chart;
@@ -143,6 +145,16 @@ public class QLHOME extends javax.swing.JFrame {
         btn_INVENMANA_add = new com.k33ptoo.components.KButton();
         jLabel17 = new javax.swing.JLabel();
         btn_InvenMana_Refresh = new com.k33ptoo.components.KButton();
+        pnl_CustomerManagement = new javax.swing.JPanel();
+        btn_QLKH_Search = new javax.swing.JButton();
+        txt_CUSMANA_Search = new javax.swing.JTextField();
+        cbo_ShippingMana_OrderBy1 = new javax.swing.JComboBox<>();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tbl_CUSMANA = new rojerusan.RSTableMetro();
+        btn_CUSMANA_add = new com.k33ptoo.components.KButton();
+        jLabel4 = new javax.swing.JLabel();
+        btn_CUSTOMERMANA_REFRESH = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -717,6 +729,11 @@ public class QLHOME extends javax.swing.JFrame {
 
         txt_AccMana_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_AccMana_search.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        txt_AccMana_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_AccMana_searchActionPerformed(evt);
+            }
+        });
         txt_AccMana_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_AccMana_searchKeyReleased(evt);
@@ -1267,6 +1284,114 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_QLDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_CustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_CustomerManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_CustomerManagement.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_CustomerManagement.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_CustomerManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLKH_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLKH_Search.setBorderPainted(false);
+        btn_QLKH_Search.setOpaque(false);
+        btn_QLKH_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLKH_SearchActionPerformed(evt);
+            }
+        });
+        pnl_CustomerManagement.add(btn_QLKH_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 50, 40));
+
+        txt_CUSMANA_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_CUSMANA_SearchActionPerformed(evt);
+            }
+        });
+        pnl_CustomerManagement.add(txt_CUSMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 40));
+
+        cbo_ShippingMana_OrderBy1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbo_ShippingMana_OrderBy1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order By", "Item 2", "Item 3", "Item 4" }));
+        pnl_CustomerManagement.add(cbo_ShippingMana_OrderBy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 110, 40));
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_CustomerManagement.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 64, 1230, -1));
+
+        tbl_CUSMANA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "SDT", "FullName", "Email", "Address", "Password"
+            }
+        ));
+        tbl_CUSMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_CUSMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_CUSMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_CUSMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_CUSMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_CUSMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_CUSMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_CUSMANA.setRowHeight(70);
+        tbl_CUSMANA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_CUSMANAMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(tbl_CUSMANA);
+
+        pnl_CustomerManagement.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_CUSMANA_add.setText("ADD");
+        btn_CUSMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_CUSMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_CUSMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_CUSMANA_add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_CUSMANA_add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_CUSMANA_add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_CUSMANA_add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_CUSMANA_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CUSMANA_addActionPerformed(evt);
+            }
+        });
+        pnl_CustomerManagement.add(btn_CUSMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("CUSTOMERS MANAGEMENT");
+        pnl_CustomerManagement.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
+
+        btn_CUSTOMERMANA_REFRESH.setText("REFRESH");
+        btn_CUSTOMERMANA_REFRESH.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_CUSTOMERMANA_REFRESH.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_CUSTOMERMANA_REFRESH.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_CUSTOMERMANA_REFRESH.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_CUSTOMERMANA_REFRESH.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_CUSTOMERMANA_REFRESH.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_CUSTOMERMANA_REFRESH.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_CUSTOMERMANA_REFRESH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CUSTOMERMANA_REFRESHActionPerformed(evt);
+            }
+        });
+        pnl_CustomerManagement.add(btn_CUSTOMERMANA_REFRESH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
+
+        pnl_Main.add(pnl_CustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1312,6 +1437,7 @@ public class QLHOME extends javax.swing.JFrame {
 
     QLNVDAO qlnvdao = new QLNVDAO();
     QLDADAO qldadao = new QLDADAO();
+    QLKHDAO qlkhdao = new QLKHDAO();
 
     private void init() {
         btn_CheckClickMenu = btn_Home;
@@ -1324,6 +1450,9 @@ public class QLHOME extends javax.swing.JFrame {
 
         List<DOAN> listDA = qldadao.selectAll();
         fillToTable_DA(listDA);
+
+        List<KHACHHANG> listKH = qlkhdao.selectAll();
+        fillToTable_CUSTOMER(listKH);
         //        List<CUSTOMER> listKH = qlkhachhang.selectAll();
         //        fillToTable_CUSTOMER(listKH);
         //        fillTableOrderMana();
@@ -1381,7 +1510,7 @@ public class QLHOME extends javax.swing.JFrame {
 //        pnl_OrderManagement.setVisible(false);
         pnl_IntergratedManagement.setVisible(false);
 //        pnl_ShippingManagement.setVisible(false);
-//        pnl_CustomerManagement.setVisible(false);
+        pnl_CustomerManagement.setVisible(false);
 //        pnl_Account.setVisible(false);
 //        pnl_EmployeeManagement.setVisible(false);
         pnl_AccountManagement.setVisible(false);
@@ -1650,6 +1779,19 @@ public class QLHOME extends javax.swing.JFrame {
 //            model.addRow(row);
 //        }
 //    }
+    public void fillToTable_CUSTOMER(List<KHACHHANG> listKH) {
+//           Tu copy 
+//        clear table va do du lieu len table
+        tbl_CUSMANA.removeAll();
+        model = (DefaultTableModel) tbl_CUSMANA.getModel();
+        model.setRowCount(0);
+        listKH = new QLKHDAO().selectAll();
+        for (KHACHHANG cus : listKH) {
+            model.addRow(new Object[]{cus.getSDT(), cus.getHO_TEN(), cus.getEMAIL(),
+                cus.getDIA_CHI(), cus.getMAT_KHAU()});
+        }
+
+    }
 
     private void btn_HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_HomeMouseEntered
         // TODO add your handling code here:
@@ -1778,6 +1920,7 @@ public class QLHOME extends javax.swing.JFrame {
         this.btn_CheckClickMenu = btn_QLKH;
         this.sizeBorder = 43;
         hoverMenu(btn_QLKH, 43);
+        showPanelMenu(pnl_CustomerManagement);
 
         // code change Tab here
 //        showPanelMenu(pnl_InventoryManagement);
@@ -2088,6 +2231,73 @@ public class QLHOME extends javax.swing.JFrame {
         searchQLNV();
     }//GEN-LAST:event_btn_QLNV_SearchActionPerformed
 
+    private void txt_CUSMANA_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CUSMANA_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_CUSMANA_SearchActionPerformed
+
+        private void searchQLKH() {
+        if (!txt_CUSMANA_Search.getText().equals("")) {
+            try {
+                List<KHACHHANG> listKH = qlkhdao.search(txt_CUSMANA_Search.getText());
+                if (listKH.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "KHÔNG CÓ KẾT QUẢ!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "TÌM KIẾM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                    fillToTable_CUSTOMER(listKH);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "KHÔNG CÓ KẾT QUẢ!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }
+    private void tbl_CUSMANAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_CUSMANAMouseClicked
+        // TODO add your handling code here:
+        NewCustomer cus = new NewCustomer();
+        try {
+            int index = tbl_CUSMANA.getSelectedRow();
+            KHACHHANG kh = qlkhdao.selectebyID(tbl_CUSMANA.getValueAt(index, 0).toString());
+            getInfo.cus = kh;
+            if (cus.isShowing()) {
+                cus.fillToForm();
+                cus.setEnableButton("edit");
+            } else {
+                cus.setVisible(true);
+                cus.fillToForm();
+                cus.setEnableButton("edit");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }//GEN-LAST:event_tbl_CUSMANAMouseClicked
+
+    private void btn_CUSMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CUSMANA_addActionPerformed
+        // TODO add your handling code here:
+        NewCustomer cus = new NewCustomer();
+        cus.setVisible(true);
+        cus.setEnableButton("add");
+    }//GEN-LAST:event_btn_CUSMANA_addActionPerformed
+
+    private void btn_CUSTOMERMANA_REFRESHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CUSTOMERMANA_REFRESHActionPerformed
+        // TODO add your handling code here
+        List<KHACHHANG> listKH = qlkhdao.selectAll();
+        fillToTable_CUSTOMER(listKH);
+
+
+    }//GEN-LAST:event_btn_CUSTOMERMANA_REFRESHActionPerformed
+
+    private void txt_AccMana_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AccMana_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_AccMana_searchActionPerformed
+
+    private void btn_QLKH_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLKH_SearchActionPerformed
+        // TODO add your handling code here:
+        searchQLKH();
+    }//GEN-LAST:event_btn_QLKH_SearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2128,6 +2338,8 @@ public class QLHOME extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_AccountMana_Add;
     private com.k33ptoo.components.KButton btn_AccountMana_Refresh;
     private com.k33ptoo.components.KButton btn_AccountMana_sendMail;
+    private com.k33ptoo.components.KButton btn_CUSMANA_add;
+    private com.k33ptoo.components.KButton btn_CUSTOMERMANA_REFRESH;
     private javax.swing.JButton btn_CaiDat;
     private javax.swing.JButton btn_DangXuat;
     private javax.swing.JButton btn_Dot1;
@@ -2142,6 +2354,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_QLDatVe;
     private javax.swing.JButton btn_QLDoAn;
     private javax.swing.JButton btn_QLKH;
+    private javax.swing.JButton btn_QLKH_Search;
     private javax.swing.JButton btn_QLNV;
     private javax.swing.JButton btn_QLNV_Search;
     private javax.swing.JButton btn_QLPhim;
@@ -2154,6 +2367,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbo_IntergratedMana_chart;
     private javax.swing.JComboBox<String> cbo_IntergratedMana_year;
     private javax.swing.JComboBox<String> cbo_IntergratedMana_year1;
+    private javax.swing.JComboBox<String> cbo_ShippingMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2164,6 +2378,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2174,6 +2389,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
@@ -2185,6 +2401,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JLabel lbl_AccMana_search;
     private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_FullName;
@@ -2200,6 +2417,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Acc;
     private javax.swing.JPanel pnl_AccountMana_ShowListAcc;
     private javax.swing.JPanel pnl_AccountManagement;
+    private javax.swing.JPanel pnl_CustomerManagement;
     private javax.swing.JPanel pnl_Home;
     private javax.swing.JPanel pnl_IntergratedManagement;
     private javax.swing.JPanel pnl_Intergrated_chart;
@@ -2207,8 +2425,10 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_QLDoAn;
     private javax.swing.JPanel pnl_Slide;
+    private rojerusan.RSTableMetro tbl_CUSMANA;
     private rojerusan.RSTableMetro tbl_QLDA;
     private javax.swing.JTextField txt_AccMana_search;
+    private javax.swing.JTextField txt_CUSMANA_Search;
     private javax.swing.JTextField txt_INVENMANA_Search;
     // End of variables declaration//GEN-END:variables
 
