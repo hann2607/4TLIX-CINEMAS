@@ -467,7 +467,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLDatVe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_QLDatVe.setForeground(new java.awt.Color(255, 255, 255));
         btn_QLDatVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"))); // NOI18N
-        btn_QLDatVe.setText(" QUẢN LÝ ĐẶT VÉ");
+        btn_QLDatVe.setText(" QUẢN LÝ HÓA ĐƠN");
         btn_QLDatVe.setAlignmentY(10.0F);
         btn_QLDatVe.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLDatVe.setContentAreaFilled(false);
@@ -579,7 +579,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTrailer.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_QLTrailer.setForeground(new java.awt.Color(255, 255, 255));
         btn_QLTrailer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/video_40px.png"))); // NOI18N
-        btn_QLTrailer.setText("  QUẢN LÝ TRAILER");
+        btn_QLTrailer.setText("  TRAILER & KHUYẾN MÃI");
         btn_QLTrailer.setAlignmentY(10.0F);
         btn_QLTrailer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLTrailer.setContentAreaFilled(false);

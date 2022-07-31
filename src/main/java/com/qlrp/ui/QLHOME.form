@@ -656,7 +656,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value=" QU&#x1ea2;N L&#xdd; &#x110;&#x1eb6;T V&#xc9;"/>
+                <Property name="text" type="java.lang.String" value=" QU&#x1ea2;N L&#xdd; H&#xd3;A &#x110;&#x1a0;N"/>
                 <Property name="alignmentY" type="float" value="10.0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
@@ -820,7 +820,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/video_40px.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="  QU&#x1ea2;N L&#xdd; TRAILER"/>
+                <Property name="text" type="java.lang.String" value="  TRAILER &amp; KHUY&#x1ebe;N M&#xc3;I"/>
                 <Property name="alignmentY" type="float" value="10.0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
