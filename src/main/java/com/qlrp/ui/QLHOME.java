@@ -23,6 +23,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import static java.lang.Thread.sleep;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import rojerusan.RSPanelsSlider;
 
 /**
  *
@@ -59,6 +61,7 @@ public class QLHOME extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
@@ -71,12 +74,13 @@ public class QLHOME extends javax.swing.JFrame {
         lbl_Email = new javax.swing.JLabel();
         lbl_Phone = new javax.swing.JLabel();
         pnl_Slide = new javax.swing.JPanel();
+        btn_PrevSlide = new javax.swing.JButton();
+        btn_NextSlide = new javax.swing.JButton();
         btn_Dot1 = new javax.swing.JButton();
         btn_Dot2 = new javax.swing.JButton();
         btn_Dot3 = new javax.swing.JButton();
         btn_Dot4 = new javax.swing.JButton();
-        btn_PrevSlide = new javax.swing.JButton();
-        btn_NextSlide = new javax.swing.JButton();
+        pnl_SlideMain = new rojerusan.RSPanelsSlider();
         lbl_Slide1 = new javax.swing.JLabel();
         lbl_Slide2 = new javax.swing.JLabel();
         lbl_Slide3 = new javax.swing.JLabel();
@@ -233,71 +237,153 @@ public class QLHOME extends javax.swing.JFrame {
         );
 
         pnl_Slide.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_Slide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnl_Slide.setLayout(new java.awt.GridBagLayout());
+
+        btn_PrevSlide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/back_50px.png"))); // NOI18N
+        btn_PrevSlide.setBorderPainted(false);
+        btn_PrevSlide.setContentAreaFilled(false);
+        btn_PrevSlide.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_PrevSlide.setFocusPainted(false);
+        btn_PrevSlide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PrevSlideActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(70, 20, 0, 0);
+        pnl_Slide.add(btn_PrevSlide, gridBagConstraints);
+
+        btn_NextSlide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/forward_50px.png"))); // NOI18N
+        btn_NextSlide.setBorderPainted(false);
+        btn_NextSlide.setContentAreaFilled(false);
+        btn_NextSlide.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_NextSlide.setFocusPainted(false);
+        btn_NextSlide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NextSlideActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(70, 475, 0, 0);
+        pnl_Slide.add(btn_NextSlide, gridBagConstraints);
 
         btn_Dot1.setBackground(new java.awt.Color(242, 242, 242));
         btn_Dot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/new_moon_15px.png"))); // NOI18N
         btn_Dot1.setBorder(null);
         btn_Dot1.setBorderPainted(false);
         btn_Dot1.setContentAreaFilled(false);
+        btn_Dot1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Dot1.setFocusPainted(false);
-        pnl_Slide.add(btn_Dot1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
+        btn_Dot1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Dot1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 514, 0, 0);
+        pnl_Slide.add(btn_Dot1, gridBagConstraints);
 
         btn_Dot2.setBackground(new java.awt.Color(242, 242, 242));
         btn_Dot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/new_moon_15px.png"))); // NOI18N
         btn_Dot2.setBorder(null);
         btn_Dot2.setBorderPainted(false);
         btn_Dot2.setContentAreaFilled(false);
+        btn_Dot2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Dot2.setFocusPainted(false);
-        pnl_Slide.add(btn_Dot2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
+        btn_Dot2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Dot2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 15, 0, 0);
+        pnl_Slide.add(btn_Dot2, gridBagConstraints);
 
         btn_Dot3.setBackground(new java.awt.Color(242, 242, 242));
         btn_Dot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/new_moon_15px.png"))); // NOI18N
         btn_Dot3.setBorder(null);
         btn_Dot3.setBorderPainted(false);
         btn_Dot3.setContentAreaFilled(false);
+        btn_Dot3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Dot3.setFocusPainted(false);
-        pnl_Slide.add(btn_Dot3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, -1, -1));
+        btn_Dot3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Dot3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 15, 0, 0);
+        pnl_Slide.add(btn_Dot3, gridBagConstraints);
 
         btn_Dot4.setBackground(new java.awt.Color(242, 242, 242));
         btn_Dot4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/new_moon_15px.png"))); // NOI18N
         btn_Dot4.setBorder(null);
         btn_Dot4.setBorderPainted(false);
         btn_Dot4.setContentAreaFilled(false);
+        btn_Dot4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Dot4.setFocusPainted(false);
-        pnl_Slide.add(btn_Dot4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
+        btn_Dot4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Dot4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(24, 15, 0, 0);
+        pnl_Slide.add(btn_Dot4, gridBagConstraints);
 
-        btn_PrevSlide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/back_50px.png"))); // NOI18N
-        btn_PrevSlide.setBorderPainted(false);
-        btn_PrevSlide.setContentAreaFilled(false);
-        btn_PrevSlide.setFocusPainted(false);
-        pnl_Slide.add(btn_PrevSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
-
-        btn_NextSlide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/forward_50px.png"))); // NOI18N
-        btn_NextSlide.setBorderPainted(false);
-        btn_NextSlide.setContentAreaFilled(false);
-        btn_NextSlide.setFocusPainted(false);
-        pnl_Slide.add(btn_NextSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 70, -1, -1));
+        pnl_SlideMain.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_SlideMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_Slide1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_Slide1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Slide1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Slide/slide1.jpg"))); // NOI18N
-        pnl_Slide.add(lbl_Slide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
+        lbl_Slide1.setName("lbl_Slide1"); // NOI18N
+        pnl_SlideMain.add(lbl_Slide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
 
         lbl_Slide2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_Slide2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Slide2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Slide/slide2.jpg"))); // NOI18N
-        pnl_Slide.add(lbl_Slide2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
+        lbl_Slide2.setName("lbl_Slide2"); // NOI18N
+        pnl_SlideMain.add(lbl_Slide2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
 
         lbl_Slide3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_Slide3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Slide3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Slide/slide3.jpg"))); // NOI18N
-        pnl_Slide.add(lbl_Slide3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
+        lbl_Slide3.setName("lbl_Slide3"); // NOI18N
+        pnl_SlideMain.add(lbl_Slide3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
 
         lbl_Slide4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_Slide4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_Slide4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Slide/slide4.jpg"))); // NOI18N
-        pnl_Slide.add(lbl_Slide4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
+        lbl_Slide4.setName("lbl_Slide4"); // NOI18N
+        pnl_SlideMain.add(lbl_Slide4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 190));
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1);
+        pnl_Slide.add(pnl_SlideMain, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1292,7 +1378,6 @@ public class QLHOME extends javax.swing.JFrame {
 
         btn_QLKH_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
         btn_QLKH_Search.setBorderPainted(false);
-        btn_QLKH_Search.setOpaque(false);
         btn_QLKH_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_QLKH_SearchActionPerformed(evt);
@@ -1595,25 +1680,49 @@ public class QLHOME extends javax.swing.JFrame {
     }
 
     private void RunSlide() {
+        JLabel ListLabelSlide[] = {lbl_Slide1, lbl_Slide2, lbl_Slide3, lbl_Slide4};
         Thread slideThread = new Thread() {
             @Override
             public void run() {
                 try {
                     while (true) {
+                        if (indexSlide < ListLabelSlide.length - 1) {
+                            indexSlide++;
+                        } else {
+                            indexSlide = 0;
+                        }
                         sleep(3000);
-                        Slide.RunSlide(lbl_Slide1);
-                        sleep(3000);
-                        Slide.RunSlide(lbl_Slide2);
-                        sleep(3000);
-                        Slide.RunSlide(lbl_Slide3);
-                        sleep(3000);
-                        Slide.RunSlide(lbl_Slide4);
+                        pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.LEFT);
                     }
                 } catch (Exception e) {
                 }
             }
         };
         slideThread.start();
+    }
+
+    boolean isNextSlide = true;
+    int indexSlide = 0;
+
+    private void nextAndPrevSlide() {
+        JLabel ListLabelSlide[] = {lbl_Slide1, lbl_Slide2, lbl_Slide3, lbl_Slide4};
+
+        //Check người dùng nhấn next hay prev slide
+        if (isNextSlide) {
+            if (indexSlide < ListLabelSlide.length - 1) {
+                indexSlide++;
+            } else {
+                indexSlide = 0;
+            }
+            pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.LEFT);
+        } else {
+            if (indexSlide == 0) {
+                indexSlide = ListLabelSlide.length - 1;
+            } else {
+                indexSlide--;
+            }
+            pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.RIGHT);
+        }
     }
 
     public void addToPanelAccMana(List<NHANVIEN> listNV) {
@@ -2298,6 +2407,50 @@ public class QLHOME extends javax.swing.JFrame {
         searchQLKH();
     }//GEN-LAST:event_btn_QLKH_SearchActionPerformed
 
+    private void btn_PrevSlideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PrevSlideActionPerformed
+        // TODO add your handling code here:
+        isNextSlide = false;
+        nextAndPrevSlide();
+    }//GEN-LAST:event_btn_PrevSlideActionPerformed
+
+    private void btn_NextSlideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NextSlideActionPerformed
+        // TODO add your handling code here:
+        isNextSlide = true;
+        nextAndPrevSlide();
+    }//GEN-LAST:event_btn_NextSlideActionPerformed
+
+    private void nextSlideToIndex(int index) {
+        JLabel ListLabelSlide[] = {lbl_Slide1, lbl_Slide2, lbl_Slide3, lbl_Slide4};
+        if (index > indexSlide) {
+            indexSlide = index;
+            pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.LEFT);
+        } else if (index < indexSlide){
+            indexSlide = index;
+            pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.RIGHT);
+        }
+        
+    }
+    
+    private void btn_Dot1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Dot1ActionPerformed
+        // TODO add your handling code here:
+        nextSlideToIndex(0);
+    }//GEN-LAST:event_btn_Dot1ActionPerformed
+
+    private void btn_Dot2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Dot2ActionPerformed
+        // TODO add your handling code here:
+        nextSlideToIndex(1);
+    }//GEN-LAST:event_btn_Dot2ActionPerformed
+
+    private void btn_Dot3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Dot3ActionPerformed
+        // TODO add your handling code here:
+        nextSlideToIndex(2);
+    }//GEN-LAST:event_btn_Dot3ActionPerformed
+
+    private void btn_Dot4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Dot4ActionPerformed
+        // TODO add your handling code here:
+        nextSlideToIndex(3);
+    }//GEN-LAST:event_btn_Dot4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2425,6 +2578,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_QLDoAn;
     private javax.swing.JPanel pnl_Slide;
+    private rojerusan.RSPanelsSlider pnl_SlideMain;
     private rojerusan.RSTableMetro tbl_CUSMANA;
     private rojerusan.RSTableMetro tbl_QLDA;
     private javax.swing.JTextField txt_AccMana_search;

@@ -145,7 +145,21 @@
             <artifactId>KGradientPanel</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>RSProgressBar</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>RSMaterialComponents_3.0</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>RSPanelSlider</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

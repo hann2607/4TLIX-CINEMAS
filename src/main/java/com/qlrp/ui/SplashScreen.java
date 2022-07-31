@@ -34,9 +34,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LoadingLabel = new javax.swing.JLabel();
-        LoadingValue = new javax.swing.JLabel();
-        LoadingBar = new javax.swing.JProgressBar();
+        LoadingBar = new rojerusan.componentes.RSProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -47,26 +45,12 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LoadingLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        LoadingLabel.setForeground(new java.awt.Color(51, 51, 255));
-        LoadingLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LoadingLabel.setText("LOADING...");
-        jPanel1.add(LoadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 280, 30));
-
-        LoadingValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        LoadingValue.setForeground(new java.awt.Color(51, 51, 255));
-        LoadingValue.setText("0 %");
-        jPanel1.add(LoadingValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 30));
-
-        LoadingBar.setForeground(new java.awt.Color(169, 224, 49));
-        LoadingBar.setBorderPainted(false);
-        LoadingBar.setFocusable(false);
-        LoadingBar.setRequestFocusEnabled(false);
-        LoadingBar.setVerifyInputWhenFocusTarget(false);
-        jPanel1.add(LoadingBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1100, 30));
+        LoadingBar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        LoadingBar.setForeground(new java.awt.Color(229, 79, 109));
+        jPanel1.add(LoadingBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/4tlix-logo.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 290, 80));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 290, 80));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 470));
@@ -83,24 +67,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
             public void run() {
                 try {
                     for (int i = 0; i <= 100; i++) {
-                        Thread.sleep(100);
-                        LoadingValue.setText(i + "%");
-
-                        if (i == 10) {
-                            LoadingLabel.setText("Turning On Module...");
-                        }
-                        if (i == 20) {
-                            LoadingLabel.setText("Loading On Module...");
-                        }
-                        if (i == 50) {
-                            LoadingLabel.setText("Connecting To The Database...");
-                        }
-                        if (i == 70) {
-                            LoadingLabel.setText("Connecting Successful...");
-                        }
-                        if (i == 90) {
-                            LoadingLabel.setText("Launching Application...");
-                        }
+                        Thread.sleep(49);
                         LoadingBar.setValue(i);
                     }
                     thoat();
@@ -163,6 +130,14 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -174,9 +149,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JProgressBar LoadingBar;
-    private javax.swing.JLabel LoadingLabel;
-    private javax.swing.JLabel LoadingValue;
+    private rojerusan.componentes.RSProgressBar LoadingBar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

@@ -66,41 +66,28 @@ public class login extends javax.swing.JFrame {
         pnl_containerLeft = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_Account = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_newAcc = new javax.swing.JButton();
         btn_HidePass = new javax.swing.JButton();
-        txt_Password = new javax.swing.JPasswordField();
         btn_Login = new com.k33ptoo.components.KButton();
+        txt_Account = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txt_Password = new RSMaterialComponent.RSPasswordMaterialIcon();
         lbl_sologanLeft = new javax.swing.JLabel();
         lbl_leftposter = new javax.swing.JLabel();
         pnl_right = new keeptoo.KGradientPanel();
         pnl_containerRight = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        txtsdt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txthoten = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtgmail = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtpass = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtconfirm = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         btn_TroLai = new javax.swing.JButton();
-        txtDiaChi = new javax.swing.JTextField();
-        rdo_Nam = new javax.swing.JCheckBox();
-        rdo_Nu = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         btn_DangKy = new com.k33ptoo.components.KButton();
+        rdo_Nam = new RSMaterialComponent.RSCheckBoxMaterial();
+        rdo_Nu = new RSMaterialComponent.RSCheckBoxMaterial();
+        txtconfirm = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txtsdt = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txthoten = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txtgmail = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txtDiaChi = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txtpass = new RSMaterialComponent.RSTextFieldMaterialIcon();
         lbl_sologanRight = new javax.swing.JLabel();
         lbl_rightposter = new javax.swing.JLabel();
 
@@ -120,21 +107,10 @@ public class login extends javax.swing.JFrame {
         pnl_containerLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/user.png"))); // NOI18N
-        pnl_containerLeft.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 238, -1, -1));
+        pnl_containerLeft.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/padlock (4).png"))); // NOI18N
-        pnl_containerLeft.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 338, -1, -1));
-
-        txt_Account.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txt_Account.setToolTipText("");
-        txt_Account.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_Account.setOpaque(true);
-        txt_Account.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_AccountActionPerformed(evt);
-            }
-        });
-        pnl_containerLeft.add(txt_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 228, 261, 50));
+        pnl_containerLeft.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("QUÊN MẬT KHẨU?");
@@ -173,14 +149,7 @@ public class login extends javax.swing.JFrame {
                 btn_HidePassActionPerformed(evt);
             }
         });
-        pnl_containerLeft.add(btn_HidePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 40, 50));
-
-        txt_Password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txt_Password.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txt_Password.setToolTipText("");
-        txt_Password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_Password.setMargin(new java.awt.Insets(2, 10, 2, 6));
-        pnl_containerLeft.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 328, 260, 50));
+        pnl_containerLeft.add(btn_HidePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 50, 40));
 
         btn_Login.setToolTipText("");
         btn_Login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -202,6 +171,16 @@ public class login extends javax.swing.JFrame {
         });
         pnl_containerLeft.add(btn_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 210, 40));
 
+        txt_Account.setIcons(null);
+        txt_Account.setPlaceholder("Tài khoản");
+        txt_Account.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerLeft.add(txt_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 270, -1));
+
+        txt_Password.setIcons(null);
+        txt_Password.setPlaceholder("Mật khẩu");
+        txt_Password.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerLeft.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 270, -1));
+
         pnl_left.add(pnl_containerLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
         lbl_sologanLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/4TLIX_Slogantest.png"))); // NOI18N
@@ -222,85 +201,6 @@ public class login extends javax.swing.JFrame {
         pnl_containerRight.setOpaque(false);
         pnl_containerRight.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/padlock (4).png"))); // NOI18N
-        pnl_containerRight.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, -1, 40));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/unlock.png"))); // NOI18N
-        pnl_containerRight.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 40, 40));
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/email.png"))); // NOI18N
-        pnl_containerRight.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 180, 40, 40));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/sex.png"))); // NOI18N
-        pnl_containerRight.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, 37));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/home.png"))); // NOI18N
-        pnl_containerRight.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 40, 40));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/user.png"))); // NOI18N
-        pnl_containerRight.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 110, 40, 40));
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/telephone-call.png"))); // NOI18N
-        pnl_containerRight.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 40, 40, 40));
-
-        txtsdt.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtsdt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtsdt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtsdt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        pnl_containerRight.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 310, 40));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("SĐT");
-        pnl_containerRight.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        txthoten.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txthoten.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txthoten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthotenActionPerformed(evt);
-            }
-        });
-        pnl_containerRight.add(txthoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 310, 40));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Họ tên");
-        pnl_containerRight.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
-
-        txtgmail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtgmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtgmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtgmailActionPerformed(evt);
-            }
-        });
-        pnl_containerRight.add(txtgmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 310, 40));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("Email");
-        pnl_containerRight.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
-
-        txtpass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnl_containerRight.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 310, 40));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("Mật khẩu");
-        pnl_containerRight.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
-
-        txtconfirm.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtconfirm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtconfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtconfirmActionPerformed(evt);
-            }
-        });
-        pnl_containerRight.add(txtconfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 310, 40));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Nhập lại mật khẩu");
-        pnl_containerRight.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, 16));
-
         btn_TroLai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btn_TroLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/left-arrow.png"))); // NOI18N
         btn_TroLai.setText("   TRỞ LẠI");
@@ -314,35 +214,11 @@ public class login extends javax.swing.JFrame {
         });
         pnl_containerRight.add(btn_TroLai, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 129, 40));
 
-        txtDiaChi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtDiaChi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDiaChiActionPerformed(evt);
-            }
-        });
-        pnl_containerRight.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 310, 40));
-
-        grp_GioiTinh.add(rdo_Nam);
-        rdo_Nam.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        rdo_Nam.setSelected(true);
-        rdo_Nam.setText("Nam");
-        pnl_containerRight.add(rdo_Nam, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 30));
-
-        grp_GioiTinh.add(rdo_Nu);
-        rdo_Nu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        rdo_Nu.setText("Nữ");
-        pnl_containerRight.add(rdo_Nu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, 30));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 204));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("Giới tính");
-        pnl_containerRight.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 71, 30));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setText("Địa chỉ");
-        pnl_containerRight.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 71, 20));
+        jLabel12.setText("GIỚI TÍNH");
+        pnl_containerRight.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 90, 30));
 
         btn_DangKy.setText("ĐĂNG KÝ");
         btn_DangKy.setToolTipText("");
@@ -363,6 +239,44 @@ public class login extends javax.swing.JFrame {
             }
         });
         pnl_containerRight.add(btn_DangKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 190, 40));
+
+        grp_GioiTinh.add(rdo_Nam);
+        rdo_Nam.setText("NAM");
+        pnl_containerRight.add(rdo_Nam, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 70, 30));
+
+        grp_GioiTinh.add(rdo_Nu);
+        rdo_Nu.setText("NỮ");
+        pnl_containerRight.add(rdo_Nu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 60, 30));
+
+        txtconfirm.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
+        txtconfirm.setPlaceholder("Xác nhận mật khẩu");
+        txtconfirm.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txtconfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 310, -1));
+
+        txtsdt.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PHONE_ANDROID);
+        txtsdt.setPlaceholder("Số điện thoại");
+        txtsdt.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txtsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 310, -1));
+
+        txthoten.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCOUNT_CIRCLE);
+        txthoten.setPlaceholder("Họ và tên");
+        txthoten.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txthoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 310, -1));
+
+        txtgmail.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
+        txtgmail.setPlaceholder("Gmail");
+        txtgmail.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txtgmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 310, -1));
+
+        txtDiaChi.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.HOME);
+        txtDiaChi.setPlaceholder("Địa chỉ");
+        txtDiaChi.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 310, -1));
+
+        txtpass.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
+        txtpass.setPlaceholder("Mật khẩu");
+        txtpass.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_containerRight.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 310, -1));
 
         pnl_right.add(pnl_containerRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
@@ -393,15 +307,15 @@ public class login extends javax.swing.JFrame {
                 BorderFactory.createEmptyBorder(0, 10, 0, 50)));
         txt_Password.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 50)));
-        txtsdt.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
-        txthoten.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
-        txtgmail.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
-        txtDiaChi.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
-        txtpass.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+        txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
         txtconfirm.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(0, 10, 0, 0)));
@@ -411,23 +325,6 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         showPass();
     }//GEN-LAST:event_btn_HidePassActionPerformed
-
-    private void txt_AccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AccountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_AccountActionPerformed
-
-    private void btn_TroLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TroLaiActionPerformed
-        // TODO add your handling code here:
-        //Show panel container
-        pnl_containerRight.setVisible(false);
-        pnl_containerLeft.setVisible(true);
-
-        //show sologan + poster
-        lbl_sologanLeft.setVisible(false);
-        lbl_leftposter.setVisible(false);
-        lbl_sologanRight.setVisible(true);
-        lbl_rightposter.setVisible(true);
-    }//GEN-LAST:event_btn_TroLaiActionPerformed
 
     private void btn_newAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newAccActionPerformed
         // TODO add your handling code here:
@@ -507,49 +404,33 @@ public class login extends javax.swing.JFrame {
         btn_newAcc.setForeground(Color.red);
     }//GEN-LAST:event_btn_newAccMouseEntered
 
-    private void txtgmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtgmailActionPerformed
-
-    private void txtconfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconfirmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtconfirmActionPerformed
-
-    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiaChiActionPerformed
-
-    private void txthotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthotenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthotenActionPerformed
-
     private boolean validateForm() {
         String loi = "";
 
         String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
-        if (txtsdt.getText().equals("")) {
+        if (txtconfirm.getText().equals("")) {
             loi += "SDT không được để trống! \n";
-        } else if (!txtsdt.getText().matches(reg)) {
+        } else if (!txtconfirm.getText().matches(reg)) {
             loi += "Số điện thoại không đúng định dạng! \n";
         }
 
-        if (txthoten.getText().equals("")) {
+        if (txtconfirm.getText().equals("")) {
             loi += "Họ và tên không được để trống! \n";
         }
 
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        if (txtgmail.getText().equals("")) {
+        if (txtconfirm.getText().equals("")) {
             loi += "Gmail không được để trống! \n";
-        } else if (!txtgmail.getText().matches(EMAIL_PATTERN)) {
+        } else if (!txtconfirm.getText().matches(EMAIL_PATTERN)) {
             loi += "Gmail không đúng định dạng! \n";
         }
 
-        if (txtDiaChi.getText().equals("")) {
+        if (txtconfirm.getText().equals("")) {
             loi += "Địa chỉ không được để trống! \n";
         }
-        if (txtpass.getText().equals("")) {
+        if (txtconfirm.getText().equals("")) {
             loi += "Mật khẩu không được để trống! \n";
-        } else if (!txtpass.getText().equalsIgnoreCase(txtconfirm.getText())) {
+        } else if (!txtconfirm.getText().equalsIgnoreCase(txtconfirm.getText())) {
             loi += "Xác nhận mật khẩu không khớp! \n";
         }
         
@@ -562,16 +443,16 @@ public class login extends javax.swing.JFrame {
     
     private KHACHHANG getform() {
         KHACHHANG kh = new KHACHHANG();
-        kh.setSDT(txtsdt.getText());
-        kh.setHO_TEN(txthoten.getText());
-        kh.setEMAIL(txtgmail.getText());
-        kh.setDIA_CHI(txtDiaChi.getText());
+        kh.setSDT(txtconfirm.getText());
+        kh.setHO_TEN(txtconfirm.getText());
+        kh.setEMAIL(txtconfirm.getText());
+        kh.setDIA_CHI(txtconfirm.getText());
         if(rdo_Nam.isSelected()) {
             kh.setGIOI_TINH(true);
         } else {
             kh.setGIOI_TINH(false);
         }
-        kh.setMAT_KHAU(txtpass.getText());
+        kh.setMAT_KHAU(txtconfirm.getText());
         return kh;
     }
 
@@ -612,6 +493,19 @@ public class login extends javax.swing.JFrame {
         dangNhap();
     }//GEN-LAST:event_btn_LoginActionPerformed
 
+    private void btn_TroLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TroLaiActionPerformed
+        // TODO add your handling code here:
+        //Show panel container
+        pnl_containerRight.setVisible(false);
+        pnl_containerLeft.setVisible(true);
+
+        //show sologan + poster
+        lbl_sologanLeft.setVisible(false);
+        lbl_leftposter.setVisible(false);
+        lbl_sologanRight.setVisible(true);
+        lbl_rightposter.setVisible(true);
+    }//GEN-LAST:event_btn_TroLaiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -647,6 +541,8 @@ public class login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -664,23 +560,10 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btn_newAcc;
     private javax.swing.ButtonGroup grp_GioiTinh;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_leftposter;
     private javax.swing.JLabel lbl_rightposter;
@@ -690,15 +573,15 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_containerRight;
     private keeptoo.KGradientPanel pnl_left;
     private keeptoo.KGradientPanel pnl_right;
-    private javax.swing.JCheckBox rdo_Nam;
-    private javax.swing.JCheckBox rdo_Nu;
-    private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txt_Account;
-    private javax.swing.JPasswordField txt_Password;
-    private javax.swing.JTextField txtconfirm;
-    private javax.swing.JTextField txtgmail;
-    private javax.swing.JTextField txthoten;
-    private javax.swing.JTextField txtpass;
-    private javax.swing.JTextField txtsdt;
+    private RSMaterialComponent.RSCheckBoxMaterial rdo_Nam;
+    private RSMaterialComponent.RSCheckBoxMaterial rdo_Nu;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txtDiaChi;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txt_Account;
+    private RSMaterialComponent.RSPasswordMaterialIcon txt_Password;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txtconfirm;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txtgmail;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txthoten;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txtpass;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txtsdt;
     // End of variables declaration//GEN-END:variables
 }

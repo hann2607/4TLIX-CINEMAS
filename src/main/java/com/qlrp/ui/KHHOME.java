@@ -4,15 +4,17 @@
  */
 package com.qlrp.ui;
 
-import com.qlrp.utils.Slide;
 import com.qlrp.utils.XImage;
-import com.qlrp.utils.poster;
+import com.qlrp.utils.setUIJScroll;
 import java.awt.Color;
+import java.awt.Cursor;
+import static java.awt.Frame.HAND_CURSOR;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
 import static java.lang.Thread.sleep;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
@@ -175,7 +177,7 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_poster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/video poster/poster2.gif"))); // NOI18N
-        jPanel3.add(lbl_poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, -1));
+        jPanel3.add(lbl_poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1253,7 +1255,12 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_cart.setVisible(false);
 //        setImageSlide();
         RunSlide();
-
+        CustomUIJScroll(jScrollPane1);
+        CustomUIJScroll(jScrollPane2);
+        CustomUIJScroll(jScrollPane3);
+        CustomUIJScroll(jScrollPane4);
+        CustomUIJScroll(jScrollPane5);
+        CustomUIJScroll(jScrollPane7);
     }
     int i = 1;
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\";
@@ -1270,7 +1277,7 @@ public class KHHOME extends javax.swing.JFrame {
             public void run() {
                 try {
                     while (true) {
-                        
+
                         sleep(35000);
                         i++;
                         lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".gif"));
@@ -1289,6 +1296,13 @@ public class KHHOME extends javax.swing.JFrame {
         };
         slideThread.start();
     }
+    
+    private void CustomUIJScroll(JScrollPane jscroll) {
+        jscroll.getVerticalScrollBar().setUI(new setUIJScroll());
+        jscroll.getVerticalScrollBar().setUnitIncrement(16);
+        jscroll.getVerticalScrollBar().setCursor(new Cursor(HAND_CURSOR));
+    }
+    
     private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SoLuongActionPerformed
