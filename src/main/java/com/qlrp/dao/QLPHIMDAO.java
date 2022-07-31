@@ -67,12 +67,12 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
 
     @Override
     public List<PHIM> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.selectbySql(SELECT_ALL_SQL);
     }
 
     @Override
     public List<PHIM> selectbySql(String sql, Object... args) {
-        List<PHIM> list = new ArrayList<PHIM>();
+        List<PHIM> list = new ArrayList<>();
         ResultSet rs;
         try {
             rs = XJdbc.query(sql, args);

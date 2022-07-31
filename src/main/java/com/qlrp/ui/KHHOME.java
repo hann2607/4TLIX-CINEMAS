@@ -4,33 +4,51 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.QLDADAO;
+import com.qlrp.dao.QLPHIMDAO;
+import com.qlrp.entity.DOAN;
+import com.qlrp.entity.PHIM;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.setUIJScroll;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import static java.awt.Frame.HAND_CURSOR;
+import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
 import static java.lang.Thread.sleep;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  *
  * @author HAN-PC
  */
-public class KHHOME extends javax.swing.JFrame {
+public class KHHOME extends javax.swing.JFrame{
 
     /**
      * Creates new form KHACHHANG_HOME
      */
     File file = new File("");
-
+    QLPHIMDAO qlphimdao = new QLPHIMDAO();
+    QLDADAO qldadao = new QLDADAO();
+    
+    List<PHIM> listfilm = null;
+    List<DOAN> listDoAn = null;
+    
     public KHHOME() {
         initComponents();
-        init();
         setLocationRelativeTo(null);
 
         init();
@@ -65,47 +83,16 @@ public class KHHOME extends javax.swing.JFrame {
         cbo_QuocGia_Film1 = new javax.swing.JComboBox<>();
         btn_Avatar = new javax.swing.JButton();
         btn_Cart = new javax.swing.JButton();
-        pnl_filmMain1 = new javax.swing.JPanel();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        pnl_ShowFilm1 = new javax.swing.JPanel();
-        jPanel36 = new javax.swing.JPanel();
-        lbl_DA1 = new javax.swing.JLabel();
-        jPanel45 = new javax.swing.JPanel();
-        lbl_DA2 = new javax.swing.JLabel();
-        jPanel46 = new javax.swing.JPanel();
-        lbl_DA3 = new javax.swing.JLabel();
-        jPanel47 = new javax.swing.JPanel();
-        lbl_DA4 = new javax.swing.JLabel();
-        jPanel48 = new javax.swing.JPanel();
-        lbl_DA5 = new javax.swing.JLabel();
-        jTextArea31 = new javax.swing.JTextArea();
-        jTextArea32 = new javax.swing.JTextArea();
-        jTextArea33 = new javax.swing.JTextArea();
-        jTextArea34 = new javax.swing.JTextArea();
-        jTextArea35 = new javax.swing.JTextArea();
-        pnl_filmMain = new javax.swing.JPanel();
+        pnl_film = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        pnl_ShowFilm = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        lbl_film1 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
-        lbl_film2 = new javax.swing.JLabel();
-        jPanel30 = new javax.swing.JPanel();
-        lbl_film3 = new javax.swing.JLabel();
-        jPanel31 = new javax.swing.JPanel();
-        lbl_film4 = new javax.swing.JLabel();
-        jPanel32 = new javax.swing.JPanel();
-        lbl_film5 = new javax.swing.JLabel();
-        jTextArea16 = new javax.swing.JTextArea();
-        jTextArea17 = new javax.swing.JTextArea();
-        jTextArea18 = new javax.swing.JTextArea();
-        jTextArea19 = new javax.swing.JTextArea();
-        jTextArea20 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        pnl_SlideFilm = new rojerusan.RSPanelsSlider();
+        pnl_DoAn = new javax.swing.JPanel();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        pnl_slideDoAn = new rojerusan.RSPanelsSlider();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -142,25 +129,11 @@ public class KHHOME extends javax.swing.JFrame {
         jTextArea23 = new javax.swing.JTextArea();
         jTextArea24 = new javax.swing.JTextArea();
         jTextArea25 = new javax.swing.JTextArea();
-        pnl_KhuyenMai = new javax.swing.JScrollPane();
-        jPanel39 = new javax.swing.JPanel();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jPanel40 = new javax.swing.JPanel();
-        lbl_KM1 = new javax.swing.JLabel();
-        jPanel41 = new javax.swing.JPanel();
-        lbl_KM2 = new javax.swing.JLabel();
-        jPanel42 = new javax.swing.JPanel();
-        lbl_KM3 = new javax.swing.JLabel();
-        jPanel43 = new javax.swing.JPanel();
-        lbl_KM4 = new javax.swing.JLabel();
-        jTextArea26 = new javax.swing.JTextArea();
-        jTextArea27 = new javax.swing.JTextArea();
-        jTextArea28 = new javax.swing.JTextArea();
-        jTextArea29 = new javax.swing.JTextArea();
-        jPanel44 = new javax.swing.JPanel();
-        lbl_KM5 = new javax.swing.JLabel();
-        jTextArea30 = new javax.swing.JTextArea();
+        pnl_KhuyenMai = new javax.swing.JPanel();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        pnl_slideKhuyenMai = new rojerusan.RSPanelsSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("4TLIX CINEMAS");
@@ -340,206 +313,8 @@ public class KHHOME extends javax.swing.JFrame {
 
         jPanel7.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 1359, 139));
 
-        pnl_filmMain1.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_filmMain1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
-        jButton17.setBorder(null);
-        jButton17.setBorderPainted(false);
-        jButton17.setContentAreaFilled(false);
-        jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton17.setFocusPainted(false);
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-        pnl_filmMain1.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 50));
-
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
-        jButton18.setBorder(null);
-        jButton18.setBorderPainted(false);
-        jButton18.setContentAreaFilled(false);
-        jButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton18.setFocusPainted(false);
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-        pnl_filmMain1.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 110, -1, 50));
-
-        jScrollPane4.setBorder(null);
-
-        pnl_ShowFilm1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
-        jPanel36.setLayout(jPanel36Layout);
-        jPanel36Layout.setHorizontalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel36Layout.setVerticalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
-        jPanel45.setLayout(jPanel45Layout);
-        jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
-        jPanel46.setLayout(jPanel46Layout);
-        jPanel46Layout.setHorizontalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_DA3, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel46Layout.setVerticalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_DA3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
-        jPanel47.setLayout(jPanel47Layout);
-        jPanel47Layout.setHorizontalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_DA4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel47Layout.setVerticalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_DA4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
-        jPanel48.setLayout(jPanel48Layout);
-        jPanel48Layout.setHorizontalGroup(
-            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA5, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel48Layout.setVerticalGroup(
-            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_DA5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
-
-        jTextArea31.setColumns(20);
-        jTextArea31.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea31.setRows(2);
-        jTextArea31.setTabSize(2);
-        jTextArea31.setText("SPIDER - NO WAY HOME");
-        jTextArea31.setWrapStyleWord(true);
-        jTextArea31.setBorder(null);
-        jTextArea31.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextArea32.setColumns(20);
-        jTextArea32.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea32.setRows(2);
-        jTextArea32.setTabSize(2);
-        jTextArea32.setText("EVERYTHING EVERYWHRE\n\t   ALL OF ONCE");
-        jTextArea32.setWrapStyleWord(true);
-        jTextArea32.setBorder(null);
-        jTextArea32.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextArea33.setColumns(20);
-        jTextArea33.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea33.setRows(2);
-        jTextArea33.setTabSize(2);
-        jTextArea33.setText("THOR 4 - LOVE AND \n        THUNDER");
-        jTextArea33.setWrapStyleWord(true);
-        jTextArea33.setBorder(null);
-        jTextArea33.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextArea34.setColumns(20);
-        jTextArea34.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea34.setRows(2);
-        jTextArea34.setTabSize(2);
-        jTextArea34.setText("MINIONS : RISE OF GRU");
-        jTextArea34.setWrapStyleWord(true);
-        jTextArea34.setBorder(null);
-        jTextArea34.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextArea35.setColumns(20);
-        jTextArea35.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea35.setRows(2);
-        jTextArea35.setTabSize(2);
-        jTextArea35.setText("TOP GUN MAVERICK");
-        jTextArea35.setWrapStyleWord(true);
-        jTextArea35.setBorder(null);
-        jTextArea35.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout pnl_ShowFilm1Layout = new javax.swing.GroupLayout(pnl_ShowFilm1);
-        pnl_ShowFilm1.setLayout(pnl_ShowFilm1Layout);
-        pnl_ShowFilm1Layout.setHorizontalGroup(
-            pnl_ShowFilm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ShowFilm1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnl_ShowFilm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ShowFilm1Layout.createSequentialGroup()
-                        .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_ShowFilm1Layout.createSequentialGroup()
-                        .addComponent(jTextArea32, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jTextArea33, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(jTextArea34, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jTextArea31, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jTextArea35, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        pnl_ShowFilm1Layout.setVerticalGroup(
-            pnl_ShowFilm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ShowFilm1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnl_ShowFilm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pnl_ShowFilm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextArea32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea34, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        jScrollPane4.setViewportView(pnl_ShowFilm1);
-
-        pnl_filmMain1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1310, 310));
-
-        jPanel7.add(pnl_filmMain1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 1360, 330));
-
-        pnl_filmMain.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_filmMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnl_film.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_film.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
         jButton11.setBorder(null);
@@ -552,7 +327,7 @@ public class KHHOME extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        pnl_filmMain.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 50));
+        pnl_film.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 50));
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
         jButton12.setBorder(null);
@@ -560,202 +335,72 @@ public class KHHOME extends javax.swing.JFrame {
         jButton12.setContentAreaFilled(false);
         jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton12.setFocusPainted(false);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        pnl_filmMain.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 110, -1, 50));
+        pnl_film.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 110, -1, 50));
 
         jScrollPane3.setBorder(null);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jScrollPane3MouseMoved(evt);
+            }
+        });
 
-        pnl_ShowFilm.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_SlideFilm.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_SlideFilm.setLayout(new java.awt.GridLayout(1, 0, 56, 0));
+        jScrollPane3.setViewportView(pnl_SlideFilm);
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
+        pnl_film.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 1280, 320));
 
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
+        jPanel7.add(pnl_film, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1360, 330));
 
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_film3, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_film3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
+        pnl_DoAn.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_DoAn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
-        jPanel31.setLayout(jPanel31Layout);
-        jPanel31Layout.setHorizontalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_film4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel31Layout.setVerticalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_film4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
+        jButton17.setBorder(null);
+        jButton17.setBorderPainted(false);
+        jButton17.setContentAreaFilled(false);
+        jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton17.setFocusPainted(false);
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        pnl_DoAn.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 50));
 
-        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
-        jPanel32.setLayout(jPanel32Layout);
-        jPanel32Layout.setHorizontalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-            .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film5, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-        );
-        jPanel32Layout.setVerticalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-            .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_film5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-        );
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
+        jButton18.setBorder(null);
+        jButton18.setBorderPainted(false);
+        jButton18.setContentAreaFilled(false);
+        jButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton18.setFocusPainted(false);
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        pnl_DoAn.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 120, -1, 50));
 
-        jTextArea16.setColumns(20);
-        jTextArea16.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea16.setRows(2);
-        jTextArea16.setTabSize(2);
-        jTextArea16.setText("SPIDER - NO WAY HOME");
-        jTextArea16.setWrapStyleWord(true);
-        jTextArea16.setBorder(null);
-        jTextArea16.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea17.setColumns(20);
-        jTextArea17.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea17.setRows(2);
-        jTextArea17.setTabSize(2);
-        jTextArea17.setText("EVERYTHING EVERYWHRE\n\t   ALL OF ONCE");
-        jTextArea17.setWrapStyleWord(true);
-        jTextArea17.setBorder(null);
-        jTextArea17.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        pnl_slideDoAn.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_slideDoAn.setLayout(new java.awt.GridLayout(1, 0, 56, 0));
+        jScrollPane4.setViewportView(pnl_slideDoAn);
 
-        jTextArea18.setColumns(20);
-        jTextArea18.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea18.setRows(2);
-        jTextArea18.setTabSize(2);
-        jTextArea18.setText("THOR 4 - LOVE AND \n        THUNDER");
-        jTextArea18.setWrapStyleWord(true);
-        jTextArea18.setBorder(null);
-        jTextArea18.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        pnl_DoAn.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 1280, 310));
 
-        jTextArea19.setColumns(20);
-        jTextArea19.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea19.setRows(2);
-        jTextArea19.setTabSize(2);
-        jTextArea19.setText("MINIONS : RISE OF GRU");
-        jTextArea19.setWrapStyleWord(true);
-        jTextArea19.setBorder(null);
-        jTextArea19.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextArea20.setColumns(20);
-        jTextArea20.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea20.setRows(2);
-        jTextArea20.setTabSize(2);
-        jTextArea20.setText("TOP GUN MAVERICK");
-        jTextArea20.setWrapStyleWord(true);
-        jTextArea20.setBorder(null);
-        jTextArea20.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnl_ShowFilmLayout = new javax.swing.GroupLayout(pnl_ShowFilm);
-        pnl_ShowFilm.setLayout(pnl_ShowFilmLayout);
-        pnl_ShowFilmLayout.setHorizontalGroup(
-            pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                        .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                        .addComponent(jTextArea17, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jTextArea18, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(jTextArea19, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jTextArea16, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jTextArea20, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnl_ShowFilmLayout.setVerticalGroup(
-            pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextArea17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(pnl_ShowFilmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_ShowFilmLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jScrollPane3.setViewportView(pnl_ShowFilm);
-
-        pnl_filmMain.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1310, 310));
-
-        jPanel7.add(pnl_filmMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1360, 330));
+        jPanel7.add(pnl_DoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 1360, 330));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1069,145 +714,44 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel7.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 945, 1359, 70));
 
         pnl_KhuyenMai.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_KhuyenMai.setBorder(null);
+        pnl_KhuyenMai.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel39.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
+        jButton21.setBorder(null);
+        jButton21.setBorderPainted(false);
+        jButton21.setContentAreaFilled(false);
+        jButton21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton21.setFocusPainted(false);
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+        pnl_KhuyenMai.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 50));
 
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
-        jButton15.setBorder(null);
-        jButton15.setBorderPainted(false);
-        jButton15.setContentAreaFilled(false);
-        jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton15.setFocusPainted(false);
-        jPanel39.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 50));
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
+        jButton22.setBorder(null);
+        jButton22.setBorderPainted(false);
+        jButton22.setContentAreaFilled(false);
+        jButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton22.setFocusPainted(false);
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        pnl_KhuyenMai.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 140, -1, 50));
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
-        jButton16.setBorder(null);
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton16.setFocusPainted(false);
-        jPanel39.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 100, -1, 50));
+        jScrollPane8.setBorder(null);
+        jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
-        jPanel40.setLayout(jPanel40Layout);
-        jPanel40Layout.setHorizontalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel40Layout.setVerticalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
+        pnl_slideKhuyenMai.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_slideKhuyenMai.setLayout(new java.awt.GridLayout(1, 0, 56, 0));
+        jScrollPane8.setViewportView(pnl_slideKhuyenMai);
 
-        jPanel39.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 210, 225));
+        pnl_KhuyenMai.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 1280, 310));
 
-        javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
-        jPanel41.setLayout(jPanel41Layout);
-        jPanel41Layout.setHorizontalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel41Layout.setVerticalGroup(
-            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        jPanel39.add(jPanel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 210, -1));
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM3, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        jPanel39.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 210, -1));
-
-        javax.swing.GroupLayout jPanel43Layout = new javax.swing.GroupLayout(jPanel43);
-        jPanel43.setLayout(jPanel43Layout);
-        jPanel43Layout.setHorizontalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel43Layout.setVerticalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        jPanel39.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 210, -1));
-
-        jTextArea26.setColumns(20);
-        jTextArea26.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea26.setRows(2);
-        jTextArea26.setTabSize(2);
-        jTextArea26.setText("VÉ ĐÔI X2 GIÁ");
-        jTextArea26.setWrapStyleWord(true);
-        jTextArea26.setBorder(null);
-        jTextArea26.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel39.add(jTextArea26, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, 120, 60));
-
-        jTextArea27.setColumns(20);
-        jTextArea27.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea27.setRows(2);
-        jTextArea27.setTabSize(2);
-        jTextArea27.setText("MUA 2 LY BẮP TẶNG 1 \n             COCA");
-        jTextArea27.setWrapStyleWord(true);
-        jTextArea27.setBorder(null);
-        jTextArea27.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel39.add(jTextArea27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 60));
-
-        jTextArea28.setColumns(20);
-        jTextArea28.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea28.setRows(2);
-        jTextArea28.setTabSize(2);
-        jTextArea28.setText("VÉ 4 NGƯỜI GIẢM 10%");
-        jTextArea28.setWrapStyleWord(true);
-        jTextArea28.setBorder(null);
-        jTextArea28.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel39.add(jTextArea28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 200, 60));
-
-        jTextArea29.setColumns(20);
-        jTextArea29.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea29.setRows(2);
-        jTextArea29.setTabSize(2);
-        jTextArea29.setText("MUA 2 PEPSI TẶNG \n        ỐNG HÚT");
-        jTextArea29.setWrapStyleWord(true);
-        jTextArea29.setBorder(null);
-        jTextArea29.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel39.add(jTextArea29, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 160, 50));
-
-        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
-        jPanel44.setLayout(jPanel44Layout);
-        jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM5, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_KM5, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-        );
-
-        jPanel39.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 210, -1));
-
-        jTextArea30.setColumns(20);
-        jTextArea30.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jTextArea30.setRows(2);
-        jTextArea30.setTabSize(2);
-        jTextArea30.setText("GIẢM 5% GIÁ VÉ PHIM \n            THOR 4 ");
-        jTextArea30.setWrapStyleWord(true);
-        jTextArea30.setBorder(null);
-        jTextArea30.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel39.add(jTextArea30, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 240, 190, 60));
-
-        pnl_KhuyenMai.setViewportView(jPanel39);
-
-        jPanel7.add(pnl_KhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1035, 1359, 325));
+        jPanel7.add(pnl_KhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1020, 1360, 340));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1217,15 +761,16 @@ public class KHHOME extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 1354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -1239,7 +784,7 @@ public class KHHOME extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1248,7 +793,7 @@ public class KHHOME extends javax.swing.JFrame {
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
-        setImageFilm();
+//        setImageFilm();
         setPlaceHolder(txt_Search_Film, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_DoAn, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_KhuyenMai, "Nhập để tìm kiếm...");
@@ -1261,7 +806,12 @@ public class KHHOME extends javax.swing.JFrame {
         CustomUIJScroll(jScrollPane4);
         CustomUIJScroll(jScrollPane5);
         CustomUIJScroll(jScrollPane7);
+        
+        //Đổ dữ liệu lên form KHHome
+        FillToPanelFilm();
+        FillToPanelDoAn();
     }
+    
     int i = 1;
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\";
     File f = new File("");
@@ -1271,6 +821,12 @@ public class KHHOME extends javax.swing.JFrame {
 //        lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".jpg"));
 //    }
 
+    public void refeshForm() {
+        jScrollPane3.getHorizontalScrollBar().setValue(0);
+        jScrollPane4.getHorizontalScrollBar().setValue(0);
+        jScrollPane8.getHorizontalScrollBar().setValue(0);
+    }
+    
     private void RunSlide() {
         Thread slideThread = new Thread() {
             @Override
@@ -1303,6 +859,70 @@ public class KHHOME extends javax.swing.JFrame {
         jscroll.getVerticalScrollBar().setCursor(new Cursor(HAND_CURSOR));
     }
     
+    private void FillToPanelFilm() {
+        listfilm = qlphimdao.selectAll();
+        for (int i = 0; i < listfilm.size(); i++) {
+            JPanel pnl = new JPanel();
+            pnl.setLayout(new GridLayout(2, 1));
+            
+            //TextPane chứa tiêu đề
+            JTextPane textPane = new JTextPane();
+            textPane.setText(listfilm.get(i).getTEN_PHIM());
+            StyledDocument style = textPane.getStyledDocument();
+            SimpleAttributeSet align = new SimpleAttributeSet();
+            StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
+            style.setParagraphAttributes(0, style.getLength(), align, false);
+            textPane.setPreferredSize(new Dimension(210, 100));
+            Font  f2  = new Font("Segoe UI",  Font.BOLD, 17);
+            textPane.setFont(f2);
+            
+            //Label chứa hình
+            JLabel lbl = new JLabel();
+            lbl.setSize(new Dimension(210, 250));
+            lbl.setMinimumSize(new Dimension(210, 250));
+            lbl.setPreferredSize(new Dimension(210, 250));
+            lbl.setMaximumSize(new Dimension(210, 250));
+            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
+            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listfilm.get(i).getPOSTER()));
+            pnl.add(lbl);
+            pnl.add(textPane);
+            pnl_SlideFilm.add(pnl);   
+        }
+        
+    }
+    
+    private void FillToPanelDoAn() {
+        listDoAn = qldadao.selectAll();
+        for (int i = 0; i < listDoAn.size(); i++) {
+            JPanel pnl = new JPanel();
+            pnl.setLayout(new GridLayout(2, 1));
+            
+            //TextPane chứa tiêu đề
+            JTextPane textPane = new JTextPane();
+            textPane.setText(listDoAn.get(i).getTENDOAN());
+            StyledDocument style = textPane.getStyledDocument();
+            SimpleAttributeSet align = new SimpleAttributeSet();
+            StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
+            style.setParagraphAttributes(0, style.getLength(), align, false);
+            textPane.setPreferredSize(new Dimension(210, 100));
+            Font  f2  = new Font("Segoe UI",  Font.BOLD, 17);
+            textPane.setFont(f2);
+            
+            //Label chứa hình
+            JLabel lbl = new JLabel();
+            lbl.setSize(new Dimension(210, 250));
+            lbl.setMinimumSize(new Dimension(210, 250));
+            lbl.setPreferredSize(new Dimension(210, 250));
+            lbl.setMaximumSize(new Dimension(210, 250));
+            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\";
+            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
+            pnl.add(lbl);
+            pnl.add(textPane);
+            pnl_slideDoAn.add(pnl);   
+        }
+        
+    }
+    
     private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SoLuongActionPerformed
@@ -1322,10 +942,6 @@ public class KHHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton17ActionPerformed
@@ -1333,6 +949,22 @@ public class KHHOME extends javax.swing.JFrame {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jScrollPane3AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jScrollPane3AncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane3AncestorMoved
+
+    private void jScrollPane3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MouseMoved
+        // TODO add your handling code here:    
+    }//GEN-LAST:event_jScrollPane3MouseMoved
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton22ActionPerformed
 
     private void setPlaceHolder(JTextField searchText, String text) {
         searchText.setText(text);
@@ -1356,30 +988,30 @@ public class KHHOME extends javax.swing.JFrame {
         });
     }
 
-    private void setImageFilm() {
-        //set image film
-        lbl_film1.setIcon(XImage.ResizeImage(lbl_film1.getWidth(), lbl_film1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\EVERYTHING EVERYWHERE ALL OF ONCE.jpg"));
-        lbl_film2.setIcon(XImage.ResizeImage(lbl_film2.getWidth(), lbl_film2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\THOR 4 - LOVE AND THUNDER.jpg"));
-        lbl_film3.setIcon(XImage.ResizeImage(lbl_film3.getWidth(), lbl_film3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\MINIONS RISE OF GRU.jpg"));
-        lbl_film4.setIcon(XImage.ResizeImage(lbl_film4.getWidth(), lbl_film4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\SPIDER - NO WAY HOME.jpg"));
-        lbl_film5.setIcon(XImage.ResizeImage(lbl_film5.getWidth(), lbl_film5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\Top_Gun_Maverick_Poster.jpg"));
-
-        //set image do an
-        lbl_DA1.setIcon(XImage.ResizeImage(lbl_DA1.getWidth(), lbl_DA1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\coca.jpg"));
-        lbl_DA2.setIcon(XImage.ResizeImage(lbl_DA2.getWidth(), lbl_DA2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\khoai tay chien.jpg"));
-        lbl_DA3.setIcon(XImage.ResizeImage(lbl_DA3.getWidth(), lbl_DA3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap caramel.jpg"));
-        lbl_DA4.setIcon(XImage.ResizeImage(lbl_DA4.getWidth(), lbl_DA4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap rang bo.jpg"));
-        lbl_DA5.setIcon(XImage.ResizeImage(lbl_DA5.getWidth(), lbl_DA5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\pepsi.jpg"));
-
-        //set image khuyen mai
-        lbl_KM1.setIcon(XImage.ResizeImage(lbl_KM1.getWidth(), lbl_KM1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\bap caramel.jpg"));
-        lbl_KM2.setIcon(XImage.ResizeImage(lbl_KM2.getWidth(), lbl_KM2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve don.jpg"));
-        lbl_KM3.setIcon(XImage.ResizeImage(lbl_KM3.getWidth(), lbl_KM3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\pepsi.jpg"));
-        lbl_KM4.setIcon(XImage.ResizeImage(lbl_KM4.getWidth(), lbl_KM4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve doi.jpg"));
-        lbl_KM5.setIcon(XImage.ResizeImage(lbl_KM5.getWidth(), lbl_KM5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\THOR 4 - LOVE AND THUNDER.jpg"));
-
-//        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\poster.gif"));
-    }
+//    private void setImageFilm() {
+//        //set image film
+//        lbl_film1.setIcon(XImage.ResizeImage(lbl_film1.getWidth(), lbl_film1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\EVERYTHING EVERYWHERE ALL OF ONCE.jpg"));
+//        lbl_film2.setIcon(XImage.ResizeImage(lbl_film2.getWidth(), lbl_film2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\THOR 4 - LOVE AND THUNDER.jpg"));
+//        lbl_film3.setIcon(XImage.ResizeImage(lbl_film3.getWidth(), lbl_film3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\MINIONS RISE OF GRU.jpg"));
+//        lbl_film4.setIcon(XImage.ResizeImage(lbl_film4.getWidth(), lbl_film4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\SPIDER - NO WAY HOME.jpg"));
+//        lbl_film5.setIcon(XImage.ResizeImage(lbl_film5.getWidth(), lbl_film5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\Top_Gun_Maverick_Poster.jpg"));
+//
+//        //set image do an
+//        lbl_DA1.setIcon(XImage.ResizeImage(lbl_DA1.getWidth(), lbl_DA1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\coca.jpg"));
+//        lbl_DA2.setIcon(XImage.ResizeImage(lbl_DA2.getWidth(), lbl_DA2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\khoai tay chien.jpg"));
+//        lbl_DA3.setIcon(XImage.ResizeImage(lbl_DA3.getWidth(), lbl_DA3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap caramel.jpg"));
+//        lbl_DA4.setIcon(XImage.ResizeImage(lbl_DA4.getWidth(), lbl_DA4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap rang bo.jpg"));
+//        lbl_DA5.setIcon(XImage.ResizeImage(lbl_DA5.getWidth(), lbl_DA5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\pepsi.jpg"));
+//
+//        //set image khuyen mai
+//        lbl_KM1.setIcon(XImage.ResizeImage(lbl_KM1.getWidth(), lbl_KM1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\bap caramel.jpg"));
+//        lbl_KM2.setIcon(XImage.ResizeImage(lbl_KM2.getWidth(), lbl_KM2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve don.jpg"));
+//        lbl_KM3.setIcon(XImage.ResizeImage(lbl_KM3.getWidth(), lbl_KM3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\pepsi.jpg"));
+//        lbl_KM4.setIcon(XImage.ResizeImage(lbl_KM4.getWidth(), lbl_KM4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve doi.jpg"));
+//        lbl_KM5.setIcon(XImage.ResizeImage(lbl_KM5.getWidth(), lbl_KM5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\THOR 4 - LOVE AND THUNDER.jpg"));
+//
+////        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\poster.gif"));
+//    }
 
     /**
      * @param args the command line arguments
@@ -1431,10 +1063,10 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -1444,35 +1076,18 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1482,57 +1097,30 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextArea jTextArea11;
     private javax.swing.JTextArea jTextArea12;
     private javax.swing.JTextArea jTextArea13;
     private javax.swing.JTextArea jTextArea14;
     private javax.swing.JTextArea jTextArea15;
-    private javax.swing.JTextArea jTextArea16;
-    private javax.swing.JTextArea jTextArea17;
-    private javax.swing.JTextArea jTextArea18;
-    private javax.swing.JTextArea jTextArea19;
-    private javax.swing.JTextArea jTextArea20;
     private javax.swing.JTextArea jTextArea21;
     private javax.swing.JTextArea jTextArea22;
     private javax.swing.JTextArea jTextArea23;
     private javax.swing.JTextArea jTextArea24;
     private javax.swing.JTextArea jTextArea25;
-    private javax.swing.JTextArea jTextArea26;
-    private javax.swing.JTextArea jTextArea27;
-    private javax.swing.JTextArea jTextArea28;
-    private javax.swing.JTextArea jTextArea29;
-    private javax.swing.JTextArea jTextArea30;
-    private javax.swing.JTextArea jTextArea31;
-    private javax.swing.JTextArea jTextArea32;
-    private javax.swing.JTextArea jTextArea33;
-    private javax.swing.JTextArea jTextArea34;
-    private javax.swing.JTextArea jTextArea35;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JLabel lbl_DA1;
-    private javax.swing.JLabel lbl_DA2;
-    private javax.swing.JLabel lbl_DA3;
-    private javax.swing.JLabel lbl_DA4;
-    private javax.swing.JLabel lbl_DA5;
-    private javax.swing.JLabel lbl_KM1;
-    private javax.swing.JLabel lbl_KM2;
-    private javax.swing.JLabel lbl_KM3;
-    private javax.swing.JLabel lbl_KM4;
-    private javax.swing.JLabel lbl_KM5;
-    private javax.swing.JLabel lbl_film1;
-    private javax.swing.JLabel lbl_film2;
-    private javax.swing.JLabel lbl_film3;
-    private javax.swing.JLabel lbl_film4;
-    private javax.swing.JLabel lbl_film5;
     private javax.swing.JLabel lbl_poster;
-    private javax.swing.JScrollPane pnl_KhuyenMai;
-    private javax.swing.JPanel pnl_ShowFilm;
-    private javax.swing.JPanel pnl_ShowFilm1;
+    private javax.swing.JPanel pnl_DoAn;
+    private javax.swing.JPanel pnl_KhuyenMai;
+    private rojerusan.RSPanelsSlider pnl_SlideFilm;
     private javax.swing.JPanel pnl_cart;
-    private javax.swing.JPanel pnl_filmMain;
-    private javax.swing.JPanel pnl_filmMain1;
+    private javax.swing.JPanel pnl_film;
+    private rojerusan.RSPanelsSlider pnl_slideDoAn;
+    private rojerusan.RSPanelsSlider pnl_slideKhuyenMai;
     private rojerusan.RSTableMetro rSTableMetro1;
     private javax.swing.JTextField txt_Search_DoAn;
     private javax.swing.JTextField txt_Search_Film;
     private javax.swing.JTextField txt_Search_KhuyenMai;
     // End of variables declaration//GEN-END:variables
+
 }

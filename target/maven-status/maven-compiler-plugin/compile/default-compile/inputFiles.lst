@@ -2,6 +2,8 @@ D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\NHANVIEN.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Chart.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\getInfo.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XJdbc.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewMovie.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLPHIMDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\BANNER.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KHACHHANG.java
@@ -15,6 +17,7 @@ D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\SendMail.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKHDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLDADAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewFOOD.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\PHIM.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Auth.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewCustomer.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\QLHOME.java

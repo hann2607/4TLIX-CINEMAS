@@ -90,6 +90,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
             if(Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
                 KHHOME kh = new KHHOME();
                 kh.setVisible(true);
+                kh.refeshForm();
             } else {
                 QLHOME qlhome = new QLHOME();
                 qlhome.setVisible(true);
