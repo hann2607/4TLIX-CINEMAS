@@ -184,18 +184,18 @@ public class login extends javax.swing.JFrame {
         pnl_left.add(pnl_containerLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
         lbl_sologanLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/4TLIX_Slogantest.png"))); // NOI18N
-        pnl_left.add(lbl_sologanLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 420, 210));
+        pnl_left.add(lbl_sologanLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 420, 230));
 
-        lbl_leftposter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/right.png"))); // NOI18N
+        lbl_leftposter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/right2.png"))); // NOI18N
         lbl_leftposter.setText("jLabel12");
         pnl_left.add(lbl_leftposter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -6, 450, 590));
 
         jPanel1.add(pnl_left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
         pnl_right.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
-        pnl_right.setkEndColor(new java.awt.Color(255, 204, 204));
+        pnl_right.setkEndColor(new java.awt.Color(0, 153, 153));
         pnl_right.setkGradientFocus(800);
-        pnl_right.setkStartColor(new java.awt.Color(255, 255, 204));
+        pnl_right.setkStartColor(new java.awt.Color(204, 204, 204));
         pnl_right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnl_containerRight.setOpaque(false);
@@ -251,7 +251,7 @@ public class login extends javax.swing.JFrame {
         txtconfirm.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
         txtconfirm.setPlaceholder("Xác nhận mật khẩu");
         txtconfirm.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
-        pnl_containerRight.add(txtconfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 310, -1));
+        pnl_containerRight.add(txtconfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 310, -1));
 
         txtsdt.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PHONE_ANDROID);
         txtsdt.setPlaceholder("Số điện thoại");
@@ -276,12 +276,12 @@ public class login extends javax.swing.JFrame {
         txtpass.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
         txtpass.setPlaceholder("Mật khẩu");
         txtpass.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
-        pnl_containerRight.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 310, -1));
+        pnl_containerRight.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 310, -1));
 
         pnl_right.add(pnl_containerRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
 
         lbl_sologanRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/4TLIX_Slogantest.png"))); // NOI18N
-        pnl_right.add(lbl_sologanRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 420, 210));
+        pnl_right.add(lbl_sologanRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 420, 480));
 
         lbl_rightposter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/left.png"))); // NOI18N
         pnl_right.add(lbl_rightposter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -6, 450, 590));
