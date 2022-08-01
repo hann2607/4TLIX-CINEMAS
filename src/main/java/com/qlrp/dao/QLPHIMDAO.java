@@ -32,7 +32,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
                     entity.getLOAIPHIM(), entity.getDIENVIEN(), entity.getQUOCGIA(), entity.getNHA_SAN_XUAT(), entity.getTOM_TAT(), entity.getPOSTER(), entity.getTRAILER(),
                     entity.getGIOI_HAN_TUOI(), entity.getNGAY_CONG_CHIEU(), entity.getBANNER());
         } catch (SQLException ex) {
-            Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLPHIMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -43,7 +43,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
                     entity.getLOAIPHIM(), entity.getDIENVIEN(), entity.getQUOCGIA(), entity.getNHA_SAN_XUAT(), entity.getTOM_TAT(), entity.getPOSTER(), entity.getTRAILER(),
                     entity.getGIOI_HAN_TUOI(), entity.getNGAY_CONG_CHIEU(), entity.getBANNER());
         } catch (SQLException ex) {
-            Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLPHIMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

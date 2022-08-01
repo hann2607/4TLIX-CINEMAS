@@ -40,7 +40,7 @@ public class NewMovie extends javax.swing.JFrame {
     }
 
     private void init() {
-        this.setAlwaysOnTop(true);
+//        this.setAlwaysOnTop(true);
         this.setIconImage(XImage.getAppIcon());
         this.setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -147,22 +147,9 @@ public class NewMovie extends javax.swing.JFrame {
         }
         return movie;
     }
-    double thoiluong = 0;
 
     private boolean validateForm() {
         String Error = "";
-        txt_maphim.setText("");
-        txt_ten.setText("");
-        txt_dinhdangphim.setText("");
-        sp_thoiluong.setValue(0);
-        cbo_ngonngu.setSelectedIndex(0);
-        txt_loai.setText("");
-        cbo_quocgia.setSelectedIndex(0);
-        txt_nhasanxuat.setText("");
-        cbo_gioihantuoi.setSelectedIndex(0);
-        dc_ngaycongchieu.setDate(null);
-        txt_dienvien.setText("");
-        txt_tomtat.setText("");
         if (txt_ten.getText().equals("")) {
             Error += "Tên phim trống! \n";
             txt_ten.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
@@ -178,12 +165,20 @@ public class NewMovie extends javax.swing.JFrame {
             txt_dinhdangphim.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
             txt_dinhdangphim.grabFocus();
         }
-        int sl = sp_thoiluong.getValue().hashCode();
-        if (sl <= 0) {
-            Error += "Thời lượng phim không được nhỏ hơn 0 ! \n";
+
+        try {
+            int thoiluong = sp_thoiluong.getValue().hashCode();
+            if (thoiluong < 0) {
+                Error += "Thời lượng phải lớn hơn 0! \n";
+                sp_thoiluong.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+                sp_thoiluong.grabFocus();
+            }
+        } catch (Exception e) {
+            Error += "Thời gian phải là số! \n";
             sp_thoiluong.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
             sp_thoiluong.grabFocus();
         }
+
         if (cbo_ngonngu.getSelectedIndex() == 0) {
             Error += "Vui lòng chọn ngôn ngữ! \n";
             cbo_ngonngu.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
@@ -225,19 +220,6 @@ public class NewMovie extends javax.swing.JFrame {
             Error += "Vui lòng chọn giới hạn độ tuổi! \n";
             txt_tomtat.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
             txt_tomtat.grabFocus();
-        } else {
-            try {
-                thoiluong = Double.parseDouble((String) sp_thoiluong.getValue());
-                if (thoiluong < 0) {
-                    Error += "Thời lượng phải lớn hơn 0! \n";
-                    sp_thoiluong.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
-                    sp_thoiluong.grabFocus();
-                }
-            } catch (Exception e) {
-                Error += "Thời gian phải là số! \n";
-                sp_thoiluong.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
-                sp_thoiluong.grabFocus();
-            }
         }
 
         if (!Error.equals("")) {
@@ -391,7 +373,7 @@ public class NewMovie extends javax.swing.JFrame {
         cbo_quocgia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quốc gia sản xuất", "Mỹ", "Hàn", "Vương Quốc Anh", "Việt Nam" }));
         cbo_quocgia.setColorFondo(new java.awt.Color(102, 102, 255));
 
-        cbo_gioihantuoi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "G", "PG", "R-13", "R-16", "R-18" }));
+        cbo_gioihantuoi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Giới hạn tuổi", "13", "16", "18" }));
         cbo_gioihantuoi.setColorFondo(new java.awt.Color(102, 102, 255));
 
         cbo_trangthai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đang bán vé", "Chuẩn bị mở bán" }));

@@ -428,12 +428,11 @@
             <Component class="RSMaterialComponent.RSComboBox" name="cbo_gioihantuoi">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="G"/>
-                    <StringItem index="1" value="PG"/>
-                    <StringItem index="2" value="R-13"/>
-                    <StringItem index="3" value="R-16"/>
-                    <StringItem index="4" value="R-18"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Gi&#x1edb;i h&#x1ea1;n tu&#x1ed5;i"/>
+                    <StringItem index="1" value="13"/>
+                    <StringItem index="2" value="16"/>
+                    <StringItem index="3" value="18"/>
                   </StringArray>
                 </Property>
                 <Property name="colorFondo" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
