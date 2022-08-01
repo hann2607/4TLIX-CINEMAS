@@ -7,9 +7,11 @@ package com.qlrp.ui;
 import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLKHDAO;
 import com.qlrp.dao.QLNVDAO;
+import com.qlrp.dao.QLPHIMDAO;
 import com.qlrp.entity.DOAN;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
+import com.qlrp.entity.PHIM;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.Chart;
 import com.qlrp.utils.Slide;
@@ -159,6 +161,15 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CUSMANA_add = new com.k33ptoo.components.KButton();
         jLabel4 = new javax.swing.JLabel();
         btn_CUSTOMERMANA_REFRESH = new com.k33ptoo.components.KButton();
+        pnl_MovieManagement = new javax.swing.JPanel();
+        btn_QLP_Search = new javax.swing.JButton();
+        txt_MOVMANA_Search = new javax.swing.JTextField();
+        cbo_MovMana_OrderBy = new javax.swing.JComboBox<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tbl_MOVMANA = new rojerusan.RSTableMetro();
+        btn_MOVMANA_add = new com.k33ptoo.components.KButton();
+        jLabel18 = new javax.swing.JLabel();
+        btn_MOVMANA_REFRESH = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -1477,6 +1488,111 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_CustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_MovieManagement.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_MovieManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_MovieManagement.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_MovieManagement.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_MovieManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLP_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLP_Search.setBorderPainted(false);
+        btn_QLP_Search.setOpaque(false);
+        btn_QLP_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLP_SearchActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_QLP_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 50, 40));
+
+        txt_MOVMANA_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_MOVMANA_SearchActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(txt_MOVMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 40));
+
+        cbo_MovMana_OrderBy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbo_MovMana_OrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order By", "Item 2", "Item 3", "Item 4" }));
+        pnl_MovieManagement.add(cbo_MovMana_OrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 110, 40));
+
+        tbl_MOVMANA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "TÊN PHIM", "POSTER", "DIỄN VIÊN", "THỜI LƯỢNG", "QUỐC GIA"
+            }
+        ));
+        tbl_MOVMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_MOVMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_MOVMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_MOVMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_MOVMANA.setRowHeight(70);
+        tbl_MOVMANA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_MOVMANAMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(tbl_MOVMANA);
+
+        pnl_MovieManagement.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_MOVMANA_add.setText("THÊM");
+        btn_MOVMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_MOVMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_MOVMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_MOVMANA_add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_MOVMANA_add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_MOVMANA_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MOVMANA_addActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_MOVMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel18.setText("QUẢN LÝ PHIM");
+        pnl_MovieManagement.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 210, -1));
+
+        btn_MOVMANA_REFRESH.setText("LÀM MỚI");
+        btn_MOVMANA_REFRESH.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_MOVMANA_REFRESH.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_MOVMANA_REFRESH.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_REFRESH.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_MOVMANA_REFRESH.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_REFRESH.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_MOVMANA_REFRESH.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_MOVMANA_REFRESH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MOVMANA_REFRESHActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_MOVMANA_REFRESH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
+
+        pnl_Main.add(pnl_MovieManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1523,6 +1639,7 @@ public class QLHOME extends javax.swing.JFrame {
     QLNVDAO qlnvdao = new QLNVDAO();
     QLDADAO qldadao = new QLDADAO();
     QLKHDAO qlkhdao = new QLKHDAO();
+    QLPHIMDAO qlphimdao = new QLPHIMDAO();
 
     private void init() {
         btn_CheckClickMenu = btn_Home;
@@ -1538,6 +1655,9 @@ public class QLHOME extends javax.swing.JFrame {
 
         List<KHACHHANG> listKH = qlkhdao.selectAll();
         fillToTable_CUSTOMER(listKH);
+
+        List<PHIM> listPHIM = qlphimdao.selectAll();
+        fillToTable_PHIM(listPHIM);
         //        List<CUSTOMER> listKH = qlkhachhang.selectAll();
         //        fillToTable_CUSTOMER(listKH);
         //        fillTableOrderMana();
@@ -1593,6 +1713,7 @@ public class QLHOME extends javax.swing.JFrame {
         // Ẩn tất cả các form còn lại
         pnl_Home.setVisible(false);
 //        pnl_OrderManagement.setVisible(false);
+        pnl_MovieManagement.setVisible(false);
         pnl_IntergratedManagement.setVisible(false);
 //        pnl_ShippingManagement.setVisible(false);
         pnl_CustomerManagement.setVisible(false);
@@ -1902,6 +2023,19 @@ public class QLHOME extends javax.swing.JFrame {
 
     }
 
+    public void fillToTable_PHIM(List<PHIM> listPHIM) {
+//           Tu copy 
+//        clear table va do du lieu len table
+        tbl_MOVMANA.removeAll();
+        model = (DefaultTableModel) tbl_MOVMANA.getModel();
+        model.setRowCount(0);
+        listPHIM = new QLPHIMDAO().selectAll();
+        for (PHIM mov : listPHIM) {
+            model.addRow(new Object[]{mov.getTEN_PHIM(), mov.getPOSTER(), mov.getDIENVIEN(), mov.getQUOCGIA(), mov.getTHOI_LUONG_CHIEU()});
+        }
+
+    }
+
     private void btn_HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_HomeMouseEntered
         // TODO add your handling code here:
         hoverMenu(btn_Home, 41);
@@ -1978,6 +2112,7 @@ public class QLHOME extends javax.swing.JFrame {
         this.btn_CheckClickMenu = btn_QLPhim;
         this.sizeBorder = 41;
         hoverMenu(btn_QLPhim, 41);
+        showPanelMenu(pnl_MovieManagement);
 //        showPanelMenu(pnl_EmployeeManagement);
 
         // code change Tab here
@@ -2344,7 +2479,7 @@ public class QLHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_CUSMANA_SearchActionPerformed
 
-        private void searchQLKH() {
+    private void searchQLKH() {
         if (!txt_CUSMANA_Search.getText().equals("")) {
             try {
                 List<KHACHHANG> listKH = qlkhdao.search(txt_CUSMANA_Search.getText());
@@ -2424,13 +2559,13 @@ public class QLHOME extends javax.swing.JFrame {
         if (index > indexSlide) {
             indexSlide = index;
             pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.LEFT);
-        } else if (index < indexSlide){
+        } else if (index < indexSlide) {
             indexSlide = index;
             pnl_SlideMain.setPanelSlider(20, 5, ListLabelSlide[indexSlide], RSPanelsSlider.DIRECT.RIGHT);
         }
-        
+
     }
-    
+
     private void btn_Dot1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Dot1ActionPerformed
         // TODO add your handling code here:
         nextSlideToIndex(0);
@@ -2450,6 +2585,49 @@ public class QLHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
         nextSlideToIndex(3);
     }//GEN-LAST:event_btn_Dot4ActionPerformed
+
+    private void btn_QLP_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLP_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_QLP_SearchActionPerformed
+
+    private void txt_MOVMANA_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MOVMANA_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_MOVMANA_SearchActionPerformed
+
+    private void tbl_MOVMANAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_MOVMANAMouseClicked
+        // TODO add your handling code here:
+        NewMovie mov = new NewMovie();
+        try {
+            int index = tbl_MOVMANA.getSelectedRow();
+            PHIM ph = qlphimdao.selectebyID(tbl_MOVMANA.getValueAt(index, 0).toString());
+            getInfo.mov = ph;
+            if (mov.isShowing()) {
+                mov.fillToForm();
+                mov.setEnableButton("edit");
+            } else {
+                mov.setVisible(true);
+                mov.fillToForm();
+                mov.setEnableButton("edit");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_tbl_MOVMANAMouseClicked
+
+    private void btn_MOVMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MOVMANA_addActionPerformed
+        // TODO add your handling code here:
+        NewMovie mov = new NewMovie();
+        mov.setVisible(true);
+        mov.setEnableButton("add");
+    }//GEN-LAST:event_btn_MOVMANA_addActionPerformed
+
+    private void btn_MOVMANA_REFRESHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MOVMANA_REFRESHActionPerformed
+        // TODO add your handling code here:
+        List<PHIM> listPHIM = qlphimdao.selectAll();
+        fillToTable_PHIM(listPHIM);
+    }//GEN-LAST:event_btn_MOVMANA_REFRESHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2502,6 +2680,8 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_Home;
     private com.k33ptoo.components.KButton btn_INVENMANA_add;
     private com.k33ptoo.components.KButton btn_InvenMana_Refresh;
+    private com.k33ptoo.components.KButton btn_MOVMANA_REFRESH;
+    private com.k33ptoo.components.KButton btn_MOVMANA_add;
     private javax.swing.JButton btn_NextSlide;
     private javax.swing.JButton btn_PrevSlide;
     private javax.swing.JButton btn_QLDatVe;
@@ -2510,6 +2690,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_QLKH_Search;
     private javax.swing.JButton btn_QLNV;
     private javax.swing.JButton btn_QLNV_Search;
+    private javax.swing.JButton btn_QLP_Search;
     private javax.swing.JButton btn_QLPhim;
     private javax.swing.JButton btn_QLTK;
     private javax.swing.JButton btn_QLTrailer;
@@ -2520,6 +2701,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbo_IntergratedMana_chart;
     private javax.swing.JComboBox<String> cbo_IntergratedMana_year;
     private javax.swing.JComboBox<String> cbo_IntergratedMana_year1;
+    private javax.swing.JComboBox<String> cbo_MovMana_OrderBy;
     private javax.swing.JComboBox<String> cbo_ShippingMana_OrderBy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2530,6 +2712,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2555,6 +2738,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lbl_AccMana_search;
     private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_FullName;
@@ -2576,14 +2760,17 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Intergrated_chart;
     private javax.swing.JPanel pnl_Main;
     private javax.swing.JPanel pnl_Menu;
+    private javax.swing.JPanel pnl_MovieManagement;
     private javax.swing.JPanel pnl_QLDoAn;
     private javax.swing.JPanel pnl_Slide;
     private rojerusan.RSPanelsSlider pnl_SlideMain;
     private rojerusan.RSTableMetro tbl_CUSMANA;
+    private rojerusan.RSTableMetro tbl_MOVMANA;
     private rojerusan.RSTableMetro tbl_QLDA;
     private javax.swing.JTextField txt_AccMana_search;
     private javax.swing.JTextField txt_CUSMANA_Search;
     private javax.swing.JTextField txt_INVENMANA_Search;
+    private javax.swing.JTextField txt_MOVMANA_Search;
     // End of variables declaration//GEN-END:variables
 
 }

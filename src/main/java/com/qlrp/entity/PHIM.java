@@ -23,7 +23,7 @@ public class PHIM {
     private String TOM_TAT;
     private String POSTER;
     private String TRAILER;
-    private int GIOI_HAN_TUOI;
+    private String GIOI_HAN_TUOI;
     private Date NGAY_CONG_CHIEU;
     private String BANNER;
     
@@ -31,7 +31,7 @@ public class PHIM {
     }
 
     public PHIM(String MA_PHIM, String TEN_PHIM, String TEN_DINH_DANG_PHIM, int THOI_LUONG_CHIEU, String NGON_NGU, String LOAIPHIM, String DIENVIEN, String QUOCGIA,
-            String NHA_SAN_XUAT, String TOM_TAT, String POSTER, String TRAILER, int GIOI_HAN_TUOI, Date NGAY_CONG_CHIEU, String BANNER ) {
+            String NHA_SAN_XUAT, String TOM_TAT, String POSTER, String TRAILER, String GIOI_HAN_TUOI, Date NGAY_CONG_CHIEU, String BANNER ) {
         this.MA_PHIM = MA_PHIM;
         this.TEN_PHIM = TEN_PHIM;
         this.TEN_DINH_DANG_PHIM = TEN_DINH_DANG_PHIM;
@@ -46,7 +46,9 @@ public class PHIM {
         this.GIOI_HAN_TUOI = GIOI_HAN_TUOI;
         this.NGAY_CONG_CHIEU = NGAY_CONG_CHIEU;
         this.BANNER = BANNER;
+        this.TOM_TAT = TOM_TAT;
     }
+
 
     public String getMA_PHIM() {
         return MA_PHIM;
@@ -144,11 +146,11 @@ public class PHIM {
         this.TRAILER = TRAILER;
     }
 
-    public int getGIOI_HAN_TUOI() {
+    public String getGIOI_HAN_TUOI() {
         return GIOI_HAN_TUOI;
     }
 
-    public void setGIOI_HAN_TUOI(int GIOI_HAN_TUOI) {
+    public void setGIOI_HAN_TUOI(String GIOI_HAN_TUOI) {
         this.GIOI_HAN_TUOI = GIOI_HAN_TUOI;
     }
 

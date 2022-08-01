@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
 
     String INSERT_SQL = "INSERT INTO PHIM ( MA_PHIM, TEN_PHIM, TEN_DINH_DANG_PHIM, THOI_LUONG_CHIEU, NGON_NGU, LOAIPHIM, DIENVIEN, QUOCGIA, NHA_SAN_XUAT, TOM_TAT, POSTER, TRAILER, GIOI_HAN_TUOI, NGAY_CONG_CHIEU, BANNER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    String UPDATE_SQL = "UPDATE PHIM SET LOAI,  MA_PHIM=?,  TEN_PHIM=?,  TEN_DINH_DANG_PHIM=?, THOI_LUONG_CHIEU=?, NGON_NGU=?, LOAIPHIM=?, DIENVIEN=?, QUOCGIA=?, NHA_SAN_XUAT=?, TOM_TAT=?, POSTER=?, TRAILER=?, GIOI_HAN_TUOI=?, NGAY_CONG_CHIEU=?, BANNER=? WHERE TEN_DO_AN=?";
+    String UPDATE_SQL = "UPDATE PHIM SET LOAI,  MA_PHIM=?,  TEN_PHIM=?, TEN_DINH_DANG_PHIM=?, THOI_LUONG_CHIEU=?, NGON_NGU=?, LOAIPHIM=?, DIENVIEN=?, QUOCGIA=?, NHA_SAN_XUAT=?, TOM_TAT=?, POSTER=?, TRAILER=?, GIOI_HAN_TUOI=?, NGAY_CONG_CHIEU=?, BANNER=? WHERE TEN_DO_AN=?";
     String DELETE_SQL = "DELETE FROM PHIM WHERE MA_PHIM=?";
     String SELECT_ALL_SQL = "SELECT * FROM PHIM";
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
@@ -67,12 +67,12 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
 
     @Override
     public List<PHIM> selectAll() {
-        return this.selectbySql(SELECT_ALL_SQL);
+        return selectbySql(SELECT_ALL_SQL);
     }
 
     @Override
     public List<PHIM> selectbySql(String sql, Object... args) {
-        List<PHIM> list = new ArrayList<>();
+        List<PHIM> list = new ArrayList<PHIM>();
         ResultSet rs;
         try {
             rs = XJdbc.query(sql, args);
@@ -90,7 +90,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
                 entity.setTOM_TAT(rs.getString("TOM_TAT"));
                 entity.setPOSTER(rs.getString("POSTER"));
                 entity.setTRAILER(rs.getString("TRAILER"));
-                entity.setGIOI_HAN_TUOI(rs.getInt("GIOI_HAN_TUOI"));
+                entity.setGIOI_HAN_TUOI(rs.getString("GIOI_HAN_TUOI"));
                 entity.setNGAY_CONG_CHIEU(rs.getDate("NGAY_CONG_CHIEU"));
                 entity.setBANNER(rs.getString("BANNER"));
 
