@@ -18,6 +18,8 @@ import static java.awt.Frame.HAND_CURSOR;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import static java.lang.Thread.sleep;
 import java.util.List;
@@ -35,7 +37,7 @@ import javax.swing.text.StyledDocument;
  *
  * @author HAN-PC
  */
-public class KHHOME extends javax.swing.JFrame{
+public class KHHOME extends javax.swing.JFrame {
 
     /**
      * Creates new form KHACHHANG_HOME
@@ -50,7 +52,7 @@ public class KHHOME extends javax.swing.JFrame{
     public KHHOME() {
         initComponents();
         setLocationRelativeTo(null);
-
+        
         init();
     }
 
@@ -806,7 +808,7 @@ public class KHHOME extends javax.swing.JFrame{
         CustomUIJScroll(jScrollPane4);
         CustomUIJScroll(jScrollPane5);
         CustomUIJScroll(jScrollPane7);
-        
+
         //Đổ dữ liệu lên form KHHome
         FillToPanelFilm();
         FillToPanelDoAn();
@@ -833,7 +835,7 @@ public class KHHOME extends javax.swing.JFrame{
             public void run() {
                 try {
                     while (true) {
-
+                        
                         sleep(35000);
                         i++;
                         lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".gif"));
@@ -864,7 +866,7 @@ public class KHHOME extends javax.swing.JFrame{
         for (int i = 0; i < listfilm.size(); i++) {
             JPanel pnl = new JPanel();
             pnl.setLayout(new GridLayout(2, 1));
-            
+
             //TextPane chứa tiêu đề
             JTextPane textPane = new JTextPane();
             textPane.setText(listfilm.get(i).getTEN_PHIM());
@@ -873,9 +875,9 @@ public class KHHOME extends javax.swing.JFrame{
             StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
             style.setParagraphAttributes(0, style.getLength(), align, false);
             textPane.setPreferredSize(new Dimension(210, 100));
-            Font  f2  = new Font("Segoe UI",  Font.BOLD, 17);
+            Font f2 = new Font("Segoe UI", Font.BOLD, 17);
             textPane.setFont(f2);
-            
+
             //Label chứa hình
             JLabel lbl = new JLabel();
             lbl.setSize(new Dimension(210, 250));
@@ -886,7 +888,21 @@ public class KHHOME extends javax.swing.JFrame{
             lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listfilm.get(i).getPOSTER()));
             pnl.add(lbl);
             pnl.add(textPane);
-            pnl_SlideFilm.add(pnl);   
+            pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            //Thêm sự kiện click vào film show chi tiết phim
+            PHIM p = listfilm.get(i);
+            pnl.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (e.getClickCount() == 1 && !e.isConsumed()) {
+                        ChiTietPhim ctp = new ChiTietPhim();
+                        ctp.setVisible(true);
+                        ctp.fillToChiTietPhim(p);
+                    }
+                }
+            });
+            
+            pnl_SlideFilm.add(pnl);            
         }
         
     }
@@ -896,7 +912,7 @@ public class KHHOME extends javax.swing.JFrame{
         for (int i = 0; i < listDoAn.size(); i++) {
             JPanel pnl = new JPanel();
             pnl.setLayout(new GridLayout(2, 1));
-            
+
             //TextPane chứa tiêu đề
             JTextPane textPane = new JTextPane();
             textPane.setText(listDoAn.get(i).getTENDOAN());
@@ -905,9 +921,9 @@ public class KHHOME extends javax.swing.JFrame{
             StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
             style.setParagraphAttributes(0, style.getLength(), align, false);
             textPane.setPreferredSize(new Dimension(210, 100));
-            Font  f2  = new Font("Segoe UI",  Font.BOLD, 17);
+            Font f2 = new Font("Segoe UI", Font.BOLD, 17);
             textPane.setFont(f2);
-            
+
             //Label chứa hình
             JLabel lbl = new JLabel();
             lbl.setSize(new Dimension(210, 250));
@@ -918,7 +934,7 @@ public class KHHOME extends javax.swing.JFrame{
             lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
             pnl.add(lbl);
             pnl.add(textPane);
-            pnl_slideDoAn.add(pnl);   
+            pnl_slideDoAn.add(pnl);            
         }
         
     }
@@ -934,7 +950,7 @@ public class KHHOME extends javax.swing.JFrame{
         } else {
             pnl_cart.setVisible(false);
         }
-
+        
 
     }//GEN-LAST:event_btn_CartActionPerformed
 
@@ -965,7 +981,7 @@ public class KHHOME extends javax.swing.JFrame{
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
-
+    
     private void setPlaceHolder(JTextField searchText, String text) {
         searchText.setText(text);
         searchText.setForeground(Color.GRAY);
@@ -977,7 +993,7 @@ public class KHHOME extends javax.swing.JFrame{
                     searchText.setForeground(Color.BLACK);
                 }
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchText.getText().isEmpty()) {
@@ -1012,7 +1028,6 @@ public class KHHOME extends javax.swing.JFrame{
 //
 ////        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\poster.gif"));
 //    }
-
     /**
      * @param args the command line arguments
      */

@@ -93,6 +93,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
                 entity.setGIOI_HAN_TUOI(rs.getString("GIOI_HAN_TUOI"));
                 entity.setNGAY_CONG_CHIEU(rs.getDate("NGAY_CONG_CHIEU"));
                 entity.setBANNER(rs.getString("BANNER"));
+                entity.setNGON_NGU(rs.getString("NGON_NGU"));
 
                 list.add(entity);
             }

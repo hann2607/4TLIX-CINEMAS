@@ -2196,7 +2196,7 @@ public class QLHOME extends javax.swing.JFrame {
 
         NHANVIEN epl = Auth.user;
         if (epl != null) {
-            if (Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân Viên Quản Lý")) {
+            if (Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Quản Lý")) {
                 this.btn_CheckClickMenu = btn_QLTK;
                 this.sizeBorder = 40;
                 hoverMenu(btn_QLTK, 40);
