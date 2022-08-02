@@ -47,7 +47,8 @@ public class KHHOME extends javax.swing.JFrame {
     File file = new File("");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
-
+    ChiTietPhim ctp = new ChiTietPhim();
+    
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
 
@@ -146,6 +147,11 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(204, 204, 204)));
@@ -164,14 +170,14 @@ public class KHHOME extends javax.swing.JFrame {
 
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "SPIDER - NO WAY HOME", "100.000 VNĐ"},
-                {null, "THOR 4 - LOVE AND THUNDER", "200.000 VNĐ"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, "SPIDER - NO WAY HOME", "2", "100.000 VNĐ"},
+                {null, "THOR 4 - LOVE AND THUNDER", "3", "200.000 VNĐ"},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "HÌNH", "TÊN SP", "GIÁ"
+                "HÌNH", "TÊN SP", "SỐ LƯỢNG", "GIÁ"
             }
         ));
         rSTableMetro1.setColorBordeFilas(new java.awt.Color(255, 255, 255));
@@ -192,18 +198,17 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_cartLayout.setHorizontalGroup(
             pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_cartLayout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(157, 157, 157))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap())))
+                .addContainerGap(307, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
+            .addGroup(pnl_cartLayout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnl_cartLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         pnl_cartLayout.setVerticalGroup(
@@ -211,7 +216,7 @@ public class KHHOME extends javax.swing.JFrame {
             .addGroup(pnl_cartLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
             .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +226,7 @@ public class KHHOME extends javax.swing.JFrame {
                     .addContainerGap(76, Short.MAX_VALUE)))
         );
 
-        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 130, 450, 470));
+        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 540, 470));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -349,12 +354,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -800,8 +805,6 @@ public class KHHOME extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     private void init() {
         this.setIconImage(XImage.getAppIcon());
 //        setImageFilm();
@@ -839,6 +842,7 @@ public class KHHOME extends javax.swing.JFrame {
 
     //Sự kiện refresh Phim, DoAn, KhuyenMai để nút next và prev show on top
     public class ListenAdditionsScrolledPhim implements ChangeListener {
+
         @Override
         public void stateChanged(ChangeEvent e) {
             btn_nextPhim.grabFocus();
@@ -847,8 +851,9 @@ public class KHHOME extends javax.swing.JFrame {
             pnl_SlideFilm.repaint();
         }
     }
-    
+
     public class ListenAdditionsScrolledDoAn implements ChangeListener {
+
         @Override
         public void stateChanged(ChangeEvent e) {
             btn_nextDoAn.grabFocus();
@@ -857,8 +862,9 @@ public class KHHOME extends javax.swing.JFrame {
             pnl_slideDoAn.repaint();
         }
     }
-    
+
     public class ListenAdditionsScrolledKhuyenMai implements ChangeListener {
+
         @Override
         public void stateChanged(ChangeEvent e) {
             btn_prevKhuyenMai.grabFocus();
@@ -867,7 +873,6 @@ public class KHHOME extends javax.swing.JFrame {
             pnl_KhuyenMai.repaint();
         }
     }
-    
 
     public void refeshForm() {
         jScrollPane3.getHorizontalScrollBar().setValue(0);
@@ -910,7 +915,8 @@ public class KHHOME extends javax.swing.JFrame {
         jscroll.getHorizontalScrollBar().setUnitIncrement(16);
         jscroll.getHorizontalScrollBar().setCursor(new Cursor(HAND_CURSOR));
     }
-
+    
+    boolean isShowChiTietPhim = false;
     private void FillToPanelFilm() {
         listfilm = qlphimdao.selectAll();
         for (int i = 0; i < listfilm.size(); i++) {
@@ -945,9 +951,14 @@ public class KHHOME extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        ChiTietPhim ctp = new ChiTietPhim();
-                        ctp.setVisible(true);
-                        ctp.fillToChiTietPhim(p);
+                        if(ctp.isVisible()) {
+                            ctp.setVisible(false);
+                            ctp.setVisible(true);
+                            ctp.fillToChiTietPhim(p);
+                        } else {
+                            ctp.setVisible(true);
+                            ctp.fillToChiTietPhim(p);
+                        } 
                     }
                 }
             });
@@ -956,7 +967,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
 
     }
-
+    
     private void FillToPanelDoAn() {
         listDoAn = qldadao.selectAll();
         for (int i = 0; i < listDoAn.size(); i++) {
@@ -984,11 +995,25 @@ public class KHHOME extends javax.swing.JFrame {
             lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
             pnl.add(lbl);
             pnl.add(textPane);
+            pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            DOAN da = listDoAn.get(i);
+            pnl.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (e.getClickCount() == 1 && !e.isConsumed()) {
+                        ChiTietDoAn ctda = new ChiTietDoAn();
+                        ctda.setVisible(true);
+                        ctda.fillToChiTietDoAn(da);
+                    }
+                }
+            });
+
             pnl_slideDoAn.add(pnl);
         }
 
     }
-    
+
     private void setPlaceHolder(JTextField searchText, String text) {
         searchText.setText(text);
         searchText.setForeground(Color.GRAY);
@@ -1026,13 +1051,9 @@ public class KHHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_CartActionPerformed
 
-    private void nextSlide() {
-        
-    }
-    
+
     private void btn_prevPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevPhimActionPerformed
         // TODO add your handling code here:
- 
     }//GEN-LAST:event_btn_prevPhimActionPerformed
 
     private void btn_prevDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevDoAnActionPerformed
@@ -1067,15 +1088,17 @@ public class KHHOME extends javax.swing.JFrame {
         int size = listfilm.size();
         // vitri max = 266
         int vitrihientai = (((valueScroll / 266) + 5) * 210) + ((((valueScroll / 266) + 5) - 1) * 56);
-        int vitritieptheo =(((valueScroll / 266) + 6) * 210) + ((((valueScroll / 266) + 6) - 1) * 56);
+        int vitritieptheo = (((valueScroll / 266) + 6) * 210) + ((((valueScroll / 266) + 6) - 1) * 56);
         int value = vitritieptheo - vitrihientai;
         next = valueScroll;
         next += value;
         jScrollPane3.getHorizontalScrollBar().setValue(next);
-        System.out.println(value);
     }//GEN-LAST:event_btn_nextPhimActionPerformed
 
-    
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+        pnl_cart.setVisible(false);
+    }//GEN-LAST:event_jScrollPane1MouseClicked
 
     /**
      * @param args the command line arguments

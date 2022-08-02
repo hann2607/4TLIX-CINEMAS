@@ -6,15 +6,12 @@ package com.qlrp.ui;
 
 import com.qlrp.dao.QLKHDAO;
 import com.qlrp.entity.KHACHHANG;
-import com.qlrp.utils.Auth;
 import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
-import static com.qlrp.utils.XImage.ResizeImage;
 import com.qlrp.utils.getInfo;
 import java.io.File;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +25,7 @@ public class NewCustomer extends javax.swing.JFrame {
      */
     public NewCustomer() {
         initComponents();
+        this.setAlwaysOnTop(true);
         this.setIconImage(XImage.getAppIcon());
         this.setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -403,7 +401,6 @@ public class NewCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_GmailActionPerformed
     File f = new File("");
     QLKHDAO qlkhdao = new QLKHDAO();
-    QLHOME hm = new QLHOME();
     List<KHACHHANG> listKH = qlkhdao.selectAll();
 
     private boolean validateForm() {
@@ -612,7 +609,7 @@ public class NewCustomer extends javax.swing.JFrame {
                 if (qlkhdao.selectebyID(kh.getSDT()) == null) {
                     qlkhdao.insert(kh);
                     MsgBox.alert(this, "Thêm thành công!");
-                    hm.fillToTable_CUSTOMER(listKH);
+//                    hm.fillToTable_CUSTOMER(listKH);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Món ăn đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);

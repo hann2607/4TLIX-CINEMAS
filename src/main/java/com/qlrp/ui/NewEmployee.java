@@ -483,6 +483,94 @@ public class NewEmployee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    File f = new File("");
+    QLNVDAO qlnvdao = new QLNVDAO();
+
+    private void init() {
+        this.setAlwaysOnTop(true);
+        this.setIconImage(XImage.getAppIcon());
+        this.setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
+    boolean isClearAll = true;
+    private void clearAll() {
+        if(isClearAll) {
+            txt_MaNV.setText("");
+        }
+        txt_Password.setText("");
+        txt_ConfirmPassword.setText("");
+        txt_FullName.setText("");
+        txt_Phone.setText("");
+        txt_Address.setText("");
+        txt_Gmail.setText("");
+        txt_cccd.setText("");
+        rdo_Male.setSelected(true);
+        rdo_NhanVienBanHang.setSelected(true);
+        try {
+            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
+            lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void setForm(NHANVIEN epl) {
+        try {
+            txt_MaNV.setText(epl.getMA_NHAN_VIEN());
+            txt_Password.setText(epl.getMAT_KHAU());
+            txt_ConfirmPassword.setText(epl.getMAT_KHAU());
+            txt_FullName.setText(epl.getHO_TEN());
+            txt_Phone.setText(epl.getSDT());
+            txt_Address.setText(epl.getDIA_CHI());
+            txt_Gmail.setText(epl.getEMAIL());
+            txt_cccd.setText(epl.getCCCD_CMND());
+            if (epl.isGIOI_TINH()) {
+                rdo_Male.setSelected(true);
+            } else {
+                rdo_Female.setSelected(true);
+            }
+            if (epl.getTEN_VAI_TRO().equalsIgnoreCase("Quản Lý Rạp")) {
+                rdo_QLRap.setSelected(true);
+            } else if(epl.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
+                rdo_NhanVienBanHang.setSelected(true);
+            } else {
+                rdo_QuanLy.setSelected(true);
+            }
+            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
+            lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + epl.getHINH()));
+        } catch (Exception e) {
+        }
+
+    }
+
+    String duongDanImage = null;
+
+    private void chooseImage() {
+        duongDanImage = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee";
+        try {
+            this.setAlwaysOnTop(false);
+            JFileChooser fc = new JFileChooser(f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee");
+            fc.setDialogTitle("Open File");
+            fc.showOpenDialog(null);
+            
+
+            File fTenAnh = fc.getSelectedFile();
+            duongDanImage = fTenAnh.getAbsolutePath();
+            if (duongDanImage != null) {
+                lbl_Image.setIcon(ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), String.valueOf(duongDanImage)));
+                System.out.println(duongDanImage);
+                this.setAlwaysOnTop(true);
+            } else {
+                System.out.println("Image not selected!");
+            }
+        } catch (Exception e) {
+            this.setAlwaysOnTop(true);
+            System.out.println("Image not selected!");
+            System.out.println(duongDanImage);
+        }
+    }
+    
     private void txt_MaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MaNVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_MaNVActionPerformed
@@ -490,8 +578,10 @@ public class NewEmployee extends javax.swing.JFrame {
     private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed
         // TODO add your handling code here:
         if (btn_Edit.isEnabled()) {
-            clearEdit();
+            isClearAll = false;
+            this.clearAll();
         } else {
+            isClearAll = true;
             this.clearAll();
         }
     }//GEN-LAST:event_btn_ClearActionPerformed
@@ -705,102 +795,7 @@ public class NewEmployee extends javax.swing.JFrame {
         //        showPass();
     }//GEN-LAST:event_btn_ShowPassActionPerformed
 
-    File f = new File("");
-    QLNVDAO qlnvdao = new QLNVDAO();
-
-    private void init() {
-        this.setIconImage(XImage.getAppIcon());
-        this.setResizable(false);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-
-    private void clearAll() {
-        txt_MaNV.setText("");
-        txt_Password.setText("");
-        txt_ConfirmPassword.setText("");
-        txt_FullName.setText("");
-        txt_Phone.setText("");
-        txt_Address.setText("");
-        txt_Gmail.setText("");
-        txt_cccd.setText("");
-        rdo_Male.setSelected(true);
-        rdo_NhanVienBanHang.setSelected(true);
-        try {
-            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
-            lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
-        } catch (Exception e) {
-        }
-
-    }
-
-    private void clearEdit() {
-        txt_Password.setText("");
-        txt_ConfirmPassword.setText("");
-        txt_FullName.setText("");
-        txt_Phone.setText("");
-        txt_Address.setText("");
-        txt_Gmail.setText("");
-        txt_cccd.setText("");
-        rdo_Male.setSelected(true);
-        rdo_NhanVienBanHang.setSelected(true);
-        try {
-            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
-            lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + "Image-Default.png"));
-        } catch (Exception e) {
-        }
-    }
-
-    public void setForm(NHANVIEN epl) {
-        try {
-            txt_MaNV.setText(epl.getMA_NHAN_VIEN());
-            txt_Password.setText(epl.getMAT_KHAU());
-            txt_ConfirmPassword.setText(epl.getMAT_KHAU());
-            txt_FullName.setText(epl.getHO_TEN());
-            txt_Phone.setText(epl.getSDT());
-            txt_Address.setText(epl.getDIA_CHI());
-            txt_Gmail.setText(epl.getEMAIL());
-            txt_cccd.setText(epl.getCCCD_CMND());
-            if (epl.isGIOI_TINH()) {
-                rdo_Male.setSelected(true);
-            } else {
-                rdo_Female.setSelected(true);
-            }
-            if (epl.getTEN_VAI_TRO().equalsIgnoreCase("Quản Lý Rạp")) {
-                rdo_QLRap.setSelected(true);
-            } else if(epl.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
-                rdo_NhanVienBanHang.setSelected(true);
-            } else {
-                rdo_QuanLy.setSelected(true);
-            }
-            String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee\\";
-            lbl_Image.setIcon(XImage.ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), f.getAbsolutePath() + duongdanBanner + epl.getHINH()));
-        } catch (Exception e) {
-        }
-
-    }
-
-    String duongDanImage = null;
-
-    private void chooseImage() {
-        duongDanImage = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee";
-        try {
-            JFileChooser fc = new JFileChooser(f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\ImageEmployee");
-            fc.setDialogTitle("Open File");
-            fc.showOpenDialog(null);
-
-            File fTenAnh = fc.getSelectedFile();
-            duongDanImage = fTenAnh.getAbsolutePath();
-            if (duongDanImage != null) {
-                lbl_Image.setIcon(ResizeImage(lbl_Image.getWidth(), lbl_Image.getHeight(), String.valueOf(duongDanImage)));
-                System.out.println(duongDanImage);
-            } else {
-                System.out.println("Image not selected!");
-            }
-        } catch (Exception e) {
-            System.out.println("Image not selected!");
-            System.out.println(duongDanImage);
-        }
-    }
+    
 
     /**
      * @param args the command line arguments

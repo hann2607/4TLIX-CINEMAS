@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
@@ -30,7 +31,6 @@ public final class NewFOOD extends javax.swing.JFrame {
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\doan\\";
     QLDADAO qldadao = new QLDADAO();
     List<DOAN> listDA = qldadao.selectAll();
-    QLHOME hm = new QLHOME();
 
     public NewFOOD() {
         initComponents();
@@ -59,7 +59,7 @@ public final class NewFOOD extends javax.swing.JFrame {
         lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\PopcornCombo.png"));
 //        fillToForm();
     }
-
+    
     private void clearAll() {
         txt_ten.setText("");
         cbo_loai.setSelectedIndex(0);
@@ -484,7 +484,7 @@ public final class NewFOOD extends javax.swing.JFrame {
                 if (qldadao.selectebyID(da.getTENDOAN()) == null) {
                     qldadao.insert(da);
                     MsgBox.alert(this, "Thêm thành công!");
-                    hm.fillToTable_DA(listDA);
+//                    qlhome.fillToTable_DA(listDA);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Món ăn đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -503,7 +503,8 @@ public final class NewFOOD extends javax.swing.JFrame {
                 if (qldadao.selectebyID(da.getTENDOAN()) != null) {
                     qldadao.update(da);
                     MsgBox.alert(this, "Cập nhật thành công!");
-                    hm.fillToTable_DA(listDA);
+//                    QLHOME hm = new QLHOME();
+//                    qlhome.fillToTable_DA(listDA);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Món ăn không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
