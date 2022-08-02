@@ -18,6 +18,6 @@ public class getInfo {
     public static NHANVIEN nv = null;
     public static DOAN da = null;
     public static KHACHHANG cus;
-    public static PHIM mov = null;
+    public static PHIM movi = null;
 
 }

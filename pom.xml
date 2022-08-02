@@ -165,11 +165,11 @@
             <artifactId>RSButtonGradiente</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RojeruSan.lib</artifactId>
             <version>SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RojeruSan.parte1</artifactId>

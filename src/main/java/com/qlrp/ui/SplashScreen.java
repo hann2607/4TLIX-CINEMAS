@@ -35,7 +35,6 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
         jPanel1 = new javax.swing.JPanel();
         LoadingBar = new rojerusan.componentes.RSProgressBar();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,9 +47,6 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
         LoadingBar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
         LoadingBar.setForeground(new java.awt.Color(229, 79, 109));
         jPanel1.add(LoadingBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1100, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/4tlix-logo.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 290, 80));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 470));
@@ -151,7 +147,6 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.componentes.RSProgressBar LoadingBar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

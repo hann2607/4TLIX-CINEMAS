@@ -1093,6 +1093,7 @@
                       <Image iconType="3" name="/com/qlrp/icon/Employee/loupe.png"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="false"/>
+                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_QLKH_SearchActionPerformed"/>
@@ -1167,10 +1168,10 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="18">
                             <Column editable="true" title="SDT" type="java.lang.Object"/>
-                            <Column editable="true" title="FullName" type="java.lang.Object"/>
-                            <Column editable="true" title="Email" type="java.lang.Object"/>
-                            <Column editable="true" title="Address" type="java.lang.Object"/>
-                            <Column editable="true" title="Password" type="java.lang.Object"/>
+                            <Column editable="true" title="H&#x1ecc; T&#xca;N" type="java.lang.Object"/>
+                            <Column editable="true" title="EMAIL" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x110;&#x1eca;A CH&#x1ec8;" type="java.lang.Object"/>
+                            <Column editable="true" title="M&#x1eac;T KH&#x1ea8;U" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="colorFilasBackgound2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1236,7 +1237,7 @@
                 </Container>
                 <Component class="com.k33ptoo.components.KButton" name="btn_CUSMANA_add">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="ADD"/>
+                    <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="16" style="1"/>
                     </Property>
@@ -1273,7 +1274,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="24" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="CUSTOMERS MANAGEMENT"/>
+                    <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; KH&#xc1;CH H&#xc0;NG"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1283,7 +1284,7 @@
                 </Component>
                 <Component class="com.k33ptoo.components.KButton" name="btn_CUSTOMERMANA_REFRESH">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="REFRESH"/>
+                    <Property name="text" type="java.lang.String" value="L&#xc0;M M&#x1eda;I"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="16" style="1"/>
                     </Property>

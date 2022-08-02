@@ -55,7 +55,6 @@ public class QLHOME extends javax.swing.JFrame {
 
     public QLHOME() {
         initComponents();
-
         init();
         setLocationRelativeTo(null);
     }
@@ -812,6 +811,7 @@ public class QLHOME extends javax.swing.JFrame {
 
         btn_QLKH_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
         btn_QLKH_Search.setBorderPainted(false);
+        btn_QLKH_Search.setOpaque(false);
         btn_QLKH_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_QLKH_SearchActionPerformed(evt);
@@ -855,7 +855,7 @@ public class QLHOME extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "SDT", "FullName", "Email", "Address", "Password"
+                "SDT", "HỌ TÊN", "EMAIL", "ĐỊA CHỈ", "MẬT KHẨU"
             }
         ));
         tbl_CUSMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
@@ -875,7 +875,7 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_CustomerManagement.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
 
-        btn_CUSMANA_add.setText("ADD");
+        btn_CUSMANA_add.setText("THÊM");
         btn_CUSMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_CUSMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_CUSMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -891,10 +891,10 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_CustomerManagement.add(btn_CUSMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setText("CUSTOMERS MANAGEMENT");
+        jLabel4.setText("QUẢN LÝ KHÁCH HÀNG");
         pnl_CustomerManagement.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
-        btn_CUSTOMERMANA_REFRESH.setText("REFRESH");
+        btn_CUSTOMERMANA_REFRESH.setText("LÀM MỚI");
         btn_CUSTOMERMANA_REFRESH.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_CUSTOMERMANA_REFRESH.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_CUSTOMERMANA_REFRESH.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -1941,8 +1941,7 @@ public class QLHOME extends javax.swing.JFrame {
         model.setRowCount(0);
         listDA = new QLDADAO().selectAll();
         for (DOAN da : listDA) {
-            model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(), da.getKICHCO(), da.getSOLUONG(),
-                da.getDONGIA(), da.getMAKHUYENMAI()});
+            model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(), da.getKICHCO(), da.getSOLUONG(), da.getDONGIA(), da.getMAKHUYENMAI()});
         }
         // show IMG product
 
@@ -1965,61 +1964,22 @@ public class QLHOME extends javax.swing.JFrame {
         }
     }
 
-//    public void fillToTable_CUSTOMER(List<CUSTOMER> listKH) {
-////           Tu copy 
-////        clear table va do du lieu len table
-//        tbl_CUSMANA.removeAll();
-//        model = (DefaultTableModel) tbl_CUSMANA.getModel();
-//        model.setRowCount(0);
-//        listKH = new CUSTOMERDAO().selectAll();
-//        for (CUSTOMER csmm : listKH) {
-//            model.addRow(new Object[]{csmm.getMAKH(), csmm.getTENKH(), csmm.getEMAIL(),
-//                csmm.getDIACHI(), csmm.getGHICHU()});
-//        }
-//
-//    }
-//    private void fillTableOrderMana() {
-//        tbl_OrderMana.removeAll();
-//        DefaultTableModel model = (DefaultTableModel) tbl_OrderMana.getModel();
-//        model.setRowCount(0);
-////        listDH = new QLDHDAO().selectAll();
-////        for (QLDH item : listDH) {
-////            model.addRow(new Object[]{item.getMADH(), item.getMAKH(), item.getNgTao(),
-////                item.getDONGIA(), item.getGHICHU()});
-////        }
-//        List<Object[]> list = qldhdao.getOrderTableByKeyword(txt_OrderMana_search.getText());
-//        for (Object[] row : list) {
-//            model.addRow(row);
-//
-//        }
-//        //int a = Integer.parseInt((String) tbl_OrderMana.getValueAt(2, 7));
-////        for(int i=0;i<8;i++){
-////            System.out.println(((Object)tbl_OrderMana.getValueAt(2, i)).getClass
-////        ().getSimpleName()
-//
-////   );
-////            System.out.println(tbl_OrderMana.getValueAt(2, i));
-////        }
-////        Date ngay = XDate.toDate((String)tbl_OrderMana.getValueAt(2, 5),"dd/MM/yyyy");
-////        System.out.println(ngay);
-//    }
-//    public String cusName(String cusID) {
-//        CUSTOMERDAO customerdao = new CUSTOMERDAO();
-//        CUSTOMER sv = customerdao.selectebyID(cusID);
-//        if (sv != null) {
-//            return sv.getTENKH();
-//        }
-//        return null;
-//    }
-//    private void fillTableOrderDetails() {
-//        tbl_OrderMana.removeAll();
-//        DefaultTableModel model = (DefaultTableModel) tbl_OrderDetails.getModel();
-//        model.setRowCount(0);
-//        List<Object[]> list = qldhdao.getOrderTableByKeyword(txt_OrderDetails_search.getText());
-//        for (Object[] row : list) {
-//            model.addRow(row);
-//        }
-//    }
+    private class ImageRendererMovie extends DefaultTableCellRenderer {
+
+        //add img into table
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            String photoname = String.valueOf(value);
+            ImageIcon ImageIcon = new ImageIcon(
+                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
+                            getImage().getScaledInstance(90, 70, Image.SCALE_SMOOTH));
+            //add border for img
+            JLabel lb = new JLabel(ImageIcon);
+            lb.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            return lb;
+        }
+    }
+
     public void fillToTable_CUSTOMER(List<KHACHHANG> listKH) {
 //           Tu copy 
 //        clear table va do du lieu len table
@@ -2041,9 +2001,10 @@ public class QLHOME extends javax.swing.JFrame {
         model = (DefaultTableModel) tbl_MOVMANA.getModel();
         model.setRowCount(0);
         listPHIM = new QLPHIMDAO().selectAll();
-        for (PHIM mov : listPHIM) {
-            model.addRow(new Object[]{mov.getTEN_PHIM(), mov.getPOSTER(), mov.getDIENVIEN(), mov.getQUOCGIA(), mov.getTHOI_LUONG_CHIEU()});
+        for (PHIM movi : listPHIM) {
+            model.addRow(new Object[]{movi.getTEN_PHIM(), movi.getPOSTER(), movi.getDIENVIEN(), movi.getQUOCGIA(), movi.getTHOI_LUONG_CHIEU()});
         }
+        tbl_MOVMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererMovie());
 
     }
 
@@ -2604,9 +2565,10 @@ public class QLHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
         NewMovie mov = new NewMovie();
         try {
+
             int index = tbl_MOVMANA.getSelectedRow();
-            PHIM ph = qlphimdao.selectebyID(tbl_MOVMANA.getValueAt(index, 0).toString());
-            getInfo.mov = ph;
+            PHIM movie = qlphimdao.selectebyID(tbl_MOVMANA.getValueAt(index, 0).toString());
+            getInfo.movi = movie;
             if (mov.isShowing()) {
                 mov.fillToForm();
                 mov.setEnableButton("edit");
@@ -2620,6 +2582,7 @@ public class QLHOME extends javax.swing.JFrame {
             e.printStackTrace();
 
         }
+
     }//GEN-LAST:event_tbl_MOVMANAMouseClicked
 
     private void btn_MOVMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MOVMANA_addActionPerformed

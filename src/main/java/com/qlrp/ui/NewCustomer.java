@@ -88,24 +88,23 @@ public class NewCustomer extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 30, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 304, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lbl_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(lbl_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 58, -1, -1));
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 58, 300, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_ShowComfirnPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/icons8_hide_25px.png"))); // NOI18N
         btn_ShowComfirnPass.setBorderPainted(false);
         btn_ShowComfirnPass.setContentAreaFilled(false);
         btn_ShowComfirnPass.setFocusPainted(false);
@@ -114,10 +113,10 @@ public class NewCustomer extends javax.swing.JFrame {
                 btn_ShowComfirnPassActionPerformed(evt);
             }
         });
-        jPanel7.add(btn_ShowComfirnPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 40, 30));
+        jPanel7.add(btn_ShowComfirnPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 40, 30));
 
         txt_ConfirmPassword.setMargin(new java.awt.Insets(2, 5, 2, 35));
-        jPanel7.add(txt_ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 30));
+        jPanel7.add(txt_ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 152, -1, -1));
 
@@ -127,7 +126,7 @@ public class NewCustomer extends javax.swing.JFrame {
                 txt_GmailActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_Gmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 297, 270, 28));
+        getContentPane().add(txt_Gmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 297, 370, 28));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("XÁC NHẬN MẬT KHẨU:");
@@ -139,11 +138,12 @@ public class NewCustomer extends javax.swing.JFrame {
                 txt_FullNameActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_FullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 58, 270, 28));
+        getContentPane().add(txt_FullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 58, 370, 28));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_ShowPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/icons8_hide_25px.png"))); // NOI18N
         btn_ShowPass.setBorderPainted(false);
         btn_ShowPass.setContentAreaFilled(false);
         btn_ShowPass.setFocusPainted(false);
@@ -152,10 +152,10 @@ public class NewCustomer extends javax.swing.JFrame {
                 btn_ShowPassActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_ShowPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 40, 30));
+        jPanel2.add(btn_ShowPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 40, 30));
 
         txt_Password.setMargin(new java.awt.Insets(2, 5, 2, 35));
-        jPanel2.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 30));
+        jPanel2.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 104, -1, -1));
 
@@ -169,7 +169,7 @@ public class NewCustomer extends javax.swing.JFrame {
                 txt_PhoneActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_Phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 201, 270, 28));
+        getContentPane().add(txt_Phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 201, 370, 28));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("MẬT KHẨU:");
@@ -189,7 +189,7 @@ public class NewCustomer extends javax.swing.JFrame {
                 txt_AddressActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 249, 270, 28));
+        getContentPane().add(txt_Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 249, 370, 28));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -232,7 +232,7 @@ public class NewCustomer extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
 
-        btn_Add.setText("ADD");
+        btn_Add.setText("THÊM");
         btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_Add.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_Add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -247,7 +247,7 @@ public class NewCustomer extends javax.swing.JFrame {
         });
         jPanel8.add(btn_Add);
 
-        btn_edit.setText("EDIT");
+        btn_edit.setText("SỬA");
         btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_edit.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -262,7 +262,7 @@ public class NewCustomer extends javax.swing.JFrame {
         });
         jPanel8.add(btn_edit);
 
-        btn_Delete.setText("DELETE");
+        btn_Delete.setText("XÓA");
         btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_Delete.setkEndColor(new java.awt.Color(0, 112, 192));
         btn_Delete.setkHoverEndColor(new java.awt.Color(0, 30, 153));
@@ -406,27 +406,27 @@ public class NewCustomer extends javax.swing.JFrame {
     private boolean validateForm() {
         String Error = "";
         if (txt_Password.getText().equals("")) {
-            Error += "Password not null! \n";
+            Error += "Mật khẩu không được trống! \n";
         } else if (!txt_Password.getText().equalsIgnoreCase(txt_ConfirmPassword.getText())) {
-            Error += "Confirm password is Wrong! \n";
+            Error += "Không trùng khớp với mật khẩu vừa tạo! \n";
         }
         if (txt_FullName.getText().equalsIgnoreCase("")) {
-            Error += "Fullname not null! \n";
+            Error += "Họ tên không được trống! \n";
         }
         String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
         if (txt_Phone.getText().equals("")) {
-            Error += "Phone not null! \n";
+            Error += "Số điện thoại không được trống! \n";
         } else if (!txt_Phone.getText().matches(reg)) {
-            Error += "phone is not in the correct format! \n";
+            Error += "Số điện thoại không đúng định dạng! \n";
         }
         if (txt_Address.getText().equals("")) {
-            Error += "Address not null! \n";
+            Error += "Địa chỉ không được trống! \n";
         }
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         if (txt_Gmail.getText().equals("")) {
-            Error += "Gmail not null! \n";
+            Error += "Gmail không được trống! \n";
         } else if (!txt_Gmail.getText().matches(EMAIL_PATTERN)) {
-            Error += "Gmail is not in the correct format! \n";
+            Error += "Gmail không đúng địng dạng! \n";
         }
         if (!Error.equals("")) {
             JOptionPane.showMessageDialog(this, Error, "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -573,13 +573,13 @@ public class NewCustomer extends javax.swing.JFrame {
                     MsgBox.alert(this, "Xóa thành công!");
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Món ăn không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Khách hàng không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Tên món ăn không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Tên khách hàng không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            MsgBox.alert(this, "You can only Add. If you want to edit, please choose again!");
+            MsgBox.alert(this, "Bạn chỉ có thể thêm. Nếu muốn sửa hãy chọn lại!");
         }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
@@ -590,14 +590,14 @@ public class NewCustomer extends javax.swing.JFrame {
             if (khl != null) {
                 if (qlkhdao.selectebyID(khl.getSDT()) != null) {
                     qlkhdao.update(khl);
-                    MsgBox.alert(this, "Update Successfully!");
+                    MsgBox.alert(this, "Cập nhật thành công!");
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Customner doesn't exist!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Khách hàng không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            MsgBox.alert(this, "You can only Add. If you want to edit please choose again!");
+            MsgBox.alert(this, "Bạn chỉ có thể thêm. Nếu muốn sửa hãy chọn lại!");
         }
     }//GEN-LAST:event_btn_editActionPerformed
 
@@ -612,11 +612,11 @@ public class NewCustomer extends javax.swing.JFrame {
 //                    hm.fillToTable_CUSTOMER(listKH);
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Món ăn đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Khách hàng đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            MsgBox.alert(this, "You can only edit. If you want to add, please choose again!");
+            MsgBox.alert(this, "Bạn chỉ có thể thêm. Nếu muốn sửa hãy chọn lại!");
         }
     }//GEN-LAST:event_btn_AddActionPerformed
     boolean isHidePass = true;

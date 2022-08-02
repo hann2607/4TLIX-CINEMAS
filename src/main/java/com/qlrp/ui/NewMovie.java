@@ -51,7 +51,7 @@ public class NewMovie extends javax.swing.JFrame {
     }
 
     public void fillToForm() {
-        PHIM movie = getInfo.mov;
+        PHIM movie = getInfo.movi;
         if (movie != null) {
             txt_maphim.setText(movie.getMA_PHIM());
             txt_ten.setText(movie.getTEN_PHIM());
