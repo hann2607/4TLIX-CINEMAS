@@ -1,39 +1,39 @@
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\NHANVIEN.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Chart.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\getInfo.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XJdbc.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewMovie.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLPHIMDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\BANNER.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKICHCOVALOAIDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KHACHHANG.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewJFrame.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Slide.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLRPDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XDate.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\LOAIDA.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewEmployee.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\SplashScreen.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLNVDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChiTietPhim.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\SendMail.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKHDAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLDADAO.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewFOOD.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\PHIM.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChiTietKhuyenMai.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KICHCODA.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\DatVe.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChiTietDoAn.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Auth.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewCustomer.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\QLHOME.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLBANNER.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\login.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\poster.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\MsgBox.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChonChoNgoi.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\DOAN.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\KHHOME.java
-D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\setUIJScroll.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\XDate.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\Slide.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLNVDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\ChonChoNgoi.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\XImage.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\SplashScreen.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\NewCustomer.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\Chart.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\XJdbc.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\ChiTietDoAn.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\SendMail.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\setUIJScroll.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLDADAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\NewFOOD.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\NewJFrame.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\login.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLRPDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\getInfo.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLBANNER.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLKHDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\PHIM.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\NewMovie.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\DatVe.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\poster.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\BANNER.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\KHHOME.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\QLHOME.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\Auth.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\KICHCODA.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLPHIMDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\NewEmployee.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\LOAIDA.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\utils\MsgBox.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\dao\QLKICHCOVALOAIDAO.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\KHACHHANG.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\DOAN.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\entity\NHANVIEN.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\ChiTietPhim.java
+C:\Users\ACER\OneDrive\Máy tính\DA1\4TLIX\src\main\java\com\qlrp\ui\ChiTietKhuyenMai.java
