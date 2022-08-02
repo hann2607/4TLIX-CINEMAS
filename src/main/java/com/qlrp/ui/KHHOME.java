@@ -29,6 +29,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -45,14 +47,14 @@ public class KHHOME extends javax.swing.JFrame {
     File file = new File("");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
-    
+
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
-    
+
     public KHHOME() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         init();
     }
 
@@ -86,13 +88,13 @@ public class KHHOME extends javax.swing.JFrame {
         btn_Avatar = new javax.swing.JButton();
         btn_Cart = new javax.swing.JButton();
         pnl_film = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btn_prevPhim = new javax.swing.JButton();
+        btn_nextPhim = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         pnl_SlideFilm = new rojerusan.RSPanelsSlider();
         pnl_DoAn = new javax.swing.JPanel();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        btn_prevDoAn = new javax.swing.JButton();
+        btn_nextDoAn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         pnl_slideDoAn = new rojerusan.RSPanelsSlider();
         jPanel21 = new javax.swing.JPanel();
@@ -132,8 +134,8 @@ public class KHHOME extends javax.swing.JFrame {
         jTextArea24 = new javax.swing.JTextArea();
         jTextArea25 = new javax.swing.JTextArea();
         pnl_KhuyenMai = new javax.swing.JPanel();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
+        btn_prevKhuyenMai = new javax.swing.JButton();
+        btn_NextKhuyenMai = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         pnl_slideKhuyenMai = new rojerusan.RSPanelsSlider();
 
@@ -318,36 +320,41 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_film.setBackground(new java.awt.Color(255, 255, 255));
         pnl_film.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
-        jButton11.setBorder(null);
-        jButton11.setBorderPainted(false);
-        jButton11.setContentAreaFilled(false);
-        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton11.setFocusPainted(false);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btn_prevPhim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
+        btn_prevPhim.setBorder(null);
+        btn_prevPhim.setBorderPainted(false);
+        btn_prevPhim.setContentAreaFilled(false);
+        btn_prevPhim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_prevPhim.setFocusPainted(false);
+        btn_prevPhim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btn_prevPhimActionPerformed(evt);
             }
         });
-        pnl_film.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 50));
+        pnl_film.add(btn_prevPhim, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 50));
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
-        jButton12.setBorder(null);
-        jButton12.setBorderPainted(false);
-        jButton12.setContentAreaFilled(false);
-        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton12.setFocusPainted(false);
-        pnl_film.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 110, -1, 50));
+        btn_nextPhim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
+        btn_nextPhim.setBorder(null);
+        btn_nextPhim.setBorderPainted(false);
+        btn_nextPhim.setContentAreaFilled(false);
+        btn_nextPhim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_nextPhim.setFocusPainted(false);
+        btn_nextPhim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nextPhimActionPerformed(evt);
+            }
+        });
+        pnl_film.add(btn_nextPhim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 110, -1, 50));
 
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -367,31 +374,31 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_DoAn.setBackground(new java.awt.Color(255, 255, 255));
         pnl_DoAn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
-        jButton17.setBorder(null);
-        jButton17.setBorderPainted(false);
-        jButton17.setContentAreaFilled(false);
-        jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton17.setFocusPainted(false);
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        btn_prevDoAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
+        btn_prevDoAn.setBorder(null);
+        btn_prevDoAn.setBorderPainted(false);
+        btn_prevDoAn.setContentAreaFilled(false);
+        btn_prevDoAn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_prevDoAn.setFocusPainted(false);
+        btn_prevDoAn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                btn_prevDoAnActionPerformed(evt);
             }
         });
-        pnl_DoAn.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 50));
+        pnl_DoAn.add(btn_prevDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 50));
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
-        jButton18.setBorder(null);
-        jButton18.setBorderPainted(false);
-        jButton18.setContentAreaFilled(false);
-        jButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton18.setFocusPainted(false);
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        btn_nextDoAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
+        btn_nextDoAn.setBorder(null);
+        btn_nextDoAn.setBorderPainted(false);
+        btn_nextDoAn.setContentAreaFilled(false);
+        btn_nextDoAn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_nextDoAn.setFocusPainted(false);
+        btn_nextDoAn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                btn_nextDoAnActionPerformed(evt);
             }
         });
-        pnl_DoAn.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 120, -1, 50));
+        pnl_DoAn.add(btn_nextDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 120, -1, 50));
 
         jScrollPane4.setBorder(null);
         jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -718,31 +725,31 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_KhuyenMai.setBackground(new java.awt.Color(255, 255, 255));
         pnl_KhuyenMai.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
-        jButton21.setBorder(null);
-        jButton21.setBorderPainted(false);
-        jButton21.setContentAreaFilled(false);
-        jButton21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton21.setFocusPainted(false);
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
+        btn_prevKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/prev_48px.png"))); // NOI18N
+        btn_prevKhuyenMai.setBorder(null);
+        btn_prevKhuyenMai.setBorderPainted(false);
+        btn_prevKhuyenMai.setContentAreaFilled(false);
+        btn_prevKhuyenMai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_prevKhuyenMai.setFocusPainted(false);
+        btn_prevKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                btn_prevKhuyenMaiActionPerformed(evt);
             }
         });
-        pnl_KhuyenMai.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 50));
+        pnl_KhuyenMai.add(btn_prevKhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 50));
 
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
-        jButton22.setBorder(null);
-        jButton22.setBorderPainted(false);
-        jButton22.setContentAreaFilled(false);
-        jButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton22.setFocusPainted(false);
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        btn_NextKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/next_48px (2).png"))); // NOI18N
+        btn_NextKhuyenMai.setBorder(null);
+        btn_NextKhuyenMai.setBorderPainted(false);
+        btn_NextKhuyenMai.setContentAreaFilled(false);
+        btn_NextKhuyenMai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_NextKhuyenMai.setFocusPainted(false);
+        btn_NextKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                btn_NextKhuyenMaiActionPerformed(evt);
             }
         });
-        pnl_KhuyenMai.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 140, -1, 50));
+        pnl_KhuyenMai.add(btn_NextKhuyenMai, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 140, -1, 50));
 
         jScrollPane8.setBorder(null);
         jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -793,6 +800,8 @@ public class KHHOME extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void init() {
         this.setIconImage(XImage.getAppIcon());
 //        setImageFilm();
@@ -812,8 +821,13 @@ public class KHHOME extends javax.swing.JFrame {
         //Đổ dữ liệu lên form KHHome
         FillToPanelFilm();
         FillToPanelDoAn();
+
+        // add sự kiện cho JScroll slide Phim, DoAn, KhuyenMai
+        jScrollPane3.getViewport().addChangeListener(new ListenAdditionsScrolledPhim());
+        jScrollPane4.getViewport().addChangeListener(new ListenAdditionsScrolledDoAn());
+        jScrollPane8.getViewport().addChangeListener(new ListenAdditionsScrolledKhuyenMai());
     }
-    
+
     int i = 1;
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\";
     File f = new File("");
@@ -823,19 +837,51 @@ public class KHHOME extends javax.swing.JFrame {
 //        lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".jpg"));
 //    }
 
+    //Sự kiện refresh Phim, DoAn, KhuyenMai để nút next và prev show on top
+    public class ListenAdditionsScrolledPhim implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            btn_nextPhim.grabFocus();
+            btn_prevPhim.grabFocus();
+            pnl_SlideFilm.revalidate();
+            pnl_SlideFilm.repaint();
+        }
+    }
+    
+    public class ListenAdditionsScrolledDoAn implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            btn_nextDoAn.grabFocus();
+            btn_prevDoAn.grabFocus();
+            pnl_slideDoAn.revalidate();
+            pnl_slideDoAn.repaint();
+        }
+    }
+    
+    public class ListenAdditionsScrolledKhuyenMai implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            btn_prevKhuyenMai.grabFocus();
+            btn_NextKhuyenMai.grabFocus();
+            pnl_KhuyenMai.revalidate();
+            pnl_KhuyenMai.repaint();
+        }
+    }
+    
+
     public void refeshForm() {
         jScrollPane3.getHorizontalScrollBar().setValue(0);
         jScrollPane4.getHorizontalScrollBar().setValue(0);
         jScrollPane8.getHorizontalScrollBar().setValue(0);
     }
-    
+
     private void RunSlide() {
         Thread slideThread = new Thread() {
             @Override
             public void run() {
                 try {
                     while (true) {
-                        
+
                         sleep(35000);
                         i++;
                         lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".gif"));
@@ -854,13 +900,17 @@ public class KHHOME extends javax.swing.JFrame {
         };
         slideThread.start();
     }
-    
+
     private void CustomUIJScroll(JScrollPane jscroll) {
         jscroll.getVerticalScrollBar().setUI(new setUIJScroll());
         jscroll.getVerticalScrollBar().setUnitIncrement(16);
         jscroll.getVerticalScrollBar().setCursor(new Cursor(HAND_CURSOR));
+
+        jscroll.getHorizontalScrollBar().setUI(new setUIJScroll());
+        jscroll.getHorizontalScrollBar().setUnitIncrement(16);
+        jscroll.getHorizontalScrollBar().setCursor(new Cursor(HAND_CURSOR));
     }
-    
+
     private void FillToPanelFilm() {
         listfilm = qlphimdao.selectAll();
         for (int i = 0; i < listfilm.size(); i++) {
@@ -901,12 +951,12 @@ public class KHHOME extends javax.swing.JFrame {
                     }
                 }
             });
-            
-            pnl_SlideFilm.add(pnl);            
+
+            pnl_SlideFilm.add(pnl);
         }
-        
+
     }
-    
+
     private void FillToPanelDoAn() {
         listDoAn = qldadao.selectAll();
         for (int i = 0; i < listDoAn.size(); i++) {
@@ -934,53 +984,10 @@ public class KHHOME extends javax.swing.JFrame {
             lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
             pnl.add(lbl);
             pnl.add(textPane);
-            pnl_slideDoAn.add(pnl);            
+            pnl_slideDoAn.add(pnl);
         }
-        
+
     }
-    
-    private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_SoLuongActionPerformed
-
-    private void btn_CartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CartActionPerformed
-        // TODO add your handling code here:
-        if (!pnl_cart.isShowing()) {
-            pnl_cart.setVisible(true);
-        } else {
-            pnl_cart.setVisible(false);
-        }
-        
-
-    }//GEN-LAST:event_btn_CartActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jScrollPane3AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jScrollPane3AncestorMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane3AncestorMoved
-
-    private void jScrollPane3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MouseMoved
-        // TODO add your handling code here:    
-    }//GEN-LAST:event_jScrollPane3MouseMoved
-
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
-
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
     
     private void setPlaceHolder(JTextField searchText, String text) {
         searchText.setText(text);
@@ -993,7 +1000,7 @@ public class KHHOME extends javax.swing.JFrame {
                     searchText.setForeground(Color.BLACK);
                 }
             }
-            
+
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchText.getText().isEmpty()) {
@@ -1004,30 +1011,72 @@ public class KHHOME extends javax.swing.JFrame {
         });
     }
 
-//    private void setImageFilm() {
-//        //set image film
-//        lbl_film1.setIcon(XImage.ResizeImage(lbl_film1.getWidth(), lbl_film1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\EVERYTHING EVERYWHERE ALL OF ONCE.jpg"));
-//        lbl_film2.setIcon(XImage.ResizeImage(lbl_film2.getWidth(), lbl_film2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\THOR 4 - LOVE AND THUNDER.jpg"));
-//        lbl_film3.setIcon(XImage.ResizeImage(lbl_film3.getWidth(), lbl_film3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\MINIONS RISE OF GRU.jpg"));
-//        lbl_film4.setIcon(XImage.ResizeImage(lbl_film4.getWidth(), lbl_film4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\SPIDER - NO WAY HOME.jpg"));
-//        lbl_film5.setIcon(XImage.ResizeImage(lbl_film5.getWidth(), lbl_film5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\film\\Top_Gun_Maverick_Poster.jpg"));
-//
-//        //set image do an
-//        lbl_DA1.setIcon(XImage.ResizeImage(lbl_DA1.getWidth(), lbl_DA1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\coca.jpg"));
-//        lbl_DA2.setIcon(XImage.ResizeImage(lbl_DA2.getWidth(), lbl_DA2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\khoai tay chien.jpg"));
-//        lbl_DA3.setIcon(XImage.ResizeImage(lbl_DA3.getWidth(), lbl_DA3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap caramel.jpg"));
-//        lbl_DA4.setIcon(XImage.ResizeImage(lbl_DA4.getWidth(), lbl_DA4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\bap rang bo.jpg"));
-//        lbl_DA5.setIcon(XImage.ResizeImage(lbl_DA5.getWidth(), lbl_DA5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\do an\\pepsi.jpg"));
-//
-//        //set image khuyen mai
-//        lbl_KM1.setIcon(XImage.ResizeImage(lbl_KM1.getWidth(), lbl_KM1.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\bap caramel.jpg"));
-//        lbl_KM2.setIcon(XImage.ResizeImage(lbl_KM2.getWidth(), lbl_KM2.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve don.jpg"));
-//        lbl_KM3.setIcon(XImage.ResizeImage(lbl_KM3.getWidth(), lbl_KM3.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\pepsi.jpg"));
-//        lbl_KM4.setIcon(XImage.ResizeImage(lbl_KM4.getWidth(), lbl_KM4.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\ticket ve doi.jpg"));
-//        lbl_KM5.setIcon(XImage.ResizeImage(lbl_KM5.getWidth(), lbl_KM5.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\THOR 4 - LOVE AND THUNDER.jpg"));
-//
-////        lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), file.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\poster.gif"));
-//    }
+    private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_SoLuongActionPerformed
+
+    private void btn_CartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CartActionPerformed
+        // TODO add your handling code here:
+        if (!pnl_cart.isShowing()) {
+            pnl_cart.setVisible(true);
+        } else {
+            pnl_cart.setVisible(false);
+        }
+
+
+    }//GEN-LAST:event_btn_CartActionPerformed
+
+    private void nextSlide() {
+        
+    }
+    
+    private void btn_prevPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevPhimActionPerformed
+        // TODO add your handling code here:
+ 
+    }//GEN-LAST:event_btn_prevPhimActionPerformed
+
+    private void btn_prevDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevDoAnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_prevDoAnActionPerformed
+
+    private void btn_nextDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nextDoAnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_nextDoAnActionPerformed
+
+    private void jScrollPane3AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jScrollPane3AncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane3AncestorMoved
+
+    private void jScrollPane3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane3MouseMoved
+        // TODO add your handling code here:    
+    }//GEN-LAST:event_jScrollPane3MouseMoved
+
+    private void btn_prevKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prevKhuyenMaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_prevKhuyenMaiActionPerformed
+
+    private void btn_NextKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NextKhuyenMaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_NextKhuyenMaiActionPerformed
+    int next = 0;
+    private void btn_nextPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nextPhimActionPerformed
+        // TODO add your handling code here:
+        int valueScroll = jScrollPane3.getHorizontalScrollBar().getValue();
+        int w = 210;
+        int khoangtrang = 56;
+        int size = listfilm.size();
+        // vitri max = 266
+        int vitrihientai = (((valueScroll / 266) + 5) * 210) + ((((valueScroll / 266) + 5) - 1) * 56);
+        int vitritieptheo =(((valueScroll / 266) + 6) * 210) + ((((valueScroll / 266) + 6) - 1) * 56);
+        int value = vitritieptheo - vitrihientai;
+        next = valueScroll;
+        next += value;
+        jScrollPane3.getHorizontalScrollBar().setValue(next);
+        System.out.println(value);
+    }//GEN-LAST:event_btn_nextPhimActionPerformed
+
+    
+
     /**
      * @param args the command line arguments
      */
@@ -1067,21 +1116,21 @@ public class KHHOME extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Avatar;
     private javax.swing.JButton btn_Cart;
+    private javax.swing.JButton btn_NextKhuyenMai;
     private com.k33ptoo.components.KButton btn_SoLuong;
+    private javax.swing.JButton btn_nextDoAn;
+    private javax.swing.JButton btn_nextPhim;
+    private javax.swing.JButton btn_prevDoAn;
+    private javax.swing.JButton btn_prevKhuyenMai;
+    private javax.swing.JButton btn_prevPhim;
     private javax.swing.JComboBox<String> cbo_LoaiDoAn;
     private javax.swing.JComboBox<String> cbo_LoaiKhuyenMai;
     private javax.swing.JComboBox<String> cbo_QuocGia_Film;
     private javax.swing.JComboBox<String> cbo_QuocGia_Film1;
     private javax.swing.JComboBox<String> cbo_TheLoaiFilm;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;

@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
@@ -19,67 +20,104 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  *
  * @author HAN-PC
  */
-public class setUIJScroll extends BasicScrollBarUI{
-    
-    
-      private final Dimension d = new Dimension();
+public class setUIJScroll extends BasicScrollBarUI {
 
-      @Override
-      protected JButton createDecreaseButton(int orientation) {
-        return new JButton() {
-          
-            private static final long serialVersionUID = -3592643796245558676L;
+    private final int THUMB_SIZE = 300;
 
-            @Override
-              public Dimension getPreferredSize() {
-                return d;
-              }
-            };
-      }
-
-      @Override
-      protected JButton createIncreaseButton(int orientation) {
-        return new JButton() {
-          
-            private static final long serialVersionUID = 1L;
-
-        @Override
-          public Dimension getPreferredSize() {
-            return d;
-          }
-        };
-      }
-
-      @Override
-      protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
-      }
-
-      @Override
-      protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Color color = null;
-        JScrollBar sb = (JScrollBar) c;
-        if (!sb.isEnabled() || r.width > r.height) {
-          return;
-        } else if (isDragging) {
-          color = Color.DARK_GRAY; // change color
-        } else if (isThumbRollover()) {
-          color = Color.LIGHT_GRAY; // change color
+    @Override
+    protected Dimension getMaximumThumbSize() {
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            return new Dimension(0, THUMB_SIZE);
         } else {
-          color = Color.GRAY; // change color
+            return new Dimension(THUMB_SIZE, 0);
+        }
+    }
+
+    @Override
+    protected Dimension getMinimumThumbSize() {
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            return new Dimension(0, THUMB_SIZE);
+        } else {
+            return new Dimension(THUMB_SIZE, 0);
+        }
+    }
+
+    @Override
+    protected JButton createIncreaseButton(int i) {
+        return new ScrollBarButton();
+    }
+
+    @Override
+    protected JButton createDecreaseButton(int i) {
+        return new ScrollBarButton();
+    }
+
+    @Override
+    protected void paintTrack(Graphics grphcs, JComponent jc, Rectangle rctngl) {
+        Graphics2D g2 = (Graphics2D) grphcs;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int orientation = scrollbar.getOrientation();
+        int size;
+        int x;
+        int y;
+        int width;
+        int height;
+        if (orientation == JScrollBar.VERTICAL) {
+            size = rctngl.width / 2;
+            x = rctngl.x + ((rctngl.width - size) / 2);
+            y = rctngl.y;
+            width = size;
+            height = rctngl.height;
+        } else {
+            size = rctngl.height / 2;
+            y = rctngl.y + ((rctngl.height - size) / 2);
+            x = 0;
+            width = rctngl.width;
+            height = size;
+        }
+        g2.setColor(new Color(240, 240, 240));
+        g2.fillRect(x, y, width, height);
+    }
+
+    @Override
+    protected void paintThumb(Graphics grphcs, JComponent jc, Rectangle rctngl) {
+        Graphics2D g2 = (Graphics2D) grphcs;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int x = rctngl.x;
+        int y = rctngl.y;
+        int width = rctngl.width;
+        int height = rctngl.height;
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            y += 8;
+            height -= 16;
+        } else {
+            x += 10;
+            width -= 16;
+        }
+//        g2.setColor(scrollbar.getForeground());
+        Color color = null;
+        if (isDragging) {
+            color = Color.DARK_GRAY; // change color
+        } else if (isThumbRollover()) {
+            color = Color.LIGHT_GRAY; // change color
+        } else {
+            color = Color.GRAY; // change color
         }
         g2.setPaint(color);
-        g2.fillRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+        g2.fillRoundRect(x, y, width, height, 10, 10);
         g2.setPaint(Color.WHITE);
-        g2.drawRoundRect(r.x, r.y, r.width, r.height, 10, 10);
-        g2.dispose();
-      }
+        g2.drawRoundRect(x, y, width, height, 10, 10);
+    }
 
-      @Override
-      protected void setThumbBounds(int x, int y, int width, int height) {
-        super.setThumbBounds(x, y, width, height);
-        scrollbar.repaint();
-      }
-    
+    private class ScrollBarButton extends JButton {
+
+        public ScrollBarButton() {
+            setBorder(BorderFactory.createEmptyBorder());
+        }
+
+        @Override
+        public void paint(Graphics grphcs) {
+        }
+    }
+
 }
