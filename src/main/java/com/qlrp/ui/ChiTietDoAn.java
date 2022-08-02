@@ -33,6 +33,7 @@ public class ChiTietDoAn extends javax.swing.JFrame {
     public ChiTietDoAn() {
         initComponents();
         init();
+        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }
 

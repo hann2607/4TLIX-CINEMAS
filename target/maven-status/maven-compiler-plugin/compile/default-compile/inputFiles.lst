@@ -6,10 +6,13 @@ D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewMovie.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLPHIMDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\BANNER.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XImage.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKICHCOVALOAIDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KHACHHANG.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewJFrame.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Slide.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLRPDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\XDate.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\LOAIDA.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewEmployee.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\SplashScreen.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLNVDAO.java
@@ -19,6 +22,10 @@ D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLKHDAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLDADAO.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewFOOD.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\PHIM.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChiTietKhuyenMai.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\KICHCODA.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\DatVe.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChiTietDoAn.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\Auth.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\NewCustomer.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\QLHOME.java
@@ -26,6 +33,7 @@ D:\Project\4TL_CINEMA\src\main\java\com\qlrp\dao\QLBANNER.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\login.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\poster.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\MsgBox.java
+D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\ChonChoNgoi.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\entity\DOAN.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\ui\KHHOME.java
 D:\Project\4TL_CINEMA\src\main\java\com\qlrp\utils\setUIJScroll.java

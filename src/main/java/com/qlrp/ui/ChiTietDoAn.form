@@ -104,9 +104,9 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="pnl_KhoiChieu1" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="pnl_KhoiChieu2" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="pnl_KhoiChieu2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="pnl_KhoiChieu3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="pnl_KhoiChieu3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btn_ThemVaoGioHang" min="-2" pref="59" max="-2" attributes="0"/>
                       </Group>

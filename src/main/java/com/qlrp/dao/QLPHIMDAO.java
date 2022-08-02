@@ -24,7 +24,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     String DELETE_SQL = "DELETE FROM PHIM WHERE MA_PHIM=?";
     String SELECT_ALL_SQL = "SELECT * FROM PHIM";
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
-
+    String SELECT_BY_TEN_PHIM_SQL = "SELECT * FROM PHIM WHERE TEN_PHIM=?";
     @Override
     public void insert(PHIM entity) {
         try {
@@ -59,6 +59,14 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     @Override
     public PHIM selectebyID(String id) {
         List<PHIM> list = this.selectbySql(SELECT_BY_ID_SQL, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+    
+    public PHIM selectebyTenPhim(String Phim) {
+        List<PHIM> list = this.selectbySql(SELECT_BY_TEN_PHIM_SQL, Phim);
         if (list.isEmpty()) {
             return null;
         }

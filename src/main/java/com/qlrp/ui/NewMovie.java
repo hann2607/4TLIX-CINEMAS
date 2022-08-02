@@ -32,7 +32,6 @@ public class NewMovie extends javax.swing.JFrame {
     String duongdanPoster = "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     List<PHIM> listPHIM = qlphimdao.selectAll();
-    QLHOME hm = new QLHOME();
 
     public NewMovie() {
         initComponents();
@@ -65,8 +64,9 @@ public class NewMovie extends javax.swing.JFrame {
             lbl_poster.setText(movie.getPOSTER());
             cbo_gioihantuoi.setSelectedItem(movie.getGIOI_HAN_TUOI());
             dc_ngaycongchieu.setDate(movie.getNGAY_CONG_CHIEU());
-            lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\FR2T-sKVEAAtkXR.jpg" + movie.getPOSTER()));
-            lbl_banner.setIcon(XImage.ResizeImage(lbl_banner.getWidth(), lbl_banner.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\BANNER\\1241136.png" + movie.getBANNER()));
+            lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\" + movie.getPOSTER()));
+            lbl_banner.setIcon(XImage.ResizeImage(lbl_banner.getWidth(), lbl_banner.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\BANNER\\" + movie.getBANNER()));
+            txt_tomtat.setText(movie.getTOM_TAT());
         }
     }
 
@@ -105,8 +105,8 @@ public class NewMovie extends javax.swing.JFrame {
             cbo_gioihantuoi.setSelectedItem(movie.getGIOI_HAN_TUOI());
             dc_ngaycongchieu.setDate(movie.getNGAY_CONG_CHIEU());
             txt_tomtat.setText(movie.getTOM_TAT());
-            lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\FR2T-sKVEAAtkXR.jpg" + movie.getPOSTER()));
-            lbl_banner.setIcon(XImage.ResizeImage(lbl_banner.getWidth(), lbl_banner.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\BANNER\\1241136.png" + movie.getBANNER()));
+            lbl_poster.setIcon(XImage.ResizeImage(lbl_poster.getWidth(), lbl_poster.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\" + movie.getPOSTER()));
+            lbl_banner.setIcon(XImage.ResizeImage(lbl_banner.getWidth(), lbl_banner.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\BANNER\\" + movie.getBANNER()));
         } catch (Exception e) {
         }
     }
@@ -676,7 +676,6 @@ public class NewMovie extends javax.swing.JFrame {
                 if (qlphimdao.selectebyID(mov.getMA_PHIM()) == null) {
                     qlphimdao.insert(mov);
                     MsgBox.alert(this, "Thêm thành công!");
-                    hm.fillToTable_PHIM(listPHIM);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Bộ phim này đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -699,7 +698,6 @@ public class NewMovie extends javax.swing.JFrame {
                 if (qlphimdao.selectebyID(mov.getMA_PHIM()) != null) {
                     qlphimdao.update(mov);
                     MsgBox.alert(this, "Cập nhật thành công!");
-                    hm.fillToTable_PHIM(listPHIM);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Bộ phim này không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);

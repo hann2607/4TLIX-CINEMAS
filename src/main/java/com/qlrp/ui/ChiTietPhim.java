@@ -26,10 +26,12 @@ public class ChiTietPhim extends javax.swing.JFrame {
      */
     
     File f = new File("");
+    DatVe datVe = new DatVe();
     
     public ChiTietPhim() {
         initComponents();
         init();
+        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }
 
@@ -92,7 +94,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
         txt_TenPhim.setText("SPIDERMAN - NO WAY HOME");
         txt_TenPhim.setFocusable(false);
         txt_TenPhim.setOpaque(false);
-        jPanel1.add(txt_TenPhim, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 540, 90));
+        jPanel1.add(txt_TenPhim, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 540, -1));
 
         txt_DienVien.setEditable(false);
         txt_DienVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -329,6 +331,11 @@ public class ChiTietPhim extends javax.swing.JFrame {
 
         btn_DatVe.setText("ĐẶT VÉ");
         btn_DatVe.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_DatVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DatVeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_buttonLayout = new javax.swing.GroupLayout(pnl_button);
         pnl_button.setLayout(pnl_buttonLayout);
@@ -499,7 +506,9 @@ public class ChiTietPhim extends javax.swing.JFrame {
         pnl.setBackground(new Color(0, 0, 0, 0));
     }
 
+    PHIM p = new PHIM();
     public void fillToChiTietPhim(PHIM p) {
+        this.p = p;
         txt_TenPhim.setText(p.getTEN_PHIM());
         txt_DienVien.setText(p.getDIENVIEN());
         txt_TheLoai.setText(p.getLOAIPHIM());
@@ -536,7 +545,20 @@ public class ChiTietPhim extends javax.swing.JFrame {
     private void lbl_ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ExitMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
+        datVe.setVisible(false);
     }//GEN-LAST:event_lbl_ExitMouseClicked
+
+    private void btn_DatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DatVeActionPerformed
+        // TODO add your handling code here:
+        if(datVe.isVisible()) {
+            datVe.setVisible(false);
+            datVe.setVisible(true);
+            datVe.fillToFormDatVe(p);
+        } else {
+            datVe.setVisible(true);
+            datVe.fillToFormDatVe(p);
+        }
+    }//GEN-LAST:event_btn_DatVeActionPerformed
 
     /**
      * @param args the command line arguments

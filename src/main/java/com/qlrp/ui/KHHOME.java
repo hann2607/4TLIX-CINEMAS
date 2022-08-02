@@ -48,6 +48,7 @@ public class KHHOME extends javax.swing.JFrame {
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
     ChiTietPhim ctp = new ChiTietPhim();
+    ChiTietDoAn ctda = new ChiTietDoAn();
     
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
@@ -78,6 +79,8 @@ public class KHHOME extends javax.swing.JFrame {
         rSTableMetro1 = new rojerusan.RSTableMetro();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
+        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         jPanel5 = new javax.swing.JPanel();
         btn_SoLuong = new com.k33ptoo.components.KButton();
         txt_Search_Film = new javax.swing.JTextField();
@@ -170,14 +173,14 @@ public class KHHOME extends javax.swing.JFrame {
 
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "SPIDER - NO WAY HOME", "2", "100.000 VNĐ"},
-                {null, "THOR 4 - LOVE AND THUNDER", "3", "200.000 VNĐ"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, "SPIDER - NO WAY HOME", "2", "100.000 VNĐ", null},
+                {null, "THOR 4 - LOVE AND THUNDER", "3", "200.000 VNĐ", null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "HÌNH", "TÊN SP", "SỐ LƯỢNG", "GIÁ"
+                "HÌNH", "TÊN SP", "SỐ LƯỢNG", "GIÁ", ""
             }
         ));
         rSTableMetro1.setColorBordeFilas(new java.awt.Color(255, 255, 255));
@@ -193,40 +196,54 @@ public class KHHOME extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("TỔNG TIỀN: 300.000 VNĐ");
 
+        rSMaterialButtonRectangle1.setText("XÓA HẾT");
+        rSMaterialButtonRectangle1.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+
+        rSMaterialButtonRectangle2.setText("THANH TOÁN");
+        rSMaterialButtonRectangle2.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout pnl_cartLayout = new javax.swing.GroupLayout(pnl_cart);
         pnl_cart.setLayout(pnl_cartLayout);
         pnl_cartLayout.setHorizontalGroup(
             pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_cartLayout.createSequentialGroup()
-                .addContainerGap(307, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_cartLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel6))))
+                    .addGroup(pnl_cartLayout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(pnl_cartLayout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jLabel5)
+                .addGap(83, 83, 83)
+                .addComponent(rSMaterialButtonRectangle1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_cartLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
         pnl_cartLayout.setVerticalGroup(
             pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_cartLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
-                    .addContainerGap(49, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(76, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rSMaterialButtonRectangle1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 540, 470));
+        jPanel7.add(pnl_cart, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 540, 540));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -354,12 +371,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -797,9 +814,7 @@ public class KHHOME extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 955, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1002,9 +1017,14 @@ public class KHHOME extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        ChiTietDoAn ctda = new ChiTietDoAn();
-                        ctda.setVisible(true);
-                        ctda.fillToChiTietDoAn(da);
+                        if(ctda.isVisible()) {
+                            ctda.setVisible(false);
+                            ctda.setVisible(true);
+                            ctda.fillToChiTietDoAn(da);
+                        } else {
+                            ctda.setVisible(true);
+                            ctda.fillToChiTietDoAn(da);
+                        } 
                     }
                 }
             });
@@ -1204,6 +1224,8 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_film;
     private rojerusan.RSPanelsSlider pnl_slideDoAn;
     private rojerusan.RSPanelsSlider pnl_slideKhuyenMai;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
     private rojerusan.RSTableMetro rSTableMetro1;
     private javax.swing.JTextField txt_Search_DoAn;
     private javax.swing.JTextField txt_Search_Film;
