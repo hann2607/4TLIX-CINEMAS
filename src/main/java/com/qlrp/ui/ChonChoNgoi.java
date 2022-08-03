@@ -924,14 +924,13 @@ public class ChonChoNgoi extends javax.swing.JFrame {
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
-        DrawForm();
         designTextPane(txt_Tenfilm);
         designTextPane(txt_NgayChieuDinhDangPhim);
     }
 
-    private void DrawForm() {
-        phongchieu = qlphongchieudao.selectebyID("PC001");
-        listGheNgoi = qlghengoidao.SELECT_THEOPHONGCHIEU_SQL("PC001");
+    private void DrawForm(SUATCHIEU sc) {
+        phongchieu = qlphongchieudao.selectebyID(sc.getMA_PHONG_CHIEU());
+        listGheNgoi = qlghengoidao.SELECT_THEOPHONGCHIEU_SQL(sc.getMA_PHONG_CHIEU());
         listLoaiGhe = qlghengoidao.selectAllLoaiGhe();
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         
@@ -999,9 +998,11 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     }
 
     public void fillToFormChonGhe(PHIM p, SUATCHIEU sc) {
+        DrawForm(sc);
         txt_Tenfilm.setText(p.getTEN_PHIM());
         txt_NgayChieuDinhDangPhim.setText(sc.getNGAY_CHIEU() + " - " + sc.getTEN_DINH_DANG_PHIM() + " PHỤ ĐỀ");
         txt_ThoiGianChieu.setText("GIỜ CHIẾU: " + sc.getGIO_BAT_DAU() + " - " + sc.getGIO_KET_THUC());
+        lbl_PhongChieu.setText("PHÒNG CHIẾU: " + sc.getMA_PHONG_CHIEU());
     }
 
     private void designTextPane(JTextPane txt) {

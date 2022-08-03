@@ -50,9 +50,10 @@ public class KHHOME extends javax.swing.JFrame {
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
     QLKHUYENMAIDAO qlkhuyenmaidao = new QLKHUYENMAIDAO();
+
     ChiTietPhim ctp = new ChiTietPhim();
     ChiTietDoAn ctda = new ChiTietDoAn();
-    
+
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
     List<KHUYENMAI> listkm = null;
@@ -935,8 +936,9 @@ public class KHHOME extends javax.swing.JFrame {
         jscroll.getHorizontalScrollBar().setUnitIncrement(16);
         jscroll.getHorizontalScrollBar().setCursor(new Cursor(HAND_CURSOR));
     }
-    
+
     boolean isShowChiTietPhim = false;
+
     private void FillToPanelFilm() {
         listfilm = qlphimdao.selectAll();
         for (int i = 0; i < listfilm.size(); i++) {
@@ -971,14 +973,15 @@ public class KHHOME extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        if(ctp.isVisible()) {
+                        if (ctp.isVisible()) {
                             ctp.setVisible(false);
                             ctp.setVisible(true);
                             ctp.fillToChiTietPhim(p);
                         } else {
                             ctp.setVisible(true);
                             ctp.fillToChiTietPhim(p);
-                        } 
+                        }
+
                     }
                 }
             });
@@ -987,7 +990,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void FillToPanelDoAn() {
         listDoAn = qldadao.selectAll();
         for (int i = 0; i < listDoAn.size(); i++) {
@@ -1022,14 +1025,14 @@ public class KHHOME extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        if(ctda.isVisible()) {
+                        if (ctda.isVisible()) {
                             ctda.setVisible(false);
                             ctda.setVisible(true);
                             ctda.fillToChiTietDoAn(da);
                         } else {
                             ctda.setVisible(true);
                             ctda.fillToChiTietDoAn(da);
-                        } 
+                        }
                     }
                 }
             });
@@ -1038,7 +1041,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void FillToPanelKhuyenMai() {
         listkm = qlkhuyenmaidao.selectAll();
         for (int i = 0; i < listkm.size(); i++) {
@@ -1085,7 +1088,6 @@ public class KHHOME extends javax.swing.JFrame {
 //                    }
 //                }
 //            });
-
             pnl_slideKhuyenMai.add(pnl);
         }
 

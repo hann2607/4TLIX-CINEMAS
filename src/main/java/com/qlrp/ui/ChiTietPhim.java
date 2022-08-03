@@ -4,11 +4,14 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.QLSUATCHIEUDAO;
 import com.qlrp.entity.PHIM;
+import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
@@ -24,10 +27,6 @@ public class ChiTietPhim extends javax.swing.JFrame {
     /**
      * Creates new form ChiTietPhim
      */
-    
-    File f = new File("");
-    DatVe datVe = new DatVe();
-    
     public ChiTietPhim() {
         initComponents();
         init();
@@ -451,9 +450,13 @@ public class ChiTietPhim extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    File f = new File("");
+    DatVe datVe = new DatVe();
+    QLSUATCHIEUDAO qlsuatchieudao = new QLSUATCHIEUDAO();
+
     private void init() {
         this.setIconImage(XImage.getAppIcon());
-        
+
         designTextPane(txt_TenPhim);
         designTextPane(txt_NoiDungPhim);
         designTextPaneNotAlign(txt_DienVien);
@@ -464,7 +467,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
         designTextPaneNotAlign(txt_GioiHanTuoi);
         designTextPaneNotAlign(txt_QuocGia);
         designTextPaneNotAlign(txt_NgonNgu);
-        
+
         // Set background trong suốt cho các panel
         setBackgroundPanel(pnl_DienVien);
         setBackgroundPanel(pnl_GioiHanTuoi);
@@ -475,7 +478,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
         setBackgroundPanel(pnl_TheLoai);
         setBackgroundPanel(pnl_ThoiLuong);
         setBackgroundPanel(pnl_button);
-        
+
     }
 
     private void designTextPane(JTextPane txt) {
@@ -498,7 +501,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
         SimpleAttributeSet align = new SimpleAttributeSet();
         style.setParagraphAttributes(0, style.getLength(), align, false);
     }
-    
+
     private void setBackgroundPanel(JPanel pnl) {
         pnl.setOpaque(false);
         pnl.setBorder(BorderFactory.createEmptyBorder());
@@ -506,29 +509,30 @@ public class ChiTietPhim extends javax.swing.JFrame {
     }
 
     PHIM p = new PHIM();
+
     public void fillToChiTietPhim(PHIM p) {
         this.p = p;
         txt_TenPhim.setText(p.getTEN_PHIM());
         txt_DienVien.setText(p.getDIENVIEN());
         txt_TheLoai.setText(p.getLOAIPHIM());
         txt_HangSanXuat.setText(p.getNHA_SAN_XUAT());
-        if(p.getNGAY_CONG_CHIEU() == null) {
+        if (p.getNGAY_CONG_CHIEU() == null) {
             txt_KhoiChieu.setText("Sắp chiếu");
         } else {
-            txt_KhoiChieu.setText(p.getNGAY_CONG_CHIEU()  + "");
+            txt_KhoiChieu.setText(p.getNGAY_CONG_CHIEU() + "");
         }
         txt_ThoiLuong.setText(p.getTHOI_LUONG_CHIEU() + "");
         txt_GioiHanTuoi.setText(p.getGIOI_HAN_TUOI() + "");
         txt_QuocGia.setText(p.getQUOCGIA());
         txt_NgonNgu.setText(p.getNGON_NGU());
         txt_NoiDungPhim.setText(p.getTOM_TAT());
-        
+
         try {
             String duongdanBanner = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\BANNER\\";
             lbl_BannerFilm.setIcon(XImage.ResizeImage(lbl_BannerFilm.getWidth(), lbl_BannerFilm.getHeight(), duongdanBanner + p.getBANNER()));
         } catch (Exception e) {
         }
-        
+
         try {
             String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
             lbl_Poster.setIcon(XImage.ResizeImage(lbl_Poster.getWidth(), lbl_Poster.getHeight(), duongdanPoster + p.getPOSTER()));
@@ -536,7 +540,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
         }
     }
 
-    
+
     private void btn_TraiLerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraiLerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_TraiLerActionPerformed
@@ -549,14 +553,19 @@ public class ChiTietPhim extends javax.swing.JFrame {
 
     private void btn_DatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DatVeActionPerformed
         // TODO add your handling code here:
-        if(datVe.isVisible()) {
-            datVe.setVisible(false);
-            datVe.setVisible(true);
-            datVe.fillToFormDatVe(p);
+        if (qlsuatchieudao.selectebyMaPhim(p.getMA_PHIM()) != null) {
+            if (datVe.isVisible()) {
+                datVe.setVisible(false);
+                datVe.setVisible(true);
+                datVe.fillToFormDatVe(p);
+            } else {
+                datVe.setVisible(true);
+                datVe.fillToFormDatVe(p);
+            } 
         } else {
-            datVe.setVisible(true);
-            datVe.fillToFormDatVe(p);
+            JOptionPane.showMessageDialog(this, "PHIM NÀY HIỆN CHƯA CHIẾU TẠI RẠP,  \n CHÚNG TÔI VÔ CÙNG XIN LỖI VÌ SỰ BẤT TIỆN NÀY!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }//GEN-LAST:event_btn_DatVeActionPerformed
 
     /**
