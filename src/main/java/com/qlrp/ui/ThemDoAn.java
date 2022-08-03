@@ -22,7 +22,7 @@ import javax.swing.border.MatteBorder;
  *
  * @author ACER
  */
-public final class NewFOOD extends javax.swing.JFrame {
+public final class ThemDoAn extends javax.swing.JFrame {
 
     /**
      * Creates new form NewOrder
@@ -32,7 +32,7 @@ public final class NewFOOD extends javax.swing.JFrame {
     QLDADAO qldadao = new QLDADAO();
     List<DOAN> listDA = qldadao.selectAll();
 
-    public NewFOOD() {
+    public ThemDoAn() {
         initComponents();
         init();
     }
@@ -57,9 +57,9 @@ public final class NewFOOD extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //        setLocation(DEFAULT_CURSOR, 320);
         lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\PopcornCombo.png"));
-//        fillToForm();
+        fillToForm();
     }
-    
+
     private void clearAll() {
         txt_ten.setText("");
         cbo_loai.setSelectedIndex(0);
@@ -159,6 +159,12 @@ public final class NewFOOD extends javax.swing.JFrame {
                 txt_donGia.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
                 txt_donGia.grabFocus();
             }
+        }
+        System.out.println(lbl_img.getIcon().toString());
+        if ((lbl_img.getIcon().toString()).equalsIgnoreCase("none_avt.jpg")) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn hình");
+            lbl_img.setBorder(new MatteBorder(2, 2, 2, 2, Color.RED));
+            Error += "Chưa chọn hình! \n";
         }
 
         if (!Error.equals("")) {
@@ -451,7 +457,7 @@ public final class NewFOOD extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_dongia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_donGia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_maKH, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,12 +485,12 @@ public final class NewFOOD extends javax.swing.JFrame {
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
 //        // TODO add your handling code here:
         if (btn_Add.isEnabled()) {
+
             DOAN da = getForm();
             if (da != null) {
                 if (qldadao.selectebyID(da.getTENDOAN()) == null) {
                     qldadao.insert(da);
                     MsgBox.alert(this, "Thêm thành công!");
-//                    qlhome.fillToTable_DA(listDA);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Món ăn đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -626,21 +632,53 @@ public final class NewFOOD extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewFOOD.class
+            java.util.logging.Logger.getLogger(ThemDoAn.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewFOOD.class
+            java.util.logging.Logger.getLogger(ThemDoAn.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewFOOD.class
+            java.util.logging.Logger.getLogger(ThemDoAn.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewFOOD.class
+            java.util.logging.Logger.getLogger(ThemDoAn.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -677,7 +715,7 @@ public final class NewFOOD extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewFOOD().setVisible(true);
+                new ThemDoAn().setVisible(true);
             }
         });
     }

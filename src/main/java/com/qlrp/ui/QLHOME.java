@@ -49,7 +49,7 @@ public class QLHOME extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
-    NewFOOD nf = new NewFOOD();
+    ThemDoAn nf = new ThemDoAn();
     NewEmployee npl = new NewEmployee();
     NewCustomer cus = new NewCustomer();
     NewMovie mov = new NewMovie();
@@ -652,8 +652,9 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Thoat.setForeground(new java.awt.Color(255, 255, 255));
         btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"))); // NOI18N
         btn_Thoat.setText(" THOÁT");
+        btn_Thoat.setActionCommand("  THOÁT");
         btn_Thoat.setAlignmentY(10.0F);
-        btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_Thoat.setContentAreaFilled(false);
         btn_Thoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Thoat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -734,8 +735,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_DangXuat.setForeground(new java.awt.Color(255, 255, 255));
         btn_DangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
-        btn_DangXuat.setText(" ĐĂNG XUẤT");
-        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 37, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_DangXuat.setText("  ĐĂNG XUẤT");
+        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_DangXuat.setContentAreaFilled(false);
         btn_DangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_DangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1698,8 +1699,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTK.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
         btn_TK.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
         btn_CaiDat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
-        btn_DangXuat.setBorder(BorderFactory.createMatteBorder(1, 45, 1, 1, new Color(2, 16, 86)));
-        btn_Thoat.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
+        btn_DangXuat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
+        btn_Thoat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
         this.btn_CheckClickMenu.setBorder(BorderFactory.createMatteBorder(1, sizeBorder, 1, 1, new Color(166, 166, 166)));
 
     }
@@ -2059,12 +2060,12 @@ public class QLHOME extends javax.swing.JFrame {
 
     private void btn_DangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_DangXuat, 45);
+        hoverMenu(btn_DangXuat, 35);
     }//GEN-LAST:event_btn_DangXuatMouseEntered
 
     private void btn_ThoatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThoatMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_Thoat, 42);
+        hoverMenu(btn_Thoat, 35);
     }//GEN-LAST:event_btn_ThoatMouseEntered
 
     private void btn_HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HomeActionPerformed
@@ -2397,7 +2398,7 @@ public class QLHOME extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_QLDAMouseClicked
 
     private void btn_INVENMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_INVENMANA_addActionPerformed
-        NewFOOD nf = new NewFOOD();
+//        ThemDoAn nf = new ThemDoAn();s
         nf.setVisible(true);
         nf.setEnableButton("add");
     }//GEN-LAST:event_btn_INVENMANA_addActionPerformed
