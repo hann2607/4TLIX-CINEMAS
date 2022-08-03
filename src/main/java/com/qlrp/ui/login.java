@@ -241,6 +241,7 @@ public class login extends javax.swing.JFrame {
         pnl_containerRight.add(btn_DangKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 190, 40));
 
         grp_GioiTinh.add(rdo_Nam);
+        rdo_Nam.setSelected(true);
         rdo_Nam.setText("NAM");
         pnl_containerRight.add(rdo_Nam, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 70, 30));
 
@@ -408,29 +409,30 @@ public class login extends javax.swing.JFrame {
         String loi = "";
 
         String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
-        if (txtconfirm.getText().equals("")) {
+        if (txtsdt.getText().equals("")) {
             loi += "SDT không được để trống! \n";
-        } else if (!txtconfirm.getText().matches(reg)) {
+        } else if (!txtsdt.getText().matches(reg)) {
             loi += "Số điện thoại không đúng định dạng! \n";
         }
 
-        if (txtconfirm.getText().equals("")) {
+        if (txthoten.getText().equals("")) {
             loi += "Họ và tên không được để trống! \n";
         }
 
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        if (txtconfirm.getText().equals("")) {
+        
+        if (txtgmail.getText().equals("")) {
             loi += "Gmail không được để trống! \n";
-        } else if (!txtconfirm.getText().matches(EMAIL_PATTERN)) {
+        } else if (!txtgmail.getText().matches(EMAIL_PATTERN)) {
             loi += "Gmail không đúng định dạng! \n";
         }
 
-        if (txtconfirm.getText().equals("")) {
+        if (txtDiaChi.getText().equals("")) {
             loi += "Địa chỉ không được để trống! \n";
         }
-        if (txtconfirm.getText().equals("")) {
+        if (txtpass.getText().equals("")) {
             loi += "Mật khẩu không được để trống! \n";
-        } else if (!txtconfirm.getText().equalsIgnoreCase(txtconfirm.getText())) {
+        } else if (!txtpass.getText().equalsIgnoreCase(txtconfirm.getText())) {
             loi += "Xác nhận mật khẩu không khớp! \n";
         }
         
@@ -443,16 +445,16 @@ public class login extends javax.swing.JFrame {
     
     private KHACHHANG getform() {
         KHACHHANG kh = new KHACHHANG();
-        kh.setSDT(txtconfirm.getText());
-        kh.setHO_TEN(txtconfirm.getText());
-        kh.setEMAIL(txtconfirm.getText());
-        kh.setDIA_CHI(txtconfirm.getText());
+        kh.setSDT(txtsdt.getText());
+        kh.setHO_TEN(txthoten.getText());
+        kh.setEMAIL(txtgmail.getText());
+        kh.setDIA_CHI(txtDiaChi.getText());
         if(rdo_Nam.isSelected()) {
             kh.setGIOI_TINH(true);
         } else {
             kh.setGIOI_TINH(false);
         }
-        kh.setMAT_KHAU(txtconfirm.getText());
+        kh.setMAT_KHAU(txtpass.getText());
         return kh;
     }
 

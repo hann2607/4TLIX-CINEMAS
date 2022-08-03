@@ -5,8 +5,10 @@
 package com.qlrp.ui;
 
 import com.qlrp.dao.QLDADAO;
+import com.qlrp.dao.QLKHUYENMAIDAO;
 import com.qlrp.dao.QLPHIMDAO;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.KHUYENMAI;
 import com.qlrp.entity.PHIM;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.setUIJScroll;
@@ -47,11 +49,13 @@ public class KHHOME extends javax.swing.JFrame {
     File file = new File("");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
+    QLKHUYENMAIDAO qlkhuyenmaidao = new QLKHUYENMAIDAO();
     ChiTietPhim ctp = new ChiTietPhim();
     ChiTietDoAn ctda = new ChiTietDoAn();
     
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
+    List<KHUYENMAI> listkm = null;
 
     public KHHOME() {
         initComponents();
@@ -839,6 +843,7 @@ public class KHHOME extends javax.swing.JFrame {
         //Đổ dữ liệu lên form KHHome
         FillToPanelFilm();
         FillToPanelDoAn();
+        FillToPanelKhuyenMai();
 
         // add sự kiện cho JScroll slide Phim, DoAn, KhuyenMai
         jScrollPane3.getViewport().addChangeListener(new ListenAdditionsScrolledPhim());
@@ -1030,6 +1035,58 @@ public class KHHOME extends javax.swing.JFrame {
             });
 
             pnl_slideDoAn.add(pnl);
+        }
+
+    }
+    
+    private void FillToPanelKhuyenMai() {
+        listkm = qlkhuyenmaidao.selectAll();
+        for (int i = 0; i < listkm.size(); i++) {
+            JPanel pnl = new JPanel();
+            pnl.setLayout(new GridLayout(2, 1));
+
+            //TextPane chứa tiêu đề
+            JTextPane textPane = new JTextPane();
+            textPane.setText(listkm.get(i).getLOAI_KHUYEN_MAI());
+            StyledDocument style = textPane.getStyledDocument();
+            SimpleAttributeSet align = new SimpleAttributeSet();
+            StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
+            style.setParagraphAttributes(0, style.getLength(), align, false);
+            textPane.setPreferredSize(new Dimension(210, 100));
+            Font f2 = new Font("Segoe UI", Font.BOLD, 17);
+            textPane.setFont(f2);
+
+            //Label chứa hình
+            JLabel lbl = new JLabel();
+            lbl.setSize(new Dimension(210, 250));
+            lbl.setMinimumSize(new Dimension(210, 250));
+            lbl.setPreferredSize(new Dimension(210, 250));
+            lbl.setMaximumSize(new Dimension(210, 250));
+            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\khuyen mai\\";
+            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listkm.get(i).getHINH()));
+            pnl.add(lbl);
+            pnl.add(textPane);
+            pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            pnl.setBackground(Color.WHITE);
+
+//            DOAN da = listDoAn.get(i);
+//            pnl.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mousePressed(MouseEvent e) {
+//                    if (e.getClickCount() == 1 && !e.isConsumed()) {
+//                        if(ctda.isVisible()) {
+//                            ctda.setVisible(false);
+//                            ctda.setVisible(true);
+//                            ctda.fillToChiTietDoAn(da);
+//                        } else {
+//                            ctda.setVisible(true);
+//                            ctda.fillToChiTietDoAn(da);
+//                        } 
+//                    }
+//                }
+//            });
+
+            pnl_slideKhuyenMai.add(pnl);
         }
 
     }
