@@ -37,7 +37,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     public ChonChoNgoi() {
         initComponents();
         init();
-        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }
 

@@ -27,7 +27,6 @@ public class DatVe extends javax.swing.JFrame {
     public DatVe() {
         initComponents();
         init();
-        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
 
     }
@@ -186,7 +185,7 @@ public class DatVe extends javax.swing.JFrame {
             .addGroup(pnl_KhoiChieu3Layout.createSequentialGroup()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(lbl_GheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_GheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_ChonGheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1))
@@ -485,6 +484,7 @@ public class DatVe extends javax.swing.JFrame {
     public JLabel lblvitri;
     
     File f = new File("");
+    ChonChoNgoi ccn = new ChonChoNgoi();
     
     private void init() {
         this.setIconImage(XImage.getAppIcon());
@@ -514,10 +514,8 @@ public class DatVe extends javax.swing.JFrame {
         
         txt_Tenfilm.setText(p.getTEN_PHIM());
     }
-
-    public void setViTriGhe(String vitri) {
-        lbl_GheNgoi.setText(vitri);
-    }
+    
+    
     
     private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
         // TODO add your handling code here:
@@ -529,8 +527,13 @@ public class DatVe extends javax.swing.JFrame {
     
     private void btn_ChonGheNgoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChonGheNgoiActionPerformed
         // TODO add your handling code here:
-        ChonChoNgoi ccn = new ChonChoNgoi();
-        ccn.setVisible(true);  
+        if(ccn.isVisible()) {
+            ccn.setVisible(false); 
+            ccn.setVisible(true); 
+        } else {
+            ccn.setVisible(true); 
+        }
+         
     }//GEN-LAST:event_btn_ChonGheNgoiActionPerformed
 
     

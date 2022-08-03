@@ -23,6 +23,7 @@ public class QLSUATCHIEUDAO extends QLRPDAO<SUATCHIEU, String>{
     String DELETE_SQL = "DELETE FROM SUATCHIEU WHERE MA_SUAT_CHIEU=?";
     String SELECT_ALL_SQL = "SELECT * FROM SUATCHIEU";
     String SELECT_BY_ID_SQL = "SELECT * FROM SUATCHIEU WHERE MA_SUAT_CHIEU LIKE ?";
+    String SELECT_BY_MAPHIM_SQL = "SELECT * FROM SUATCHIEU WHERE MA_PHIM LIKE ?";
 
     @Override
     public void insert(SUATCHIEU entity) {
@@ -92,5 +93,13 @@ public class QLSUATCHIEUDAO extends QLRPDAO<SUATCHIEU, String>{
             throw new RuntimeException(ex);
         }
 
+    }
+    
+    public SUATCHIEU selectebyMaPhim(String id) {
+        List<SUATCHIEU> list = this.selectbySql(SELECT_BY_MAPHIM_SQL, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 }

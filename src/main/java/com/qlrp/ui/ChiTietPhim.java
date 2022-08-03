@@ -31,7 +31,6 @@ public class ChiTietPhim extends javax.swing.JFrame {
     public ChiTietPhim() {
         initComponents();
         init();
-        this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(null);
     }
 
