@@ -4,7 +4,10 @@
  */
 package com.qlrp.utils;
 
+import java.awt.Cursor;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
@@ -18,6 +21,13 @@ import javax.swing.ImageIcon;
  * @author HAN-PC
  */
 public class XImage {
+    public static Cursor setCursor(){
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image img = tk.getImage("src\\main\\resources\\com\\qlrp\\image\\QLHome\\kursor.png");
+        Point pt = new Point(0, 0);
+        Cursor cs = tk.createCustomCursor(img, pt, "kursor.png");
+        return cs;
+    } 
     public static Image getAppIcon() {
         URL url = XImage.class.getResource("/com/qlrp/icon/Sys/Icon_app.png");
         return new ImageIcon(url).getImage();

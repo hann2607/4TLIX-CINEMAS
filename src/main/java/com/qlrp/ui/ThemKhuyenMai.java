@@ -256,7 +256,7 @@ public final class ThemKhuyenMai extends javax.swing.JFrame {
         jPanel4.add(lbl_img, java.awt.BorderLayout.CENTER);
 
         lbl_dongia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbl_dongia.setText("ĐƠN GIÁ");
+        lbl_dongia.setText("SỐ LƯỢNG");
 
         lbl_maKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbl_maKH.setText("CHI TIẾT");
@@ -423,13 +423,10 @@ public final class ThemKhuyenMai extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(cbo_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(lbl_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbo_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_loai, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dc_ngaycongchieu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)

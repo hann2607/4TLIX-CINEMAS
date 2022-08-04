@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author ACER
  */
-public class QLBANNER extends QLRPDAO<BANNER, String> {
+public class QLBANNERDAO extends QLRPDAO<BANNER, String> {
 
     String INSERT_SQL = "INSERT INTO BANNER (MP,  TEN_PHIM,  TRAILER) VALUES (?, ?, ?)";
     String UPDATE_SQL = "UPDATE BANNER SET TEN_PHIM=?, TRAILER=?  WHERE MP=?";
@@ -28,7 +28,7 @@ public class QLBANNER extends QLRPDAO<BANNER, String> {
     @Override
     public void insert(BANNER entity) {
         try {
-            XJdbc.update(INSERT_SQL, entity.getMAPHIM(), entity.getTENPHIM(), entity.getTRAILER());
+            XJdbc.update(INSERT_SQL, entity.getMAPHIM(), entity.getTENPHIM(), entity.getBANNER());
         } catch (SQLException ex) {
             Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +37,7 @@ public class QLBANNER extends QLRPDAO<BANNER, String> {
     @Override
     public void update(BANNER entity) {
         try {
-            XJdbc.update(UPDATE_SQL, entity.getTENPHIM(), entity.getTRAILER(), entity.getMAPHIM());
+            XJdbc.update(UPDATE_SQL, entity.getTENPHIM(), entity.getBANNER(), entity.getMAPHIM());
         } catch (SQLException ex) {
             Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +77,7 @@ public class QLBANNER extends QLRPDAO<BANNER, String> {
                 BANNER entity = new BANNER();
                 entity.setMAPHIM(rs.getString("MP"));
                 entity.setTENPHIM(rs.getString("TEN_PHIM"));
-                entity.setTRAILER(rs.getString("TRAILER"));
+                entity.setBANNER(rs.getString("BANNER"));
 
                 list.add(entity);
             }

@@ -11,15 +11,15 @@ package com.qlrp.entity;
 public class BANNER {
     private String MAPHIM;
     private String TENPHIM;
-    private String TRAILER;
+    private String BANNER;
 
     public BANNER() {
     }
 
-    public BANNER(String MAPHIM, String TENPHIM, String TRAILER) {
+    public BANNER(String MAPHIM, String TENPHIM, String BANNER) {
         this.MAPHIM = MAPHIM;
         this.TENPHIM = TENPHIM;
-        this.TRAILER = TRAILER;
+        this.BANNER = BANNER;
     }
 
     public String getMAPHIM() {
@@ -38,12 +38,12 @@ public class BANNER {
         this.TENPHIM = TENPHIM;
     }
 
-    public String getTRAILER() {
-        return TRAILER;
+    public String getBANNER() {
+        return BANNER;
     }
 
-    public void setTRAILER(String TRAILER) {
-        this.TRAILER = TRAILER;
+    public void setBANNER(String BANNER) {
+        this.BANNER = BANNER;
     }
     
     
