@@ -4,16 +4,22 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.CHITIETHOADONDAO;
 import com.qlrp.dao.QLDADAO;
+import com.qlrp.dao.QLHOADONDAO;
 import com.qlrp.dao.QLKHDAO;
 import com.qlrp.dao.QLKMDAO;
 import com.qlrp.dao.QLNVDAO;
 import com.qlrp.dao.QLPHIMDAO;
+import com.qlrp.dao.QLSUATCHIEUDAO;
+import com.qlrp.entity.CHITIETHOADON;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.HOADON;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.KHUYENMAI;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.entity.PHIM;
+import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.Chart;
 import com.qlrp.utils.MsgBox;
@@ -55,7 +61,8 @@ public class QLHOME extends javax.swing.JFrame {
     NewEmployee npl = new NewEmployee();
     NewCustomer cus = new NewCustomer();
     NewMovie mov = new NewMovie();
-
+    CHITIETHOADONui ct = new CHITIETHOADONui();
+    ChitietSC sc = new ChitietSC();
     public QLHOME() {
         initComponents();
         init();
@@ -97,7 +104,7 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_Menu = new javax.swing.JPanel();
         btn_Home = new javax.swing.JButton();
         btn_QLPhim = new javax.swing.JButton();
-        btn_QLDatVe = new javax.swing.JButton();
+        btn_QLHD = new javax.swing.JButton();
         btn_QLDoAn = new javax.swing.JButton();
         btn_QLNV = new javax.swing.JButton();
         btn_QLKH = new javax.swing.JButton();
@@ -106,7 +113,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Thoat = new javax.swing.JButton();
         btn_TK = new javax.swing.JButton();
         btn_CaiDat = new javax.swing.JButton();
-        btn_DangXuat = new javax.swing.JButton();
+        btn_QLSC = new javax.swing.JButton();
         pnl_Main = new javax.swing.JPanel();
         pnl_CustomerManagement = new javax.swing.JPanel();
         btn_QLKH_Search = new javax.swing.JButton();
@@ -118,6 +125,14 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CUSMANA_add = new com.k33ptoo.components.KButton();
         jLabel4 = new javax.swing.JLabel();
         btn_CUSTOMERMANA_REFRESH = new com.k33ptoo.components.KButton();
+        pnl_QLHoaDon = new javax.swing.JPanel();
+        btn_QLHD_Search1 = new javax.swing.JButton();
+        txt_QLHD_Search1 = new javax.swing.JTextField();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tbl_QLHD = new rojerusan.RSTableMetro();
+        btn_QLHD_xoa = new com.k33ptoo.components.KButton();
+        jLabel21 = new javax.swing.JLabel();
+        btn_QLHD_Edit = new com.k33ptoo.components.KButton();
         pnl_QLDoAn = new javax.swing.JPanel();
         cbo_INVENMANA_OrderBy = new javax.swing.JComboBox<>();
         jScrollPane12 = new javax.swing.JScrollPane();
@@ -199,6 +214,14 @@ public class QLHOME extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         btn_QLKM_Search = new javax.swing.JButton();
         txt_QLKM_search = new javax.swing.JTextField();
+        pnl_QLSuatChieu = new javax.swing.JPanel();
+        btn_QLHD_Search2 = new javax.swing.JButton();
+        txt_QLHD_Search2 = new javax.swing.JTextField();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        tbl_QLSC = new rojerusan.RSTableMetro();
+        btn_QLSC_ADD = new com.k33ptoo.components.KButton();
+        jLabel22 = new javax.swing.JLabel();
+        btn_QLSC_cailai = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -503,31 +526,31 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
-        btn_QLDatVe.setBackground(new java.awt.Color(2, 16, 86));
-        btn_QLDatVe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_QLDatVe.setForeground(new java.awt.Color(255, 255, 255));
-        btn_QLDatVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"))); // NOI18N
-        btn_QLDatVe.setText(" QUẢN LÝ HÓA ĐƠN");
-        btn_QLDatVe.setAlignmentY(10.0F);
-        btn_QLDatVe.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_QLDatVe.setContentAreaFilled(false);
-        btn_QLDatVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_QLDatVe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_QLDatVe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_QLDatVe.setIconTextGap(28);
-        btn_QLDatVe.setMargin(new java.awt.Insets(2, 40, 2, 14));
-        btn_QLDatVe.setOpaque(true);
-        btn_QLDatVe.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLHD.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLHD.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/movie-ticket-40x40.png"))); // NOI18N
+        btn_QLHD.setText(" QUẢN LÝ HÓA ĐƠN");
+        btn_QLHD.setAlignmentY(10.0F);
+        btn_QLHD.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 41, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLHD.setContentAreaFilled(false);
+        btn_QLHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_QLHD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLHD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLHD.setIconTextGap(28);
+        btn_QLHD.setMargin(new java.awt.Insets(2, 40, 2, 14));
+        btn_QLHD.setOpaque(true);
+        btn_QLHD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_QLDatVeMouseEntered(evt);
+                btn_QLHDMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_QLDatVeMouseExited(evt);
+                btn_QLHDMouseExited(evt);
             }
         });
-        btn_QLDatVe.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLDatVeActionPerformed(evt);
+                btn_QLHDActionPerformed(evt);
             }
         });
 
@@ -755,29 +778,29 @@ public class QLHOME extends javax.swing.JFrame {
             }
         });
 
-        btn_DangXuat.setBackground(new java.awt.Color(2, 16, 86));
-        btn_DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_DangXuat.setForeground(new java.awt.Color(255, 255, 255));
-        btn_DangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
-        btn_DangXuat.setText("  ĐĂNG XUẤT");
-        btn_DangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
-        btn_DangXuat.setContentAreaFilled(false);
-        btn_DangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_DangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_DangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_DangXuat.setIconTextGap(27);
-        btn_DangXuat.setOpaque(true);
-        btn_DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_QLSC.setBackground(new java.awt.Color(2, 16, 86));
+        btn_QLSC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_QLSC.setForeground(new java.awt.Color(255, 255, 255));
+        btn_QLSC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
+        btn_QLSC.setText("QUẢN LÝ SUẤT CHIẾU");
+        btn_QLSC.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
+        btn_QLSC.setContentAreaFilled(false);
+        btn_QLSC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_QLSC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_QLSC.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_QLSC.setIconTextGap(27);
+        btn_QLSC.setOpaque(true);
+        btn_QLSC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_DangXuatMouseEntered(evt);
+                btn_QLSCMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_DangXuatMouseExited(evt);
+                btn_QLSCMouseExited(evt);
             }
         });
-        btn_DangXuat.addActionListener(new java.awt.event.ActionListener() {
+        btn_QLSC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DangXuatActionPerformed(evt);
+                btn_QLSCActionPerformed(evt);
             }
         });
 
@@ -787,7 +810,7 @@ public class QLHOME extends javax.swing.JFrame {
             pnl_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btn_Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLPhim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_QLDatVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLDoAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -795,7 +818,7 @@ public class QLHOME extends javax.swing.JFrame {
             .addComponent(btn_QLTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_TK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_CaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_DangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_QLSC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_Thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnl_MenuLayout.setVerticalGroup(
@@ -805,7 +828,7 @@ public class QLHOME extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(btn_QLPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_QLDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLHD, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_QLDoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -821,7 +844,7 @@ public class QLHOME extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(btn_CaiDat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btn_DangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_QLSC, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -935,6 +958,106 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_CustomerManagement.add(btn_CUSTOMERMANA_REFRESH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
 
         pnl_Main.add(pnl_CustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
+        pnl_QLHoaDon.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_QLHoaDon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_QLHoaDon.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_QLHoaDon.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_QLHoaDon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLHD_Search1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLHD_Search1.setBorderPainted(false);
+        btn_QLHD_Search1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLHD_Search1ActionPerformed(evt);
+            }
+        });
+        pnl_QLHoaDon.add(btn_QLHD_Search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 50, 40));
+
+        txt_QLHD_Search1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_QLHD_Search1ActionPerformed(evt);
+            }
+        });
+        pnl_QLHoaDon.add(txt_QLHD_Search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 580, 40));
+
+        tbl_QLHD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "MÃ HÓA ĐƠN", "MÃ NHÂN VIÊN", "MÃ VÉ", "SỐ ĐIỆN THOẠI", "NGÀY BÁN"
+            }
+        ));
+        tbl_QLHD.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_QLHD.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_QLHD.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_QLHD.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_QLHD.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLHD.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLHD.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_QLHD.setRowHeight(70);
+        tbl_QLHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_QLHDMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(tbl_QLHD);
+
+        pnl_QLHoaDon.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_QLHD_xoa.setText("XÓA");
+        btn_QLHD_xoa.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_QLHD_xoa.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_QLHD_xoa.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_QLHD_xoa.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_QLHD_xoa.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_QLHD_xoa.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_QLHD_xoa.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_QLHD_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLHD_xoaActionPerformed(evt);
+            }
+        });
+        pnl_QLHoaDon.add(btn_QLHD_xoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel21.setText("QUẢN LÝ HÓA ĐƠN");
+        pnl_QLHoaDon.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 240, -1));
+
+        btn_QLHD_Edit.setText("THAY ĐỔI");
+        btn_QLHD_Edit.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_QLHD_Edit.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_QLHD_Edit.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_QLHD_Edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_QLHD_Edit.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_QLHD_Edit.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_QLHD_Edit.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_QLHD_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLHD_EditActionPerformed(evt);
+            }
+        });
+        pnl_QLHoaDon.add(btn_QLHD_Edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
+
+        pnl_Main.add(pnl_QLHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
         pnl_QLDoAn.setBackground(new java.awt.Color(255, 255, 255));
         pnl_QLDoAn.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -1889,6 +2012,106 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_QLKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_QLSuatChieu.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_QLSuatChieu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_QLSuatChieu.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_QLSuatChieu.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_QLSuatChieu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLHD_Search2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLHD_Search2.setBorderPainted(false);
+        btn_QLHD_Search2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLHD_Search2ActionPerformed(evt);
+            }
+        });
+        pnl_QLSuatChieu.add(btn_QLHD_Search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 50, 40));
+
+        txt_QLHD_Search2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_QLHD_Search2ActionPerformed(evt);
+            }
+        });
+        pnl_QLSuatChieu.add(txt_QLHD_Search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 580, 40));
+
+        tbl_QLSC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "MÃ SUẤT CHIẾU", "MÃ PHÒNG CHIẾU", "TÊN ĐD PHIM", "MÃ PHIM", "GIỜ BẮT ĐẦU", "GIỜ KẾT THÚC", "NGÀY CHIẾU"
+            }
+        ));
+        tbl_QLSC.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_QLSC.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_QLSC.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_QLSC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_QLSC.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLSC.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_QLSC.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_QLSC.setRowHeight(70);
+        tbl_QLSC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_QLSCMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(tbl_QLSC);
+
+        pnl_QLSuatChieu.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_QLSC_ADD.setText("THÊM");
+        btn_QLSC_ADD.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_QLSC_ADD.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_QLSC_ADD.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_QLSC_ADD.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_QLSC_ADD.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_QLSC_ADD.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_QLSC_ADD.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_QLSC_ADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLSC_ADDActionPerformed(evt);
+            }
+        });
+        pnl_QLSuatChieu.add(btn_QLSC_ADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel22.setText("QUẢN LÝ SUẤT CHIẾU");
+        pnl_QLSuatChieu.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 260, -1));
+
+        btn_QLSC_cailai.setText("RESTART");
+        btn_QLSC_cailai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_QLSC_cailai.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_QLSC_cailai.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_QLSC_cailai.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_QLSC_cailai.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_QLSC_cailai.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_QLSC_cailai.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_QLSC_cailai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLSC_cailaiActionPerformed(evt);
+            }
+        });
+        pnl_QLSuatChieu.add(btn_QLSC_cailai, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
+
+        pnl_Main.add(pnl_QLSuatChieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1937,7 +2160,9 @@ public class QLHOME extends javax.swing.JFrame {
     QLKHDAO qlkhdao = new QLKHDAO();
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLKMDAO qlkmdao = new QLKMDAO();
-
+    QLHOADONDAO qlhoadondao = new QLHOADONDAO();
+    CHITIETHOADONDAO chitiethoadondao = new CHITIETHOADONDAO();
+    QLSUATCHIEUDAO qlsuatchieudao = new QLSUATCHIEUDAO();
     private void init() {
         btn_CheckClickMenu = btn_Home;
         showPanelMenu(pnl_Home);
@@ -1965,13 +2190,18 @@ public class QLHOME extends javax.swing.JFrame {
         //        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         //        showInfoAccAndPanelAccount();
         //        fillToCBOChartYear();
+        List<HOADON> listHD = qlhoadondao.selectAll();
+        fillToTable_HOADON(listHD);
+        
+        List<SUATCHIEU> listSC = qlsuatchieudao.selectAll();
+        fillToTable_SUATCHIEU(listSC);
     }
 
     private void setColorMenuItem() {
         // set color button
         btn_Home.setBackground(new Color(2, 16, 86));
         btn_QLPhim.setBackground(new Color(2, 16, 86));
-        btn_QLDatVe.setBackground(new Color(2, 16, 86));
+        btn_QLHD.setBackground(new Color(2, 16, 86));
         btn_QLDoAn.setBackground(new Color(2, 16, 86));
         btn_QLNV.setBackground(new Color(2, 16, 86));
         btn_QLKH.setBackground(new Color(2, 16, 86));
@@ -1979,14 +2209,14 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTK.setBackground(new Color(2, 16, 86));
         btn_TK.setBackground(new Color(2, 16, 86));
         btn_CaiDat.setBackground(new Color(2, 16, 86));
-        btn_DangXuat.setBackground(new Color(2, 16, 86));
+        btn_QLSC.setBackground(new Color(2, 16, 86));
         btn_Thoat.setBackground(new Color(2, 16, 86));
         this.btn_CheckClickMenu.setBackground(new Color(166, 166, 166));
 
         // set color border
         btn_Home.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
         btn_QLPhim.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
-        btn_QLDatVe.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
+        btn_QLHD.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
         btn_QLDoAn.setBorder(BorderFactory.createMatteBorder(1, 41, 1, 1, new Color(2, 16, 86)));
         btn_QLNV.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
         btn_QLKH.setBorder(BorderFactory.createMatteBorder(1, 43, 1, 1, new Color(2, 16, 86)));
@@ -1994,7 +2224,7 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLTK.setBorder(BorderFactory.createMatteBorder(1, 40, 1, 1, new Color(2, 16, 86)));
         btn_TK.setBorder(BorderFactory.createMatteBorder(1, 42, 1, 1, new Color(2, 16, 86)));
         btn_CaiDat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
-        btn_DangXuat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
+        btn_QLSC.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
         btn_Thoat.setBorder(BorderFactory.createMatteBorder(1, 35, 1, 1, new Color(2, 16, 86)));
         this.btn_CheckClickMenu.setBorder(BorderFactory.createMatteBorder(1, sizeBorder, 1, 1, new Color(166, 166, 166)));
 
@@ -2017,6 +2247,8 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_IntergratedManagement.setVisible(false);
 //        pnl_ShippingManagement.setVisible(false);
         pnl_CustomerManagement.setVisible(false);
+        pnl_QLHoaDon.setVisible(false);
+        pnl_QLSuatChieu.setVisible(false);
 //        pnl_Account.setVisible(false);
 //        pnl_EmployeeManagement.setVisible(false);
         pnl_AccountManagement.setVisible(false);
@@ -2229,6 +2461,52 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_AccountMana_ShowListAcc.revalidate();
         pnl_AccountMana_ShowListAcc.repaint();
     }
+    
+    private void delete() {
+        try{
+            int[] rows = tbl_QLHD.getSelectedRows();
+            if(rows.length > 0 && 
+                    MsgBox.confirm(this, "Bạn muốn xóa hoa don được chọn?")){
+                for(int row : rows){
+                    String mahd = (String) tbl_QLHD.getValueAt(row, 0);
+                    qlhoadondao.delete(mahd);
+                }
+                this.fillToTable_HOADON();
+                MsgBox.alert(this, "Ban xoa thanh cong!");
+            }
+        }catch(Exception e){
+            MsgBox.alert(this, "You can only Add. If you want to edit, please choose again!");
+        }
+    }
+
+    private void fillToTable_HOADON() {
+        DefaultTableModel hoadon = (DefaultTableModel) tbl_QLHD.getModel();
+        model.setRowCount(0);
+        List<HOADON> list = qlhoadondao.selectAll();
+        for (HOADON hd : list) {
+            model.addRow(new Object[]{
+                hd.getMAHOADON(),
+                hd.getMANHANVIEN(),
+                hd.getMAVE(),
+                hd.getSDT(),
+                hd.getNGAYBAN(),
+            });
+        }
+    }
+    
+     private void addToTable_HOADON(List<HOADON> listHD) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void fillToTable_SUATCHIEU(List<SUATCHIEU> listSC) {
+        tbl_QLSC.removeAll();
+        model = (DefaultTableModel) tbl_QLSC.getModel();
+        model.setRowCount(0);
+        for (com.qlrp.entity.SUATCHIEU sc : listSC) {
+            model.addRow(new Object[]{sc.getMA_SUAT_CHIEU(), sc.getMA_PHONG_CHIEU(), sc.getTEN_DINH_DANG_PHIM(),
+                sc.getMA_PHIM(), sc.getGIO_BAT_DAU(), sc.getGIO_KET_THUC(), sc.getNGAY_CHIEU()});
+        }
+    }
 
     public void fillToTable_DA(List<DOAN> listDA) {
 //        clear table va do du lieu len table
@@ -2333,6 +2611,18 @@ public class QLHOME extends javax.swing.JFrame {
         tbl_QLKM.getColumnModel().getColumn(2).setCellRenderer(new ImageRendererKM());
 
     }
+    
+    public void fillToTable_HOADON(List<com.qlrp.entity.HOADON> listHD) {
+//           Tu copy 
+//        clear table va do du lieu len table
+        tbl_QLHD.removeAll();
+        model = (DefaultTableModel) tbl_QLHD.getModel();
+        model.setRowCount(0);
+        for (com.qlrp.entity.HOADON hd : listHD) {
+            model.addRow(new Object[]{hd.getMAHOADON(), hd.getMANHANVIEN(), hd.getMAVE(),
+                hd.getSDT(), hd.getNGAYBAN()});
+        }
+    }
 
     private void btn_HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_HomeMouseEntered
         // TODO add your handling code here:
@@ -2344,10 +2634,10 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_QLPhim, 41);
     }//GEN-LAST:event_btn_QLPhimMouseEntered
 
-    private void btn_QLDatVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDatVeMouseEntered
+    private void btn_QLHDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLHDMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_QLDatVe, 41);
-    }//GEN-LAST:event_btn_QLDatVeMouseEntered
+        hoverMenu(btn_QLHD, 41);
+    }//GEN-LAST:event_btn_QLHDMouseEntered
 
     private void btn_QLDoAnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDoAnMouseEntered
         // TODO add your handling code here:
@@ -2384,10 +2674,10 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_CaiDat, 35);
     }//GEN-LAST:event_btn_CaiDatMouseEntered
 
-    private void btn_DangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseEntered
+    private void btn_QLSCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLSCMouseEntered
         // TODO add your handling code here:
-        hoverMenu(btn_DangXuat, 35);
-    }//GEN-LAST:event_btn_DangXuatMouseEntered
+        hoverMenu(btn_QLSC, 35);
+    }//GEN-LAST:event_btn_QLSCMouseEntered
 
     private void btn_ThoatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThoatMouseEntered
         // TODO add your handling code here:
@@ -2417,16 +2707,16 @@ public class QLHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_QLPhimActionPerformed
 
-    private void btn_QLDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLDatVeActionPerformed
-        // TODO add your handling code here:
-        this.btn_CheckClickMenu = btn_QLDatVe;
+    private void btn_QLHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHDActionPerformed
+       // TODO add your handling code here:
+        this.btn_CheckClickMenu = btn_QLHD;
         this.sizeBorder = 41;
-        hoverMenu(btn_QLDatVe, 41);
-
+        hoverMenu(btn_QLHD, 41);
+        showPanelMenu(pnl_QLHoaDon);
         // code change Tab here
 //        showPanelMenu(pnl_CustomerManagement);
 
-    }//GEN-LAST:event_btn_QLDatVeActionPerformed
+    }//GEN-LAST:event_btn_QLHDActionPerformed
 
     private void btn_QLDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLDoAnActionPerformed
         // TODO add your handling code here:
@@ -2532,16 +2822,15 @@ public class QLHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_CaiDatActionPerformed
 
-    private void btn_DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangXuatActionPerformed
-        // TODO add your handling code here:
+    private void btn_QLSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLSCActionPerformed
+           // TODO add your handling code here:
+        this.btn_CheckClickMenu = btn_QLSC;
+        this.sizeBorder = 41;
+        hoverMenu(btn_QLSC, 41);
+        showPanelMenu(pnl_QLSuatChieu);
         // code change Tab here
-        if (MsgBox.confirm(this, "Bạn chắc chắn muốn đăng xuất?")) {
-            Auth.user = null;
-            login lg = new login();
-            this.setVisible(false);
-            lg.setVisible(true);
-        }
-    }//GEN-LAST:event_btn_DangXuatActionPerformed
+//        showPanelMenu(pnl_CustomerManagement);
+    }//GEN-LAST:event_btn_QLSCActionPerformed
 
     private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
         // TODO add your handling code here:
@@ -2561,10 +2850,10 @@ public class QLHOME extends javax.swing.JFrame {
         setColorMenuItem();
     }//GEN-LAST:event_btn_QLPhimMouseExited
 
-    private void btn_QLDatVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDatVeMouseExited
+    private void btn_QLHDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLHDMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_QLDatVeMouseExited
+    }//GEN-LAST:event_btn_QLHDMouseExited
 
     private void btn_QLDoAnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLDoAnMouseExited
         // TODO add your handling code here:
@@ -2601,10 +2890,10 @@ public class QLHOME extends javax.swing.JFrame {
         setColorMenuItem();
     }//GEN-LAST:event_btn_CaiDatMouseExited
 
-    private void btn_DangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangXuatMouseExited
+    private void btn_QLSCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_QLSCMouseExited
         // TODO add your handling code here:
         setColorMenuItem();
-    }//GEN-LAST:event_btn_DangXuatMouseExited
+    }//GEN-LAST:event_btn_QLSCMouseExited
 
     private void btn_ThoatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThoatMouseExited
         // TODO add your handling code here:
@@ -2753,6 +3042,23 @@ public class QLHOME extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "TÌM KIẾM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
                     addToPanelAccMana(listNV);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "KHÔNG CÓ KẾT QUẢ!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }
+    
+    private void searchQLHOADON() {
+        if (!txt_QLHD_Search1.getText().equals("")) {
+            try {
+                List<com.qlrp.entity.HOADON> listHD = qlhoadondao.search(txt_QLHD_Search1.getText());
+                if (listHD.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "KHÔNG CÓ KẾT QUẢ!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "TÌM KIẾM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                    addToTable_HOADON(listHD);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "KHÔNG CÓ KẾT QUẢ!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
@@ -2980,6 +3286,87 @@ public class QLHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_QLKM_searchKeyReleased
 
+    private void btn_QLHD_Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHD_Search1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_QLHD_Search1ActionPerformed
+
+    private void txt_QLHD_Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_QLHD_Search1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_QLHD_Search1ActionPerformed
+
+    private void tbl_QLHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QLHDMouseClicked
+        try {
+            int index = tbl_QLHD.getSelectedRow();
+            CHITIETHOADON cthd = chitiethoadondao.selectebyID(tbl_QLHD.getValueAt(index, 0).toString());
+            getInfo.ct = cthd;
+            if (ct.isVisible()) {
+                ct.fillToForm();
+            } else {
+                ct.setVisible(true);
+                ct.fillToForm();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_tbl_QLHDMouseClicked
+
+    private void btn_QLHD_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHD_xoaActionPerformed
+        delete();
+    }//GEN-LAST:event_btn_QLHD_xoaActionPerformed
+
+    private void btn_QLHD_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHD_EditActionPerformed
+        HOADONui hd = new HOADONui();
+        hd.setVisible(true);
+        int[] rows = tbl_QLHD.getSelectedRows();
+        if(rows.length > 0){
+            for(int row : rows){
+                String mahd = (String) tbl_QLHD.getValueAt(row, 0);
+                getInfo.hd = qlhoadondao.selectebyID(mahd);
+            }
+            this.fillToTable_HOADON();
+        }
+        hd.fillToForm();
+    }//GEN-LAST:event_btn_QLHD_EditActionPerformed
+
+    private void btn_QLHD_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHD_Search2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_QLHD_Search2ActionPerformed
+
+    private void txt_QLHD_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_QLHD_Search2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_QLHD_Search2ActionPerformed
+
+    private void tbl_QLSCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QLSCMouseClicked
+        try {
+            int index = tbl_QLSC.getSelectedRow();
+            SUATCHIEU scm = qlsuatchieudao.selectebyID(tbl_QLSC.getValueAt(index, 0).toString());
+            getInfo.sc = scm;
+            if (sc.isVisible()) {
+                sc.fillToForm();
+            } else {
+                sc.setVisible(true);
+                sc.fillToForm();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_tbl_QLSCMouseClicked
+
+    private void btn_QLSC_ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLSC_ADDActionPerformed
+        THemSC sc = new THemSC();
+        sc.setVisible(true);
+        sc.setEnableButton("add");
+    }//GEN-LAST:event_btn_QLSC_ADDActionPerformed
+
+    private void btn_QLSC_cailaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLSC_cailaiActionPerformed
+        List<SUATCHIEU> listSC = qlsuatchieudao.selectAll();
+        fillToTable_SUATCHIEU(listSC);
+    }//GEN-LAST:event_btn_QLSC_cailaiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3023,7 +3410,6 @@ public class QLHOME extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_CUSMANA_add;
     private com.k33ptoo.components.KButton btn_CUSTOMERMANA_REFRESH;
     private javax.swing.JButton btn_CaiDat;
-    private javax.swing.JButton btn_DangXuat;
     private javax.swing.JButton btn_Dot1;
     private javax.swing.JButton btn_Dot2;
     private javax.swing.JButton btn_Dot3;
@@ -3039,8 +3425,12 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_PrevSlide;
     private javax.swing.JButton btn_QLDA_Search;
     private javax.swing.JButton btn_QLDA_Search1;
-    private javax.swing.JButton btn_QLDatVe;
     private javax.swing.JButton btn_QLDoAn;
+    private javax.swing.JButton btn_QLHD;
+    private com.k33ptoo.components.KButton btn_QLHD_Edit;
+    private javax.swing.JButton btn_QLHD_Search1;
+    private javax.swing.JButton btn_QLHD_Search2;
+    private com.k33ptoo.components.KButton btn_QLHD_xoa;
     private javax.swing.JButton btn_QLKH;
     private javax.swing.JButton btn_QLKH_Search;
     private javax.swing.JButton btn_QLKM;
@@ -3051,6 +3441,9 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_QLNV_Search;
     private javax.swing.JButton btn_QLP_Search;
     private javax.swing.JButton btn_QLPhim;
+    private javax.swing.JButton btn_QLSC;
+    private com.k33ptoo.components.KButton btn_QLSC_ADD;
+    private com.k33ptoo.components.KButton btn_QLSC_cailai;
     private javax.swing.JButton btn_QLTK;
     private javax.swing.JButton btn_TK;
     private javax.swing.JButton btn_Thoat;
@@ -3075,6 +3468,8 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3102,6 +3497,8 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
@@ -3130,19 +3527,25 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_Menu;
     private javax.swing.JPanel pnl_MovieManagement;
     private javax.swing.JPanel pnl_QLDoAn;
+    private javax.swing.JPanel pnl_QLHoaDon;
     private javax.swing.JPanel pnl_QLKM;
+    private javax.swing.JPanel pnl_QLSuatChieu;
     private javax.swing.JPanel pnl_Slide;
     private rojerusan.RSPanelsSlider pnl_SlideMain;
     private rojerusan.RSTableMetro tbl_CUSMANA;
     private rojerusan.RSTableMetro tbl_MOVMANA;
     private rojerusan.RSTableMetro tbl_QLDA;
     private rojerusan.RSTableMetro tbl_QLDA1;
+    private rojerusan.RSTableMetro tbl_QLHD;
     private rojerusan.RSTableMetro tbl_QLKM;
+    private rojerusan.RSTableMetro tbl_QLSC;
     private javax.swing.JTextField txt_AccMana_search;
     private javax.swing.JTextField txt_CUSMANA_Search;
     private javax.swing.JTextField txt_MOVMANA_Search;
     private javax.swing.JTextField txt_QLDA_search;
     private javax.swing.JTextField txt_QLDA_search1;
+    private javax.swing.JTextField txt_QLHD_Search1;
+    private javax.swing.JTextField txt_QLHD_Search2;
     private javax.swing.JTextField txt_QLKM_search;
     // End of variables declaration//GEN-END:variables
 

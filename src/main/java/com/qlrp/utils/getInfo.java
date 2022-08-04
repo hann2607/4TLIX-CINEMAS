@@ -4,10 +4,13 @@
  */
 package com.qlrp.utils;
 
+import com.qlrp.entity.CHITIETHOADON;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.HOADON;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.entity.PHIM;
+import com.qlrp.entity.SUATCHIEU;
 
 /**
  *
@@ -19,5 +22,7 @@ public class getInfo {
     public static DOAN da = null;
     public static KHACHHANG cus;
     public static PHIM movi = null;
-
+    public static HOADON hd = null;
+    public static CHITIETHOADON ct = null;
+    public static SUATCHIEU sc = null;
 }
