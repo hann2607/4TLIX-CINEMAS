@@ -175,11 +175,11 @@
             <artifactId>RojeruSan.parte1</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RSPanelGradiente</artifactId>
             <version>SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RojeruSan.lib</artifactId>

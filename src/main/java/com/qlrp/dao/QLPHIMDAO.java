@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
 
     String INSERT_SQL = "INSERT INTO PHIM ( MA_PHIM, TEN_PHIM, TEN_DINH_DANG_PHIM, THOI_LUONG_CHIEU, NGON_NGU, LOAIPHIM, DIENVIEN, QUOCGIA, NHA_SAN_XUAT, TOM_TAT, POSTER, TRAILER, GIOI_HAN_TUOI, NGAY_CONG_CHIEU, BANNER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    String UPDATE_SQL = "UPDATE PHIM SET LOAI,  MA_PHIM=?,  TEN_PHIM=?, TEN_DINH_DANG_PHIM=?, THOI_LUONG_CHIEU=?, NGON_NGU=?, LOAIPHIM=?, DIENVIEN=?, QUOCGIA=?, NHA_SAN_XUAT=?, TOM_TAT=?, POSTER=?, TRAILER=?, GIOI_HAN_TUOI=?, NGAY_CONG_CHIEU=?, BANNER=? WHERE TEN_DO_AN=?";
+    String UPDATE_SQL = "UPDATE PHIM SET TEN_PHIM=?, TEN_DINH_DANG_PHIM=?, THOI_LUONG_CHIEU=?, NGON_NGU=?, LOAIPHIM=?, DIENVIEN=?, QUOCGIA=?, NHA_SAN_XUAT=?, TOM_TAT=?, POSTER=?, TRAILER=?, GIOI_HAN_TUOI=?, NGAY_CONG_CHIEU=?, BANNER=? WHERE MA_PHIM=?";
     String DELETE_SQL = "DELETE FROM PHIM WHERE MA_PHIM=?";
     String SELECT_ALL_SQL = "SELECT * FROM PHIM";
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
@@ -39,9 +39,9 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     @Override
     public void update(PHIM entity) {
         try {
-            XJdbc.update(INSERT_SQL, entity.getMA_PHIM(), entity.getTEN_PHIM(), entity.getTEN_DINH_DANG_PHIM(), entity.getTHOI_LUONG_CHIEU(), entity.getNGON_NGU(),
+            XJdbc.update(UPDATE_SQL, entity.getTEN_PHIM(), entity.getTEN_DINH_DANG_PHIM(), entity.getTHOI_LUONG_CHIEU(), entity.getNGON_NGU(),
                     entity.getLOAIPHIM(), entity.getDIENVIEN(), entity.getQUOCGIA(), entity.getNHA_SAN_XUAT(), entity.getTOM_TAT(), entity.getPOSTER(), entity.getTRAILER(),
-                    entity.getGIOI_HAN_TUOI(), entity.getNGAY_CONG_CHIEU(), entity.getBANNER());
+                    entity.getGIOI_HAN_TUOI(), entity.getNGAY_CONG_CHIEU(), entity.getBANNER(), entity.getMA_PHIM());
         } catch (SQLException ex) {
             Logger.getLogger(QLPHIMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

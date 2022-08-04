@@ -106,15 +106,6 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CaiDat = new javax.swing.JButton();
         btn_DangXuat = new javax.swing.JButton();
         pnl_Main = new javax.swing.JPanel();
-        pnl_MovieManagement = new javax.swing.JPanel();
-        btn_QLP_Search = new javax.swing.JButton();
-        txt_MOVMANA_Search = new javax.swing.JTextField();
-        cbo_MovMana_OrderBy = new javax.swing.JComboBox<>();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        tbl_MOVMANA = new rojerusan.RSTableMetro();
-        btn_MOVMANA_add = new com.k33ptoo.components.KButton();
-        jLabel18 = new javax.swing.JLabel();
-        btn_MOVMANA_REFRESH = new com.k33ptoo.components.KButton();
         pnl_CustomerManagement = new javax.swing.JPanel();
         btn_QLKH_Search = new javax.swing.JButton();
         txt_CUSMANA_Search = new javax.swing.JTextField();
@@ -175,6 +166,15 @@ public class QLHOME extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        pnl_MovieManagement = new javax.swing.JPanel();
+        btn_QLP_Search = new javax.swing.JButton();
+        txt_MOVMANA_Search = new javax.swing.JTextField();
+        cbo_MovMana_OrderBy = new javax.swing.JComboBox<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tbl_MOVMANA = new rojerusan.RSTableMetro();
+        btn_MOVMANA_add = new com.k33ptoo.components.KButton();
+        jLabel18 = new javax.swing.JLabel();
+        btn_MOVMANA_REFRESH = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -804,110 +804,6 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pnl_MovieManagement.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_MovieManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnl_MovieManagement.setMinimumSize(new java.awt.Dimension(0, 0));
-        pnl_MovieManagement.setPreferredSize(new java.awt.Dimension(1270, 670));
-        pnl_MovieManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_QLP_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
-        btn_QLP_Search.setBorderPainted(false);
-        btn_QLP_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLP_SearchActionPerformed(evt);
-            }
-        });
-        pnl_MovieManagement.add(btn_QLP_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 50, 40));
-
-        txt_MOVMANA_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_MOVMANA_SearchActionPerformed(evt);
-            }
-        });
-        pnl_MovieManagement.add(txt_MOVMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 40));
-
-        cbo_MovMana_OrderBy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbo_MovMana_OrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order By", "Item 2", "Item 3", "Item 4" }));
-        pnl_MovieManagement.add(cbo_MovMana_OrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 110, 40));
-
-        tbl_MOVMANA.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "TÊN PHIM", "POSTER", "DIỄN VIÊN", "THỜI LƯỢNG", "QUỐC GIA"
-            }
-        ));
-        tbl_MOVMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_MOVMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        tbl_MOVMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tbl_MOVMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tbl_MOVMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        tbl_MOVMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        tbl_MOVMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        tbl_MOVMANA.setRowHeight(70);
-        tbl_MOVMANA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_MOVMANAMouseClicked(evt);
-            }
-        });
-        jScrollPane9.setViewportView(tbl_MOVMANA);
-
-        pnl_MovieManagement.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
-
-        btn_MOVMANA_add.setText("THÊM");
-        btn_MOVMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_MOVMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_MOVMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_MOVMANA_add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_MOVMANA_add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_MOVMANA_add.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_MOVMANA_add.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_MOVMANA_add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_MOVMANA_addActionPerformed(evt);
-            }
-        });
-        pnl_MovieManagement.add(btn_MOVMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel18.setText("QUẢN LÝ PHIM");
-        pnl_MovieManagement.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 210, -1));
-
-        btn_MOVMANA_REFRESH.setText("LÀM MỚI");
-        btn_MOVMANA_REFRESH.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_MOVMANA_REFRESH.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_MOVMANA_REFRESH.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_MOVMANA_REFRESH.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_MOVMANA_REFRESH.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_MOVMANA_REFRESH.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_MOVMANA_REFRESH.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_MOVMANA_REFRESH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_MOVMANA_REFRESHActionPerformed(evt);
-            }
-        });
-        pnl_MovieManagement.add(btn_MOVMANA_REFRESH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
-
-        pnl_Main.add(pnl_MovieManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
         pnl_CustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
         pnl_CustomerManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -1598,6 +1494,110 @@ public class QLHOME extends javax.swing.JFrame {
 
         pnl_Main.add(pnl_Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
+        pnl_MovieManagement.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_MovieManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_MovieManagement.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_MovieManagement.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_MovieManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLP_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLP_Search.setBorderPainted(false);
+        btn_QLP_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLP_SearchActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_QLP_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 50, 40));
+
+        txt_MOVMANA_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_MOVMANA_SearchActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(txt_MOVMANA_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 40));
+
+        cbo_MovMana_OrderBy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbo_MovMana_OrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order By", "Item 2", "Item 3", "Item 4" }));
+        pnl_MovieManagement.add(cbo_MovMana_OrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 20, 110, 40));
+
+        tbl_MOVMANA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "TÊN PHIM", "NGÀY CÔNG CHIẾU", "DIỄN VIÊN", "QUỐC GIA", "THỜI LƯỢNG"
+            }
+        ));
+        tbl_MOVMANA.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_MOVMANA.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_MOVMANA.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_MOVMANA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteFilas(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tbl_MOVMANA.setFuenteHead(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tbl_MOVMANA.setRowHeight(70);
+        tbl_MOVMANA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_MOVMANAMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(tbl_MOVMANA);
+
+        pnl_MovieManagement.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1230, 400));
+
+        btn_MOVMANA_add.setText("THÊM");
+        btn_MOVMANA_add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_MOVMANA_add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_MOVMANA_add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_MOVMANA_add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_MOVMANA_add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_MOVMANA_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MOVMANA_addActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_MOVMANA_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel18.setText("QUẢN LÝ PHIM");
+        pnl_MovieManagement.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 210, -1));
+
+        btn_MOVMANA_REFRESH.setText("LÀM MỚI");
+        btn_MOVMANA_REFRESH.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_MOVMANA_REFRESH.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_MOVMANA_REFRESH.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_REFRESH.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_MOVMANA_REFRESH.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_MOVMANA_REFRESH.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_MOVMANA_REFRESH.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_MOVMANA_REFRESH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MOVMANA_REFRESHActionPerformed(evt);
+            }
+        });
+        pnl_MovieManagement.add(btn_MOVMANA_REFRESH, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
+
+        pnl_Main.add(pnl_MovieManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -2002,9 +2002,9 @@ public class QLHOME extends javax.swing.JFrame {
         model.setRowCount(0);
         listPHIM = new QLPHIMDAO().selectAll();
         for (PHIM movi : listPHIM) {
-            model.addRow(new Object[]{movi.getTEN_PHIM(), movi.getPOSTER(), movi.getDIENVIEN(), movi.getQUOCGIA(), movi.getTHOI_LUONG_CHIEU()});
+            model.addRow(new Object[]{movi.getTEN_PHIM(), movi.getNGAY_CONG_CHIEU(), movi.getDIENVIEN(), movi.getQUOCGIA(), movi.getTHOI_LUONG_CHIEU()});
         }
-        tbl_MOVMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererMovie());
+//        tbl_MOVMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererMovie());
 
     }
 
@@ -2580,7 +2580,6 @@ public class QLHOME extends javax.swing.JFrame {
             e.printStackTrace();
 
         }
-
     }//GEN-LAST:event_tbl_MOVMANAMouseClicked
 
     private void btn_MOVMANA_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MOVMANA_addActionPerformed
