@@ -9,6 +9,7 @@ import com.qlrp.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,9 @@ public class QLSUATCHIEUDAO extends QLRPDAO<SUATCHIEU, String>{
     String SELECT_ALL_SQL = "SELECT * FROM SUATCHIEU";
     String SELECT_BY_ID_SQL = "SELECT * FROM SUATCHIEU WHERE MA_SUAT_CHIEU LIKE ?";
     String SELECT_BY_MAPHIM_SQL = "SELECT * FROM SUATCHIEU WHERE MA_PHIM LIKE ?";
-
+    String SELECT_BY_GIOCHIEU_SQL = "SELECT * FROM SUATCHIEU WHERE MA_PHIM LIKE ? AND NGAY_CHIEU = ?";
+    String SELECT_BY_PHONGCHIEU_SQL = "SELECT * FROM SUATCHIEU WHERE MA_PHIM LIKE ? AND NGAY_CHIEU = ? AND GIO_BAT_DAU = ? AND GIO_KET_THUC = ?";
+    
     @Override
     public void insert(SUATCHIEU entity) {
         try {
@@ -95,11 +98,27 @@ public class QLSUATCHIEUDAO extends QLRPDAO<SUATCHIEU, String>{
 
     }
     
-    public SUATCHIEU selectebyMaPhim(String id) {
+    public List<SUATCHIEU> selectebyMaPhim(String id) {
         List<SUATCHIEU> list = this.selectbySql(SELECT_BY_MAPHIM_SQL, id);
         if (list.isEmpty()) {
             return null;
         }
-        return list.get(0);
+        return list;
+    }
+    
+    public List<SUATCHIEU> selectebyGioChieu(String MaPhim, String NgayCHieu) {
+        List<SUATCHIEU> list = this.selectbySql(SELECT_BY_GIOCHIEU_SQL, MaPhim, NgayCHieu);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
+    }
+    
+    public List<SUATCHIEU> selectebyPhongChieu(String MaPhim, String NgayCHieu, String GioBatDau, String GioKetThuc) {
+        List<SUATCHIEU> list = this.selectbySql(SELECT_BY_PHONGCHIEU_SQL, MaPhim, NgayCHieu, GioBatDau, GioKetThuc);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
     }
 }

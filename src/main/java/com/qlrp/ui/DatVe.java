@@ -13,12 +13,20 @@ import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.entity.VEDAT;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.sql.Time;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -70,16 +78,16 @@ public class DatVe extends javax.swing.JFrame {
         lbl_MaVe = new javax.swing.JLabel();
         pnl_KhoiChieu5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        lbl_PhongChieu = new javax.swing.JLabel();
+        cbo_PhongChieu = new rojerusan.RSComboMetro();
         pnl_KhoiChieu6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         lbl_DinhDangPhim = new javax.swing.JLabel();
         pnl_KhoiChieu7 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        lbl_GioChieu = new javax.swing.JLabel();
+        cbo_GioChieu = new rojerusan.RSComboMetro();
         pnl_KhoiChieu8 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        lbl_NgayChieu = new javax.swing.JLabel();
+        cbo_NgayChieu = new rojerusan.RSComboMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ĐẶT VÉ");
@@ -92,6 +100,11 @@ public class DatVe extends javax.swing.JFrame {
 
         btn_ThemVaoGioHang.setText("THÊM VÀO GIỎ HÀNG");
         btn_ThemVaoGioHang.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_ThemVaoGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ThemVaoGioHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,11 +129,6 @@ public class DatVe extends javax.swing.JFrame {
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         sp_SoLuong.setPreferredSize(new java.awt.Dimension(7, 20));
-        sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                sp_SoLuongKeyReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnl_KhoiChieu2Layout = new javax.swing.GroupLayout(pnl_KhoiChieu2);
         pnl_KhoiChieu2.setLayout(pnl_KhoiChieu2Layout);
@@ -186,8 +194,7 @@ public class DatVe extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbl_GheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_ChonGheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addComponent(btn_ChonGheNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
         pnl_KhoiChieu3Layout.setVerticalGroup(
             pnl_KhoiChieu3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,8 +272,8 @@ public class DatVe extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("PHÒNG CHIẾU:");
 
-        lbl_PhongChieu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_PhongChieu.setText("PC001");
+        cbo_PhongChieu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PHÒNG CHIẾU", "PC001" }));
+        cbo_PhongChieu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout pnl_KhoiChieu5Layout = new javax.swing.GroupLayout(pnl_KhoiChieu5);
         pnl_KhoiChieu5.setLayout(pnl_KhoiChieu5Layout);
@@ -274,16 +281,16 @@ public class DatVe extends javax.swing.JFrame {
             pnl_KhoiChieu5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_KhoiChieu5Layout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(15, 15, 15)
-                .addComponent(lbl_PhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbo_PhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_KhoiChieu5Layout.setVerticalGroup(
             pnl_KhoiChieu5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_KhoiChieu5Layout.createSequentialGroup()
                 .addGroup(pnl_KhoiChieu5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_PhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbo_PhongChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
 
@@ -293,7 +300,6 @@ public class DatVe extends javax.swing.JFrame {
         jLabel10.setText("ĐỊNH DẠNG PHIM:");
 
         lbl_DinhDangPhim.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_DinhDangPhim.setText("PHIM 3D");
 
         javax.swing.GroupLayout pnl_KhoiChieu6Layout = new javax.swing.GroupLayout(pnl_KhoiChieu6);
         pnl_KhoiChieu6.setLayout(pnl_KhoiChieu6Layout);
@@ -319,8 +325,7 @@ public class DatVe extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("GIỜ CHIẾU:");
 
-        lbl_GioChieu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_GioChieu.setText("15:00:00 - 16:45:00");
+        cbo_GioChieu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout pnl_KhoiChieu7Layout = new javax.swing.GroupLayout(pnl_KhoiChieu7);
         pnl_KhoiChieu7.setLayout(pnl_KhoiChieu7Layout);
@@ -328,17 +333,21 @@ public class DatVe extends javax.swing.JFrame {
             pnl_KhoiChieu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_KhoiChieu7Layout.createSequentialGroup()
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(lbl_GioChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbo_GioChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnl_KhoiChieu7Layout.setVerticalGroup(
             pnl_KhoiChieu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_KhoiChieu7Layout.createSequentialGroup()
-                .addGroup(pnl_KhoiChieu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_GioChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                .addGroup(pnl_KhoiChieu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_KhoiChieu7Layout.createSequentialGroup()
+                        .addComponent(cbo_GioChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 2, Short.MAX_VALUE))
+                    .addGroup(pnl_KhoiChieu7Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pnl_KhoiChieu8.setBackground(new java.awt.Color(255, 255, 255));
@@ -346,8 +355,8 @@ public class DatVe extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("NGÀY CHIẾU:");
 
-        lbl_NgayChieu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_NgayChieu.setText("2021-12-14");
+        cbo_NgayChieu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NGÀY CHIẾU", "2021-12-14" }));
+        cbo_NgayChieu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout pnl_KhoiChieu8Layout = new javax.swing.GroupLayout(pnl_KhoiChieu8);
         pnl_KhoiChieu8.setLayout(pnl_KhoiChieu8Layout);
@@ -355,17 +364,23 @@ public class DatVe extends javax.swing.JFrame {
             pnl_KhoiChieu8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_KhoiChieu8Layout.createSequentialGroup()
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(lbl_NgayChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnl_KhoiChieu8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_KhoiChieu8Layout.createSequentialGroup()
+                    .addGap(126, 126, 126)
+                    .addComponent(cbo_NgayChieu, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         pnl_KhoiChieu8Layout.setVerticalGroup(
             pnl_KhoiChieu8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_KhoiChieu8Layout.createSequentialGroup()
-                .addGroup(pnl_KhoiChieu8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_NgayChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
+            .addGroup(pnl_KhoiChieu8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_KhoiChieu8Layout.createSequentialGroup()
+                    .addGap(1, 1, 1)
+                    .addComponent(cbo_NgayChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -377,26 +392,28 @@ public class DatVe extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(pnl_KhoiChieu2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(pnl_KhoiChieu5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnl_KhoiChieu6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnl_KhoiChieu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnl_KhoiChieu8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(45, 45, 45)))
-                            .addComponent(pnl_KhoiChieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnl_KhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(pnl_KhoiChieu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(pnl_KhoiChieu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(pnl_KhoiChieu8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(pnl_KhoiChieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pnl_KhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(pnl_KhoiChieu5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(pnl_KhoiChieu6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(44, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(120, 120, 120))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +422,7 @@ public class DatVe extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(50, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -414,19 +431,19 @@ public class DatVe extends javax.swing.JFrame {
                         .addComponent(pnl_KhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(pnl_KhoiChieu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnl_KhoiChieu8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnl_KhoiChieu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnl_KhoiChieu5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnl_KhoiChieu6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(pnl_KhoiChieu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(pnl_KhoiChieu8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addGap(38, 38, 38)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 79, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -445,26 +462,32 @@ public class DatVe extends javax.swing.JFrame {
 
     public static DatVe Instance;
     public JLabel lblvitri;
-    
+    public JLabel giaVe;
+
     File f = new File("");
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     ChonChoNgoi ccn = new ChonChoNgoi();
-    
+
     QLSUATCHIEUDAO qlsuatchieudao = new QLSUATCHIEUDAO();
     QLGIAVEDAO qlvedao = new QLGIAVEDAO();
     QLVEDATDAO qlvedatdao = new QLVEDATDAO();
-    
+
     SUATCHIEU suatchieu = new SUATCHIEU();
     PHIM phim = new PHIM();
-    List<GIAVE> listGiaVe = null;
     VEDAT vedat = new VEDAT();
+    List<GIAVE> listGiaVe = null;
+    List<SUATCHIEU> listSuatChieu = null;
+    List<SUATCHIEU> listGioChieu = null;
     
+
     private void init() {
         this.setIconImage(XImage.getAppIcon());
         designTextPane(txt_Tenfilm);
         Instance = this;
         lblvitri = lbl_GheNgoi;
-        
+        giaVe = lbl_GiaVe;
+        SetVisible();
+        addEventComboBox();
     }
 
     private void designTextPane(JTextPane txt) {
@@ -477,7 +500,7 @@ public class DatVe extends javax.swing.JFrame {
         StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
         style.setParagraphAttributes(0, style.getLength(), align, false);
     }
-    
+
     public void fillToFormDatVe(PHIM p) {
         phim = p;
         listGiaVe = qlvedao.selectAllGiaVe();
@@ -486,59 +509,199 @@ public class DatVe extends javax.swing.JFrame {
             lbl_HinhFilm.setIcon(XImage.ResizeImage(lbl_HinhFilm.getWidth(), lbl_HinhFilm.getHeight(), duongdanPoster + p.getPOSTER()));
         } catch (Exception e) {
         }
-        
+
         txt_Tenfilm.setText(p.getTEN_PHIM());
-        suatchieu = qlsuatchieudao.selectebyMaPhim(p.getMA_PHIM());
-        lbl_PhongChieu.setText(suatchieu.getMA_PHONG_CHIEU());
-        lbl_DinhDangPhim.setText(suatchieu.getTEN_DINH_DANG_PHIM());
-        lbl_GioChieu.setText(suatchieu.getGIO_KET_THUC() + " - " + suatchieu.getGIO_KET_THUC());
-        lbl_NgayChieu.setText(suatchieu.getNGAY_CHIEU() + "");
+
         for (GIAVE giave : listGiaVe) {
-            if(giave.getLOAI_VE().equalsIgnoreCase("Vé Thường")) {
+            if (giave.getLOAI_VE().equalsIgnoreCase("Vé Thường")) {
                 lbl_GiaVe.setText(formatter.format(giave.getDON_GIA()) + " VNĐ");
             }
         }
+
         autoCreateMaVe();
+        fillToComBoBoxNgayChieu(p);
     }
     
-    public void autoCreateMaVe() {
+    private void autoCreateMaVe() {
         String manv;
-        while (true) {  
+        while (true) {
             Random rand = new Random();
-            int ranNum = rand.nextInt(100000)+1;
+            int ranNum = rand.nextInt(100000) + 1;
             manv = "VD" + ranNum;
-             System.out.println(manv);
-            if(qlvedatdao.selectebyID(manv) == null) {
+            if (qlvedatdao.selectebyID(manv) == null) {
                 break;
             }
         }
         lbl_MaVe.setText(manv);
     }
-    
-    
-    private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sp_SoLuongKeyReleased
 
-    public void setViTriNgoi(String vitri) {
-        this.lbl_GheNgoi.setText(vitri);
+    private void addEventComboBox() {
+        cbo_NgayChieu.addItemListener((ItemEvent e) -> {
+            if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (cbo_NgayChieu.getSelectedIndex() != 0) {
+                        cbo_GioChieu.setVisible(true);
+                        Date GioChieu = (Date) cbo_NgayChieu.getSelectedItem();
+                        fillToComBoBoxGioChieu(GioChieu);
+                    } else {
+                        SetVisible();
+                    }
+                    
+                }
+            }
+        });
+
+        cbo_GioChieu.addItemListener((ItemEvent e) -> {
+            if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (cbo_GioChieu.getSelectedIndex() != 0) {
+                        cbo_PhongChieu.setVisible(true);
+                        Date NgayChieu = (Date) cbo_NgayChieu.getSelectedItem();
+                        String gioChieu = (String) cbo_GioChieu.getSelectedItem();
+                        String gioBatDau = gioChieu.substring(0, gioChieu.lastIndexOf("-") - 1);
+                        String gioKetThuc = gioChieu.substring(gioChieu.lastIndexOf("-") + 2);
+                        fillToComBoBoxPhongChieu(NgayChieu, gioBatDau, gioKetThuc);
+                    } else {
+                        cbo_PhongChieu.setVisible(false);
+                        btn_ChonGheNgoi.setVisible(false);
+                        lbl_DinhDangPhim.setText("");
+                        lbl_GheNgoi.setText("");
+                        btn_ThemVaoGioHang.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+        cbo_PhongChieu.addItemListener((ItemEvent e) -> {
+            if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (cbo_PhongChieu.getSelectedIndex() != 0) {
+                        String PC = (String) cbo_PhongChieu.getSelectedItem();
+                        Date NgayChieu = (Date) cbo_NgayChieu.getSelectedItem();
+                        String gioChieu = (String) cbo_GioChieu.getSelectedItem();
+                        Time gioBatDau = Time.valueOf(gioChieu.substring(0, gioChieu.lastIndexOf("-") - 1));
+                        Time gioKetThuc = Time.valueOf(gioChieu.substring(gioChieu.lastIndexOf("-") + 2));
+                        for (SUATCHIEU suatchieu1 : listSuatChieu) {
+                            if ((suatchieu1.getNGAY_CHIEU().compareTo(NgayChieu) == 0) && (suatchieu1.getGIO_BAT_DAU().compareTo(gioBatDau) == 0)
+                                    && (suatchieu1.getGIO_KET_THUC().compareTo(gioKetThuc) == 0) && suatchieu1.getMA_PHONG_CHIEU().equalsIgnoreCase(PC)) {
+                                lbl_DinhDangPhim.setText(suatchieu1.getTEN_DINH_DANG_PHIM());
+                                btn_ChonGheNgoi.setVisible(true);
+                                btn_ThemVaoGioHang.setEnabled(true);
+                            }
+                        }
+                    } else {
+                        btn_ChonGheNgoi.setVisible(false);
+                        lbl_DinhDangPhim.setText("");
+                        lbl_GheNgoi.setText("");
+                        btn_ThemVaoGioHang.setEnabled(false);
+                    }
+                }
+            }
+        });
+    }
+
+    private void fillToComBoBoxNgayChieu(PHIM p) {
+        try {
+            listSuatChieu = qlsuatchieudao.selectebyMaPhim(p.getMA_PHIM());
+            DefaultComboBoxModel modelNgayChieu = (DefaultComboBoxModel) cbo_NgayChieu.getModel();
+            cbo_NgayChieu.removeAllItems();
+            modelNgayChieu.addElement("NGÀY CHIẾU");
+            for (SUATCHIEU suatchieu1 : listSuatChieu) {
+                modelNgayChieu.addElement(suatchieu1.getNGAY_CHIEU());
+                suatchieu = suatchieu1;
+            }
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void fillToComBoBoxGioChieu(Date NgayChieu) {
+        try {
+            listSuatChieu = qlsuatchieudao.selectebyGioChieu(phim.getMA_PHIM(), String.valueOf(NgayChieu));
+            DefaultComboBoxModel modelGioChieu = (DefaultComboBoxModel) cbo_GioChieu.getModel();
+            cbo_GioChieu.removeAllItems();
+            modelGioChieu.addElement("GIỜ CHIẾU");
+            for (SUATCHIEU suatchieu1 : listSuatChieu) {
+                modelGioChieu.addElement(suatchieu1.getGIO_BAT_DAU() + " - " + suatchieu1.getGIO_KET_THUC());
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    private void fillToComBoBoxPhongChieu(Date NgayChieu, String gioBatDau, String gioKetThuc) {
+        try {
+            listSuatChieu = qlsuatchieudao.selectebyPhongChieu(phim.getMA_PHIM(), String.valueOf(NgayChieu), gioBatDau, gioKetThuc);
+            DefaultComboBoxModel modelPhongChieu = (DefaultComboBoxModel) cbo_PhongChieu.getModel();
+            cbo_PhongChieu.removeAllItems();
+            modelPhongChieu.addElement("PHÒNG CHIẾU");
+            for (SUATCHIEU suatchieu1 : listSuatChieu) {
+                modelPhongChieu.addElement(suatchieu1.getMA_PHONG_CHIEU());
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void SetVisible() {
+        cbo_GioChieu.setVisible(false);
+        cbo_PhongChieu.setVisible(false);
+        btn_ChonGheNgoi.setVisible(false);
+        lbl_DinhDangPhim.setText("");
+        lbl_GheNgoi.setText("");
+        btn_ThemVaoGioHang.setEnabled(false);
     }
     
+    private boolean validateForm() {
+        String loi = "";
+        if(lbl_GheNgoi.getText().equals("") || lbl_GheNgoi.getText() == null) {
+            loi += "VUI LÒNG CHỌN CHỖ NGỒI!\n";
+        }
+        if(sp_SoLuong.getValue().hashCode() <= 0) {
+            sp_SoLuong.setValue(0);
+            sp_SoLuong.setFocusable(true);
+            loi += "SỐ LƯỢNG PHẢI LỚN HƠN 0!";
+        }
+        if(!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "LỖI", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
     private void btn_ChonGheNgoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChonGheNgoiActionPerformed
         // TODO add your handling code here:
-        if(ccn.isVisible()) {
-            ccn.setVisible(false); 
-            ccn.setVisible(true); 
+        listGiaVe = qlvedao.selectAllGiaVe();
+        if (ccn.isVisible()) {
+            ccn.setVisible(false);
+            ccn.setVisible(true);
             ccn.fillToFormChonGhe(phim, suatchieu);
+            for (GIAVE giave : listGiaVe) {
+                if (giave.getLOAI_VE().equalsIgnoreCase("Vé Thường")) {
+                    ChonChoNgoi.Instance.giave = giave.getDON_GIA();
+                }
+            }
+
         } else {
-            ccn.setVisible(true); 
+            ccn.setVisible(true);
             ccn.fillToFormChonGhe(phim, suatchieu);
+            for (GIAVE giave : listGiaVe) {
+                if (giave.getLOAI_VE().equalsIgnoreCase("Vé Thường")) {
+                    ChonChoNgoi.Instance.giave = giave.getDON_GIA();
+                }
+            }
         }
-         
+
     }//GEN-LAST:event_btn_ChonGheNgoiActionPerformed
 
-    
-    
+    private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
+        // TODO add your handling code here:
+        if(validateForm()) {
+            JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -577,6 +740,9 @@ public class DatVe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSMaterialButtonRectangle btn_ChonGheNgoi;
     private rojerusan.RSMaterialButtonRectangle btn_ThemVaoGioHang;
+    private rojerusan.RSComboMetro cbo_GioChieu;
+    private rojerusan.RSComboMetro cbo_NgayChieu;
+    private rojerusan.RSComboMetro cbo_PhongChieu;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -591,11 +757,8 @@ public class DatVe extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_DinhDangPhim;
     private javax.swing.JLabel lbl_GheNgoi;
     private javax.swing.JLabel lbl_GiaVe;
-    private javax.swing.JLabel lbl_GioChieu;
     private javax.swing.JLabel lbl_HinhFilm;
     private javax.swing.JLabel lbl_MaVe;
-    private javax.swing.JLabel lbl_NgayChieu;
-    private javax.swing.JLabel lbl_PhongChieu;
     private javax.swing.JPanel pnl_KhoiChieu;
     private javax.swing.JPanel pnl_KhoiChieu1;
     private javax.swing.JPanel pnl_KhoiChieu2;

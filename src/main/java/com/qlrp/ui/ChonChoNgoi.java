@@ -11,6 +11,7 @@ import com.qlrp.entity.LOAIGHE;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.PHONGCHIEU;
 import com.qlrp.entity.SUATCHIEU;
+import static com.qlrp.ui.DatVe.Instance;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -110,7 +111,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        txt_NgayChieuDinhDangPhim = new javax.swing.JTextPane();
         txt_Tenfilm = new javax.swing.JTextPane();
         jPanel11 = new javax.swing.JPanel();
         txt_ChoNgoi = new javax.swing.JTextPane();
@@ -649,15 +649,9 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
 
-        txt_NgayChieuDinhDangPhim.setEditable(false);
-        txt_NgayChieuDinhDangPhim.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        txt_NgayChieuDinhDangPhim.setText("10/07/2022  - PHIM 3D PHỤ ĐỀ");
-        txt_NgayChieuDinhDangPhim.setFocusable(false);
-        txt_NgayChieuDinhDangPhim.setOpaque(false);
-
         txt_Tenfilm.setEditable(false);
         txt_Tenfilm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txt_Tenfilm.setText("DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS");
+        txt_Tenfilm.setText("SPIDERMAN - NO WAY HOME");
         txt_Tenfilm.setFocusable(false);
         txt_Tenfilm.setOpaque(false);
 
@@ -665,21 +659,17 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_NgayChieuDinhDangPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txt_Tenfilm, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_NgayChieuDinhDangPhim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_Tenfilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
@@ -696,16 +686,16 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(txt_ChoNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(txt_ChoNgoi)
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(txt_ChoNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -721,9 +711,9 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(txt_ThoiGianChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(txt_ThoiGianChieu, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,7 +728,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
 
         txt_TongTien.setEditable(false);
         txt_TongTien.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        txt_TongTien.setText("TỔNG TIỀN :  0 VNĐ");
+        txt_TongTien.setText("GIÁ GHẾ :  0 VNĐ");
         txt_TongTien.setFocusable(false);
         txt_TongTien.setOpaque(false);
 
@@ -747,16 +737,16 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(txt_TongTien)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(txt_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -848,7 +838,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl_PhongChieu)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -890,7 +880,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                         .addComponent(pnl_ShowGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -905,7 +895,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 977, Short.MAX_VALUE)
+            .addGap(0, 974, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -916,16 +906,23 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     File f = new File("");
+    DecimalFormat formatter = new DecimalFormat("###,###,###");
     QLGHENGOIDAO qlghengoidao = new QLGHENGOIDAO();
     QLPHONGCHIEUDAO qlphongchieudao = new QLPHONGCHIEUDAO();
     List<GHENGOI> listGheNgoi = null;
     PHONGCHIEU phongchieu = new PHONGCHIEU();
     List<LOAIGHE> listLoaiGhe = null;
+    public static ChonChoNgoi Instance;
+    public Double giave;
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
         designTextPane(txt_Tenfilm);
-        designTextPane(txt_NgayChieuDinhDangPhim);
+        designTextPane(txt_TongTien);
+        designTextPane(txt_ThoiGianChieu);
+        designTextPane(txt_ChoNgoi);
+        Instance = this;
+        this.getContentPane().setBackground( new Color(255, 255, 255) );
     }
 
     private void DrawForm(SUATCHIEU sc) {
@@ -960,9 +957,9 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                         txt_ChoNgoi.setText("CHỖ NGỒI: " + GHE.getMA_GHE());
                         for (LOAIGHE loaighe : listLoaiGhe) {
                             if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
-                                txt_TongTien.setText("TỔNG TIỀN: " + formatter.format(loaighe.getGIA()) + " VNĐ");
+                                txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(loaighe.getGIA()) + " VNĐ");
+                                DatVe.Instance.giaVe.setText(formatter.format(giave + loaighe.getGIA()) + " VNĐ");
                             }
-
                         }
                         DatVe.Instance.lblvitri.setText(GHE.getMA_GHE());
                     }
@@ -1000,7 +997,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     public void fillToFormChonGhe(PHIM p, SUATCHIEU sc) {
         DrawForm(sc);
         txt_Tenfilm.setText(p.getTEN_PHIM());
-        txt_NgayChieuDinhDangPhim.setText(sc.getNGAY_CHIEU() + " - " + sc.getTEN_DINH_DANG_PHIM() + " PHỤ ĐỀ");
         txt_ThoiGianChieu.setText("GIỜ CHIẾU: " + sc.getGIO_BAT_DAU() + " - " + sc.getGIO_KET_THUC());
         lbl_PhongChieu.setText("PHÒNG CHIẾU: " + sc.getMA_PHONG_CHIEU());
     }
@@ -1118,7 +1114,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     private rojeru_san.RSButton rSButton265;
     private rojeru_san.RSButton rSButton266;
     private javax.swing.JTextPane txt_ChoNgoi;
-    private javax.swing.JTextPane txt_NgayChieuDinhDangPhim;
     private javax.swing.JTextPane txt_Tenfilm;
     private javax.swing.JTextPane txt_ThoiGianChieu;
     private javax.swing.JTextPane txt_TongTien;
