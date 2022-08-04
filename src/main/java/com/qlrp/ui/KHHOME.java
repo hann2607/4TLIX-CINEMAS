@@ -24,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import static java.lang.Thread.sleep;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -33,9 +34,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import rojerusan.RSTableMetro;
 
 /**
  *
@@ -46,7 +49,13 @@ public class KHHOME extends javax.swing.JFrame {
     /**
      * Creates new form KHACHHANG_HOME
      */
+    public static KHHOME Instance;
+    public RSTableMetro table;
+    public JLabel lbl;
+    public double tienVe = 0;
+    
     File file = new File("");
+    DecimalFormat formatter = new DecimalFormat("###,###,###");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
     QLKMDAO qlkhuyenmaidao = new QLKMDAO();
@@ -61,7 +70,7 @@ public class KHHOME extends javax.swing.JFrame {
     public KHHOME() {
         initComponents();
         setLocationRelativeTo(null);
-
+        
         init();
     }
 
@@ -81,11 +90,11 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         pnl_cart = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojerusan.RSTableMetro();
+        tbl_GioHang = new rojerusan.RSTableMetro();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
-        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
+        lbl_Cart_TongTien = new javax.swing.JLabel();
+        btn_Cart_XoaHet = new rojerusan.RSMaterialButtonRectangle();
+        btn_Cart_ThanhToan = new rojerusan.RSMaterialButtonRectangle();
         jPanel5 = new javax.swing.JPanel();
         btn_SoLuong = new com.k33ptoo.components.KButton();
         txt_Search_Film = new javax.swing.JTextField();
@@ -176,36 +185,37 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_cart.setBackground(new java.awt.Color(255, 255, 255));
         pnl_cart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_GioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "SPIDER - NO WAY HOME", "2", "100.000 VNĐ", null},
-                {null, "THOR 4 - LOVE AND THUNDER", "3", "200.000 VNĐ", null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "HÌNH", "TÊN SP", "SỐ LƯỢNG", "GIÁ", ""
             }
         ));
-        rSTableMetro1.setColorBordeFilas(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        rSTableMetro1.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        rSTableMetro1.setRowHeight(60);
-        jScrollPane2.setViewportView(rSTableMetro1);
+        tbl_GioHang.setColorBordeFilas(new java.awt.Color(255, 255, 255));
+        tbl_GioHang.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_GioHang.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        tbl_GioHang.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tbl_GioHang.setRowHeight(110);
+        jScrollPane2.setViewportView(tbl_GioHang);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("GIỎ HÀNG");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("TỔNG TIỀN: 300.000 VNĐ");
+        lbl_Cart_TongTien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_Cart_TongTien.setText("TỔNG TIỀN: 300.000 VNĐ");
 
-        rSMaterialButtonRectangle1.setText("XÓA HẾT");
-        rSMaterialButtonRectangle1.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_Cart_XoaHet.setText("XÓA HẾT");
+        btn_Cart_XoaHet.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_Cart_XoaHet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Cart_XoaHetActionPerformed(evt);
+            }
+        });
 
-        rSMaterialButtonRectangle2.setText("THANH TOÁN");
-        rSMaterialButtonRectangle2.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_Cart_ThanhToan.setText("THANH TOÁN");
+        btn_Cart_ThanhToan.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout pnl_cartLayout = new javax.swing.GroupLayout(pnl_cart);
         pnl_cart.setLayout(pnl_cartLayout);
@@ -219,7 +229,7 @@ public class KHHOME extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cartLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel6))))
+                                .addComponent(lbl_Cart_TongTien))))
                     .addGroup(pnl_cartLayout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addComponent(jLabel5)
@@ -227,9 +237,9 @@ public class KHHOME extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(pnl_cartLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(rSMaterialButtonRectangle1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Cart_XoaHet, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Cart_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_cartLayout.setVerticalGroup(
@@ -240,11 +250,11 @@ public class KHHOME extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Cart_TongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_cartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSMaterialButtonRectangle1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSMaterialButtonRectangle2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Cart_XoaHet, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Cart_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -376,12 +386,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -832,6 +842,9 @@ public class KHHOME extends javax.swing.JFrame {
         setPlaceHolder(txt_Search_DoAn, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_KhuyenMai, "Nhập để tìm kiếm...");
         pnl_cart.setVisible(false);
+        Instance = this;
+        table = tbl_GioHang;
+        lbl = lbl_Cart_TongTien;
 //        setImageSlide();
         RunSlide();
         CustomUIJScroll(jScrollPane1);
@@ -976,7 +989,7 @@ public class KHHOME extends javax.swing.JFrame {
                         if (ctp.isVisible()) {
                             ctp.setVisible(false);
                             ctp.setVisible(true);
-                            ctp.fillToChiTietPhim(p);
+                            ctp.fillToChiTietPhim(p);                            
                         } else {
                             ctp.setVisible(true);
                             ctp.fillToChiTietPhim(p);
@@ -1114,6 +1127,11 @@ public class KHHOME extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void tongtien() {
+        double tt = tienVe;
+        lbl_Cart_TongTien.setText("TỔNG TIỀN: " + formatter.format(tt) + " VNĐ");
+    }
 
     private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
         // TODO add your handling code here:
@@ -1179,6 +1197,14 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_cart.setVisible(false);
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
+    private void btn_Cart_XoaHetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_XoaHetActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
+        model.setRowCount(0);
+        model.fireTableDataChanged();
+        
+    }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1218,6 +1244,8 @@ public class KHHOME extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Avatar;
     private javax.swing.JButton btn_Cart;
+    private rojerusan.RSMaterialButtonRectangle btn_Cart_ThanhToan;
+    private rojerusan.RSMaterialButtonRectangle btn_Cart_XoaHet;
     private javax.swing.JButton btn_NextKhuyenMai;
     private com.k33ptoo.components.KButton btn_SoLuong;
     private javax.swing.JButton btn_nextDoAn;
@@ -1240,7 +1268,6 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
@@ -1275,6 +1302,7 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea24;
     private javax.swing.JTextArea jTextArea25;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbl_Cart_TongTien;
     private javax.swing.JLabel lbl_poster;
     private javax.swing.JPanel pnl_DoAn;
     private javax.swing.JPanel pnl_KhuyenMai;
@@ -1283,9 +1311,7 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_film;
     private rojerusan.RSPanelsSlider pnl_slideDoAn;
     private rojerusan.RSPanelsSlider pnl_slideKhuyenMai;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
-    private rojerusan.RSTableMetro rSTableMetro1;
+    private rojerusan.RSTableMetro tbl_GioHang;
     private javax.swing.JTextField txt_Search_DoAn;
     private javax.swing.JTextField txt_Search_Film;
     private javax.swing.JTextField txt_Search_KhuyenMai;

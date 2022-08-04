@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JTextPane;
@@ -491,7 +492,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
@@ -507,7 +508,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
+            .addGap(0, 126, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
@@ -540,7 +541,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addContainerGap()
@@ -556,7 +557,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
+            .addGap(0, 126, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addContainerGap()
@@ -589,7 +590,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addContainerGap()
@@ -605,7 +606,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
+            .addGap(0, 126, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addContainerGap()
@@ -914,6 +915,8 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     List<LOAIGHE> listLoaiGhe = null;
     public static ChonChoNgoi Instance;
     public Double giave;
+    public ArrayList<String> MaGhe = new ArrayList<>();
+    public ArrayList<Double> GiaGhe = new ArrayList<>();
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
@@ -922,7 +925,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         designTextPane(txt_ThoiGianChieu);
         designTextPane(txt_ChoNgoi);
         Instance = this;
-        this.getContentPane().setBackground( new Color(255, 255, 255) );
+        this.getContentPane().setBackground(new Color(255, 255, 255));
     }
 
     private void DrawForm(SUATCHIEU sc) {
@@ -930,6 +933,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         listGheNgoi = qlghengoidao.SELECT_THEOPHONGCHIEU_SQL(sc.getMA_PHONG_CHIEU());
         listLoaiGhe = qlghengoidao.selectAllLoaiGhe();
         DecimalFormat formatter = new DecimalFormat("###,###,###");
+        
         
         pnl_ShowGhe.removeAll();
         for (int i = 0; i < listGheNgoi.size(); i++) {
@@ -954,20 +958,140 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        txt_ChoNgoi.setText("CHỖ NGỒI: " + GHE.getMA_GHE());
-                        for (LOAIGHE loaighe : listLoaiGhe) {
-                            if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
-                                txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(loaighe.getGIA()) + " VNĐ");
-                                DatVe.Instance.giaVe.setText(formatter.format(giave + loaighe.getGIA()) + " VNĐ");
+                        if (MaGhe == null) {
+                            MaGhe.add(GHE.getMA_GHE());
+                            DatVe.Instance.MaGhe = MaGhe;
+                            if (MaGhe != null) {
+                                String ChoNgoi = "CHỖ NGỒI: ";
+                                String ChoNgoiFormDatVe = "";
+                                for (int j = 0; j < MaGhe.size(); j++) {
+                                    if (j == 0) {
+                                        ChoNgoi += MaGhe.get(j);
+                                        ChoNgoiFormDatVe += MaGhe.get(j);
+                                    } else {
+                                        ChoNgoi += ", " + MaGhe.get(j);
+                                        ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                                    }
+                                }
+                                DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                                txt_ChoNgoi.setText(ChoNgoi);
+                            }
+                        } else {
+                            if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
+                                boolean isTrung = false;
+                                for (String string : MaGhe) {
+                                    if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
+                                        isTrung = true;
+                                    }
+                                }
+                                if (!isTrung) {
+                                    MaGhe.add(GHE.getMA_GHE());
+                                    DatVe.Instance.MaGhe = MaGhe;
+
+                                    if (MaGhe != null) {
+                                        String ChoNgoi = "CHỖ NGỒI: ";
+                                        String ChoNgoiFormDatVe = "";
+                                        for (int j = 0; j < MaGhe.size(); j++) {
+                                            if (j == 0) {
+                                                ChoNgoi += MaGhe.get(j);
+                                                ChoNgoiFormDatVe += MaGhe.get(j);
+                                            } else {
+                                                ChoNgoi += ", " + MaGhe.get(j);
+                                                ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                                            }
+                                        }
+                                        DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                                        txt_ChoNgoi.setText(ChoNgoi);
+                                        for (LOAIGHE loaighe : listLoaiGhe) {
+                                            if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
+                                                GiaGhe.add(loaighe.getGIA());
+                                            }
+                                        }
+                                        double TongTien = 0;
+                                        if (GiaGhe != null) {
+                                            if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                                for (Double double1 : GiaGhe) {
+                                                    TongTien += double1;
+                                                }
+                                            } else {
+                                                GiaGhe.remove(0);
+                                                if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                                    for (Double double1 : GiaGhe) {
+                                                        TongTien += double1;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
+                                        DatVe.Instance.giaGhe = TongTien;
+                                        DatVe.Instance.tongtien();
+                                    }
+                                }
+                            } else {
+                                if (MaGhe != null) {
+                                    MaGhe.remove(0);
+                                    if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
+                                        boolean isTrung = false;
+                                        for (String string : MaGhe) {
+                                            if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
+                                                isTrung = true;
+                                            }
+                                        }
+                                        if (!isTrung) {
+                                            MaGhe.add(GHE.getMA_GHE());
+                                            DatVe.Instance.MaGhe = MaGhe;
+
+                                            if (MaGhe != null) {
+                                                String ChoNgoi = "CHỖ NGỒI: ";
+                                                String ChoNgoiFormDatVe = "";
+                                                for (int j = 0; j < MaGhe.size(); j++) {
+                                                    if (j == 0) {
+                                                        ChoNgoi += MaGhe.get(j);
+                                                        ChoNgoiFormDatVe += MaGhe.get(j);
+                                                    } else {
+                                                        ChoNgoi += ", " + MaGhe.get(j);
+                                                        ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                                                    }
+                                                }
+                                                DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                                                txt_ChoNgoi.setText(ChoNgoi);
+                                                for (LOAIGHE loaighe : listLoaiGhe) {
+                                                    if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
+                                                        GiaGhe.add(loaighe.getGIA());
+                                                    }
+                                                }
+                                                double TongTien = 0;
+                                                if (GiaGhe != null) {
+                                                    if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                                        for (Double double1 : GiaGhe) {
+                                                            TongTien += double1;
+                                                        }
+                                                    } else {
+                                                        GiaGhe.remove(0);
+                                                        if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                                            for (Double double1 : GiaGhe) {
+                                                                TongTien += double1;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
+                                                DatVe.Instance.giaGhe = TongTien;
+                                                DatVe.Instance.tongtien();
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
-                        DatVe.Instance.lblvitri.setText(GHE.getMA_GHE());
+                        DatVe.Instance.listGiaGhe = GiaGhe;
                     }
+
                 }
             });
             pnl_ShowGhe.add(button);
         }
-        
+
         //set hình ghế + giá
         String duongdanGhe = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\loaighe\\";
         for (LOAIGHE loaighe : listLoaiGhe) {
@@ -1010,6 +1134,13 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         SimpleAttributeSet align = new SimpleAttributeSet();
         StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
         style.setParagraphAttributes(0, style.getLength(), align, false);
+    }
+    
+    public void clearform() {
+        MaGhe = new ArrayList<>();
+        GiaGhe = new ArrayList<>();
+        txt_ChoNgoi.setText("CHỖ NGỒI: ");
+        txt_TongTien.setText("GIÁ GHẾ: ");
     }
 
     /**

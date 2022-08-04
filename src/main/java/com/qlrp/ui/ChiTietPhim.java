@@ -559,10 +559,12 @@ public class ChiTietPhim extends javax.swing.JFrame {
                 datVe.setVisible(true);
                 datVe.fillToFormDatVe(p);
                 datVe.SetVisible();
+                datVe.clearForm();
             } else {
                 datVe.setVisible(true);
                 datVe.fillToFormDatVe(p);
                 datVe.SetVisible();
+                datVe.clearForm();
             } 
         } else {
             JOptionPane.showMessageDialog(this, "PHIM NÀY HIỆN CHƯA CHIẾU TẠI RẠP,  \n CHÚNG TÔI VÔ CÙNG XIN LỖI VÌ SỰ BẤT TIỆN NÀY!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
