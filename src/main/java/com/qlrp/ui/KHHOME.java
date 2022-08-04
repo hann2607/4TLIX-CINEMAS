@@ -5,7 +5,7 @@
 package com.qlrp.ui;
 
 import com.qlrp.dao.QLDADAO;
-import com.qlrp.dao.QLKHUYENMAIDAO;
+import com.qlrp.dao.QLKMDAO;
 import com.qlrp.dao.QLPHIMDAO;
 import com.qlrp.entity.DOAN;
 import com.qlrp.entity.KHUYENMAI;
@@ -49,7 +49,7 @@ public class KHHOME extends javax.swing.JFrame {
     File file = new File("");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
-    QLKHUYENMAIDAO qlkhuyenmaidao = new QLKHUYENMAIDAO();
+    QLKMDAO qlkhuyenmaidao = new QLKMDAO();
 
     ChiTietPhim ctp = new ChiTietPhim();
     ChiTietDoAn ctda = new ChiTietDoAn();

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author HAN-PC
  */
-public class QLKHUYENMAIDAO extends QLRPDAO<KHUYENMAI, String> {
+public class QLKMDAO extends QLRPDAO<KHUYENMAI, String> {
     String INSERT_SQL = "INSERT INTO KHUYENMAI ( MA_KHUYEN_MAI, MA_NHAN_VIEN, HINH, MO_TA, NGAY_BAT_DAU, NGAY_KET_THUC, LOAI_KHUYEN_MAI) VALUES (?, ?, ?, ?, ?, ?, ?)";
     String UPDATE_SQL = "UPDATE KHUYENMAI SET MA_NHAN_VIEN,  HINH=?,  HINH=?,  MO_TA=?, NGAY_BAT_DAU=?, NGAY_KET_THUC=?, LOAI_KHUYEN_MAI=?  WHERE MA_KHUYEN_MAI=?";
     String DELETE_SQL = "DELETE FROM KHUYENMAI WHERE MA_KHUYEN_MAI=?";
@@ -30,7 +30,7 @@ public class QLKHUYENMAIDAO extends QLRPDAO<KHUYENMAI, String> {
             XJdbc.update(INSERT_SQL, entity.getMA_KHUYEN_MAI(), entity.getMA_NHAN_VIEN(), entity.getHINH(), entity.getMO_TA(), entity.getNGAY_BAT_DAU(), entity.getNGAY_KET_THUC(),
                                     entity.getLOAI_KHUYEN_MAI());
         } catch (SQLException ex) {
-            Logger.getLogger(QLKHUYENMAIDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -40,7 +40,7 @@ public class QLKHUYENMAIDAO extends QLRPDAO<KHUYENMAI, String> {
             XJdbc.update(UPDATE_SQL, entity.getMA_NHAN_VIEN(), entity.getHINH(), entity.getMO_TA(), entity.getNGAY_BAT_DAU(), entity.getNGAY_KET_THUC(),
                                     entity.getLOAI_KHUYEN_MAI(), entity.getMA_KHUYEN_MAI());
         } catch (SQLException ex) {
-            Logger.getLogger(QLKHUYENMAIDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -49,7 +49,7 @@ public class QLKHUYENMAIDAO extends QLRPDAO<KHUYENMAI, String> {
         try {
             XJdbc.update(DELETE_SQL, id);
         } catch (SQLException ex) {
-            Logger.getLogger(QLKHUYENMAIDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QLKMDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
