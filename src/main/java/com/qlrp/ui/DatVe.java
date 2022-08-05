@@ -4,9 +4,11 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.QLGHENGOIDAO;
 import com.qlrp.dao.QLSUATCHIEUDAO;
 import com.qlrp.dao.QLGIAVEDAO;
 import com.qlrp.dao.QLVEDATDAO;
+import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIAVE;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
@@ -190,7 +192,7 @@ public class DatVe extends javax.swing.JFrame {
 
         txt_GheNgoi.setEditable(false);
         txt_GheNgoi.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        txt_GheNgoi.setText("GIÁ GHẾ :  0 VNĐ");
+        txt_GheNgoi.setText("A1");
         txt_GheNgoi.setFocusable(false);
         txt_GheNgoi.setOpaque(false);
 
@@ -490,6 +492,7 @@ public class DatVe extends javax.swing.JFrame {
     QLSUATCHIEUDAO qlsuatchieudao = new QLSUATCHIEUDAO();
     QLGIAVEDAO qlvedao = new QLGIAVEDAO();
     QLVEDATDAO qlvedatdao = new QLVEDATDAO();
+    QLGHENGOIDAO qlghengoidao = new QLGHENGOIDAO();
 
     SUATCHIEU suatchieu = new SUATCHIEU();
     PHIM phim = new PHIM();
@@ -732,7 +735,7 @@ public class DatVe extends javax.swing.JFrame {
             if (ccn.isVisible()) {
                 ccn.setVisible(false);
                 ccn.setVisible(true);
-                ccn.fillToFormChonGhe(phim, suatchieu);
+                ccn.fillToFormChonGhe(phim, suatchieu, MaGhe);
                 if (listGiaGhe == null && MaGhe == null) {
                     ccn.clearform();
                 }
@@ -742,9 +745,10 @@ public class DatVe extends javax.swing.JFrame {
                     }
                 }
 
+
             } else {
                 ccn.setVisible(true);
-                ccn.fillToFormChonGhe(phim, suatchieu);
+                ccn.fillToFormChonGhe(phim, suatchieu, MaGhe);
                 if (listGiaGhe == null && MaGhe == null) {
                     ccn.clearform();
                 }
@@ -814,6 +818,11 @@ public class DatVe extends javax.swing.JFrame {
             KHHOME.Instance.tienVe += tt;
             KHHOME.Instance.tongtien();
             JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+            for (String mg : MaGhe) {
+                GHENGOI ghengoi = qlghengoidao.selecteGhe_Ngoi(suatchieu.getMA_PHONG_CHIEU(), mg);
+                ghengoi.setDA_CHON(true);
+                qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
+            }
             fillToCart(KHHOME.Instance.table);
         }
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed

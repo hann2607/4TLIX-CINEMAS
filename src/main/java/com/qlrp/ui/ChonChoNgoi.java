@@ -1146,9 +1146,8 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         }
     }
 
-    private void updateStatusGhe(GHENGOI ghengoi, RSButton button) {
+    public void updateStatusGhe(GHENGOI ghengoi, RSButton button) {
         if (ghengoi.isDA_CHON()) {
-            qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
             button.setBackground(new Color(0, 0, 204));
             button.setColorHover(new Color(0, 0, 153));
         } else {
@@ -1159,7 +1158,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
             }
             for (RSButton btn : buttons) {
                 if (btn.getName().equalsIgnoreCase(sc.getMA_PHONG_CHIEU() + ghengoi.getMA_GHE())) {
-                    qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
                     if (ghengoi.getTEN_GHE().equalsIgnoreCase("THUONG")) {
                         btn.setBackground(new Color(255, 0, 0));
                         btn.setColorHover(new Color(255, 102, 102));
@@ -1177,12 +1175,28 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         pnl_ShowGhe.repaint();
     }
 
-    public void fillToFormChonGhe(PHIM p, SUATCHIEU sc) {
+    public void fillToFormChonGhe(PHIM p, SUATCHIEU sc, ArrayList<String> Maghe) {
         DrawForm(sc);
         txt_Tenfilm.setText(p.getTEN_PHIM());
         txt_ThoiGianChieu.setText("GIỜ CHIẾU: " + sc.getGIO_BAT_DAU() + " - " + sc.getGIO_KET_THUC());
         lbl_PhongChieu.setText("PHÒNG CHIẾU: " + sc.getMA_PHONG_CHIEU());
         this.sc = sc;
+        if (Maghe != null) {
+            Component[] com = pnl_ShowGhe.getComponents();
+            RSButton[] buttons = new RSButton[com.length];
+            for (int i = 0; i < com.length; i++) {
+                buttons[i] = (RSButton) com[i];
+            }
+            for (RSButton button : buttons) {
+                for (String mg : MaGhe) {
+                    if (button.getName().equalsIgnoreCase(sc.getMA_PHONG_CHIEU() + mg)) {
+                        button.setBackground(new Color(0, 0, 204));
+                        button.setColorHover(new Color(0, 0, 153));
+                    }
+                }
+            }
+        }
+
     }
 
     private void designTextPane(JTextPane txt) {

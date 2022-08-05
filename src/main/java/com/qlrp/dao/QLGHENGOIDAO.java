@@ -22,6 +22,7 @@ public class QLGHENGOIDAO{
     String SELECT_THEOPHONGCHIEU_SQL = "SELECT * FROM GHENGOI WHERE MA_PHONG_CHIEU = ?";
     String SELECT_ALL_LOAIGHE_SQL = "SELECT * FROM LOAIGHE";
     String UPDATE_TRANG_THAI_GHE = "UPDATE GHENGOI SET DA_CHON = ? WHERE MA_GHE = ? AND MA_PHONG_CHIEU = ?";
+    String SELECT_GHE_NGOI_SQL = "SELECT * FROM GHENGOI WHERE MA_PHONG_CHIEU = ? AND MA_GHE = ?";
 
     public void update(GHENGOI entity, String MA_PHONG_CHIEU) {
         try {
@@ -81,4 +82,11 @@ public class QLGHENGOIDAO{
         }
     }
 
+    public GHENGOI selecteGhe_Ngoi(String MA_PHONG_CHIEU, String MA_GHE) {
+        List<GHENGOI> list = this.selectbySql(SELECT_GHE_NGOI_SQL, MA_PHONG_CHIEU, MA_GHE);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 }
