@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +21,16 @@ import java.util.List;
 public class QLGHENGOIDAO{
     String SELECT_THEOPHONGCHIEU_SQL = "SELECT * FROM GHENGOI WHERE MA_PHONG_CHIEU = ?";
     String SELECT_ALL_LOAIGHE_SQL = "SELECT * FROM LOAIGHE";
+    String UPDATE_TRANG_THAI_GHE = "UPDATE GHENGOI SET DA_CHON = ? WHERE MA_GHE = ? AND MA_PHONG_CHIEU = ?";
 
+    public void update(GHENGOI entity, String MA_PHONG_CHIEU) {
+        try {
+            XJdbc.update(UPDATE_TRANG_THAI_GHE, entity.isDA_CHON(), entity.getMA_GHE(), MA_PHONG_CHIEU);
+        } catch (SQLException ex) {
+            Logger.getLogger(QLGHENGOIDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<GHENGOI> SELECT_THEOPHONGCHIEU_SQL(String MA_PHONG_CHIEU) {
         return this.selectbySql(SELECT_THEOPHONGCHIEU_SQL, MA_PHONG_CHIEU);
     }

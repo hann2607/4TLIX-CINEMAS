@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -913,6 +914,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     List<GHENGOI> listGheNgoi = null;
     PHONGCHIEU phongchieu = new PHONGCHIEU();
     List<LOAIGHE> listLoaiGhe = null;
+    SUATCHIEU sc = new SUATCHIEU();
     public static ChonChoNgoi Instance;
     public Double giave;
     public ArrayList<String> MaGhe = new ArrayList<>();
@@ -932,12 +934,11 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         phongchieu = qlphongchieudao.selectebyID(sc.getMA_PHONG_CHIEU());
         listGheNgoi = qlghengoidao.SELECT_THEOPHONGCHIEU_SQL(sc.getMA_PHONG_CHIEU());
         listLoaiGhe = qlghengoidao.selectAllLoaiGhe();
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        
-        
+
         pnl_ShowGhe.removeAll();
         for (int i = 0; i < listGheNgoi.size(); i++) {
             RSButton button = new RSButton();
+            button.setName(sc.getMA_PHONG_CHIEU() + listGheNgoi.get(i).getMA_GHE());
             if (listGheNgoi.get(i).isDA_CHON()) {
                 button.setBackground(new Color(0, 0, 204));
                 button.setColorHover(new Color(0, 0, 153));
@@ -958,133 +959,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        if (MaGhe == null) {
-                            MaGhe.add(GHE.getMA_GHE());
-                            DatVe.Instance.MaGhe = MaGhe;
-                            if (MaGhe != null) {
-                                String ChoNgoi = "CHỖ NGỒI: ";
-                                String ChoNgoiFormDatVe = "";
-                                for (int j = 0; j < MaGhe.size(); j++) {
-                                    if (j == 0) {
-                                        ChoNgoi += MaGhe.get(j);
-                                        ChoNgoiFormDatVe += MaGhe.get(j);
-                                    } else {
-                                        ChoNgoi += ", " + MaGhe.get(j);
-                                        ChoNgoiFormDatVe += ", " + MaGhe.get(j);
-                                    }
-                                }
-                                DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
-                                txt_ChoNgoi.setText(ChoNgoi);
-                            }
-                        } else {
-                            if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
-                                boolean isTrung = false;
-                                for (String string : MaGhe) {
-                                    if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
-                                        isTrung = true;
-                                    }
-                                }
-                                if (!isTrung) {
-                                    MaGhe.add(GHE.getMA_GHE());
-                                    DatVe.Instance.MaGhe = MaGhe;
-
-                                    if (MaGhe != null) {
-                                        String ChoNgoi = "CHỖ NGỒI: ";
-                                        String ChoNgoiFormDatVe = "";
-                                        for (int j = 0; j < MaGhe.size(); j++) {
-                                            if (j == 0) {
-                                                ChoNgoi += MaGhe.get(j);
-                                                ChoNgoiFormDatVe += MaGhe.get(j);
-                                            } else {
-                                                ChoNgoi += ", " + MaGhe.get(j);
-                                                ChoNgoiFormDatVe += ", " + MaGhe.get(j);
-                                            }
-                                        }
-                                        DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
-                                        txt_ChoNgoi.setText(ChoNgoi);
-                                        for (LOAIGHE loaighe : listLoaiGhe) {
-                                            if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
-                                                GiaGhe.add(loaighe.getGIA());
-                                            }
-                                        }
-                                        double TongTien = 0;
-                                        if (GiaGhe != null) {
-                                            if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
-                                                for (Double double1 : GiaGhe) {
-                                                    TongTien += double1;
-                                                }
-                                            } else {
-                                                GiaGhe.remove(0);
-                                                if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
-                                                    for (Double double1 : GiaGhe) {
-                                                        TongTien += double1;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
-                                        DatVe.Instance.giaGhe = TongTien;
-                                        DatVe.Instance.tongtien();
-                                    }
-                                }
-                            } else {
-                                if (MaGhe != null) {
-                                    MaGhe.remove(0);
-                                    if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
-                                        boolean isTrung = false;
-                                        for (String string : MaGhe) {
-                                            if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
-                                                isTrung = true;
-                                            }
-                                        }
-                                        if (!isTrung) {
-                                            MaGhe.add(GHE.getMA_GHE());
-                                            DatVe.Instance.MaGhe = MaGhe;
-
-                                            if (MaGhe != null) {
-                                                String ChoNgoi = "CHỖ NGỒI: ";
-                                                String ChoNgoiFormDatVe = "";
-                                                for (int j = 0; j < MaGhe.size(); j++) {
-                                                    if (j == 0) {
-                                                        ChoNgoi += MaGhe.get(j);
-                                                        ChoNgoiFormDatVe += MaGhe.get(j);
-                                                    } else {
-                                                        ChoNgoi += ", " + MaGhe.get(j);
-                                                        ChoNgoiFormDatVe += ", " + MaGhe.get(j);
-                                                    }
-                                                }
-                                                DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
-                                                txt_ChoNgoi.setText(ChoNgoi);
-                                                for (LOAIGHE loaighe : listLoaiGhe) {
-                                                    if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
-                                                        GiaGhe.add(loaighe.getGIA());
-                                                    }
-                                                }
-                                                double TongTien = 0;
-                                                if (GiaGhe != null) {
-                                                    if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
-                                                        for (Double double1 : GiaGhe) {
-                                                            TongTien += double1;
-                                                        }
-                                                    } else {
-                                                        GiaGhe.remove(0);
-                                                        if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
-                                                            for (Double double1 : GiaGhe) {
-                                                                TongTien += double1;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
-                                                DatVe.Instance.giaGhe = TongTien;
-                                                DatVe.Instance.tongtien();
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        DatVe.Instance.listGiaGhe = GiaGhe;
+                        eventClickButtonChonGhe(GHE, button);
                     }
 
                 }
@@ -1118,11 +993,170 @@ public class ChonChoNgoi extends javax.swing.JFrame {
 
     }
 
+    private void eventClickButtonChonGhe(GHENGOI GHE, RSButton button) {
+        if (!GHE.isDA_CHON()) {
+            if (MaGhe == null) {
+                MaGhe.add(GHE.getMA_GHE());
+                DatVe.Instance.MaGhe = MaGhe;
+                if (MaGhe != null) {
+                    String ChoNgoi = "CHỖ NGỒI: ";
+                    String ChoNgoiFormDatVe = "";
+                    for (int j = 0; j < MaGhe.size(); j++) {
+                        if (j == 0) {
+                            ChoNgoi += MaGhe.get(j);
+                            ChoNgoiFormDatVe += MaGhe.get(j);
+                        } else {
+                            ChoNgoi += ", " + MaGhe.get(j);
+                            ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                        }
+                    }
+                    DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                    txt_ChoNgoi.setText(ChoNgoi);
+                }
+            } else {
+                if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
+                    boolean isTrung = false;
+                    for (String string : MaGhe) {
+                        if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
+                            isTrung = true;
+                        }
+                    }
+                    if (!isTrung) {
+                        MaGhe.add(GHE.getMA_GHE());
+                        DatVe.Instance.MaGhe = MaGhe;
+
+                        if (MaGhe != null) {
+                            String ChoNgoi = "CHỖ NGỒI: ";
+                            String ChoNgoiFormDatVe = "";
+                            for (int j = 0; j < MaGhe.size(); j++) {
+                                if (j == 0) {
+                                    ChoNgoi += MaGhe.get(j);
+                                    ChoNgoiFormDatVe += MaGhe.get(j);
+                                } else {
+                                    ChoNgoi += ", " + MaGhe.get(j);
+                                    ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                                }
+                            }
+                            DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                            txt_ChoNgoi.setText(ChoNgoi);
+                            for (LOAIGHE loaighe : listLoaiGhe) {
+                                if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
+                                    GiaGhe.add(loaighe.getGIA());
+                                }
+                            }
+                            double TongTien = 0;
+                            if (GiaGhe != null) {
+                                if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                    for (Double double1 : GiaGhe) {
+                                        TongTien += double1;
+                                    }
+                                } else {
+                                    GiaGhe.remove(0);
+                                    if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                        for (Double double1 : GiaGhe) {
+                                            TongTien += double1;
+                                        }
+                                    }
+                                }
+                            }
+                            txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
+                            DatVe.Instance.giaGhe = TongTien;
+                            DatVe.Instance.tongtien();
+                        }
+                    }
+                } else {
+                    if (MaGhe != null) {
+                        GHENGOI gheDeleted = null;
+                        for (GHENGOI ghengoi : listGheNgoi) {
+                            if (ghengoi.getMA_GHE().equalsIgnoreCase(MaGhe.get(0))) {
+                                gheDeleted = ghengoi;
+                                break;
+                            }
+                        }
+                        MaGhe.remove(0);
+                        gheDeleted.setDA_CHON(false);
+                        updateStatusGhe(gheDeleted, button);
+
+                        if (MaGhe.size() < DatVe.Instance.sl.getValue().hashCode()) {
+                            boolean isTrung = false;
+                            for (String string : MaGhe) {
+                                if (GHE.getMA_GHE().equalsIgnoreCase(string)) {
+                                    isTrung = true;
+                                }
+                            }
+                            if (!isTrung) {
+                                MaGhe.add(GHE.getMA_GHE());
+                                DatVe.Instance.MaGhe = MaGhe;
+
+                                if (MaGhe != null) {
+                                    String ChoNgoi = "CHỖ NGỒI: ";
+                                    String ChoNgoiFormDatVe = "";
+                                    for (int j = 0; j < MaGhe.size(); j++) {
+                                        if (j == 0) {
+                                            ChoNgoi += MaGhe.get(j);
+                                            ChoNgoiFormDatVe += MaGhe.get(j);
+                                        } else {
+                                            ChoNgoi += ", " + MaGhe.get(j);
+                                            ChoNgoiFormDatVe += ", " + MaGhe.get(j);
+                                        }
+                                    }
+                                    DatVe.Instance.txt.setText(ChoNgoiFormDatVe);
+                                    txt_ChoNgoi.setText(ChoNgoi);
+                                    for (LOAIGHE loaighe : listLoaiGhe) {
+                                        if (GHE.getTEN_GHE().equalsIgnoreCase(loaighe.getTEN_GHE())) {
+                                            GiaGhe.add(loaighe.getGIA());
+                                        }
+                                    }
+                                    double TongTien = 0;
+                                    if (GiaGhe != null) {
+                                        if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                            for (Double double1 : GiaGhe) {
+                                                TongTien += double1;
+                                            }
+                                        } else {
+                                            GiaGhe.remove(0);
+                                            if (GiaGhe.size() <= DatVe.Instance.sl.getValue().hashCode()) {
+                                                for (Double double1 : GiaGhe) {
+                                                    TongTien += double1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    txt_TongTien.setText("GIÁ GHẾ: " + formatter.format(TongTien) + " VNĐ");
+                                    DatVe.Instance.giaGhe = TongTien;
+                                    DatVe.Instance.tongtien();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            DatVe.Instance.listGiaGhe = GiaGhe;
+            GHE.setDA_CHON(true);
+            updateStatusGhe(GHE, button);
+        } else {
+            JOptionPane.showMessageDialog(this, "GHẾ ĐÃ ĐƯỢC CHỌN!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void updateStatusGhe(GHENGOI ghengoi, RSButton button) {
+        if (ghengoi.isDA_CHON()) {
+            qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
+            DrawForm(sc);
+        } else {
+            qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
+            DrawForm(sc);
+        }
+        pnl_ShowGhe.revalidate();
+        pnl_ShowGhe.repaint();
+    }
+
     public void fillToFormChonGhe(PHIM p, SUATCHIEU sc) {
         DrawForm(sc);
         txt_Tenfilm.setText(p.getTEN_PHIM());
         txt_ThoiGianChieu.setText("GIỜ CHIẾU: " + sc.getGIO_BAT_DAU() + " - " + sc.getGIO_KET_THUC());
         lbl_PhongChieu.setText("PHÒNG CHIẾU: " + sc.getMA_PHONG_CHIEU());
+        this.sc = sc;
     }
 
     private void designTextPane(JTextPane txt) {
@@ -1135,7 +1169,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
         style.setParagraphAttributes(0, style.getLength(), align, false);
     }
-    
+
     public void clearform() {
         MaGhe = new ArrayList<>();
         GiaGhe = new ArrayList<>();

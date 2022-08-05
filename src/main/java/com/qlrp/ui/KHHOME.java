@@ -386,12 +386,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
