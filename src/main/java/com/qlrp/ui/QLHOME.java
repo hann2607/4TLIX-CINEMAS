@@ -2175,6 +2175,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CheckClickMenu = btn_Home;
         showPanelMenu(pnl_Home);
         this.setIconImage(XImage.getAppIcon());
+        this.setCursor(XImage.setCursor());
+
         setImageSlide();
         RunSlide();
         List<NHANVIEN> listNV = qlnvdao.selectAll();
@@ -2207,7 +2209,6 @@ public class QLHOME extends javax.swing.JFrame {
         List<SUATCHIEU> listSC = qlsuatchieudao.selectAll();
         fillToTable_SUATCHIEU(listSC);
 
-        this.setCursor(XImage.setCursor());
     }
 
     private void setColorMenuItem() {

@@ -53,7 +53,7 @@ public class KHHOME extends javax.swing.JFrame {
     public RSTableMetro table;
     public JLabel lbl;
     public double tienVe = 0;
-    
+
     File file = new File("");
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
@@ -70,7 +70,7 @@ public class KHHOME extends javax.swing.JFrame {
     public KHHOME() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         init();
     }
 
@@ -837,6 +837,8 @@ public class KHHOME extends javax.swing.JFrame {
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
+        this.setCursor(XImage.setCursor());
+
 //        setImageFilm();
         setPlaceHolder(txt_Search_Film, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_DoAn, "Nhập để tìm kiếm...");
@@ -989,7 +991,7 @@ public class KHHOME extends javax.swing.JFrame {
                         if (ctp.isVisible()) {
                             ctp.setVisible(false);
                             ctp.setVisible(true);
-                            ctp.fillToChiTietPhim(p);                            
+                            ctp.fillToChiTietPhim(p);
                         } else {
                             ctp.setVisible(true);
                             ctp.fillToChiTietPhim(p);
@@ -1127,7 +1129,7 @@ public class KHHOME extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void tongtien() {
         double tt = tienVe;
         lbl_Cart_TongTien.setText("TỔNG TIỀN: " + formatter.format(tt) + " VNĐ");
@@ -1202,7 +1204,7 @@ public class KHHOME extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
         model.setRowCount(0);
         model.fireTableDataChanged();
-        
+
     }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
 
     /**

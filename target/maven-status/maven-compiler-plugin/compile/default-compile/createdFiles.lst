@@ -254,6 +254,7 @@ com\qlrp\ui\QLHOME$12.class
 com\qlrp\ui\NewJFrame.class
 com\qlrp\ui\QLHOME$62.class
 com\qlrp\ui\NewEmployee$14.class
+com\qlrp\ui\DatVe$ImageRendererButton$1.class
 com\qlrp\ui\DatVe$5.class
 com\qlrp\ui\login$3.class
 com\qlrp\ui\SendMail$6.class
@@ -276,6 +277,7 @@ com\qlrp\ui\CHITIETHOADONui$2.class
 com\qlrp\entity\HOADON.class
 com\qlrp\ui\QLHOME$ImageRendererDoAn.class
 com\qlrp\ui\SendMail$8.class
+com\qlrp\ui\DatVe$ImageRendererButton.class
 com\qlrp\ui\login.class
 com\qlrp\ui\NewMovie$3.class
 com\qlrp\ui\QLHOME$11.class
