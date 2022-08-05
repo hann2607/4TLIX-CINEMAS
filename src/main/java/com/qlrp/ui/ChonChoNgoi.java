@@ -11,9 +11,9 @@ import com.qlrp.entity.LOAIGHE;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.PHONGCHIEU;
 import com.qlrp.entity.SUATCHIEU;
-import static com.qlrp.ui.DatVe.Instance;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -959,6 +959,13 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
+//                        if (listButtonGhe.size() <= 4) {
+//                            listButtonGhe.add(button);
+//                        } else {
+//                            listButtonGhe.remove(0);
+//                            listButtonGhe.add(button);
+//                        }
+
                         eventClickButtonChonGhe(GHE, button);
                     }
 
@@ -1142,10 +1149,29 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     private void updateStatusGhe(GHENGOI ghengoi, RSButton button) {
         if (ghengoi.isDA_CHON()) {
             qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
-            DrawForm(sc);
+            button.setBackground(new Color(0, 0, 204));
+            button.setColorHover(new Color(0, 0, 153));
         } else {
-            qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
-            DrawForm(sc);
+            Component[] com = pnl_ShowGhe.getComponents();
+            RSButton[] buttons = new RSButton[com.length];
+            for (int i = 0; i < com.length; i++) {
+                buttons[i] = (RSButton) com[i];
+            }
+            for (RSButton btn : buttons) {
+                if (btn.getName().equalsIgnoreCase(sc.getMA_PHONG_CHIEU() + ghengoi.getMA_GHE())) {
+                    qlghengoidao.update(ghengoi, sc.getMA_PHONG_CHIEU());
+                    if (ghengoi.getTEN_GHE().equalsIgnoreCase("THUONG")) {
+                        btn.setBackground(new Color(255, 0, 0));
+                        btn.setColorHover(new Color(255, 102, 102));
+                    } else if (ghengoi.getTEN_GHE().equalsIgnoreCase("VIP")) {
+                        btn.setBackground(new Color(255, 204, 0));
+                        btn.setColorHover(new Color(204, 204, 0));
+                    } else {
+                        btn.setBackground(new Color(0, 153, 0));
+                        btn.setColorHover(new Color(204, 204, 0));
+                    }
+                }
+            }
         }
         pnl_ShowGhe.revalidate();
         pnl_ShowGhe.repaint();
