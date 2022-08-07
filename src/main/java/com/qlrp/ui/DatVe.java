@@ -13,14 +13,12 @@ import com.qlrp.entity.GIAVE;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.entity.VEDAT;
-import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.sql.Time;
 import java.text.DecimalFormat;
@@ -29,17 +27,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -612,6 +614,7 @@ public class DatVe extends javax.swing.JFrame {
                                 btn_ChonGheNgoi.setVisible(true);
                                 btn_ThemVaoGioHang.setEnabled(true);
                                 suatchieu = listSuatChieu.get(0);
+                                ChonChoNgoi.Instance.lbl_PC.setText("PHÒNG CHIẾU: " + cbo_PhongChieu.getSelectedItem());
                             }
                         }
                     } else {
@@ -663,6 +666,7 @@ public class DatVe extends javax.swing.JFrame {
             modelPhongChieu.addElement("PHÒNG CHIẾU");
             for (SUATCHIEU suatchieu1 : listSuatChieu) {
                 modelPhongChieu.addElement(suatchieu1.getMA_PHONG_CHIEU());
+                suatchieu = suatchieu1;
             }
         } catch (Exception e) {
         }
@@ -745,7 +749,6 @@ public class DatVe extends javax.swing.JFrame {
                     }
                 }
 
-
             } else {
                 ccn.setVisible(true);
                 ccn.fillToFormChonGhe(phim, suatchieu, MaGhe);
@@ -763,6 +766,8 @@ public class DatVe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ChonGheNgoiActionPerformed
 
+    RSButton button = new RSButton();
+
     private void fillToCart(RSTableMetro table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
@@ -771,6 +776,13 @@ public class DatVe extends javax.swing.JFrame {
 
         table.getColumnModel().getColumn(0).setCellRenderer(new ImageRendererMovie());
         table.getColumnModel().getColumn(4).setCellRenderer(new ImageRendererButton());
+        table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
+        button.addActionListener((ActionEvent event) -> {
+            if(JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                model.removeRow(table.getSelectedRow());
+            } 
+        });
+
     }
 
     private class ImageRendererMovie extends DefaultTableCellRenderer {
@@ -788,28 +800,41 @@ public class DatVe extends javax.swing.JFrame {
         }
     }
 
-    private class ImageRendererButton extends DefaultTableCellRenderer {
+    private class ImageRendererButton extends RSButton implements TableCellRenderer {
 
         //add img into table
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             //add border for img
-            RSButton btn = new RSButton();
-            btn.setBackground(new Color(255, 255, 255));
-            btn.setOpaque(true);
+            button.setBackground(new Color(255, 255, 255));
+            button.setOpaque(true);
             String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
-            btn.setIcon(XImage.ResizeImage(32, 32, url));
-            btn.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        System.out.println("xoa");
-                    }
-                }
-            });
-            return btn;
+            button.setIcon(XImage.ResizeImage(32, 32, url));
+            return button;
         }
     }
+
+    private class ButtonEditor extends DefaultCellEditor {
+
+        private String label;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            label = (value == null) ? "SỬA" : value.toString();
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return label;
+        }
+    }
+
 
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
@@ -845,16 +870,24 @@ public class DatVe extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatVe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatVe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatVe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatVe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

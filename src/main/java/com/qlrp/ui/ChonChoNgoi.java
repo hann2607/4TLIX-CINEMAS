@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
@@ -121,6 +122,8 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         txt_TongTien = new javax.swing.JTextPane();
         lbl_PhongChieu = new javax.swing.JLabel();
+        rSButton233 = new rojeru_san.RSButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CHỌN CHỖ NGỒI");
@@ -640,7 +643,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         rSButton220.setColorHover(new java.awt.Color(0, 102, 0));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel14.setText("ĐÃ CHỌN");
+        jLabel14.setText("ÐANG CHỌN");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel15.setText("CHƯA CHỌN");
@@ -779,6 +782,13 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         lbl_PhongChieu.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lbl_PhongChieu.setText("PHÒNG CHIẾU: PC001");
 
+        rSButton233.setBackground(new java.awt.Color(102, 102, 102));
+        rSButton233.setBorder(null);
+        rSButton233.setColorHover(new java.awt.Color(153, 153, 153));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel16.setText("ĐÃ CHỌN");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -794,25 +804,33 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rSButton217, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel14)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(rSButton217, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
                         .addGap(55, 55, 55)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSButton220, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rSButton218, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rSButton219, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 195, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addComponent(rSButton233, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)))
+                                .addGap(59, 59, 59)
                                 .addComponent(jLabel15)
                                 .addGap(168, 168, 168))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(lbl_PhongChieu)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(106, Short.MAX_VALUE))))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,12 +850,18 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                             .addComponent(rSButton217, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rSButton219, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(10, 10, 10)
-                        .addComponent(rSButton220, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel15)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(rSButton219, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(rSButton220, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel15))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(10, 10, 10)
+                                .addComponent(rSButton233, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel16)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl_PhongChieu)))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -848,23 +872,20 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_Cot, javax.swing.GroupLayout.PREFERRED_SIZE, 1585, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnl_Cot, javax.swing.GroupLayout.PREFERRED_SIZE, 1585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(pnl_Hang, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(pnl_ShowGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 1487, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(449, 449, 449)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addComponent(pnl_Hang, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(pnl_ShowGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 1487, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(449, 449, 449)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -880,7 +901,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnl_ShowGhe, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                .addGap(29, 29, 29)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -889,15 +910,15 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1637, Short.MAX_VALUE)
+            .addGap(0, 1625, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1625, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 974, Short.MAX_VALUE)
+            .addGap(0, 977, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -919,6 +940,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     public Double giave;
     public ArrayList<String> MaGhe = new ArrayList<>();
     public ArrayList<Double> GiaGhe = new ArrayList<>();
+    public JLabel lbl_PC;
 
     private void init() {
         this.setIconImage(XImage.getAppIcon());
@@ -927,6 +949,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         designTextPane(txt_ThoiGianChieu);
         designTextPane(txt_ChoNgoi);
         Instance = this;
+        lbl_PC = lbl_PhongChieu;
         this.getContentPane().setBackground(new Color(255, 255, 255));
     }
 
@@ -940,8 +963,8 @@ public class ChonChoNgoi extends javax.swing.JFrame {
             RSButton button = new RSButton();
             button.setName(sc.getMA_PHONG_CHIEU() + listGheNgoi.get(i).getMA_GHE());
             if (listGheNgoi.get(i).isDA_CHON()) {
-                button.setBackground(new Color(0, 0, 204));
-                button.setColorHover(new Color(0, 0, 153));
+                button.setBackground(new Color(102, 102, 102));
+                button.setColorHover(new Color(153, 153, 153));
             } else {
                 if (listGheNgoi.get(i).getTEN_GHE().equalsIgnoreCase("THUONG")) {
                     button.setBackground(new Color(255, 0, 0));
@@ -1179,7 +1202,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
         DrawForm(sc);
         txt_Tenfilm.setText(p.getTEN_PHIM());
         txt_ThoiGianChieu.setText("GIỜ CHIẾU: " + sc.getGIO_BAT_DAU() + " - " + sc.getGIO_KET_THUC());
-        lbl_PhongChieu.setText("PHÒNG CHIẾU: " + sc.getMA_PHONG_CHIEU());
         this.sc = sc;
         if (Maghe != null) {
             Component[] com = pnl_ShowGhe.getComponents();
@@ -1258,6 +1280,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1299,6 +1322,7 @@ public class ChonChoNgoi extends javax.swing.JFrame {
     private rojeru_san.RSButton rSButton230;
     private rojeru_san.RSButton rSButton231;
     private rojeru_san.RSButton rSButton232;
+    private rojeru_san.RSButton rSButton233;
     private rojeru_san.RSButton rSButton248;
     private rojeru_san.RSButton rSButton249;
     private rojeru_san.RSButton rSButton250;
