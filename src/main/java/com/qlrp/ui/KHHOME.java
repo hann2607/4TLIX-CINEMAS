@@ -72,6 +72,7 @@ public class KHHOME extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         init();
+        
     }
 
     /**
@@ -190,11 +191,13 @@ public class KHHOME extends javax.swing.JFrame {
 
             },
             new String [] {
-                "HÌNH", "TÊN SP", "SỐ LƯỢNG", "GIÁ", ""
+                "HÌNH", "TÊN", "SL", "GIÁ", ""
             }
         ));
         tbl_GioHang.setColorBordeFilas(new java.awt.Color(255, 255, 255));
         tbl_GioHang.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_GioHang.setColorSelBackgound(new java.awt.Color(255, 255, 255));
+        tbl_GioHang.setColorSelForeground(new java.awt.Color(0, 112, 192));
         tbl_GioHang.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tbl_GioHang.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tbl_GioHang.setRowHeight(110);
@@ -391,10 +394,10 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 jScrollPane3AncestorMoved(evt);
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -870,6 +873,9 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.getViewport().addChangeListener(new ListenAdditionsScrolledPhim());
         jScrollPane4.getViewport().addChangeListener(new ListenAdditionsScrolledDoAn());
         jScrollPane8.getViewport().addChangeListener(new ListenAdditionsScrolledKhuyenMai());
+        
+        tbl_GioHang.setRowSelectionAllowed(false);
+        tbl_GioHang.setCellSelectionEnabled(false);
     }
 
     int i = 1;

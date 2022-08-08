@@ -37,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -716,6 +717,7 @@ public class DatVe extends javax.swing.JFrame {
         });
     }
     double tongtien = 0;
+
     public void tongtien() {
         double tt = (giave * sp_SoLuong.getValue().hashCode()) + giaGhe;
         tongtien = tt;
@@ -777,12 +779,38 @@ public class DatVe extends javax.swing.JFrame {
         table.getColumnModel().getColumn(0).setCellRenderer(new ImageRendererMovie());
         table.getColumnModel().getColumn(4).setCellRenderer(new ImageRendererButton());
         table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
+
         button.addActionListener((ActionEvent event) -> {
-            if (JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                model.removeRow(table.getSelectedRow());
+            try {
+                if (JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    model.removeRow(table.getSelectedRow());
+                }
+            } catch (Exception e) {
             }
+
         });
 
+    }
+
+    private class WordWrapCellRenderer extends JTextArea implements TableCellRenderer {
+
+        WordWrapCellRenderer() {
+            setLineWrap(true);
+            setWrapStyleWord(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setText(value.toString());
+            setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredSize().height);
+            if (table.getRowHeight(row) != getPreferredSize().height) {
+                table.setRowHeight(row, getPreferredSize().height);
+            }
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder());
+            setBackground(new Color(0, 0, 0, 0));
+            return this;
+        }
     }
 
     private class ImageRendererMovie extends DefaultTableCellRenderer {
@@ -825,7 +853,7 @@ public class DatVe extends javax.swing.JFrame {
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "SỬA" : value.toString();
+            label = (value == null) ? "XÓA" : value.toString();
             return button;
         }
 
@@ -837,6 +865,7 @@ public class DatVe extends javax.swing.JFrame {
     
     private void addToListSP_PHIM() {
         GIOHANG_PHIM giohang = new GIOHANG_PHIM();
+
         giohang.setGIA(tongtien);
         giohang.setSO_LUONG(sp_SoLuong.getValue().hashCode()+ "");
         giohang.setTEN_SAN_PHAM(phim.getTEN_PHIM());
@@ -846,9 +875,11 @@ public class DatVe extends javax.swing.JFrame {
         giohang.setGHE_NGOI(txt_GheNgoi.getText());
         
         List<GIOHANG_PHIM> list = getInfo.listSP_PHIM;
+
         list.add(giohang);
         getInfo.listSP_PHIM = list;
     }
+
 
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
@@ -865,6 +896,7 @@ public class DatVe extends javax.swing.JFrame {
             fillToCart(KHHOME.Instance.table);
             addToListSP_PHIM();
 //            System.out.println(getInfo.listSP.size());
+
         }
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 
