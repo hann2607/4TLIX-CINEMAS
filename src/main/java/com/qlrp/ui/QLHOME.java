@@ -2530,6 +2530,7 @@ public class QLHOME extends javax.swing.JFrame {
         for (DOAN da : listDA) {
             model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(), da.getKICHCO(), da.getSOLUONG(), da.getDONGIA(), da.getMAKHUYENMAI()});
         }
+        
         // show IMG product
 
         tbl_QLDA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererDoAn());
@@ -2542,7 +2543,7 @@ public class QLHOME extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             String photoname = String.valueOf(value);
             ImageIcon ImageIcon = new ImageIcon(
-                    new ImageIcon("src/main/resources/com/qlrp/image/doan/" + photoname).
+                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
                             getImage().getScaledInstance(60, 50, Image.SCALE_SMOOTH));
             //add border for img
             JLabel lb = new JLabel(ImageIcon);
