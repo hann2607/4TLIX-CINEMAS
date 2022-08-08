@@ -7,7 +7,8 @@ package com.qlrp.ui;
 import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLKICHCOVALOAIDAO;
 import com.qlrp.entity.DOAN;
-import com.qlrp.entity.GIOHANG;
+import com.qlrp.entity.GIOHANG_DOAN;
+import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.KICHCODA;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
@@ -366,7 +367,7 @@ public class DatDoAn extends javax.swing.JFrame {
     private void fillToCart(RSTableMetro table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        model.addRow(new Object[]{doan.getHINH(), doan.getTENDOAN(), "x" + sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString(), lbl_GiaDoAn.getText()});
+        model.addRow(new Object[]{doan.getHINH(), doan.getTENDOAN(), sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString(), lbl_GiaDoAn.getText()});
         // show IMG product
 
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererFood());
@@ -421,14 +422,15 @@ public class DatDoAn extends javax.swing.JFrame {
     }//GEN-LAST:event_sp_SoLuongKeyReleased
 
     private void addToListSP() {
-        GIOHANG giohang = new GIOHANG();
-        giohang.setGIA(doan.getDONGIA() * sp_SoLuong.getValue().hashCode());
-        giohang.setSO_LUONG("x" + sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString());
-        giohang.setTEN_SAN_PHAM(doan.getTENDOAN());
+        GIOHANG_DOAN giohang_DA = new GIOHANG_DOAN();
+        giohang_DA.setGIA(doan.getDONGIA() * sp_SoLuong.getValue().hashCode());
+        giohang_DA.setSO_LUONG(sp_SoLuong.getValue().hashCode());
+        giohang_DA.setKICH_CO(cbo_KichCo.getSelectedItem().toString());
+        giohang_DA.setTEN_SAN_PHAM(doan.getTENDOAN());
 
-        List<GIOHANG> list = getInfo.listSP;
-        list.add(giohang);
-        getInfo.listSP = list;
+        List<GIOHANG_DOAN> list = getInfo.listSP_DOAN;
+        list.add(giohang_DA);
+        getInfo.listSP_DOAN = list;
     }
     
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed

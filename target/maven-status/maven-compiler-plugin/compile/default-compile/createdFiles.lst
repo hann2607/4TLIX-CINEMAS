@@ -65,6 +65,7 @@ com\qlrp\ui\QLHOME$17.class
 com\qlrp\entity\KHUYENMAI.class
 com\qlrp\entity\KICHCODA.class
 com\qlrp\ui\KHHOME$6.class
+com\qlrp\ui\KH_HoaDon$2.class
 com\qlrp\ui\NewEmployee$10.class
 com\qlrp\ui\NewCustomer$8.class
 com\qlrp\ui\QLHOME$46.class
@@ -80,6 +81,7 @@ com\qlrp\ui\QLHOME$8.class
 com\qlrp\ui\QLHOME$30.class
 com\qlrp\ui\KHHOME$14.class
 com\qlrp\ui\QLHOME$36.class
+com\qlrp\ui\KH_HoaDon.class
 com\qlrp\ui\NewEmployee$2.class
 com\qlrp\ui\QLHOME$76.class
 com\qlrp\ui\KHHOME$9.class
@@ -123,6 +125,7 @@ com\qlrp\ui\DatDoAn$ImageRendererFood.class
 com\qlrp\ui\NewCustomer$3.class
 com\qlrp\ui\QLHOME.class
 com\qlrp\ui\QLHOME$28.class
+com\qlrp\entity\GIOHANG_DOAN.class
 com\qlrp\ui\ChiTietPhim$3.class
 com\qlrp\utils\Chart.class
 com\qlrp\ui\ThemKhuyenMai$7.class
@@ -137,6 +140,7 @@ com\qlrp\ui\DatDoAn.class
 com\qlrp\dao\QLGIAVEDAO.class
 com\qlrp\ui\QLHOME$35.class
 com\qlrp\ui\ThemKhuyenMai$8.class
+com\qlrp\entity\GIOHANG_PHIM.class
 com\qlrp\ui\QLHOME$6.class
 com\qlrp\ui\KHHOME$15.class
 com\qlrp\ui\NewCustomer$1.class
@@ -179,6 +183,7 @@ com\qlrp\ui\NewCustomer$9.class
 com\qlrp\ui\THemSC.class
 com\qlrp\dao\QLGHENGOIDAO.class
 com\qlrp\ui\login$9.class
+com\qlrp\ui\KH_HoaDon$3.class
 com\qlrp\ui\QLHOME$72.class
 com\qlrp\ui\ThemKhuyenMai$3.class
 com\qlrp\ui\QLHOME$68.class
@@ -191,6 +196,7 @@ com\qlrp\ui\ThemDoAn$5.class
 com\qlrp\ui\QLHOME$80.class
 com\qlrp\ui\login$7.class
 com\qlrp\ui\QLHOME$74.class
+com\qlrp\ui\KH_HoaDon$1.class
 com\qlrp\ui\QLHOME$50.class
 com\qlrp\ui\THANHTOANui$3.class
 com\qlrp\ui\NewCustomer$7.class

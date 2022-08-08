@@ -1210,12 +1210,12 @@ public class KHHOME extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
         model.setRowCount(0);
         model.fireTableDataChanged();
-
     }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
 
     private void btn_Cart_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_ThanhToanActionPerformed
-        // TODO add your handling code here:\
-        // Gui ma QR khi thanh toan
+        // show form Hoa don
+        KH_HoaDon hd = new KH_HoaDon();
+        hd.setVisible(true);
     }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
 
     /**

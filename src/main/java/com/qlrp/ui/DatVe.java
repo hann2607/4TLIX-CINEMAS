@@ -10,7 +10,7 @@ import com.qlrp.dao.QLGIAVEDAO;
 import com.qlrp.dao.QLVEDATDAO;
 import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIAVE;
-import com.qlrp.entity.GIOHANG;
+import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.entity.VEDAT;
@@ -835,19 +835,19 @@ public class DatVe extends javax.swing.JFrame {
         }
     }
     
-    private void addToListSP() {
-        GIOHANG giohang = new GIOHANG();
+    private void addToListSP_PHIM() {
+        GIOHANG_PHIM giohang = new GIOHANG_PHIM();
         giohang.setGIA(tongtien);
-        giohang.setSO_LUONG("x" + sp_SoLuong.getValue().hashCode());
+        giohang.setSO_LUONG(sp_SoLuong.getValue().hashCode()+ "");
         giohang.setTEN_SAN_PHAM(phim.getTEN_PHIM());
         giohang.setNGAY_CHIEU(cbo_NgayChieu.getSelectedItem() + "");
         giohang.setGIO_CHIEU(cbo_GioChieu.getSelectedItem() + "");
         giohang.setPHONG_CHIEU(cbo_PhongChieu.getSelectedItem() + "");
         giohang.setGHE_NGOI(txt_GheNgoi.getText());
         
-        List<GIOHANG> list = getInfo.listSP;
+        List<GIOHANG_PHIM> list = getInfo.listSP_PHIM;
         list.add(giohang);
-        getInfo.listSP = list;
+        getInfo.listSP_PHIM = list;
     }
 
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
@@ -863,7 +863,7 @@ public class DatVe extends javax.swing.JFrame {
                 qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
             }
             fillToCart(KHHOME.Instance.table);
-            addToListSP();
+            addToListSP_PHIM();
 //            System.out.println(getInfo.listSP.size());
         }
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed

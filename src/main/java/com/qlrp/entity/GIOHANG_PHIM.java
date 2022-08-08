@@ -8,7 +8,7 @@ package com.qlrp.entity;
  *
  * @author HAN-PC
  */
-public class GIOHANG {
+public class GIOHANG_PHIM {
     private String TEN_SAN_PHAM;
     private String SO_LUONG;
     private double GIA;
@@ -18,10 +18,10 @@ public class GIOHANG {
     private String GHE_NGOI;
     
 
-    public GIOHANG() {
+    public GIOHANG_PHIM() {
     }
 
-    public GIOHANG(String TEN_SAN_PHAM, String SO_LUONG, double GIA, String NGAY_CHIEU, String GIO_CHIEU, String PHONG_CHIEU, String GHE_NGOI) {
+    public GIOHANG_PHIM(String TEN_SAN_PHAM, String SO_LUONG, double GIA, String NGAY_CHIEU, String GIO_CHIEU, String PHONG_CHIEU, String GHE_NGOI) {
         this.TEN_SAN_PHAM = TEN_SAN_PHAM;
         this.SO_LUONG = SO_LUONG;
         this.GIA = GIA;
