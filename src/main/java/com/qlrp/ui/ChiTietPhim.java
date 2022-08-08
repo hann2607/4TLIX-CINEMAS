@@ -358,7 +358,6 @@ public class ChiTietPhim extends javax.swing.JFrame {
         jPanel1.add(pnl_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, -1, 70));
 
         lbl_Poster.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_Poster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/PHIM/POSTER/EVERYTHING EVERYWHERE ALL AT ONCE.jpg"))); // NOI18N
         lbl_Poster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel1.add(lbl_Poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 340, 430));
 

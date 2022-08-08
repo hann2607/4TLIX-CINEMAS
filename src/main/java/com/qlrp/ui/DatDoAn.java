@@ -8,29 +8,40 @@ import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLKICHCOVALOAIDAO;
 import com.qlrp.entity.DOAN;
 import com.qlrp.entity.KICHCODA;
-import com.qlrp.entity.PHIM;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import rojeru_san.RSButton;
+import rojerusan.RSTableMetro;
 
 /**
  *
  * @author HAN-PC
  */
-public class ChiTietDoAn extends javax.swing.JFrame {
+public class DatDoAn extends javax.swing.JFrame {
 
     /**
      * Creates new form ChiTietDoAn
      */
-    public ChiTietDoAn() {
+    public DatDoAn() {
         initComponents();
         init();
         this.setAlwaysOnTop(true);
@@ -53,7 +64,7 @@ public class ChiTietDoAn extends javax.swing.JFrame {
         txt_TenDoAn = new javax.swing.JTextPane();
         pnl_KhoiChieu = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        lbl_Gia = new javax.swing.JLabel();
+        lbl_GiaDoAn = new javax.swing.JLabel();
         pnl_KhoiChieu1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cbo_KichCo = new rojerusan.RSComboMetro();
@@ -80,8 +91,6 @@ public class ChiTietDoAn extends javax.swing.JFrame {
             }
         });
 
-        lbl_HinhDoAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/do an/bap caramel.jpg"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -104,8 +113,8 @@ public class ChiTietDoAn extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("GIÁ:");
 
-        lbl_Gia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_Gia.setText("35.000 VNĐ");
+        lbl_GiaDoAn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_GiaDoAn.setText("35.000 VNĐ");
 
         javax.swing.GroupLayout pnl_KhoiChieuLayout = new javax.swing.GroupLayout(pnl_KhoiChieu);
         pnl_KhoiChieu.setLayout(pnl_KhoiChieuLayout);
@@ -113,15 +122,15 @@ public class ChiTietDoAn extends javax.swing.JFrame {
             pnl_KhoiChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_KhoiChieuLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_Gia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_GiaDoAn))
         );
         pnl_KhoiChieuLayout.setVerticalGroup(
             pnl_KhoiChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_KhoiChieuLayout.createSequentialGroup()
                 .addGroup(pnl_KhoiChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_Gia, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_GiaDoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
 
@@ -138,8 +147,8 @@ public class ChiTietDoAn extends javax.swing.JFrame {
             pnl_KhoiChieu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_KhoiChieu1Layout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbo_KichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(cbo_KichCo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_KhoiChieu1Layout.setVerticalGroup(
@@ -157,6 +166,7 @@ public class ChiTietDoAn extends javax.swing.JFrame {
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         sp_SoLuong.setPreferredSize(new java.awt.Dimension(7, 20));
+        sp_SoLuong.setRequestFocusEnabled(false);
         sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sp_SoLuongKeyReleased(evt);
@@ -169,8 +179,8 @@ public class ChiTietDoAn extends javax.swing.JFrame {
             pnl_KhoiChieu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_KhoiChieu2Layout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_KhoiChieu2Layout.setVerticalGroup(
@@ -215,6 +225,11 @@ public class ChiTietDoAn extends javax.swing.JFrame {
 
         btn_ThemVaoGioHang.setText("THÊM VÀO GIỎ HÀNG");
         btn_ThemVaoGioHang.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_ThemVaoGioHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ThemVaoGioHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,7 +238,7 @@ public class ChiTietDoAn extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(805, Short.MAX_VALUE)
+                        .addContainerGap(807, Short.MAX_VALUE)
                         .addComponent(lbl_Exit))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -258,9 +273,9 @@ public class ChiTietDoAn extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(pnl_KhoiChieu1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(pnl_KhoiChieu2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnl_KhoiChieu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnl_KhoiChieu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_ThemVaoGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -286,14 +301,21 @@ public class ChiTietDoAn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     File f = new File("");
+    DOAN doan = new DOAN();
+
+    public static DatDoAn Instance;
     List<DOAN> listda = null;
     List<KICHCODA> listKCDA = null;
     QLDADAO qldadao = new QLDADAO();
     QLKICHCOVALOAIDAO qlkichcovaloaidao = new QLKICHCOVALOAIDAO();
 
+    String duongdanBanner = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
+
     private void init() {
         this.setIconImage(XImage.getAppIcon());
         designTextPane(txt_TenDoAn);
+        Instance = this;
+        sp_SoLuong.setValue(1);
     }
 
     private void designTextPane(JTextPane txt) {
@@ -316,24 +338,74 @@ public class ChiTietDoAn extends javax.swing.JFrame {
         }
     }
 
-    public void fillToChiTietDoAn(DOAN da) {
-        txt_TenDoAn.setText(da.getTENDOAN().toUpperCase());
+    public void fillToChiTietDoAn(DOAN food) {
+        doan = food;
+        txt_TenDoAn.setText(food.getTENDOAN().toUpperCase());
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        lbl_Gia.setText(formatter.format(da.getDONGIA())+" VNĐ");
-        if (da.getSOLUONG() == 0) {
+        lbl_GiaDoAn.setText(formatter.format(food.getDONGIA()) + " VNĐ");
+        if (food.getSOLUONG() == 0) {
             lbl_TinhTrang.setText("HẾT HÀNG");
             lbl_TinhTrang.setForeground(Color.RED);
         } else {
-            lbl_TinhTrang.setText("CÒN " + da.getSOLUONG() + " MÓN");
+            lbl_TinhTrang.setText("CÒN " + food.getSOLUONG() + " MÓN");
             lbl_TinhTrang.setForeground(Color.BLACK);
         }
 
         fillToComboboxKichCo();
 
         try {
-            String duongdanBanner = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\";
-            lbl_HinhDoAn.setIcon(XImage.ResizeImage(lbl_HinhDoAn.getWidth(), lbl_HinhDoAn.getHeight(), duongdanBanner + da.getHINH()));
+
+            lbl_HinhDoAn.setIcon(XImage.ResizeImage(lbl_HinhDoAn.getWidth(), lbl_HinhDoAn.getHeight(), duongdanBanner + food.getHINH()));
+            System.out.println(duongdanBanner + food.getHINH());
         } catch (Exception e) {
+        }
+    }
+
+    private void fillToCart(RSTableMetro table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        model.addRow(new Object[]{doan.getHINH(), doan.getTENDOAN(), "x" + sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString(), lbl_GiaDoAn.getText()});
+        // show IMG product
+
+        table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererFood());
+//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ImageRendererButton());
+    }
+
+    private class ImageRendererFood extends DefaultTableCellRenderer {
+
+        //add img into table
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            String photoname = String.valueOf(value);
+            ImageIcon ImageIcon = new ImageIcon(
+                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
+                            getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH));
+            //add border for img
+            JLabel lb = new JLabel(ImageIcon);
+            return lb;
+        }
+    }
+
+    private class ImageRendererButton extends DefaultTableCellRenderer {
+
+        //add img into table
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            //add border for img
+            RSButton btn = new RSButton();
+            btn.setBackground(new Color(255, 255, 255));
+            btn.setOpaque(true);
+            String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
+            btn.setIcon(XImage.ResizeImage(32, 32, url));
+            btn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (e.getClickCount() == 1 && !e.isConsumed()) {
+                        System.out.println("xoa");
+                    }
+                }
+            });
+            return btn;
         }
     }
 
@@ -345,6 +417,14 @@ public class ChiTietDoAn extends javax.swing.JFrame {
     private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_sp_SoLuongKeyReleased
+
+    private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
+        // TODO add your handling code here:
+        fillToCart(KHHOME.Instance.table);
+        JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+
+        this.dispose();
+    }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,20 +443,21 @@ public class ChiTietDoAn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChiTietDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChiTietDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChiTietDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChiTietDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChiTietDoAn().setVisible(true);
+                new DatDoAn().setVisible(true);
             }
         });
     }
@@ -391,7 +472,7 @@ public class ChiTietDoAn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_Exit;
-    private javax.swing.JLabel lbl_Gia;
+    private javax.swing.JLabel lbl_GiaDoAn;
     private javax.swing.JLabel lbl_HinhDoAn;
     private javax.swing.JLabel lbl_TinhTrang;
     private javax.swing.JPanel pnl_KhoiChieu;

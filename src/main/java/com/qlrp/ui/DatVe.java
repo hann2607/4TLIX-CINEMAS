@@ -8,6 +8,7 @@ import com.qlrp.dao.QLGHENGOIDAO;
 import com.qlrp.dao.QLSUATCHIEUDAO;
 import com.qlrp.dao.QLGIAVEDAO;
 import com.qlrp.dao.QLVEDATDAO;
+import com.qlrp.entity.DOAN;
 import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIAVE;
 import com.qlrp.entity.PHIM;
@@ -169,8 +170,6 @@ public class DatVe extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        lbl_HinhFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/PHIM/POSTER/SPIDER - NO WAY HOME.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

@@ -248,11 +248,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lbl_HinhFilm">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/qlrp/image/PHIM/POSTER/SPIDER - NO WAY HOME.jpg"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

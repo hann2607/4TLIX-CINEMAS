@@ -61,7 +61,7 @@ public class KHHOME extends javax.swing.JFrame {
     QLKMDAO qlkhuyenmaidao = new QLKMDAO();
 
     ChiTietPhim ctp = new ChiTietPhim();
-    ChiTietDoAn ctda = new ChiTietDoAn();
+    DatDoAn ctda = new DatDoAn();
 
     List<PHIM> listfilm = null;
     List<DOAN> listDoAn = null;
@@ -216,6 +216,11 @@ public class KHHOME extends javax.swing.JFrame {
 
         btn_Cart_ThanhToan.setText("THANH TOÁN");
         btn_Cart_ThanhToan.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        btn_Cart_ThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Cart_ThanhToanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_cartLayout = new javax.swing.GroupLayout(pnl_cart);
         pnl_cart.setLayout(pnl_cartLayout);
@@ -388,10 +393,10 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 jScrollPane3AncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -1029,13 +1034,14 @@ public class KHHOME extends javax.swing.JFrame {
             lbl.setMinimumSize(new Dimension(210, 250));
             lbl.setPreferredSize(new Dimension(210, 250));
             lbl.setMaximumSize(new Dimension(210, 250));
-            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\";
+            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
             lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
             pnl.add(lbl);
             pnl.add(textPane);
             pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-            DOAN da = listDoAn.get(i);
+            
+            //Thêm sự kiện click vào doan show chi tiết doan
+            DOAN food = listDoAn.get(i);
             pnl.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -1043,10 +1049,10 @@ public class KHHOME extends javax.swing.JFrame {
                         if (ctda.isVisible()) {
                             ctda.setVisible(false);
                             ctda.setVisible(true);
-                            ctda.fillToChiTietDoAn(da);
+                            ctda.fillToChiTietDoAn(food);
                         } else {
                             ctda.setVisible(true);
-                            ctda.fillToChiTietDoAn(da);
+                            ctda.fillToChiTietDoAn(food);
                         }
                     }
                 }
@@ -1206,6 +1212,11 @@ public class KHHOME extends javax.swing.JFrame {
         model.fireTableDataChanged();
 
     }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
+
+    private void btn_Cart_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_ThanhToanActionPerformed
+        // TODO add your handling code here:\
+        // Gui ma QR khi thanh toan
+    }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
 
     /**
      * @param args the command line arguments
