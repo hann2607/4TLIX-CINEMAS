@@ -7,8 +7,10 @@ package com.qlrp.ui;
 import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLKICHCOVALOAIDAO;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.GIOHANG;
 import com.qlrp.entity.KICHCODA;
 import com.qlrp.utils.XImage;
+import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -418,11 +420,22 @@ public class DatDoAn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sp_SoLuongKeyReleased
 
+    private void addToListSP() {
+        GIOHANG giohang = new GIOHANG();
+        giohang.setGIA(doan.getDONGIA() * sp_SoLuong.getValue().hashCode());
+        giohang.setSO_LUONG("x" + sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString());
+        giohang.setTEN_SAN_PHAM(doan.getTENDOAN());
+
+        List<GIOHANG> list = getInfo.listSP;
+        list.add(giohang);
+        getInfo.listSP = list;
+    }
+    
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
         fillToCart(KHHOME.Instance.table);
         JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
-
+        addToListSP();
         this.dispose();
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 

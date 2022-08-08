@@ -6,11 +6,14 @@ package com.qlrp.utils;
 
 import com.qlrp.entity.CHITIETHOADON;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.GIOHANG;
 import com.qlrp.entity.HOADON;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,4 +28,5 @@ public class getInfo {
     public static HOADON hd = null;
     public static CHITIETHOADON ct = null;
     public static SUATCHIEU sc = null;
+    public static List<GIOHANG> listSP = new ArrayList<>();
 }

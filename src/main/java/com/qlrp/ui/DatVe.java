@@ -8,13 +8,14 @@ import com.qlrp.dao.QLGHENGOIDAO;
 import com.qlrp.dao.QLSUATCHIEUDAO;
 import com.qlrp.dao.QLGIAVEDAO;
 import com.qlrp.dao.QLVEDATDAO;
-import com.qlrp.entity.DOAN;
 import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIAVE;
+import com.qlrp.entity.GIOHANG;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.entity.VEDAT;
 import com.qlrp.utils.XImage;
+import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -36,7 +37,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -715,9 +715,10 @@ public class DatVe extends javax.swing.JFrame {
             }
         });
     }
-
+    double tongtien = 0;
     public void tongtien() {
         double tt = (giave * sp_SoLuong.getValue().hashCode()) + giaGhe;
+        tongtien = tt;
         lbl_GiaVe.setText(formatter.format(tt) + " VNĐ");
     }
 
@@ -777,9 +778,9 @@ public class DatVe extends javax.swing.JFrame {
         table.getColumnModel().getColumn(4).setCellRenderer(new ImageRendererButton());
         table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
         button.addActionListener((ActionEvent event) -> {
-            if(JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 model.removeRow(table.getSelectedRow());
-            } 
+            }
         });
 
     }
@@ -833,7 +834,21 @@ public class DatVe extends javax.swing.JFrame {
             return label;
         }
     }
-
+    
+    private void addToListSP() {
+        GIOHANG giohang = new GIOHANG();
+        giohang.setGIA(tongtien);
+        giohang.setSO_LUONG("x" + sp_SoLuong.getValue().hashCode());
+        giohang.setTEN_SAN_PHAM(phim.getTEN_PHIM());
+        giohang.setNGAY_CHIEU(cbo_NgayChieu.getSelectedItem() + "");
+        giohang.setGIO_CHIEU(cbo_GioChieu.getSelectedItem() + "");
+        giohang.setPHONG_CHIEU(cbo_PhongChieu.getSelectedItem() + "");
+        giohang.setGHE_NGOI(txt_GheNgoi.getText());
+        
+        List<GIOHANG> list = getInfo.listSP;
+        list.add(giohang);
+        getInfo.listSP = list;
+    }
 
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
@@ -848,6 +863,8 @@ public class DatVe extends javax.swing.JFrame {
                 qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
             }
             fillToCart(KHHOME.Instance.table);
+            addToListSP();
+//            System.out.println(getInfo.listSP.size());
         }
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 
