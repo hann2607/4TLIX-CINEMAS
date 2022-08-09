@@ -14,21 +14,29 @@ import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -168,6 +176,7 @@ public class DatDoAn extends javax.swing.JFrame {
         jLabel6.setText("SỐ LƯỢNG:");
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sp_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         sp_SoLuong.setPreferredSize(new java.awt.Dimension(7, 20));
         sp_SoLuong.setRequestFocusEnabled(false);
         sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -305,6 +314,8 @@ public class DatDoAn extends javax.swing.JFrame {
 
     File f = new File("");
     DOAN doan = new DOAN();
+    DefaultTableModel model;
+    DecimalFormat formatter = new DecimalFormat("###,###,###");
 
     public static DatDoAn Instance;
     List<DOAN> listda = null;
@@ -319,6 +330,7 @@ public class DatDoAn extends javax.swing.JFrame {
         designTextPane(txt_TenDoAn);
         Instance = this;
         sp_SoLuong.setValue(1);
+        addEventSoLuong();
     }
 
     private void designTextPane(JTextPane txt) {
@@ -335,6 +347,7 @@ public class DatDoAn extends javax.swing.JFrame {
     private void fillToComboboxKichCo() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbo_KichCo.getModel();
         cbo_KichCo.removeAllItems();
+        model.addElement("KÍCH CỠ");
         listKCDA = qlkichcovaloaidao.selectAllKichCo();
         for (KICHCODA kc : listKCDA) {
             model.addElement(kc.getTEN_KICH_CO_DA());
@@ -344,7 +357,6 @@ public class DatDoAn extends javax.swing.JFrame {
     public void fillToChiTietDoAn(DOAN food) {
         doan = food;
         txt_TenDoAn.setText(food.getTENDOAN().toUpperCase());
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
         lbl_GiaDoAn.setText(formatter.format(food.getDONGIA()) + " VNĐ");
         if (food.getSOLUONG() == 0) {
             lbl_TinhTrang.setText("HẾT HÀNG");
@@ -363,15 +375,61 @@ public class DatDoAn extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
+    RSButton button = new RSButton();
 
     private void fillToCart(RSTableMetro table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
 
-        model.addRow(new Object[]{doan.getHINH(), doan.getTENDOAN(), sp_SoLuong.getValue().hashCode() + " - " + cbo_KichCo.getSelectedItem().toString(), lbl_GiaDoAn.getText()});
-        // show IMG product
+        for (GIOHANG_PHIM giohang_phim : getInfo.listSP_PHIM) {
+            model.addRow(new Object[]{giohang_phim.getPOSTER(), giohang_phim.getTEN_SAN_PHAM(), giohang_phim.getSO_LUONG(), formatter.format(giohang_phim.getGIA()) + " VNĐ", "X"});
+        }
+        table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererMovie());
+//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
+//        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
 
+        for (GIOHANG_DOAN giohang_doan : getInfo.listSP_DOAN) {
+            model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ", "X"});
+        }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererFood());
-//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ImageRendererButton());
+//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
+//        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(4).setCellRenderer(r);
+
+    }
+
+    DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+        Font font = new Font("Segoe UI", Font.BOLD, 32);
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value, boolean isSelected, boolean hasFocus,
+                int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+                    row, column);
+            setOpaque(true);
+            setFont(font);
+            setHorizontalAlignment(RSButton.CENTER);
+            setBackground(Color.WHITE);
+            setForeground(Color.BLACK);
+            return this;
+        }
+
+    };
+
+    private class ImageRendererMovie extends DefaultTableCellRenderer {
+
+        //add img into table
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            String photoname = String.valueOf(value);
+            ImageIcon ImageIcon = new ImageIcon(
+                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
+                            getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH));
+            //add border for img
+            JLabel lb = new JLabel(ImageIcon);
+            return lb;
+        }
     }
 
     private class ImageRendererFood extends DefaultTableCellRenderer {
@@ -389,26 +447,56 @@ public class DatDoAn extends javax.swing.JFrame {
         }
     }
 
-    private class ImageRendererButton extends DefaultTableCellRenderer {
+    private class ButtonRenderer extends RSButton implements TableCellRenderer {
 
-        //add img into table
+        //CONSTRUCTOR
+        public ButtonRenderer() {
+            //SET BUTTON PROPERTIES
+            setOpaque(true);
+        }
+
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            //add border for img
-            RSButton btn = new RSButton();
+        public Component getTableCellRendererComponent(JTable table, Object obj,
+                boolean selected, boolean focused, int row, int col) {
+
+            //SET PASSED OBJECT AS BUTTON TEXT
+            setText((obj == null) ? "" : obj.toString());
+
+            return this;
+        }
+
+    }
+
+    private class ButtonEditor extends DefaultCellEditor {
+
+        protected RSButton btn;
+        private String lbl;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+            btn = new RSButton();
             btn.setBackground(new Color(255, 255, 255));
             btn.setOpaque(true);
             String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
             btn.setIcon(XImage.ResizeImage(32, 32, url));
-            btn.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        System.out.println("xoa");
-                    }
-                }
+
+            //WHEN BUTTON IS CLICKED
+            btn.addActionListener((ActionEvent e) -> {
+
             });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            lbl = (value == null) ? "" : value.toString();
+            btn.setText(lbl);
             return btn;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return lbl;
         }
     }
 
@@ -416,6 +504,8 @@ public class DatDoAn extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_lbl_ExitMouseClicked
+
+    boolean isThemVaoGioHang = false;
 
     private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
         // TODO add your handling code here:
@@ -427,18 +517,69 @@ public class DatDoAn extends javax.swing.JFrame {
         giohang_DA.setSO_LUONG(sp_SoLuong.getValue().hashCode());
         giohang_DA.setKICH_CO(cbo_KichCo.getSelectedItem().toString());
         giohang_DA.setTEN_SAN_PHAM(doan.getTENDOAN());
+        giohang_DA.setHINH(doan.getHINH());
 
         List<GIOHANG_DOAN> list = getInfo.listSP_DOAN;
         list.add(giohang_DA);
         getInfo.listSP_DOAN = list;
     }
-    
+
+    private boolean validateForm() {
+        String loi = "";
+
+        if (qldadao.selectebyID(doan.getTENDOAN()) != null) {
+            doan = qldadao.selectebyID(doan.getTENDOAN());
+            if (doan.getSOLUONG() == 0) {
+                loi += "SẢN PHẨM ĐÃ HẾT HÀNG! \n";
+                sp_SoLuong.setValue(0);
+                fillToChiTietDoAn(doan);
+            } else if (sp_SoLuong.getValue().hashCode() > doan.getSOLUONG()) {
+                loi += "SỐ LƯỢNG ĐÃ VƯỢT QUÁ SỐ SẢN PHẨM CÒN LẠI! \n";
+                sp_SoLuong.setValue(doan.getSOLUONG());
+                tongtien();
+            } else if (sp_SoLuong.getValue().hashCode() <= 0) {
+                loi += "SỐ LƯỢNG PHẢI LỚN HƠN 0! \n";
+                sp_SoLuong.setValue(1);
+                tongtien();
+            }
+
+            if (doan.getSOLUONG() != 0 && cbo_KichCo.getSelectedIndex() == 0) {
+                loi += "VUI LÒNG CHỌN KÍCH CỠ! \n";
+            }
+
+        }
+
+        if (!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "LỖI", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void tongtien() {
+        lbl_GiaDoAn.setText(formatter.format(sp_SoLuong.getValue().hashCode() * doan.getDONGIA()) + " VNĐ");
+    }
+
+    private void addEventSoLuong() {
+        sp_SoLuong.addChangeListener((ChangeEvent e) -> {
+            tongtien();
+        });
+    }
+
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
-        fillToCart(KHHOME.Instance.table);
-        JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
-        addToListSP();
-        this.dispose();
+        if (validateForm()) {
+            try {
+                qldadao.updateSL(doan.getSOLUONG() - sp_SoLuong.getValue().hashCode(), doan.getTENDOAN());
+                addToListSP();
+                fillToCart(KHHOME.Instance.table);
+                JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } catch (Exception e) {
+            }
+
+        }
+
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 
     /**

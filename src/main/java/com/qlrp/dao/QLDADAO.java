@@ -24,6 +24,7 @@ public class QLDADAO extends QLRPDAO<DOAN, String> {
     String DELETE_SQL = "DELETE FROM DOANTHUCUONG WHERE TEN_DO_AN=?";
     String SELECT_ALL_SQL = "SELECT * FROM DOANTHUCUONG";
     String SELECT_BY_ID_SQL = "SELECT * FROM DOANTHUCUONG WHERE TEN_DO_AN=?";
+    String UPDATE_SL_SQL = "UPDATE DOANTHUCUONG SET SO_LUONG=? WHERE TEN_DO_AN=?";
 
     @Override
     public void insert(DOAN entity) {
@@ -40,6 +41,14 @@ public class QLDADAO extends QLRPDAO<DOAN, String> {
         try {
             XJdbc.update(UPDATE_SQL, entity.getLOAI(), entity.getKICHCO(), entity.getHINH(), entity.getSOLUONG(),
                     entity.getDONGIA(), entity.getMAKHUYENMAI(), entity.getTENDOAN());
+        } catch (SQLException ex) {
+            Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateSL(int SL, String TEN_DO_AN) {
+        try {
+            XJdbc.update(UPDATE_SL_SQL, SL, TEN_DO_AN);
         } catch (SQLException ex) {
             Logger.getLogger(QLDADAO.class.getName()).log(Level.SEVERE, null, ex);
         }

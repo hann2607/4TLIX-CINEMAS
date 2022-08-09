@@ -16,12 +16,13 @@ public class GIOHANG_PHIM {
     private String GIO_CHIEU;
     private String PHONG_CHIEU;
     private String GHE_NGOI;
+    private String POSTER;
     
 
     public GIOHANG_PHIM() {
     }
 
-    public GIOHANG_PHIM(String TEN_SAN_PHAM, String SO_LUONG, double GIA, String NGAY_CHIEU, String GIO_CHIEU, String PHONG_CHIEU, String GHE_NGOI) {
+    public GIOHANG_PHIM(String TEN_SAN_PHAM, String SO_LUONG, double GIA, String NGAY_CHIEU, String GIO_CHIEU, String PHONG_CHIEU, String GHE_NGOI, String POSTER) {
         this.TEN_SAN_PHAM = TEN_SAN_PHAM;
         this.SO_LUONG = SO_LUONG;
         this.GIA = GIA;
@@ -29,6 +30,7 @@ public class GIOHANG_PHIM {
         this.GIO_CHIEU = GIO_CHIEU;
         this.PHONG_CHIEU = PHONG_CHIEU;
         this.GHE_NGOI = GHE_NGOI;
+        this.POSTER = POSTER;
     }
 
     public String getTEN_SAN_PHAM() {
@@ -86,6 +88,13 @@ public class GIOHANG_PHIM {
     public void setGHE_NGOI(String GHE_NGOI) {
         this.GHE_NGOI = GHE_NGOI;
     }
-    
-    
+
+    public String getPOSTER() {
+        return POSTER;
+    }
+
+    public void setPOSTER(String POSTER) {
+        this.POSTER = POSTER;
+    }
+
 }

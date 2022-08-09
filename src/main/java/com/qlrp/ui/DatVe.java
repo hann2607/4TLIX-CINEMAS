@@ -10,6 +10,7 @@ import com.qlrp.dao.QLGIAVEDAO;
 import com.qlrp.dao.QLVEDATDAO;
 import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIAVE;
+import com.qlrp.entity.GIOHANG_DOAN;
 import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
@@ -18,6 +19,7 @@ import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -37,7 +39,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -490,6 +491,7 @@ public class DatVe extends javax.swing.JFrame {
     File f = new File("");
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     ChonChoNgoi ccn = new ChonChoNgoi();
+    DefaultTableModel model;
 
     QLSUATCHIEUDAO qlsuatchieudao = new QLSUATCHIEUDAO();
     QLGIAVEDAO qlvedao = new QLGIAVEDAO();
@@ -702,18 +704,14 @@ public class DatVe extends javax.swing.JFrame {
     }
 
     private void addEventSoLuong() {
-        sp_SoLuong.addChangeListener(new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (sp_SoLuong.getValue().hashCode() > 0) {
-                    btn_ChonGheNgoi.setEnabled(true);
-                } else {
-                    validateForm();
-                    sp_SoLuong.setValue(1);
-                }
-                tongtien();
+        sp_SoLuong.addChangeListener((ChangeEvent e) -> {
+            if (sp_SoLuong.getValue().hashCode() > 0) {
+                btn_ChonGheNgoi.setEnabled(true);
+            } else {
+                validateForm();
+                sp_SoLuong.setValue(1);
             }
+            tongtien();
         });
     }
     double tongtien = 0;
@@ -771,47 +769,46 @@ public class DatVe extends javax.swing.JFrame {
     RSButton button = new RSButton();
 
     private void fillToCart(RSTableMetro table) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        List<GIOHANG_DOAN> listDoAn = getInfo.listSP_DOAN;
+        List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
 
-        model.addRow(new Object[]{phim.getPOSTER(), phim.getTEN_PHIM(), sp_SoLuong.getValue().hashCode(), lbl_GiaVe.getText()});
-        // show IMG product
+        for (GIOHANG_PHIM giohang_phim : listphim) {
+            model.addRow(new Object[]{giohang_phim.getPOSTER(), giohang_phim.getTEN_SAN_PHAM(), giohang_phim.getSO_LUONG(), formatter.format(giohang_phim.getGIA()) + " VNĐ"});
+        }
+        table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererMovie());
+//        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
+//        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox()));
 
-        table.getColumnModel().getColumn(0).setCellRenderer(new ImageRendererMovie());
-        table.getColumnModel().getColumn(4).setCellRenderer(new ImageRendererButton());
-        table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
-
-        button.addActionListener((ActionEvent event) -> {
-            try {
-                if (JOptionPane.showConfirmDialog(this, "BẠN CHẮC CHẮN MUỐN XÓA VẬT PHẨM NÀY?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    model.removeRow(table.getSelectedRow());
-                }
-            } catch (Exception e) {
-            }
-
-        });
-
+        for (GIOHANG_DOAN giohang_doan : listDoAn) {
+            model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ"});
+        }
+        table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererFood());
+//        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
+//        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox())); 
+        table.getColumnModel().getColumn(4).setCellRenderer(r);
     }
 
-    private class WordWrapCellRenderer extends JTextArea implements TableCellRenderer {
+    DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+        Font font = new Font("Segoe UI", Font.BOLD, 32);
 
-        WordWrapCellRenderer() {
-            setLineWrap(true);
-            setWrapStyleWord(true);
-        }
 
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            setText(value.toString());
-            setSize(table.getColumnModel().getColumn(column).getWidth(), getPreferredSize().height);
-            if (table.getRowHeight(row) != getPreferredSize().height) {
-                table.setRowHeight(row, getPreferredSize().height);
-            }
-            setOpaque(false);
-            setBorder(BorderFactory.createEmptyBorder());
-            setBackground(new Color(0, 0, 0, 0));
+        public Component getTableCellRendererComponent(JTable table,
+                Object value, boolean isSelected, boolean hasFocus,
+                int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+                    row, column);
+            setOpaque(true);
+            setFont(font);
+            setHorizontalAlignment(RSButton.CENTER);
+            setBackground(Color.WHITE);
+            setForeground(Color.BLACK);
             return this;
         }
-    }
+
+    };
 
     private class ImageRendererMovie extends DefaultTableCellRenderer {
 
@@ -828,52 +825,95 @@ public class DatVe extends javax.swing.JFrame {
         }
     }
 
-    private class ImageRendererButton extends RSButton implements TableCellRenderer {
+    private class ImageRendererFood extends DefaultTableCellRenderer {
 
         //add img into table
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            String photoname = String.valueOf(value);
+            ImageIcon ImageIcon = new ImageIcon(
+                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
+                            getImage().getScaledInstance(70, 100, Image.SCALE_SMOOTH));
             //add border for img
-            button.setBackground(new Color(255, 255, 255));
-            button.setOpaque(true);
-            String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
-            button.setIcon(XImage.ResizeImage(32, 32, url));
-            return button;
+            JLabel lb = new JLabel(ImageIcon);
+            return lb;
         }
+    }
+
+    private class ButtonRenderer extends RSButton implements TableCellRenderer {
+
+        //CONSTRUCTOR
+        public ButtonRenderer() {
+            //SET BUTTON PROPERTIES
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object obj,
+                boolean selected, boolean focused, int row, int col) {
+
+            //SET PASSED OBJECT AS BUTTON TEXT
+            setText((obj == null) ? "" : obj.toString());
+
+            return this;
+        }
+
     }
 
     private class ButtonEditor extends DefaultCellEditor {
 
-        private String label;
+        protected RSButton btn;
+        private String lbl;
 
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
+            btn = new RSButton();
+            btn.setBackground(new Color(255, 255, 255));
+            btn.setOpaque(true);
+            String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
+            btn.setIcon(XImage.ResizeImage(32, 32, url));
+
+            //WHEN BUTTON IS CLICKED
+            btn.addActionListener((ActionEvent e) -> {
+                if (KHHOME.Instance.table.getSelectedRow() != -1) {
+                    List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+                    List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+                    if (KHHOME.Instance.table.getSelectedRow() < listphim.size()) {
+                        listphim.remove(KHHOME.Instance.table.getSelectedRow());
+                    }
+                    getInfo.listSP_PHIM = listphim;
+                    fillToCart(KHHOME.Instance.table);
+                    KHHOME.Instance.table.clearSelection();
+                }
+            });
         }
 
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "XÓA" : value.toString();
-            return button;
+            lbl = (value == null) ? "" : value.toString();
+            btn.setText(lbl);
+            return btn;
         }
 
         @Override
         public Object getCellEditorValue() {
-            return label;
+            return lbl;
         }
     }
-    
+
     private void addToListSP_PHIM() {
         GIOHANG_PHIM giohang = new GIOHANG_PHIM();
 
         giohang.setGIA(tongtien);
-        giohang.setSO_LUONG(sp_SoLuong.getValue().hashCode()+ "");
+        giohang.setSO_LUONG(sp_SoLuong.getValue().hashCode() + "");
         giohang.setTEN_SAN_PHAM(phim.getTEN_PHIM());
         giohang.setNGAY_CHIEU(cbo_NgayChieu.getSelectedItem() + "");
         giohang.setGIO_CHIEU(cbo_GioChieu.getSelectedItem() + "");
         giohang.setPHONG_CHIEU(cbo_PhongChieu.getSelectedItem() + "");
         giohang.setGHE_NGOI(txt_GheNgoi.getText());
-        
+        giohang.setPOSTER(phim.getPOSTER());
+
         List<GIOHANG_PHIM> list = getInfo.listSP_PHIM;
 
         list.add(giohang);
@@ -893,10 +933,8 @@ public class DatVe extends javax.swing.JFrame {
                 ghengoi.setDA_CHON(true);
                 qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
             }
-            fillToCart(KHHOME.Instance.table);
             addToListSP_PHIM();
-//            System.out.println(getInfo.listSP.size());
-
+            fillToCart(KHHOME.Instance.table);
         }
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 

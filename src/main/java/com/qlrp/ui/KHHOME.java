@@ -8,9 +8,12 @@ import com.qlrp.dao.QLDADAO;
 import com.qlrp.dao.QLKMDAO;
 import com.qlrp.dao.QLPHIMDAO;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.GIOHANG_DOAN;
+import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.KHUYENMAI;
 import com.qlrp.entity.PHIM;
 import com.qlrp.utils.XImage;
+import com.qlrp.utils.getInfo;
 import com.qlrp.utils.setUIJScroll;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -201,6 +204,11 @@ public class KHHOME extends javax.swing.JFrame {
         tbl_GioHang.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tbl_GioHang.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tbl_GioHang.setRowHeight(110);
+        tbl_GioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_GioHangMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_GioHang);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -874,8 +882,6 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane4.getViewport().addChangeListener(new ListenAdditionsScrolledDoAn());
         jScrollPane8.getViewport().addChangeListener(new ListenAdditionsScrolledKhuyenMai());
         
-        tbl_GioHang.setRowSelectionAllowed(false);
-        tbl_GioHang.setCellSelectionEnabled(false);
     }
 
     int i = 1;
@@ -926,7 +932,8 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane4.getHorizontalScrollBar().setValue(0);
         jScrollPane8.getHorizontalScrollBar().setValue(0);
     }
-
+   
+    
     private void RunSlide() {
         Thread slideThread = new Thread() {
             @Override
@@ -1223,6 +1230,28 @@ public class KHHOME extends javax.swing.JFrame {
         KH_HoaDon hd = new KH_HoaDon();
         hd.setVisible(true);
     }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
+
+    private void tbl_GioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_GioHangMouseClicked
+        // TODO add your handling code here:
+        int index = tbl_GioHang.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
+        if (index != -1) {
+            List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+            List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+            if (index >= listphim.size()) {
+                DOAN da = qldadao.selectebyID(listda.get(index - listphim.size()).getTEN_SAN_PHAM());
+                qldadao.updateSL(da.getSOLUONG() + listda.get(index - listphim.size()).getSO_LUONG(), listda.get(index - listphim.size()).getTEN_SAN_PHAM());
+                listda.remove(index - listphim.size());
+                model.removeRow(index);
+            } else {
+                listphim.remove(index);
+                model.removeRow(index);
+            }
+            getInfo.listSP_DOAN = listda;
+            getInfo.listSP_PHIM = listphim;
+            tbl_GioHang.clearSelection();
+        }
+    }//GEN-LAST:event_tbl_GioHangMouseClicked
 
     /**
      * @param args the command line arguments

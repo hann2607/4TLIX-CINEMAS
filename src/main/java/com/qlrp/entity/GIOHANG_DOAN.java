@@ -13,15 +13,17 @@ public class GIOHANG_DOAN {
     private int SO_LUONG;
     private double GIA;
     private String KICH_CO;
+    private String HINH;
     
     public GIOHANG_DOAN() {
     }
 
-    public GIOHANG_DOAN(String TEN_SAN_PHAM, int SO_LUONG, double GIA, String KICH_CO) {
+    public GIOHANG_DOAN(String TEN_SAN_PHAM, int SO_LUONG, double GIA, String KICH_CO, String HINH) {
         this.TEN_SAN_PHAM = TEN_SAN_PHAM;
         this.SO_LUONG = SO_LUONG;
         this.GIA = GIA;
         this.KICH_CO = KICH_CO;
+        this.HINH = HINH;
     }
 
     public String getTEN_SAN_PHAM() {
@@ -56,7 +58,13 @@ public class GIOHANG_DOAN {
         this.KICH_CO = KICH_CO;
     }
 
-    
-    
-    
+    public String getHINH() {
+        return HINH;
+    }
+
+    public void setHINH(String HINH) {
+        this.HINH = HINH;
+    }
+
+
 }
