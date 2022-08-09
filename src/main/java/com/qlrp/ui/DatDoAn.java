@@ -371,7 +371,6 @@ public class DatDoAn extends javax.swing.JFrame {
         try {
 
             lbl_HinhDoAn.setIcon(XImage.ResizeImage(lbl_HinhDoAn.getWidth(), lbl_HinhDoAn.getHeight(), duongdanBanner + food.getHINH()));
-            System.out.println(duongdanBanner + food.getHINH());
         } catch (Exception e) {
         }
     }
@@ -379,7 +378,7 @@ public class DatDoAn extends javax.swing.JFrame {
 
     private void fillToCart(RSTableMetro table) {
         model = (DefaultTableModel) table.getModel();
-        double tt = 0; 
+        double tt = 0;
         model.setRowCount(0);
 
         for (GIOHANG_PHIM giohang_phim : getInfo.listSP_PHIM) {
@@ -398,7 +397,7 @@ public class DatDoAn extends javax.swing.JFrame {
 //        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
 //        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
         table.getColumnModel().getColumn(4).setCellRenderer(r);
-        
+
         KHHOME.Instance.sl.setText((getInfo.listSP_PHIM.size() + getInfo.listSP_DOAN.size()) + "");
         KHHOME.Instance.lbl.setText(formatter.format(tt) + " VNĐ");
     }
@@ -503,6 +502,7 @@ public class DatDoAn extends javax.swing.JFrame {
         public Object getCellEditorValue() {
             return lbl;
         }
+
     }
 
     private void lbl_ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ExitMouseClicked
@@ -601,16 +601,24 @@ public class DatDoAn extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatDoAn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatDoAn.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

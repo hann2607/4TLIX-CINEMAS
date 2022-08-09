@@ -4,11 +4,50 @@
  */
 package com.qlrp.ui;
 
+import com.qlrp.dao.HOADONCHITIETDAO;
+import com.qlrp.dao.HOADONKHACHHANGDAO;
+import com.qlrp.dao.QLHOADONDAO;
 import com.qlrp.entity.GIOHANG_DOAN;
 import com.qlrp.entity.GIOHANG_PHIM;
+import com.qlrp.entity.HOADON_CT;
+import com.qlrp.entity.HOADON_KH;
+import com.qlrp.entity.KHACHHANG;
+import com.qlrp.utils.Auth;
+import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
+import com.sun.tools.javac.resources.ct;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -20,6 +59,11 @@ public final class KH_HoaDon extends javax.swing.JFrame {
      * Creates new form KH_HoaDon
      */
     DefaultTableModel model;
+    HOADONKHACHHANGDAO hdkhdao = new HOADONKHACHHANGDAO();
+    HOADONCHITIETDAO hdctdao = new HOADONCHITIETDAO();
+    List<HOADON_KH> listHDKH = new ArrayList<HOADON_KH>();
+    List<HOADON_CT> listHDCT = new ArrayList<HOADON_CT>();
+    DecimalFormat formatter = new DecimalFormat("###,###,###");
 
     public KH_HoaDon() {
         initComponents();
@@ -30,11 +74,50 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         this.setIconImage(XImage.getAppIcon());
         this.setCursor(XImage.setCursor());
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        fillPhimToTable_HoaDon();
+        fillThongTin_HoaDon();
 
     }
 
+    private void autoCreateMaHD() {
+        String maHD;
+        while (true) {
+            Random rand = new Random();
+            int ranNum = rand.nextInt(100000) + 1;
+            maHD = "HD" + ranNum;
+            if (hdkhdao.selectebyID(maHD) == null) {
+                break;
+            }
+        }
+        lbl_maHD.setText(maHD);
+    }
+
+    private void autoCreateMaHDCT() {
+        String maHDCT;
+        while (true) {
+            Random rand = new Random();
+            int ranNum = rand.nextInt(100000) + 1;
+            maHDCT = "HDCT" + ranNum;
+            if (hdkhdao.selectebyID(maHDCT) == null) {
+                break;
+            }
+        }
+        lbl_maHDCT.setText(maHDCT);
+    }
+
+    public void fillThongTin_HoaDon() {
+        // Đổ dữ liệu vào 
+        KHACHHANG kh = Auth.cus;
+        lbl_tenKH.setText(kh.getHO_TEN());
+        lbl_sdt.setText(kh.getSDT());
+        lbl_email.setText(kh.getEMAIL());
+        autoCreateMaHD();
+        autoCreateMaHDCT();
+        lbl_thoiGian.setText(java.time.LocalDate.now() + "");
+        fillPhimToTable_HoaDon();
+    }
+
     public void fillPhimToTable_HoaDon() {
+        // Đổ dữ liệu vào 
         tbl_HoaDon.removeAll();
         model = (DefaultTableModel) tbl_HoaDon.getModel();
         model.setRowCount(0);
@@ -47,18 +130,175 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                 + ph.getNGAY_CHIEU(),
                 ph.getGIA()});
         }
+        tbl_HoaDon.getColumnModel().getColumn(0).setCellRenderer(new WordWrapeCellRender());
+
         fillDoAnToTable_HoaDon();
     }
 
     public void fillDoAnToTable_HoaDon() {
+        // Đổ dữ liệu vào 
         model = (DefaultTableModel) tbl_HoaDon.getModel();
-
         for (GIOHANG_DOAN da : getInfo.listSP_DOAN) {
-            model.addRow(new Object[]{da.getSO_LUONG() + " size " + da.getKICH_CO(),da.getTEN_SAN_PHAM(),da.getGIA()});
+            model.addRow(new Object[]{da.getSO_LUONG() + " size " + da.getKICH_CO(), da.getTEN_SAN_PHAM(), da.getGIA()});
+        }
+        total();
+        getData();
+    }
+
+    private class WordWrapeCellRender extends JTextArea implements TableCellRenderer {
+
+        WordWrapeCellRender() {
+            setLineWrap(true);
+            setWrapStyleWord(true);
+
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean bln, boolean isSelected, int row, int column) {
+            setText(value.toString());
+            setFont(new Font("Segoe UI", Font.BOLD, 17));
+            setForeground(new Color(0, 112, 192));
+            setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+            setBackground(new Color(0, 0, 0, 0));
+            setSelectionColor(new Color(0, 0, 0, 0));
+            setOpaque(false);
+
+            return this;
         }
     }
 
-    ;
+    private void total() {
+        int row = tbl_HoaDon.getRowCount();
+        double total = 0;
+
+        for (int i = 0; i < row; i++) {
+            double val = Double.valueOf(tbl_HoaDon.getValueAt(i, 2).toString());
+            total += val;
+        }
+        lbl_tongtien.setText("Tổng tiền đơn hàng: " + formatter.format(total) + " VNĐ");
+    }
+
+    private HOADON_KH getForm() {
+        // Lấy dữ liệu ra 
+        HOADON_KH kh = new HOADON_KH();
+        kh.setTENKH(lbl_tenKH.getText());
+        kh.setSDT(lbl_sdt.getText());
+        kh.setEMAIL(lbl_email.getText());
+        kh.setMAHD(lbl_maHD.getText());
+        kh.setMAHDCT(lbl_maHDCT.getText());
+        kh.setTHOIGIAN(lbl_thoiGian.getText());
+        kh.setTONGTIEN(lbl_tongtien.getText());
+        return kh;
+    }
+
+    private void getData() {
+        // Lấy dữ liệu ra 
+        HOADON_CT ct = new HOADON_CT();
+        HOADON_KH kh = getForm();
+        model = (DefaultTableModel) tbl_HoaDon.getModel();
+        ct.setMAHDCT(kh.getMAHDCT());
+        ct.setMAHD(kh.getMAHD());
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            ct.setSL_KICHCO(model.getValueAt(i, 0) + "");
+            ct.setTENSP(model.getValueAt(i, 1) + "");
+            ct.setDONGIA(model.getValueAt(i, 2) + "");
+            listHDCT.add(ct);
+            hdctdao.insert(ct);
+        }
+
+    }
+
+    private void insertData() {
+        HOADON_KH kh = getForm();
+
+        if (kh != null) {
+            if (hdkhdao.selectebyID(kh.getMAHD()) == null) {
+                hdkhdao.insert(kh);
+                getData();
+                // send mail
+                sendMail();
+//                MsgBox.alert(this, "Xác nhận thành công. Sử dụng mã QR được gửi qua email khi đến check in tại rạp!");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Xác nhận thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    int index = 0;
+
+    public void sendMail() {
+        HOADON_KH kh = getForm();
+        try {
+            // Thiet lap ket noi
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+            p.put("mail.smtp.port", 587);
+
+            // Tai khoan login gmail
+            String accoutName = "4tlixcompany@gmail.com";
+            String accoutPass = "ssqbkkkbdcokwtcr";
+
+            Session ss = Session.getInstance(p,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication(accoutName, accoutPass);
+                }
+            });
+
+            String from = "4tlixcompany@gmail.com";
+            String to = lbl_email.getText();
+
+            String subject = ("Successful booking information ( " + kh.getTHOIGIAN() + ",Order ID: " + kh.getMAHD() + ")");
+
+            String body
+                    = "4TLIX CINEMAS TRÂN TRỌNG THÔNG BÁO  \n"
+                    + "Thông tin hóa đơn: " + kh.getMAHDCT() + "\n"
+                    + listHDCT.get(index).getSL_KICHCO() + "\n" //                  
+                    + listHDCT.get(index).getTENSP() + "\n"
+                    + kh.getTONGTIEN();
+
+            Message msg = new MimeMessage(ss);
+
+            MimeBodyPart contentPart = new MimeBodyPart();
+            contentPart.setContent(body, "text/html; charset=utf-8");
+
+            msg.setFrom(new InternetAddress(from));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            msg.setSubject(subject);
+
+            msg.setText(body);
+            msg.setContent(body, "text/plain; charset=UTF-8");
+
+            // Gui File dinh kem
+//            MimeBodyPart filePart = new MimeBodyPart();
+//            File file = new File("");
+//
+//            FileDataSource fds = new FileDataSource(file);
+//            filePart.setDataHandler(new DataHandler(fds));
+//            filePart.setFileName(file.getName());
+//
+//            MimeMultipart multiPart = new MimeMultipart();
+//
+//            multiPart.addBodyPart(contentPart);
+//            multiPart.addBodyPart(filePart);
+//
+//            msg.setContent(multiPart);
+            Transport.send(msg);
+            JOptionPane.showMessageDialog(null, "Hóa đơn đã được gửi về email của bạn" + "\n"
+                    + "Sử dụng mã QR được gửi qua email khi đến check in tại rạp", "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,8 +309,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_HoaDon = new rojerusan.RSTableMetro();
@@ -78,30 +316,25 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lbl_tenKH = new javax.swing.JLabel();
+        lbl_sdt = new javax.swing.JLabel();
+        lbl_maHD = new javax.swing.JLabel();
+        lbl_thoiGian = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_email = new javax.swing.JLabel();
+        lbl_tongtien = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         btn_huyBo = new com.k33ptoo.components.KButton();
         btn_xacNhan = new com.k33ptoo.components.KButton();
+        lbl_maHDCT = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HÓA ĐƠN");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("HDCT01");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("MÃ HDCT:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HÓA ĐƠN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
@@ -123,11 +356,15 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                 "SL", "TÊN", "GIÁ"
             }
         ));
-        tbl_HoaDon.setColorBordeFilas(new java.awt.Color(255, 255, 255));
         tbl_HoaDon.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_HoaDon.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tbl_HoaDon.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tbl_HoaDon.setColorSelBackgound(new java.awt.Color(255, 255, 153));
+        tbl_HoaDon.setColorSelForeground(new java.awt.Color(0, 0, 0));
         tbl_HoaDon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tbl_HoaDon.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tbl_HoaDon.setRowHeight(60);
+        tbl_HoaDon.setSelectionBackground(new java.awt.Color(255, 255, 102));
         jScrollPane2.setViewportView(tbl_HoaDon);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -142,17 +379,23 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("THỜI GIAN:");
 
+        lbl_tenKH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_tenKH.setText("4TLIX");
+
+        lbl_sdt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_sdt.setText("0123");
+
+        lbl_maHD.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_maHD.setText("HD001");
+
+        lbl_thoiGian.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_thoiGian.setText("08/08/2022");
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("4TLIX");
+        jLabel10.setText("EMAIL:");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("0123");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("HD001");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("08/08/2022");
+        lbl_email.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_email.setText("0123");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,13 +407,15 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_sdt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_tenKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_maHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_thoiGian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
@@ -179,32 +424,32 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_tenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_email, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_maHD, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_thoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 590, 520));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("000.000");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Tổng tiền:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 580, -1, -1));
+        lbl_tongtien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_tongtien.setText("000.000");
+        jPanel1.add(lbl_tongtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 580, 580, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -256,6 +501,14 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         });
         jPanel1.add(btn_xacNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 650, 170, 50));
 
+        lbl_maHDCT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbl_maHDCT.setText("HD001");
+        jPanel1.add(lbl_maHDCT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 110, 24));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setText("MÃ HDCT:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 275, 24));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -276,7 +529,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_huyBoActionPerformed
 
     private void btn_xacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacNhanActionPerformed
-
+        insertData();
     }//GEN-LAST:event_btn_xacNhanActionPerformed
 
     /**
@@ -317,14 +570,8 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton btn_huyBo;
     private com.k33ptoo.components.KButton btn_xacNhan;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -334,6 +581,13 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_email;
+    private javax.swing.JLabel lbl_maHD;
+    private javax.swing.JLabel lbl_maHDCT;
+    private javax.swing.JLabel lbl_sdt;
+    private javax.swing.JLabel lbl_tenKH;
+    private javax.swing.JLabel lbl_thoiGian;
+    private javax.swing.JLabel lbl_tongtien;
     private rojerusan.RSTableMetro tbl_HoaDon;
     // End of variables declaration//GEN-END:variables
 }
