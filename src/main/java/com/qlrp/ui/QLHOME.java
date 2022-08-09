@@ -221,13 +221,39 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLKM_Search = new javax.swing.JButton();
         txt_QLKM_search = new javax.swing.JTextField();
         pnl_QLSuatChieu = new javax.swing.JPanel();
-        btn_QLHD_Search2 = new javax.swing.JButton();
-        txt_QLHD_Search2 = new javax.swing.JTextField();
         jScrollPane11 = new javax.swing.JScrollPane();
         tbl_QLSC = new rojerusan.RSTableMetro();
         btn_QLSC_ADD = new com.k33ptoo.components.KButton();
         jLabel22 = new javax.swing.JLabel();
         btn_QLSC_cailai = new com.k33ptoo.components.KButton();
+        pnl_Account = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel22 = new javax.swing.JPanel();
+        btn_Acc_ChangePass = new com.k33ptoo.components.KButton();
+        btn_Acc_EditInfo = new com.k33ptoo.components.KButton();
+        jLabel34 = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        lbl_Account_Image = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        lbl_Account_ID = new javax.swing.JLabel();
+        lbl_Account_FullName = new javax.swing.JLabel();
+        lbl_Account_Email = new javax.swing.JLabel();
+        lbl_Account_Gender = new javax.swing.JLabel();
+        lbl_Account_Role = new javax.swing.JLabel();
+        lbl_Account_Phone = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_Account_Story = new javax.swing.JTextArea();
+        btn_Acc_ChangePass1 = new com.k33ptoo.components.KButton();
+        btn_Acc_ChangePass2 = new com.k33ptoo.components.KButton();
 
         jMenu1.setText("jMenu1");
 
@@ -820,12 +846,14 @@ public class QLHOME extends javax.swing.JFrame {
             .addComponent(btn_QLDoAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_QLKM, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(btn_QLKM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_QLTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_TK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_CaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_QLSC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btn_Thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnl_MenuLayout.createSequentialGroup()
+                .addComponent(btn_QLSC, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnl_MenuLayout.setVerticalGroup(
             pnl_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -844,13 +872,13 @@ public class QLHOME extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(btn_QLKM, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(btn_QLSC, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(btn_QLTK, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_CaiDat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btn_QLSC, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -2024,22 +2052,6 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_QLSuatChieu.setPreferredSize(new java.awt.Dimension(1270, 670));
         pnl_QLSuatChieu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_QLHD_Search2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
-        btn_QLHD_Search2.setBorderPainted(false);
-        btn_QLHD_Search2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLHD_Search2ActionPerformed(evt);
-            }
-        });
-        pnl_QLSuatChieu.add(btn_QLHD_Search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 50, 40));
-
-        txt_QLHD_Search2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_QLHD_Search2ActionPerformed(evt);
-            }
-        });
-        pnl_QLSuatChieu.add(txt_QLHD_Search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 580, 40));
-
         tbl_QLSC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -2099,7 +2111,7 @@ public class QLHOME extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel22.setText("QUẢN LÝ SUẤT CHIẾU");
-        pnl_QLSuatChieu.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 260, -1));
+        pnl_QLSuatChieu.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 62, 260, 50));
 
         btn_QLSC_cailai.setText("RESTART");
         btn_QLSC_cailai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -2117,6 +2129,259 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_QLSuatChieu.add(btn_QLSC_cailai, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 580, -1, -1));
 
         pnl_Main.add(pnl_QLSuatChieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
+        pnl_Account.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_Account.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnl_Account.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnl_Account.setPreferredSize(new java.awt.Dimension(1270, 670));
+        pnl_Account.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel23.setText("ACCOUNT");
+        jPanel21.add(jLabel23);
+
+        pnl_Account.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 64, 1230, -1));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        pnl_Account.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 20, 510));
+
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_Acc_ChangePass.setText("CHANGE PASSWORD");
+        btn_Acc_ChangePass.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_Acc_ChangePass.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_Acc_ChangePass.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_Acc_ChangePass.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_Acc_ChangePass.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_Acc_ChangePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Acc_ChangePassActionPerformed(evt);
+            }
+        });
+
+        btn_Acc_EditInfo.setText("EDIT INFOMATION");
+        btn_Acc_EditInfo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_Acc_EditInfo.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_Acc_EditInfo.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_EditInfo.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_Acc_EditInfo.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_EditInfo.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_Acc_EditInfo.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_Acc_EditInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Acc_EditInfoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Acc_ChangePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Acc_EditInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel34)
+                .addGap(39, 39, 39))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btn_Acc_ChangePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btn_Acc_EditInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel34)
+                .addContainerGap(212, Short.MAX_VALUE))
+        );
+
+        pnl_Account.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 230, 400));
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_Account_Image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setText("ID:");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setText("NAME:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel26.setText("EMAIL:");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel27.setText("GENDER:");
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel28.setText("PHONE:");
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel29.setText("ROLE:");
+
+        lbl_Account_ID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_ID.setText("123456");
+
+        lbl_Account_FullName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_FullName.setText("NGUYEN VAN TEO");
+
+        lbl_Account_Email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_Email.setText("teo@gmail.com");
+
+        lbl_Account_Gender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_Gender.setText("MALE");
+
+        lbl_Account_Role.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_Role.setText("MANAGER");
+
+        lbl_Account_Phone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_Account_Phone.setText("0123456788");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Account_Role)
+                    .addComponent(lbl_Account_Gender)
+                    .addComponent(lbl_Account_Email)
+                    .addComponent(lbl_Account_FullName)
+                    .addComponent(lbl_Account_ID)
+                    .addComponent(lbl_Account_Phone))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(lbl_Account_ID))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(lbl_Account_FullName))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(lbl_Account_Email))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(lbl_Account_Gender))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(lbl_Account_Phone))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(lbl_Account_Role))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("STORY:");
+
+        txt_Account_Story.setColumns(20);
+        txt_Account_Story.setRows(5);
+        jScrollPane2.setViewportView(txt_Account_Story);
+
+        btn_Acc_ChangePass1.setText("DELETE");
+        btn_Acc_ChangePass1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_Acc_ChangePass1.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_Acc_ChangePass1.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_Acc_ChangePass1.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass1.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_Acc_ChangePass1.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_Acc_ChangePass1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Acc_ChangePass1ActionPerformed(evt);
+            }
+        });
+
+        btn_Acc_ChangePass2.setText("SAVE");
+        btn_Acc_ChangePass2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_Acc_ChangePass2.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_Acc_ChangePass2.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass2.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_Acc_ChangePass2.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_Acc_ChangePass2.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_Acc_ChangePass2.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_Acc_ChangePass2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Acc_ChangePass2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addComponent(lbl_Account_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Acc_ChangePass2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Acc_ChangePass1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(173, 173, 173))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_Account_Image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel33)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Acc_ChangePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Acc_ChangePass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        pnl_Account.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 510, 500));
+
+        pnl_Main.add(pnl_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2261,6 +2526,7 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_IntergratedManagement.setVisible(false);
 //        pnl_ShippingManagement.setVisible(false);
         pnl_CustomerManagement.setVisible(false);
+        pnl_Account.setVisible(false);
         pnl_QLHoaDon.setVisible(false);
         pnl_QLSuatChieu.setVisible(false);
 //        pnl_Account.setVisible(false);
@@ -2836,7 +3102,7 @@ public class QLHOME extends javax.swing.JFrame {
         this.btn_CheckClickMenu = btn_TK;
         this.sizeBorder = 42;
         hoverMenu(btn_TK, 42);
-
+        showPanelMenu(pnl_Account);
         // code change Tab here
 //        showPanelMenu(pnl_Account);
     }//GEN-LAST:event_btn_TKActionPerformed
@@ -3360,14 +3626,6 @@ public class QLHOME extends javax.swing.JFrame {
         hd.fillToForm();
     }//GEN-LAST:event_btn_QLHD_EditActionPerformed
 
-    private void btn_QLHD_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLHD_Search2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_QLHD_Search2ActionPerformed
-
-    private void txt_QLHD_Search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_QLHD_Search2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_QLHD_Search2ActionPerformed
-
     private void tbl_QLSCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_QLSCMouseClicked
         try {
             int index = tbl_QLSC.getSelectedRow();
@@ -3396,6 +3654,24 @@ public class QLHOME extends javax.swing.JFrame {
         List<SUATCHIEU> listSC = qlsuatchieudao.selectAll();
         fillToTable_SUATCHIEU(listSC);
     }//GEN-LAST:event_btn_QLSC_cailaiActionPerformed
+
+    private void btn_Acc_ChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_ChangePassActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_Acc_ChangePassActionPerformed
+
+    private void btn_Acc_EditInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_EditInfoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_Acc_EditInfoActionPerformed
+
+    private void btn_Acc_ChangePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_ChangePass1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Acc_ChangePass1ActionPerformed
+
+    private void btn_Acc_ChangePass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_ChangePass2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Acc_ChangePass2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3434,6 +3710,10 @@ public class QLHOME extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.components.KButton btn_Acc_ChangePass;
+    private com.k33ptoo.components.KButton btn_Acc_ChangePass1;
+    private com.k33ptoo.components.KButton btn_Acc_ChangePass2;
+    private com.k33ptoo.components.KButton btn_Acc_EditInfo;
     private com.k33ptoo.components.KButton btn_AccountMana_Add;
     private com.k33ptoo.components.KButton btn_AccountMana_Refresh;
     private com.k33ptoo.components.KButton btn_AccountMana_sendMail;
@@ -3459,7 +3739,6 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_QLHD;
     private com.k33ptoo.components.KButton btn_QLHD_Edit;
     private javax.swing.JButton btn_QLHD_Search1;
-    private javax.swing.JButton btn_QLHD_Search2;
     private com.k33ptoo.components.KButton btn_QLHD_xoa;
     private javax.swing.JButton btn_QLKH;
     private javax.swing.JButton btn_QLKH_Search;
@@ -3500,7 +3779,16 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -3519,6 +3807,10 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3532,10 +3824,19 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JLabel lbl_AccMana_search;
+    private javax.swing.JLabel lbl_Account_Email;
+    private javax.swing.JLabel lbl_Account_FullName;
+    private javax.swing.JLabel lbl_Account_Gender;
+    private javax.swing.JLabel lbl_Account_ID;
+    private javax.swing.JLabel lbl_Account_Image;
+    private javax.swing.JLabel lbl_Account_Phone;
+    private javax.swing.JLabel lbl_Account_Role;
     private javax.swing.JLabel lbl_Email;
     private javax.swing.JLabel lbl_FullName;
     private javax.swing.JLabel lbl_ID;
@@ -3547,6 +3848,7 @@ public class QLHOME extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Slide3;
     private javax.swing.JLabel lbl_Slide4;
     private javax.swing.JPanel pnl_Acc;
+    private javax.swing.JPanel pnl_Account;
     private javax.swing.JPanel pnl_AccountMana_ShowListAcc;
     private javax.swing.JPanel pnl_AccountManagement;
     private javax.swing.JPanel pnl_CustomerManagement;
@@ -3570,12 +3872,12 @@ public class QLHOME extends javax.swing.JFrame {
     private rojerusan.RSTableMetro tbl_QLKM;
     private rojerusan.RSTableMetro tbl_QLSC;
     private javax.swing.JTextField txt_AccMana_search;
+    private javax.swing.JTextArea txt_Account_Story;
     private javax.swing.JTextField txt_CUSMANA_Search;
     private javax.swing.JTextField txt_MOVMANA_Search;
     private javax.swing.JTextField txt_QLBN_search;
     private javax.swing.JTextField txt_QLDA_search;
     private javax.swing.JTextField txt_QLHD_Search1;
-    private javax.swing.JTextField txt_QLHD_Search2;
     private javax.swing.JTextField txt_QLKM_search;
     // End of variables declaration//GEN-END:variables
 

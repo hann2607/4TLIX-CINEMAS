@@ -88,6 +88,10 @@ public class SUATCHIEU {
     public void setNGAY_CHIEU(Date NGAY_CHIEU) {
         this.NGAY_CHIEU = NGAY_CHIEU;
     }
+
+    public void getNGAY_CHIEU(Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

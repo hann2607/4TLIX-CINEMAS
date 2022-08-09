@@ -46,8 +46,8 @@ public class ChitietSC extends javax.swing.JFrame {
             txt_MaPC1.setText(sc.getMA_PHONG_CHIEU());
             txt_ddphim.setText(sc.getTEN_DINH_DANG_PHIM());
             txt_Maphim.setText(sc.getMA_PHIM());
-            dc_GioBD.setDate(sc.getGIO_BAT_DAU());
-            dc_GioKT.setDate(sc.getGIO_KET_THUC());
+            cbo_GioBD.setSelectedItem(sc.getGIO_BAT_DAU());
+            cbo_GioKT.setSelectedItem(sc.getGIO_KET_THUC());
             dc_ngaychieu.setDate(sc.getNGAY_CHIEU());             
         }
     }
@@ -57,8 +57,8 @@ public class ChitietSC extends javax.swing.JFrame {
         txt_MaPC1.setText("");
         txt_ddphim.setText("");
         txt_Maphim.setText("");
-        dc_GioBD.setDate(null);
-        dc_GioKT.setDate(null);
+        cbo_GioBD.setSelectedIndex(0);
+        cbo_GioKT.setSelectedIndex(0);
         dc_ngaychieu.setDate(null);
     }
 
@@ -68,8 +68,8 @@ public class ChitietSC extends javax.swing.JFrame {
             txt_MaPC1.setText(sc.getMA_PHONG_CHIEU());
             txt_ddphim.setText(sc.getTEN_DINH_DANG_PHIM());
             txt_Maphim.setText(sc.getMA_PHIM());
-            dc_GioBD.setDate(sc.getGIO_BAT_DAU());
-            dc_GioKT.setDate(sc.getGIO_KET_THUC());
+            cbo_GioBD.setSelectedItem(sc.getGIO_BAT_DAU());
+            cbo_GioKT.setSelectedItem(sc.getGIO_KET_THUC());
             dc_ngaychieu.setDate(sc.getNGAY_CHIEU());
         } catch (Exception e) {
         }
@@ -84,8 +84,8 @@ public class ChitietSC extends javax.swing.JFrame {
             sc.setMA_PHONG_CHIEU(txt_MaPC1.getText());
             sc.setTEN_DINH_DANG_PHIM(txt_ddphim.getText());
             sc.setMA_PHIM(txt_Maphim.getText());
-            sc.setGIO_BAT_DAU((Time) dc_GioBD.getDate());
-            sc.setGIO_KET_THUC((Time) dc_GioKT.getDate());
+//          sc.setGIO_BAT_DAU(cbo_GioBD.getSelectedItem().toString());
+//          sc.getGIO_KET_THUC(cbo_GioKT.getSelectedItem().toString());
             sc.setNGAY_CHIEU(dc_ngaychieu.getDate());
         } else {
             return null;
@@ -121,8 +121,8 @@ public class ChitietSC extends javax.swing.JFrame {
         txt_MaPC1.setText("");
         txt_ddphim.setText("");
         txt_Maphim.setText("");
-        dc_GioBD.setDate(null);
-        dc_GioKT.setDate(null);
+        cbo_GioBD.setSelectedIndex(0);
+        cbo_GioKT.setSelectedIndex(0);
         dc_ngaychieu.setDate(null);
     }
 
@@ -146,7 +146,6 @@ public class ChitietSC extends javax.swing.JFrame {
         lbl_ten10 = new javax.swing.JLabel();
         txt_maSC = new javax.swing.JTextField();
         lbl_ten8 = new javax.swing.JLabel();
-        dc_GioBD = new newscomponents.RSDateChooserModern();
         lbl_ten9 = new javax.swing.JLabel();
         lbl_ten11 = new javax.swing.JLabel();
         txt_ddphim = new javax.swing.JTextField();
@@ -155,9 +154,10 @@ public class ChitietSC extends javax.swing.JFrame {
         btn_edit = new rsbuttongradiente.RSButtonGradiente();
         txt_Maphim = new javax.swing.JTextField();
         dc_ngaychieu = new newscomponents.RSDateChooserModern();
-        dc_GioKT = new newscomponents.RSDateChooserModern();
         txt_MaPC1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        cbo_GioBD = new RSMaterialComponent.RSComboBox();
+        cbo_GioKT = new RSMaterialComponent.RSComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,10 +183,6 @@ public class ChitietSC extends javax.swing.JFrame {
         lbl_ten8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbl_ten8.setText("MÃ PHIM");
         jPanel2.add(lbl_ten8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 170, 40));
-
-        dc_GioBD.setBackground(new java.awt.Color(102, 102, 255));
-        dc_GioBD.setFormatDate("hh:mm:ss");
-        jPanel2.add(dc_GioBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 328, 40));
 
         lbl_ten9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbl_ten9.setText("TÊN ĐỊNH DẠNG PHIM");
@@ -223,16 +219,20 @@ public class ChitietSC extends javax.swing.JFrame {
         dc_ngaychieu.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.add(dc_ngaychieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 328, 40));
 
-        dc_GioKT.setBackground(new java.awt.Color(102, 102, 255));
-        dc_GioKT.setFormatDate("hh:mm:ss");
-        jPanel2.add(dc_GioKT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 328, 40));
-
         txt_MaPC1.setEditable(false);
         jPanel2.add(txt_MaPC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 328, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("SUẤT CHIẾU");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 150, 40));
+
+        cbo_GioBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Giờ Bắt Đầu", "15:00", "20:00", "9:00", "10:00", "10:30", "16:30", "13:45" }));
+        cbo_GioBD.setColorFondo(new java.awt.Color(102, 102, 255));
+        jPanel2.add(cbo_GioBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 328, 40));
+
+        cbo_GioKT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Giờ kết thúc", "16:45", "11:00", "12:45", "18:45", "22:45", "15:00" }));
+        cbo_GioKT.setColorFondo(new java.awt.Color(102, 102, 255));
+        jPanel2.add(cbo_GioKT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 328, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -581,8 +581,8 @@ public class ChitietSC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttongradiente.RSButtonGradiente btn_Delete;
     private rsbuttongradiente.RSButtonGradiente btn_edit;
-    private newscomponents.RSDateChooserModern dc_GioBD;
-    private newscomponents.RSDateChooserModern dc_GioKT;
+    private RSMaterialComponent.RSComboBox cbo_GioBD;
+    private RSMaterialComponent.RSComboBox cbo_GioKT;
     private newscomponents.RSDateChooserModern dc_ngaychieu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;

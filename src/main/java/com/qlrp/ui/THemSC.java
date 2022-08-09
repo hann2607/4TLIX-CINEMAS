@@ -38,12 +38,23 @@ public class THemSC extends javax.swing.JFrame {
     }
 
     private void init() {
-//        this.setAlwaysOnTop(true);
+        this.setIconImage(XImage.getAppIcon());
+        this.setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
       
     }
 
     public void fillToForm() {
-        
+        SUATCHIEU sc = getInfo.sc;
+        if (sc != null) {
+            txt_maSC.setText(sc.getMA_SUAT_CHIEU());
+            txt_MAPC.setText(sc.getMA_PHONG_CHIEU());
+            txt_tenddphim1.setText(sc.getTEN_DINH_DANG_PHIM());
+            txt_MaPhim.setText(sc.getMA_PHIM());
+            cbo_GioBD.setSelectedItem(sc.getGIO_BAT_DAU());
+            cbo_GioKT.setSelectedItem(sc.getGIO_KET_THUC());
+            dc_ngaychieu1.setDate(sc.getNGAY_CHIEU()); 
+        }
     }
 
     private void clearAll() {
@@ -51,8 +62,8 @@ public class THemSC extends javax.swing.JFrame {
        txt_MAPC.setText("");
        txt_tenddphim1.setText("");
        txt_MaPhim.setText("");
-       dc_GioBD.setDate(null);
-       dc_GioKT.setDate(null);
+       cbo_GioBD.setSelectedIndex(0);
+       cbo_GioKT.setSelectedIndex(0);
        dc_ngaychieu1.setDate(null);
     }
 
@@ -62,8 +73,8 @@ public class THemSC extends javax.swing.JFrame {
             txt_MAPC.setText(sc.getMA_PHONG_CHIEU());
             txt_tenddphim1.setText(sc.getTEN_DINH_DANG_PHIM());
             txt_MaPhim.setText(sc.getMA_PHIM());
-            dc_GioBD.setDate(sc.getGIO_BAT_DAU());
-            dc_GioKT.setDate(sc.getGIO_KET_THUC());
+            cbo_GioBD.setSelectedItem(sc.getGIO_BAT_DAU());
+            cbo_GioKT.setSelectedItem(sc.getGIO_KET_THUC());
             dc_ngaychieu1.setDate(sc.getNGAY_CHIEU());
         } catch (Exception e) {
         }
@@ -71,8 +82,18 @@ public class THemSC extends javax.swing.JFrame {
    
 
     private SUATCHIEU getForm() {
-        return null;
-        
+         SUATCHIEU sc = new SUATCHIEU();
+        if (validateForm()) {
+            sc.setMA_SUAT_CHIEU(txt_maSC.getText());
+            sc.setMA_PHONG_CHIEU(txt_MAPC.getText());
+            sc.setTEN_DINH_DANG_PHIM(txt_tenddphim1.getText());
+            sc.setMA_PHIM(txt_maSC.getText());
+//            sc.setGIO_BAT_DAU(cbo_GioBD.getSelectedItem());
+            sc.getNGAY_CHIEU(dc_ngaychieu1.getDate());
+        } else {
+            return null;
+        }
+        return sc;
     }
 
     
@@ -92,8 +113,8 @@ public class THemSC extends javax.swing.JFrame {
         txt_MAPC.setText("");
         txt_tenddphim1.setText("");
         txt_MaPhim.setText("");
-        dc_GioBD.setDate(null);
-        dc_GioKT.setDate(null);
+        cbo_GioBD.setSelectedIndex(0);
+        cbo_GioKT.setSelectedIndex(0);
         dc_ngaychieu1.setDate(null);
     }
     
@@ -111,17 +132,16 @@ public class THemSC extends javax.swing.JFrame {
         if (txt_MaPhim.getText().equals("")) {
             Error += "Mã phim trống! \n";
         }
-        if (dc_GioBD.getDate() == null) {
+         if (cbo_GioBD.getSelectedIndex() == 0) {
             Error += "Gio bat dau không duoc trong! \n";
-            dc_GioBD.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
-            dc_GioKT.grabFocus();
+            cbo_GioBD.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            cbo_GioBD.grabFocus();
         }
-        if (dc_GioKT.getDate()== null) {
+        if (cbo_GioKT.getSelectedIndex() == 0) {
             Error += "Gio ket thuc không duoc trong! \n";
-            dc_GioBD.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
-            dc_GioKT.grabFocus();
+            cbo_GioKT.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
+            cbo_GioKT.grabFocus();
         }
-       
         if (dc_ngaychieu1.getDate() == null) {
             Error += "Ngày Chieu phim không duoc trong! \n";
             dc_ngaychieu1.setBorder(new MatteBorder(0, 0, 2, 0, Color.RED));
@@ -174,8 +194,8 @@ public class THemSC extends javax.swing.JFrame {
         btn_Restart = new rsbuttongradiente.RSButtonGradiente();
         txt_MAPC = new javax.swing.JTextField();
         txt_tenddphim1 = new javax.swing.JTextField();
-        dc_GioBD = new newscomponents.RSDateChooserModern();
-        dc_GioKT = new newscomponents.RSDateChooserModern();
+        cbo_GioBD = new RSMaterialComponent.RSComboBox();
+        cbo_GioKT = new RSMaterialComponent.RSComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -234,13 +254,13 @@ public class THemSC extends javax.swing.JFrame {
         jPanel2.add(txt_MAPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 328, 40));
         jPanel2.add(txt_tenddphim1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 328, 40));
 
-        dc_GioBD.setBackground(new java.awt.Color(102, 102, 255));
-        dc_GioBD.setFormatDate("hh:mm:ss");
-        jPanel2.add(dc_GioBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 328, 40));
+        cbo_GioBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Giờ Bắt Đầu", "15:00", "20:00", "9:00", "10:00", "10:30", "16:30", "13:45" }));
+        cbo_GioBD.setColorFondo(new java.awt.Color(102, 102, 255));
+        jPanel2.add(cbo_GioBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 328, 40));
 
-        dc_GioKT.setBackground(new java.awt.Color(102, 102, 255));
-        dc_GioKT.setFormatDate("hh:mm:ss");
-        jPanel2.add(dc_GioKT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 328, 40));
+        cbo_GioKT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Giờ kết thúc", "16:45", "11:00", "12:45", "18:45", "22:45", "15:00" }));
+        cbo_GioKT.setColorFondo(new java.awt.Color(102, 102, 255));
+        jPanel2.add(cbo_GioKT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 328, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,8 +318,8 @@ public class THemSC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttongradiente.RSButtonGradiente btn_Add;
     private rsbuttongradiente.RSButtonGradiente btn_Restart;
-    private newscomponents.RSDateChooserModern dc_GioBD;
-    private newscomponents.RSDateChooserModern dc_GioKT;
+    private RSMaterialComponent.RSComboBox cbo_GioBD;
+    private RSMaterialComponent.RSComboBox cbo_GioKT;
     private newscomponents.RSDateChooserModern dc_ngaychieu1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_ten10;
