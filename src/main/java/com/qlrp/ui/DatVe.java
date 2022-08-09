@@ -148,6 +148,7 @@ public class DatVe extends javax.swing.JFrame {
         jLabel6.setText("SỐ LƯỢNG:");
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sp_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, 1, 15, 1));
         sp_SoLuong.setPreferredSize(new java.awt.Dimension(7, 20));
         sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -977,6 +978,8 @@ public class DatVe extends javax.swing.JFrame {
                 VEDAT vd = getformToVeDat();
                 qlvedatdao.insert(vd);
                 JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+                
             }
         } catch (Exception e) {
         }

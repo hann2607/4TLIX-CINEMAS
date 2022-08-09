@@ -9,6 +9,7 @@ import com.qlrp.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,8 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     String DELETE_SQL = "DELETE FROM PHIM WHERE MA_PHIM=?";
     String SELECT_ALL_SQL = "SELECT * FROM PHIM";
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
-    String SELECT_BY_TEN_PHIM_SQL = "SELECT * FROM PHIM WHERE TEN_PHIM=?";
+    String SELECT_BY_TEN_PHIM_SQL = "SELECT * FROM PHIM WHERE TEN_PHIM LIKE ?";
+    String SP_TimKiem_PHIM = "{call SP_Timkiem_PHIM @TEN_PHIM = ?, @LOAIPHIM = ?, @QUOCGIA = ?, @NGAY_CONG_CHIEU = ?}";
     @Override
     public void insert(PHIM entity) {
         try {
@@ -110,6 +112,14 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+    }
+    
+    public List<PHIM> searchTenPhim(String TEN_PHIM, String LOAIPHIM, String QUOCGIA, String Ngay_CONG_CHIEU) {
+        List<PHIM> list = this.selectbySql(SP_TimKiem_PHIM, "%" + TEN_PHIM + "%", "%" + LOAIPHIM + "%", "%" + QUOCGIA + "%", Ngay_CONG_CHIEU);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
     }
 
 }

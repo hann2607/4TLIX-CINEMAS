@@ -38,6 +38,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -110,13 +111,14 @@ public class KHHOME extends javax.swing.JFrame {
         btn_Cart_XoaHet = new rojerusan.RSMaterialButtonRectangle();
         btn_Cart_ThanhToan = new rojerusan.RSMaterialButtonRectangle();
         jPanel5 = new javax.swing.JPanel();
+        lbl_TimKiemPhim = new javax.swing.JLabel();
         btn_SoLuong = new com.k33ptoo.components.KButton();
         txt_Search_Film = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cbo_TheLoaiFilm = new javax.swing.JComboBox<>();
         cbo_QuocGia_Film = new javax.swing.JComboBox<>();
-        cbo_QuocGia_Film1 = new javax.swing.JComboBox<>();
+        cbo_NgayKhoiChieu = new javax.swing.JComboBox<>();
         btn_Avatar = new javax.swing.JButton();
         btn_Cart = new javax.swing.JButton();
         pnl_film = new javax.swing.JPanel();
@@ -131,6 +133,7 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_slideDoAn = new rojerusan.RSPanelsSlider();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
+        lbl_TimKiemDoAn = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbo_LoaiDoAn = new javax.swing.JComboBox<>();
         txt_Search_DoAn = new javax.swing.JTextField();
@@ -289,6 +292,15 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lbl_TimKiemPhim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        lbl_TimKiemPhim.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_TimKiemPhim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_TimKiemPhimMouseClicked(evt);
+            }
+        });
+        jPanel5.add(lbl_TimKiemPhim, new org.netbeans.lib.awtextra.AbsoluteConstraints(837, 16, 40, 40));
+
         btn_SoLuong.setText("0");
         btn_SoLuong.setEnabled(false);
         btn_SoLuong.setFocusable(false);
@@ -314,18 +326,18 @@ public class KHHOME extends javax.swing.JFrame {
 
         txt_Search_Film.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txt_Search_Film.setMargin(new java.awt.Insets(2, 10, 2, 6));
-        jPanel5.add(txt_Search_Film, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 865, 42));
+        jPanel5.add(txt_Search_Film, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 865, 50));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("PHIM");
 
-        cbo_TheLoaiFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỂ LOẠI", "HÀNH ĐỘNG", "HOẠT HÌNH", "PHIÊU LƯU", "KINH DỊ" }));
+        cbo_TheLoaiFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỂ LOẠI", "SIÊU ANH HÙNG", "KHOA HỌC VIỄN TƯỞNG", "PHI KHOA HỌC", "HOẠT HÌNH", "PHIÊU LƯU", "HÀI KỊCH", "TÌNH CẢM", "GIẬT GÂN", "KINH DỊ", "TƯỞNG TƯỢNG", "TỘI ÁC" }));
 
-        cbo_QuocGia_Film.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUỐC GIA", "VIỆT NAM", "MỸ", "TRUNG QUỐC", "NHẬT BẢN", "HÀN QUỐC" }));
+        cbo_QuocGia_Film.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUỐC GIA", "MỸ", "ĐÀI LOAN", "VIỆT NAM" }));
 
-        cbo_QuocGia_Film1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY KHỞI CHIẾU", "30/07/2022" }));
+        cbo_NgayKhoiChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY KHỞI CHIẾU", "2022-08-07", "2022-07-07", "2022-07-29", "2022-06-17" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -335,12 +347,12 @@ public class KHHOME extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cbo_TheLoaiFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(cbo_TheLoaiFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(cbo_QuocGia_Film, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(cbo_QuocGia_Film1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addComponent(cbo_NgayKhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +362,7 @@ public class KHHOME extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbo_QuocGia_Film, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbo_TheLoaiFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbo_QuocGia_Film1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbo_NgayKhoiChieu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -478,40 +490,27 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_TimKiemDoAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        lbl_TimKiemDoAn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_TimKiemDoAn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_TimKiemDoAnMouseClicked(evt);
+            }
+        });
+        jPanel22.add(lbl_TimKiemDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 30, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setText("ĐỒ ĂN");
+        jPanel22.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 15, 118, 36));
 
         cbo_LoaiDoAn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LOẠI ĐỒ ĂN", "ĐỒ ĂN", "ĐỒ UỐNG" }));
+        jPanel22.add(cbo_LoaiDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 15, 136, 36));
 
         txt_Search_DoAn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txt_Search_DoAn.setMargin(new java.awt.Insets(2, 10, 2, 6));
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(cbo_LoaiDoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(txt_Search_DoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(txt_Search_DoAn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(cbo_LoaiDoAn))
-                .addContainerGap())
-        );
+        jPanel22.add(txt_Search_DoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 15, 536, 36));
 
         jPanel21.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
@@ -855,7 +854,7 @@ public class KHHOME extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 955, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1316,6 +1315,91 @@ public class KHHOME extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbl_GioHangMouseClicked
 
+    private void FillDataTimkiem(List<PHIM> list) {
+        for (int i = 0; i < list.size(); i++) {
+            JPanel pnl = new JPanel();
+            pnl.setLayout(new GridLayout(2, 1));
+
+            //TextPane chứa tiêu đề
+            JTextPane textPane = new JTextPane();
+            textPane.setText(list.get(i).getTEN_PHIM());
+            StyledDocument style = textPane.getStyledDocument();
+            SimpleAttributeSet align = new SimpleAttributeSet();
+            StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
+            style.setParagraphAttributes(0, style.getLength(), align, false);
+            textPane.setPreferredSize(new Dimension(210, 100));
+            Font f2 = new Font("Segoe UI", Font.BOLD, 17);
+            textPane.setFont(f2);
+
+            //Label chứa hình
+            JLabel lbl = new JLabel();
+            lbl.setSize(new Dimension(210, 250));
+            lbl.setMinimumSize(new Dimension(210, 250));
+            lbl.setPreferredSize(new Dimension(210, 250));
+            lbl.setMaximumSize(new Dimension(210, 250));
+            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
+            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + list.get(i).getPOSTER()));
+            pnl.add(lbl);
+            pnl.add(textPane);
+            pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            //Thêm sự kiện click vào film show chi tiết phim
+            PHIM p = list.get(i);
+            pnl.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (e.getClickCount() == 1 && !e.isConsumed()) {
+                        if (ctp.isVisible()) {
+                            ctp.setVisible(false);
+                            ctp.setVisible(true);
+                            ctp.fillToChiTietPhim(p);
+                        } else {
+                            ctp.setVisible(true);
+                            ctp.fillToChiTietPhim(p);
+                        }
+
+                    }
+                }
+            });
+
+            pnl_SlideFilm.add(pnl);
+        }
+    }
+    
+    private void lbl_TimKiemPhimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TimKiemPhimMouseClicked
+        // TODO add your handling code here:
+//        String tim = txt_Search_Film.getText();
+//        if(tim.equals("") && tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() == 0
+//                && cbo_QuocGia_Film.getSelectedIndex() == 0 && cbo_NgayKhoiChieu.getSelectedIndex() == 0) {
+//            pnl_SlideFilm.removeAll();
+//            FillToPanelFilm();
+//        } else {
+//            List<PHIM> listSearch;
+//            if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0
+//                && cbo_QuocGia_Film.getSelectedIndex() != 0 && cbo_NgayKhoiChieu.getSelectedIndex() != 0) {
+//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "", cbo_QuocGia_Film.getSelectedItem() + "", cbo_NgayKhoiChieu.getSelectedItem() + "");
+//                pnl_SlideFilm.removeAll();
+//                FillDataTimkiem(listSearch);
+//            } else if (!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0
+//                && cbo_QuocGia_Film.getSelectedIndex() != 0) {
+//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "", cbo_QuocGia_Film.getSelectedItem() + "", null);
+//                pnl_SlideFilm.removeAll();
+//                FillDataTimkiem(listSearch);
+//            } else if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0) {
+//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "","", null);
+//                pnl_SlideFilm.removeAll();
+//                FillDataTimkiem(listSearch);
+//            } else if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...")) {
+//                listSearch = qlphimdao.searchTenPhim(tim,"","", null);
+//                pnl_SlideFilm.removeAll();
+//                FillDataTimkiem(listSearch);
+//            }
+//        }
+    }//GEN-LAST:event_lbl_TimKiemPhimMouseClicked
+
+    private void lbl_TimKiemDoAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TimKiemDoAnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_TimKiemDoAnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1366,8 +1450,8 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JButton btn_prevPhim;
     private javax.swing.JComboBox<String> cbo_LoaiDoAn;
     private javax.swing.JComboBox<String> cbo_LoaiKhuyenMai;
+    private javax.swing.JComboBox<String> cbo_NgayKhoiChieu;
     private javax.swing.JComboBox<String> cbo_QuocGia_Film;
-    private javax.swing.JComboBox<String> cbo_QuocGia_Film1;
     private javax.swing.JComboBox<String> cbo_TheLoaiFilm;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
@@ -1414,6 +1498,8 @@ public class KHHOME extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea25;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lbl_Cart_TongTien;
+    private javax.swing.JLabel lbl_TimKiemDoAn;
+    private javax.swing.JLabel lbl_TimKiemPhim;
     private javax.swing.JLabel lbl_poster;
     private javax.swing.JPanel pnl_DoAn;
     private javax.swing.JPanel pnl_KhuyenMai;
