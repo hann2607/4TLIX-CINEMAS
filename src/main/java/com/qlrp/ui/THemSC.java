@@ -87,9 +87,9 @@ public class THemSC extends javax.swing.JFrame {
             sc.setMA_SUAT_CHIEU(txt_maSC.getText());
             sc.setMA_PHONG_CHIEU(txt_MAPC.getText());
             sc.setTEN_DINH_DANG_PHIM(txt_tenddphim1.getText());
-            sc.setMA_PHIM(txt_maSC.getText());
+            sc.setMA_PHIM(txt_MaPhim.getText());
 //            sc.setGIO_BAT_DAU(cbo_GioBD.getSelectedItem());
-            sc.getNGAY_CHIEU(dc_ngaychieu1.getDate());
+            sc.setNGAY_CHIEU(dc_ngaychieu1.getDate());
         } else {
             return null;
         }
