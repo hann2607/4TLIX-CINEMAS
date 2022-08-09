@@ -32,6 +32,14 @@ public class QLGHENGOIDAO{
         }
     }
     
+    public void updateGheToFormKHHome(String MA_GHE, String MA_PHONG_CHIEU, boolean DA_CHON) {
+        try {
+            XJdbc.update(UPDATE_TRANG_THAI_GHE, DA_CHON, MA_GHE, MA_PHONG_CHIEU);
+        } catch (SQLException ex) {
+            Logger.getLogger(QLGHENGOIDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<GHENGOI> SELECT_THEOPHONGCHIEU_SQL(String MA_PHONG_CHIEU) {
         return this.selectbySql(SELECT_THEOPHONGCHIEU_SQL, MA_PHONG_CHIEU);
     }

@@ -4,14 +4,19 @@
  */
 package com.qlrp.ui;
 
+import com.k33ptoo.components.KButton;
 import com.qlrp.dao.QLDADAO;
+import com.qlrp.dao.QLGHENGOIDAO;
 import com.qlrp.dao.QLKMDAO;
 import com.qlrp.dao.QLPHIMDAO;
+import com.qlrp.dao.QLVEDATDAO;
 import com.qlrp.entity.DOAN;
+import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIOHANG_DOAN;
 import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.KHUYENMAI;
 import com.qlrp.entity.PHIM;
+import com.qlrp.entity.VEDAT;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import com.qlrp.utils.setUIJScroll;
@@ -25,6 +30,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import static java.lang.Thread.sleep;
 import java.text.DecimalFormat;
@@ -56,12 +63,15 @@ public class KHHOME extends javax.swing.JFrame {
     public RSTableMetro table;
     public JLabel lbl;
     public double tienVe = 0;
+    public KButton sl;
 
     File file = new File("");
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     QLPHIMDAO qlphimdao = new QLPHIMDAO();
     QLDADAO qldadao = new QLDADAO();
     QLKMDAO qlkhuyenmaidao = new QLKMDAO();
+    QLGHENGOIDAO qlghengoidao = new QLGHENGOIDAO();
+    QLVEDATDAO qlvedatdao = new QLVEDATDAO();
 
     ChiTietPhim ctp = new ChiTietPhim();
     DatDoAn ctda = new DatDoAn();
@@ -75,7 +85,7 @@ public class KHHOME extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         init();
-        
+
     }
 
     /**
@@ -279,7 +289,7 @@ public class KHHOME extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_SoLuong.setText("2");
+        btn_SoLuong.setText("0");
         btn_SoLuong.setEnabled(false);
         btn_SoLuong.setFocusable(false);
         btn_SoLuong.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -863,6 +873,7 @@ public class KHHOME extends javax.swing.JFrame {
         Instance = this;
         table = tbl_GioHang;
         lbl = lbl_Cart_TongTien;
+        sl = btn_SoLuong;
 //        setImageSlide();
         RunSlide();
         CustomUIJScroll(jScrollPane1);
@@ -881,7 +892,8 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.getViewport().addChangeListener(new ListenAdditionsScrolledPhim());
         jScrollPane4.getViewport().addChangeListener(new ListenAdditionsScrolledDoAn());
         jScrollPane8.getViewport().addChangeListener(new ListenAdditionsScrolledKhuyenMai());
-        
+
+        EventCloseJFrame();
     }
 
     int i = 1;
@@ -932,8 +944,7 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane4.getHorizontalScrollBar().setValue(0);
         jScrollPane8.getHorizontalScrollBar().setValue(0);
     }
-   
-    
+
     private void RunSlide() {
         Thread slideThread = new Thread() {
             @Override
@@ -1052,7 +1063,7 @@ public class KHHOME extends javax.swing.JFrame {
             pnl.add(lbl);
             pnl.add(textPane);
             pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            
+
             //Thêm sự kiện click vào doan show chi tiết doan
             DOAN food = listDoAn.get(i);
             pnl.addMouseListener(new MouseAdapter() {
@@ -1154,6 +1165,35 @@ public class KHHOME extends javax.swing.JFrame {
         lbl_Cart_TongTien.setText("TỔNG TIỀN: " + formatter.format(tt) + " VNĐ");
     }
 
+    private void EventCloseJFrame() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+                List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+                for (GIOHANG_DOAN giohang_doan : listda) {
+                    DOAN da = qldadao.selectebyID(giohang_doan.getTEN_SAN_PHAM());
+                    qldadao.updateSL(giohang_doan.getSO_LUONG() + da.getSOLUONG(), giohang_doan.getTEN_SAN_PHAM());
+                }
+                for (GIOHANG_PHIM giohang_phim : listphim) {
+                    String[] arrGhe = giohang_phim.getGHE_NGOI().split(",");
+                    for (String string : arrGhe) {
+                        qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
+                    }
+                    
+                }
+                for (VEDAT vd : getInfo.listVEDAT) {
+                    qlvedatdao.delete(vd.getMA_VE_DAT());
+                }
+            }
+        });
+    }
+
     private void btn_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_SoLuongActionPerformed
@@ -1231,6 +1271,20 @@ public class KHHOME extends javax.swing.JFrame {
         hd.setVisible(true);
     }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
 
+    private void setSLTongTien() {
+        double tt = 0;
+        for (GIOHANG_PHIM giohang_phim : getInfo.listSP_PHIM) {
+            tt += giohang_phim.getGIA();
+        }
+
+        for (GIOHANG_DOAN giohang_doan : getInfo.listSP_DOAN) {
+            tt += giohang_doan.getGIA();
+        }
+
+        btn_SoLuong.setText((getInfo.listSP_PHIM.size() + getInfo.listSP_DOAN.size()) + "");
+        lbl_Cart_TongTien.setText(formatter.format(tt) + " VNĐ");
+    }
+
     private void tbl_GioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_GioHangMouseClicked
         // TODO add your handling code here:
         int index = tbl_GioHang.getSelectedRow();
@@ -1243,9 +1297,18 @@ public class KHHOME extends javax.swing.JFrame {
                 qldadao.updateSL(da.getSOLUONG() + listda.get(index - listphim.size()).getSO_LUONG(), listda.get(index - listphim.size()).getTEN_SAN_PHAM());
                 listda.remove(index - listphim.size());
                 model.removeRow(index);
+                setSLTongTien();
             } else {
+                String[] arrGhe = listphim.get(index).getGHE_NGOI().split(",");
+                for (String string : arrGhe) {
+                    qlghengoidao.updateGheToFormKHHome(string.trim(), listphim.get(index).getPHONG_CHIEU(), false);
+                }
                 listphim.remove(index);
+                qlvedatdao.delete(getInfo.listVEDAT.get(index).getMA_VE_DAT());
+                
+                getInfo.listVEDAT.remove(index);
                 model.removeRow(index);
+                setSLTongTien();
             }
             getInfo.listSP_DOAN = listda;
             getInfo.listSP_PHIM = listphim;

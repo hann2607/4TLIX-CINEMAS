@@ -379,10 +379,12 @@ public class DatDoAn extends javax.swing.JFrame {
 
     private void fillToCart(RSTableMetro table) {
         model = (DefaultTableModel) table.getModel();
+        double tt = 0; 
         model.setRowCount(0);
 
         for (GIOHANG_PHIM giohang_phim : getInfo.listSP_PHIM) {
             model.addRow(new Object[]{giohang_phim.getPOSTER(), giohang_phim.getTEN_SAN_PHAM(), giohang_phim.getSO_LUONG(), formatter.format(giohang_phim.getGIA()) + " VNĐ", "X"});
+            tt += giohang_phim.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererMovie());
 //        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
@@ -390,12 +392,15 @@ public class DatDoAn extends javax.swing.JFrame {
 
         for (GIOHANG_DOAN giohang_doan : getInfo.listSP_DOAN) {
             model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ", "X"});
+            tt += giohang_doan.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererFood());
 //        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
 //        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
         table.getColumnModel().getColumn(4).setCellRenderer(r);
-
+        
+        KHHOME.Instance.sl.setText((getInfo.listSP_PHIM.size() + getInfo.listSP_DOAN.size()) + "");
+        KHHOME.Instance.lbl.setText(formatter.format(tt) + " VNĐ");
     }
 
     DefaultTableCellRenderer r = new DefaultTableCellRenderer() {

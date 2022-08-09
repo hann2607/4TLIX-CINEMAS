@@ -13,6 +13,7 @@ import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
+import com.qlrp.entity.VEDAT;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,4 +32,5 @@ public class getInfo {
     public static SUATCHIEU sc = null;
     public static List<GIOHANG_PHIM> listSP_PHIM = new ArrayList<>();
     public static List<GIOHANG_DOAN> listSP_DOAN = new ArrayList<>();
+    public static List<VEDAT> listVEDAT = new ArrayList<>();
 }

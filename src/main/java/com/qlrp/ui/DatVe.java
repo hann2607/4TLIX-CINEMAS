@@ -15,6 +15,7 @@ import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.entity.VEDAT;
+import com.qlrp.utils.Auth;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import java.awt.Color;
@@ -686,13 +687,34 @@ public class DatVe extends javax.swing.JFrame {
 
     private boolean validateForm() {
         String loi = "";
+        String testGhe = "";
+
         if (sp_SoLuong.getValue().hashCode() < 1) {
             sp_SoLuong.setValue(1);
             sp_SoLuong.setFocusable(true);
-            loi += "SỐ LƯỢNG PHẢI LỚN HƠN 0!";
+            loi += "SỐ LƯỢNG PHẢI LỚN HƠN 0! \n";
         } else {
             if (txt_GheNgoi.getText().equals("") || txt_GheNgoi.getText() == null || MaGhe.size() < sp_SoLuong.getValue().hashCode()) {
-                loi += "BẠN PHẢI CHỌN ĐỦ SỐ GHẾ!";
+                loi += "BẠN PHẢI CHỌN ĐỦ SỐ GHẾ! \n";
+            } else {
+                List<GHENGOI> listghengoi = new ArrayList<>();
+                String maPC = cbo_PhongChieu.getSelectedItem() + "";
+                for (String mg : MaGhe) {
+                    listghengoi.add(qlghengoidao.selecteGhe_Ngoi(maPC, mg));
+                }
+                if (!listghengoi.isEmpty()) {
+                    for (GHENGOI ghengoi : listghengoi) {
+                        if (ghengoi.isDA_CHON()) {
+                            testGhe += ghengoi.getMA_GHE() + " ";
+                        }
+                    }
+
+                }
+
+                if (!testGhe.equals("")) {
+                    loi += "GHẾ " + testGhe + "ĐÃ ĐƯỢC CHỌN \n";
+                }
+
             }
         }
 
@@ -771,28 +793,33 @@ public class DatVe extends javax.swing.JFrame {
     private void fillToCart(RSTableMetro table) {
         List<GIOHANG_DOAN> listDoAn = getInfo.listSP_DOAN;
         List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+        double tt = 0;
         model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
 
         for (GIOHANG_PHIM giohang_phim : listphim) {
-            model.addRow(new Object[]{giohang_phim.getPOSTER(), giohang_phim.getTEN_SAN_PHAM(), giohang_phim.getSO_LUONG(), formatter.format(giohang_phim.getGIA()) + " VNĐ"});
+            model.addRow(new Object[]{giohang_phim.getPOSTER(), giohang_phim.getTEN_SAN_PHAM(), giohang_phim.getSO_LUONG(), formatter.format(giohang_phim.getGIA()) + " VNĐ", "X"});
+            tt += giohang_phim.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererMovie());
 //        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
 //        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox()));
 
         for (GIOHANG_DOAN giohang_doan : listDoAn) {
-            model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ"});
+            model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ", "X"});
+            tt += giohang_doan.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererFood());
 //        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
 //        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox())); 
         table.getColumnModel().getColumn(4).setCellRenderer(r);
+
+        KHHOME.Instance.sl.setText((listDoAn.size() + listphim.size()) + "");
+        KHHOME.Instance.lbl.setText(formatter.format(tt) + " VNĐ");
     }
 
     DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
         Font font = new Font("Segoe UI", Font.BOLD, 32);
-
 
         @Override
         public Component getTableCellRendererComponent(JTable table,
@@ -915,27 +942,45 @@ public class DatVe extends javax.swing.JFrame {
         giohang.setPOSTER(phim.getPOSTER());
 
         List<GIOHANG_PHIM> list = getInfo.listSP_PHIM;
-
+        
         list.add(giohang);
         getInfo.listSP_PHIM = list;
     }
 
+    private VEDAT getformToVeDat() {
+        VEDAT vd = new VEDAT();
+        vd.setMA_VE_DAT(lbl_MaVe.getText());
+        if (Auth.cus == null) {
+            vd.setSDT("0123456789");
+        } else {
+            vd.setSDT(Auth.cus.getSDT());
+        }
+        vd.setSO_LUONG(sp_SoLuong.getValue().hashCode());
+        getInfo.listVEDAT.add(vd);
+        return vd;
+    }
 
     private void btn_ThemVaoGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemVaoGioHangActionPerformed
         // TODO add your handling code here:
-        if (validateForm()) {
-            double tt = (giave * sp_SoLuong.getValue().hashCode()) + giaGhe;
-            KHHOME.Instance.tienVe += tt;
-            KHHOME.Instance.tongtien();
-            JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
-            for (String mg : MaGhe) {
-                GHENGOI ghengoi = qlghengoidao.selecteGhe_Ngoi(suatchieu.getMA_PHONG_CHIEU(), mg);
-                ghengoi.setDA_CHON(true);
-                qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
+        try {
+            if (validateForm()) {
+                double tt = (giave * sp_SoLuong.getValue().hashCode()) + giaGhe;
+                KHHOME.Instance.tienVe += tt;
+                KHHOME.Instance.tongtien();
+                for (String mg : MaGhe) {
+                    GHENGOI ghengoi = qlghengoidao.selecteGhe_Ngoi(suatchieu.getMA_PHONG_CHIEU(), mg);
+                    ghengoi.setDA_CHON(true);
+                    qlghengoidao.update(ghengoi, suatchieu.getMA_PHONG_CHIEU());
+                }
+                addToListSP_PHIM();
+                fillToCart(KHHOME.Instance.table);
+                VEDAT vd = getformToVeDat();
+                qlvedatdao.insert(vd);
+                JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
             }
-            addToListSP_PHIM();
-            fillToCart(KHHOME.Instance.table);
+        } catch (Exception e) {
         }
+
     }//GEN-LAST:event_btn_ThemVaoGioHangActionPerformed
 
     private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
