@@ -20,7 +20,9 @@ import com.sun.tools.javac.resources.ct;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
@@ -33,9 +35,12 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -48,6 +53,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  *
@@ -226,6 +233,31 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         }
     }
     int index = 0;
+    String duongDanImage = null;
+    File f = new File("");
+
+    private String createQRcode() {
+        HOADON_KH kh = getForm();
+        try {
+            //chuyen noi dung thanh QR_Code
+            ByteArrayOutputStream out = QRCode.from(kh.getMAHDCT()).to(ImageType.PNG).stream();
+
+            // tao duong dan luu anh
+            String file_name = kh.getMAHDCT();
+            duongDanImage = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\QRcode\\";
+
+            //xuat file anh
+            FileOutputStream fout = new FileOutputStream(new File(duongDanImage + (file_name + ".PNG")));
+            fout.write(out.toByteArray());
+            fout.flush();
+
+            return duongDanImage + (file_name + ".PNG");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
     public void sendMail() {
         HOADON_KH kh = getForm();
@@ -260,8 +292,9 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                     + "Thông tin hóa đơn: " + kh.getMAHDCT() + "\n"
                     + listHDCT.get(index).getSL_KICHCO() + "\n" //                  
                     + listHDCT.get(index).getTENSP() + "\n"
-                    + kh.getTONGTIEN();
-
+                    + kh.getTONGTIEN()
+                    + "Vui lòng đưa mã QR này cho nhân viên khi đến check in tại rạp.";
+            
             Message msg = new MimeMessage(ss);
 
             MimeBodyPart contentPart = new MimeBodyPart();
@@ -270,24 +303,24 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             msg.setFrom(new InternetAddress(from));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSubject(subject);
+            
+            Multipart multipart = new MimeMultipart();
+            BodyPart messageBodyPart1 = new MimeBodyPart();
 
-            msg.setText(body);
-            msg.setContent(body, "text/plain; charset=UTF-8");
+            messageBodyPart1.setContent(body, "text/plain; charset=UTF-8");
+            multipart.addBodyPart(messageBodyPart1);
 
             // Gui File dinh kem
-//            MimeBodyPart filePart = new MimeBodyPart();
-//            File file = new File("");
-//
-//            FileDataSource fds = new FileDataSource(file);
-//            filePart.setDataHandler(new DataHandler(fds));
-//            filePart.setFileName(file.getName());
-//
-//            MimeMultipart multiPart = new MimeMultipart();
-//
-//            multiPart.addBodyPart(contentPart);
-//            multiPart.addBodyPart(filePart);
-//
-//            msg.setContent(multiPart);
+
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+            DataSource source1 = new FileDataSource(createQRcode());
+            messageBodyPart2.setDataHandler(new DataHandler(source1));
+            messageBodyPart2.setFileName(createQRcode());
+            multipart.addBodyPart(messageBodyPart2);
+            
+            
+            msg.setContent(multipart);
+            
             Transport.send(msg);
             JOptionPane.showMessageDialog(null, "Hóa đơn đã được gửi về email của bạn" + "\n"
                     + "Sử dụng mã QR được gửi qua email khi đến check in tại rạp", "Thông báo",
