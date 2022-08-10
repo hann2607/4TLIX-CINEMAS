@@ -903,9 +903,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"/>
+                  <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/logout-40x40.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value=" THO&#xc1;T"/>
+                <Property name="text" type="java.lang.String" value=" &#x110;&#x102;NG XU&#x1ea4;T"/>
                 <Property name="actionCommand" type="java.lang.String" value="  THO&#xc1;T"/>
                 <Property name="alignmentY" type="float" value="10.0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1026,9 +1026,9 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/logout-40x40.png"/>
+                  <Image iconType="3" name="/com/qlrp/icon/QLHome/Home/project-management-40x40.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="QUA&#x309;N LY&#x301; SU&#xc2;&#x301;T CHI&#xca;&#x301;U"/>
+                <Property name="text" type="java.lang.String" value=" QUA&#x309;N LY&#x301; SU&#xc2;&#x301;T CHI&#xca;&#x301;U"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="1" left="35" right="1" top="1">

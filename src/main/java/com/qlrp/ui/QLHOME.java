@@ -729,8 +729,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_Thoat.setBackground(new java.awt.Color(2, 16, 86));
         btn_Thoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_Thoat.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/exit-full-screen-40x40.png"))); // NOI18N
-        btn_Thoat.setText(" THOÁT");
+        btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
+        btn_Thoat.setText(" ĐĂNG XUẤT");
         btn_Thoat.setActionCommand("  THOÁT");
         btn_Thoat.setAlignmentY(10.0F);
         btn_Thoat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
@@ -813,8 +813,8 @@ public class QLHOME extends javax.swing.JFrame {
         btn_QLSC.setBackground(new java.awt.Color(2, 16, 86));
         btn_QLSC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_QLSC.setForeground(new java.awt.Color(255, 255, 255));
-        btn_QLSC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/logout-40x40.png"))); // NOI18N
-        btn_QLSC.setText("QUẢN LÝ SUẤT CHIẾU");
+        btn_QLSC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/QLHome/Home/project-management-40x40.png"))); // NOI18N
+        btn_QLSC.setText(" QUẢN LÝ SUẤT CHIẾU");
         btn_QLSC.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 35, 1, 1, new java.awt.Color(2, 16, 86)));
         btn_QLSC.setContentAreaFilled(false);
         btn_QLSC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2796,9 +2796,8 @@ public class QLHOME extends javax.swing.JFrame {
         for (DOAN da : listDA) {
             model.addRow(new Object[]{da.getTENDOAN(), da.getHINH(), da.getKICHCO(), da.getSOLUONG(), da.getDONGIA(), da.getMAKHUYENMAI()});
         }
-        
-        // show IMG product
 
+        // show IMG product
         tbl_QLDA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererDoAn());
     }
 
@@ -3131,8 +3130,10 @@ public class QLHOME extends javax.swing.JFrame {
     private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
         // TODO add your handling code here:
 //        // code change Tab here
-        if (MsgBox.confirm(this, "Bạn chắc chắn muốn thoát?")) {
-            System.exit(0);
+        login lg = new login();
+        if (MsgBox.confirm(this, "Bạn chắc chắn muốn đăng xuất?")) {
+            this.dispose();
+            lg.setVisible(true);
         }
     }//GEN-LAST:event_btn_ThoatActionPerformed
 
