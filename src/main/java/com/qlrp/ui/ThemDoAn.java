@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
@@ -31,6 +30,9 @@ public final class ThemDoAn extends javax.swing.JFrame {
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\doan\\";
     QLDADAO qldadao = new QLDADAO();
     List<DOAN> listDA = qldadao.selectAll();
+    String duongDanImage = null;
+    String maKM;
+    double price = 0;
 
     public ThemDoAn() {
         initComponents();
@@ -55,8 +57,7 @@ public final class ThemDoAn extends javax.swing.JFrame {
         this.setIconImage(XImage.getAppIcon());
         this.setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        setLocation(DEFAULT_CURSOR, 320);
-        lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\DOAN\\PopcornCombo.png"));
+        lbl_img.setIcon(XImage.ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\PopcornCombo.png"));
         fillToForm();
     }
 
@@ -85,8 +86,6 @@ public final class ThemDoAn extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    String duongDanImage = null;
-    String maKM;
 
     private DOAN getForm() {
         DOAN doan = new DOAN();
@@ -114,7 +113,6 @@ public final class ThemDoAn extends javax.swing.JFrame {
         }
         return doan;
     }
-    double price = 0;
 
     private boolean validateForm() {
         String Error = "";
@@ -358,11 +356,6 @@ public final class ThemDoAn extends javax.swing.JFrame {
         lbl_kichco.setText("KÍCH CỠ");
 
         cbo_kichco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN KÍCH CỠ", "S", "M", "L" }));
-        cbo_kichco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_kichcoActionPerformed(evt);
-            }
-        });
         cbo_kichco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbo_kichcoKeyReleased(evt);
@@ -370,11 +363,6 @@ public final class ThemDoAn extends javax.swing.JFrame {
         });
 
         cbo_loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHỌN LOẠI", "Đồ ăn", "Đồ uống" }));
-        cbo_loai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_loaiActionPerformed(evt);
-            }
-        });
         cbo_loai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cbo_loaiKeyReleased(evt);
@@ -509,15 +497,15 @@ public final class ThemDoAn extends javax.swing.JFrame {
                 if (qldadao.selectebyID(da.getTENDOAN()) != null) {
                     qldadao.update(da);
                     MsgBox.alert(this, "Cập nhật thành công!");
-//                    QLHOME hm = new QLHOME();
-//                    qlhome.fillToTable_DA(listDA);
+                    QLHOME hm = new QLHOME();
+                    hm.fillToTable_DA(listDA);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Món ăn không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
-            MsgBox.alert(this, "You can only Add. If you want to edit, please choose again!");
+            
         }
     }//GEN-LAST:event_btn_EditActionPerformed
 
@@ -536,7 +524,7 @@ public final class ThemDoAn extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tên món ăn không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            MsgBox.alert(this, "You can only Add. If you want to edit, please choose again!");
+
         }
 
     }//GEN-LAST:event_btn_DeleteActionPerformed
@@ -554,14 +542,6 @@ public final class ThemDoAn extends javax.swing.JFrame {
         chooseImage();
 
     }//GEN-LAST:event_btn_Items_chooseFileActionPerformed
-
-    private void cbo_kichcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_kichcoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_kichcoActionPerformed
-
-    private void cbo_loaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_loaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_loaiActionPerformed
 
     private void txt_tenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tenKeyReleased
         // TODO add your handling code here:
@@ -604,13 +584,11 @@ public final class ThemDoAn extends javax.swing.JFrame {
             duongDanImage = fTenAnh.getAbsolutePath();
             if (duongDanImage != null) {
                 lbl_img.setIcon(ResizeImage(lbl_img.getWidth(), lbl_img.getHeight(), String.valueOf(duongDanImage)));
-                System.out.println(duongDanImage);
             } else {
-                System.out.println("Image not selected!");
+                MsgBox.alert(this, "Hình ảnh không được chọn");
             }
         } catch (Exception e) {
-            System.out.println("Image not selected!");
-            System.out.println(duongDanImage);
+            MsgBox.alert(this, "Hình ảnh không được chọn");
         }
     }
 
