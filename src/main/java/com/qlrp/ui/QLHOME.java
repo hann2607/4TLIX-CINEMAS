@@ -2458,13 +2458,7 @@ public class QLHOME extends javax.swing.JFrame {
 
         List<BANNER> listBN = qlbannerdao.selectAll();
         fillToTable_BANNER(listBN);
-        //        List<CUSTOMER> listKH = qlkhachhang.selectAll();
-        //        fillToTable_CUSTOMER(listKH);
-        //        fillTableOrderMana();
-        //        fillTableOrderDetails();
-        //        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        //        showInfoAccAndPanelAccount();
-        //        fillToCBOChartYear();
+       
         List<HOADON> listHD = qlhoadondao.selectAll();
         fillToTable_HOADON(listHD);
 
@@ -2518,21 +2512,19 @@ public class QLHOME extends javax.swing.JFrame {
     private void showPanelMenu(JPanel pnl) {
         // Ẩn tất cả các form còn lại
         pnl_Home.setVisible(false);
-//        pnl_OrderManagement.setVisible(false);
+
         pnl_MovieManagement.setVisible(false);
         pnl_IntergratedManagement.setVisible(false);
-//        pnl_ShippingManagement.setVisible(false);
+
         pnl_CustomerManagement.setVisible(false);
         pnl_Account.setVisible(false);
         pnl_QLHoaDon.setVisible(false);
         pnl_QLSuatChieu.setVisible(false);
-//        pnl_Account.setVisible(false);
-//        pnl_EmployeeManagement.setVisible(false);
+
         pnl_AccountManagement.setVisible(false);
         pnl_QLDoAn.setVisible(false);
         pnl_QLKM.setVisible(false);
-//        pnl_InventoryManagement.setVisible(false);
-//        pnl_Setting.setVisible(false);
+
         // show form lên khi click vào menu
         pnl.setVisible(true);
     }
@@ -2814,21 +2806,7 @@ public class QLHOME extends javax.swing.JFrame {
         }
     }
 
-    private class ImageRendererMovie extends DefaultTableCellRenderer {
-
-        //add img into table
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            String photoname = String.valueOf(value);
-            ImageIcon ImageIcon = new ImageIcon(
-                    new ImageIcon("src/main/resources/com/qlrp/image/PHIM/POSTER/" + photoname).
-                            getImage().getScaledInstance(90, 70, Image.SCALE_SMOOTH));
-            //add border for img
-            JLabel lb = new JLabel(ImageIcon);
-            lb.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-            return lb;
-        }
-    }
+    
 
     private class ImageRendererKM extends DefaultTableCellRenderer {
 
@@ -2871,7 +2849,7 @@ public class QLHOME extends javax.swing.JFrame {
         for (PHIM movi : listPHIM) {
             model.addRow(new Object[]{movi.getTEN_PHIM(), movi.getNGAY_CONG_CHIEU(), movi.getDIENVIEN(), movi.getQUOCGIA(), movi.getTHOI_LUONG_CHIEU()});
         }
-//        tbl_MOVMANA.getColumnModel().getColumn(1).setCellRenderer(new ImageRendererMovie());
+//        
 
     }
 
@@ -2912,7 +2890,6 @@ public class QLHOME extends javax.swing.JFrame {
         for (BANNER bn : listBN) {
             model.addRow(new Object[]{bn.getMAPHIM(), bn.getTENPHIM(), bn.getBANNER()});
         }
-//        tbl_QLBN.getColumnModel().getColumn(2).setCellRenderer(new ImageRendererKM());
 
     }
 
@@ -2993,7 +2970,7 @@ public class QLHOME extends javax.swing.JFrame {
         this.sizeBorder = 41;
         hoverMenu(btn_QLPhim, 41);
         showPanelMenu(pnl_MovieManagement);
-//        showPanelMenu(pnl_EmployeeManagement);
+
 
         // code change Tab here
 
@@ -3006,29 +2983,19 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_QLHD, 41);
         showPanelMenu(pnl_QLHoaDon);
         // code change Tab here
-//        showPanelMenu(pnl_CustomerManagement);
+
 
     }//GEN-LAST:event_btn_QLHDActionPerformed
 
     private void btn_QLDoAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLDoAnActionPerformed
         // TODO add your handling code here:
         // code change Tab here
-//        EMPLOYEE epl = Auth.user;
-//        if (epl != null) {
-//            if (Auth.isManager()) {
+
         this.btn_CheckClickMenu = btn_QLDoAn;
         this.sizeBorder = 41;
         hoverMenu(btn_QLDoAn, 41);
         showPanelMenu(pnl_QLDoAn);
-//            } else {
-//                JOptionPane.showMessageDialog(this, "You can't access this page!", "SHOP MANAGEMENT", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//        } else {
-//            this.btn_CheckClickMenu = btn_AccountManagement;
-//            this.sizeBorder = 41;
-//            hoverMenu(btn_AccountManagement, 41);
-//            showPanelMenu(pnl_AccountManagement);
-//        }
+
     }//GEN-LAST:event_btn_QLDoAnActionPerformed
 
     private void btn_QLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLNVActionPerformed
@@ -3053,22 +3020,12 @@ public class QLHOME extends javax.swing.JFrame {
     private void btn_QLKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLKMActionPerformed
         // TODO add your handling code here:
         // code change Tab here
-//        EMPLOYEE epl = Auth.user;
-//        if (epl != null) {
-//            if (Auth.isManager()) {
+
         this.btn_CheckClickMenu = btn_QLKM;
         this.sizeBorder = 37;
         hoverMenu(btn_QLKM, 37);
         showPanelMenu(pnl_QLKM);
-//            } else {
-//                JOptionPane.showMessageDialog(this, "You can't access this page!", "SHOP MANAGEMENT", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//        } else {
-//            this.btn_CheckClickMenu = btn_IntergradedManagement;
-//            this.sizeBorder = 37;
-//            hoverMenu(btn_IntergradedManagement, 37);
-//            showPanelMenu(pnl_IntergratedManagement);
-//        }
+
     }//GEN-LAST:event_btn_QLKMActionPerformed
 
     private void btn_QLTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLTKActionPerformed
@@ -3100,7 +3057,6 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_TK, 42);
         showPanelMenu(pnl_Account);
         // code change Tab here
-//        showPanelMenu(pnl_Account);
     }//GEN-LAST:event_btn_TKActionPerformed
 
     private void btn_CaiDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CaiDatActionPerformed
@@ -3110,7 +3066,6 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_CaiDat, 35);
 
         // code change Tab here
-//        showPanelMenu(pnl_Setting);
 
     }//GEN-LAST:event_btn_CaiDatActionPerformed
 
@@ -3121,7 +3076,6 @@ public class QLHOME extends javax.swing.JFrame {
         hoverMenu(btn_QLSC, 41);
         showPanelMenu(pnl_QLSuatChieu);
         // code change Tab here
-//        showPanelMenu(pnl_CustomerManagement);
     }//GEN-LAST:event_btn_QLSCActionPerformed
 
     private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
@@ -3196,27 +3150,11 @@ public class QLHOME extends javax.swing.JFrame {
 
     private void cbo_IntergratedMana_CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_IntergratedMana_CategoryActionPerformed
         // TODO add your handling code here:
-//        showChart();
+
     }//GEN-LAST:event_cbo_IntergratedMana_CategoryActionPerformed
 
-//    public void searchAccMana() {
-//        QLNVDAO qlnvdao = new QLNVDAO();
-//        Component[] components = pnl_AccountMana_ShowListAcc.getComponents();
-//        if(qlnvdao.selectebyID(txt_AccMana_search.getText()) != null) {
-////            List<EMPLOYEE> listNV = qlnvdao.selectebyID(txt_AccMana_search.getText());
-////                pnl_AccountMana_ShowListAcc.removeAll();
-//        } 
-////        for (EMPLOYEE nv : listNV) {
-////            if(nv.getMANV().equalsIgnoreCase(txt_AccMana_search.getText())) {
-////                for (Component component : components) {
-////                    if(!nv.getMANV().equalsIgnoreCase(txt_AccMana_search.getText())) {
-////                        component.setVisible(false);
-////                    } 
-////                }
-////                break;
-////            }
-////        } 
-//    }
+
+
     private void btn_Acc_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Acc_DeleteActionPerformed
         // TODO add your handling code here:
 //        txt_Account_Story.setText("");
@@ -3227,40 +3165,19 @@ public class QLHOME extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_Acc_SaveActionPerformed
 
-//    private void filter_AccMana() {
-//        List<EMPLOYEE> listNV = qlnvdao.selectAll();
-//        if (cbo_AccMana_SapXep.getSelectedIndex() == 0) {
-//            addToPanelAccMana(listNV);
-//        } else if (cbo_AccMana_SapXep.getSelectedIndex() == 1) {
-//            // get list Employee
-//            listNV = qlnvdao.listEmployee_Role(0);
-//            addToPanelAccMana(listNV);
-//        } else {
-//            // get list Manager
-//            listNV = qlnvdao.listEmployee_Role(1);
-//            addToPanelAccMana(listNV);
-//        }
-//    }
+
 
     private void cbo_AccMana_SapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_AccMana_SapXepActionPerformed
         // TODO add your handling code here:
-//        filter_AccMana();
     }//GEN-LAST:event_cbo_AccMana_SapXepActionPerformed
 
     private void lbl_AccMana_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_AccMana_searchMouseClicked
         // TODO add your handling code here:
-        //        if (!txt_AccMana_search.getText().equals("")) {
-        //            EMPLOYEE epl = qlnvdao.selectebyID(txt_AccMana_search.getText());
-        //            List<EMPLOYEE> listNV = new ArrayList<>();
-        //            listNV.add(epl);
-        //            addToPanelAccMana(listNV);
-        //
-        //        }
+
     }//GEN-LAST:event_lbl_AccMana_searchMouseClicked
 
     private void txt_AccMana_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_AccMana_searchKeyReleased
         // TODO add your handling code here:
-//        searchAccMana();
     }//GEN-LAST:event_txt_AccMana_searchKeyReleased
 
     private void btn_AccountMana_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AccountMana_AddActionPerformed
@@ -3298,8 +3215,6 @@ public class QLHOME extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-
         }
     }//GEN-LAST:event_tbl_QLDAMouseClicked
 
@@ -3402,8 +3317,6 @@ public class QLHOME extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-
         }
 
     }//GEN-LAST:event_tbl_CUSMANAMouseClicked

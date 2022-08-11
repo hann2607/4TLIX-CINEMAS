@@ -13,6 +13,7 @@ import com.qlrp.utils.Auth;
 import com.qlrp.utils.MsgBox;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.UIManager;
@@ -179,6 +180,11 @@ public class login extends javax.swing.JFrame {
         txt_Password.setIcons(null);
         txt_Password.setPlaceholder("Mật khẩu");
         txt_Password.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        txt_Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_PasswordKeyPressed(evt);
+            }
+        });
         pnl_containerLeft.add(txt_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 270, -1));
 
         pnl_left.add(pnl_containerLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 580));
@@ -420,7 +426,7 @@ public class login extends javax.swing.JFrame {
         }
 
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        
+
         if (txtgmail.getText().equals("")) {
             loi += "Gmail không được để trống! \n";
         } else if (!txtgmail.getText().matches(EMAIL_PATTERN)) {
@@ -435,21 +441,21 @@ public class login extends javax.swing.JFrame {
         } else if (!txtpass.getText().equalsIgnoreCase(txtconfirm.getText())) {
             loi += "Xác nhận mật khẩu không khớp! \n";
         }
-        
-        if(!loi.equals("")) {
+
+        if (!loi.equals("")) {
             JOptionPane.showMessageDialog(this, loi, "Lỗi!", JOptionPane.ERROR_MESSAGE);
             return false;
-        } 
+        }
         return true;
     }
-    
+
     private KHACHHANG getform() {
         KHACHHANG kh = new KHACHHANG();
         kh.setSDT(txtsdt.getText());
         kh.setHO_TEN(txthoten.getText());
         kh.setEMAIL(txtgmail.getText());
         kh.setDIA_CHI(txtDiaChi.getText());
-        if(rdo_Nam.isSelected()) {
+        if (rdo_Nam.isSelected()) {
             kh.setGIOI_TINH(true);
         } else {
             kh.setGIOI_TINH(false);
@@ -464,13 +470,13 @@ public class login extends javax.swing.JFrame {
             return;
         }
         try {
-            if(validateForm()) {
+            if (validateForm()) {
                 KHACHHANG kh = getform();
                 qlkhdao.insert(kh);
                 JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(this, "Đăng ký thất bại!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Đăng ký thất bại!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -507,6 +513,13 @@ public class login extends javax.swing.JFrame {
         lbl_sologanRight.setVisible(true);
         lbl_rightposter.setVisible(true);
     }//GEN-LAST:event_btn_TroLaiActionPerformed
+
+    private void txt_PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dangNhap();
+        }
+    }//GEN-LAST:event_txt_PasswordKeyPressed
 
     /**
      * @param args the command line arguments

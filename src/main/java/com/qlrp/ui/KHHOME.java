@@ -1268,12 +1268,17 @@ public class KHHOME extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
         model.setRowCount(0);
         model.fireTableDataChanged();
+        getInfo.listSP_PHIM.clear();
+        getInfo.listSP_DOAN.clear();
     }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
 
     private void btn_Cart_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_ThanhToanActionPerformed
         // show form Hoa don
-        KH_HoaDon hd = new KH_HoaDon();
-        hd.setVisible(true);
+
+        if (getInfo.listSP_PHIM.size() != 0 || getInfo.listSP_DOAN.size() != 0) {
+            KH_HoaDon hd = new KH_HoaDon();
+            hd.setVisible(true);
+        }
     }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
 
     private void setSLTongTien() {

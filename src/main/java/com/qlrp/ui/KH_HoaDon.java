@@ -59,8 +59,8 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     DefaultTableModel model;
     HOADONKHACHHANGDAO hdkhdao = new HOADONKHACHHANGDAO();
     HOADONCHITIETDAO hdctdao = new HOADONCHITIETDAO();
-    List<HOADON_KH> listHDKH = new ArrayList<HOADON_KH>();
-    List<HOADON_CT> listHDCT = new ArrayList<HOADON_CT>();
+    List<HOADON_KH> listHDKH = new ArrayList<>();
+    List<HOADON_CT> listHDCT = new ArrayList<>();
     DecimalFormat formatter = new DecimalFormat("###,###,###");
 
     public KH_HoaDon() {
@@ -196,7 +196,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         model = (DefaultTableModel) tbl_HoaDon.getModel();
         ct.setMAHDCT(kh.getMAHDCT());
         ct.setMAHD(kh.getMAHD());
-
         for (int i = 0; i < model.getRowCount(); i++) {
             ct.setSL_KICHCO(model.getValueAt(i, 0) + "");
             ct.setTENSP(model.getValueAt(i, 1) + "");
@@ -285,7 +284,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                     + listHDCT.get(index).getTENSP() + "\n"
                     + kh.getTONGTIEN()
                     + "Vui lòng đưa mã QR này cho nhân viên khi đến check in tại rạp.";
-            
+
             Message msg = new MimeMessage(ss);
 
             MimeBodyPart contentPart = new MimeBodyPart();
@@ -294,7 +293,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             msg.setFrom(new InternetAddress(from));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSubject(subject);
-            
+
             Multipart multipart = new MimeMultipart();
             BodyPart messageBodyPart1 = new MimeBodyPart();
 
@@ -302,16 +301,14 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             multipart.addBodyPart(messageBodyPart1);
 
             // Gui File dinh kem
-
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();
             DataSource source1 = new FileDataSource(createQRcode());
             messageBodyPart2.setDataHandler(new DataHandler(source1));
             messageBodyPart2.setFileName(createQRcode());
             multipart.addBodyPart(messageBodyPart2);
-            
-            
+
             msg.setContent(multipart);
-            
+
             Transport.send(msg);
             JOptionPane.showMessageDialog(null, "Hóa đơn đã được gửi về email của bạn" + "\n"
                     + "Sử dụng mã QR được gửi qua email khi đến check in tại rạp", "Thông báo",
@@ -548,8 +545,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_huyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyBoActionPerformed
-
-
+        this.dispose();
     }//GEN-LAST:event_btn_huyBoActionPerformed
 
     private void btn_xacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacNhanActionPerformed
