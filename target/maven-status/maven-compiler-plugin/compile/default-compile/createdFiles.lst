@@ -76,7 +76,6 @@ com\qlrp\dao\QLNVDAO.class
 com\qlrp\ui\QLHOME$29.class
 com\qlrp\entity\BANNER.class
 com\qlrp\dao\QLBANNERDAO.class
-com\qlrp\ui\ThemDoAn$12.class
 com\qlrp\ui\SplashScreen$1.class
 com\qlrp\ui\QLHOME$8.class
 com\qlrp\ui\QLHOME$30.class
@@ -110,7 +109,6 @@ com\qlrp\ui\KHHOME$ListenAdditionsScrolledPhim.class
 com\qlrp\ui\DatVe$ImageRendererFood.class
 com\qlrp\ui\QLHOME$31.class
 com\qlrp\ui\QLHOME$83.class
-com\qlrp\ui\ThemDoAn$13.class
 com\qlrp\ui\DatVe$ImageRendererMovie.class
 com\qlrp\ui\ThemKhuyenMai$5.class
 com\qlrp\ui\ThemKhuyenMai$9.class

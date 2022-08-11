@@ -11,7 +11,6 @@ import com.qlrp.dao.QLKMDAO;
 import com.qlrp.dao.QLPHIMDAO;
 import com.qlrp.dao.QLVEDATDAO;
 import com.qlrp.entity.DOAN;
-import com.qlrp.entity.GHENGOI;
 import com.qlrp.entity.GIOHANG_DOAN;
 import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.KHUYENMAI;
@@ -20,6 +19,7 @@ import com.qlrp.entity.VEDAT;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import com.qlrp.utils.setUIJScroll;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -36,9 +36,9 @@ import java.io.File;
 import static java.lang.Thread.sleep;
 import java.text.DecimalFormat;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -333,11 +333,26 @@ public class KHHOME extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("PHIM");
 
-        cbo_TheLoaiFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỂ LOẠI", "SIÊU ANH HÙNG", "KHOA HỌC VIỄN TƯỞNG", "PHI KHOA HỌC", "HOẠT HÌNH", "PHIÊU LƯU", "HÀI KỊCH", "TÌNH CẢM", "GIẬT GÂN", "KINH DỊ", "TƯỞNG TƯỢNG", "TỘI ÁC" }));
+        cbo_TheLoaiFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "THỂ LOẠI", "SIÊU ANH HÙNG", "KHOA HỌC VIỄN TƯỞNG", "HOẠT HÌNH", "PHIÊU LƯU", "HÀI KỊCH", "TÌNH CẢM", "GIẬT GÂN", "KINH DỊ", "TƯỞNG TƯỢNG", "TỘI ÁC" }));
+        cbo_TheLoaiFilm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_TheLoaiFilmActionPerformed(evt);
+            }
+        });
 
         cbo_QuocGia_Film.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUỐC GIA", "MỸ", "ĐÀI LOAN", "VIỆT NAM" }));
+        cbo_QuocGia_Film.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_QuocGia_FilmActionPerformed(evt);
+            }
+        });
 
         cbo_NgayKhoiChieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY KHỞI CHIẾU", "2022-08-07", "2022-07-07", "2022-07-29", "2022-06-17" }));
+        cbo_NgayKhoiChieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_NgayKhoiChieuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -426,10 +441,10 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                 jScrollPane3AncestorMoved(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -913,6 +928,25 @@ public class KHHOME extends javax.swing.JFrame {
             btn_prevPhim.grabFocus();
             pnl_SlideFilm.revalidate();
             pnl_SlideFilm.repaint();
+            if (listfilm != null) {
+                if (listfilm.size() == 1) {
+                    jScrollPane3.setSize(new Dimension(210, jScrollPane3.getHeight()));
+                    jScrollPane3.setMinimumSize(new Dimension(210, jScrollPane3.getHeight()));
+                    jScrollPane3.setPreferredSize(new Dimension(210, jScrollPane3.getHeight()));
+                    jScrollPane3.setMaximumSize(new Dimension(210, jScrollPane3.getHeight()));
+                } else if (listfilm.size() < 5) {
+                    jScrollPane3.setSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                    jScrollPane3.setMinimumSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                    jScrollPane3.setPreferredSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                    jScrollPane3.setMaximumSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                } else {
+                    jScrollPane3.setSize(new Dimension(1280, jScrollPane3.getHeight()));
+                    jScrollPane3.setMinimumSize(new Dimension(1280, jScrollPane3.getHeight()));
+                    jScrollPane3.setPreferredSize(new Dimension(1280, jScrollPane3.getHeight()));
+                    jScrollPane3.setMaximumSize(new Dimension(1280, jScrollPane3.getHeight()));
+                }
+            }
+
         }
     }
 
@@ -1080,7 +1114,7 @@ public class KHHOME extends javax.swing.JFrame {
                     }
                 }
             });
-            
+
             pnl_slideDoAn.add(pnl);
         }
 
@@ -1184,7 +1218,7 @@ public class KHHOME extends javax.swing.JFrame {
                     for (String string : arrGhe) {
                         qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
                     }
-                    
+
                 }
                 for (VEDAT vd : getInfo.listVEDAT) {
                     qlvedatdao.delete(vd.getMA_VE_DAT());
@@ -1304,7 +1338,7 @@ public class KHHOME extends javax.swing.JFrame {
                 }
                 listphim.remove(index);
                 qlvedatdao.delete(getInfo.listVEDAT.get(index).getMA_VE_DAT());
-                
+
                 getInfo.listVEDAT.remove(index);
                 model.removeRow(index);
                 setSLTongTien();
@@ -1316,89 +1350,153 @@ public class KHHOME extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_GioHangMouseClicked
 
     private void FillDataTimkiem(List<PHIM> list) {
-        for (int i = 0; i < list.size(); i++) {
+        pnl_SlideFilm.removeAll();
+        if (list != null) {
+            pnl_SlideFilm.removeAll();
+            if (listfilm.size() == 1) {
+                jScrollPane3.setSize(new Dimension(210, jScrollPane3.getHeight()));
+                jScrollPane3.setMinimumSize(new Dimension(210, jScrollPane3.getHeight()));
+                jScrollPane3.setPreferredSize(new Dimension(210, jScrollPane3.getHeight()));
+                jScrollPane3.setMaximumSize(new Dimension(210, jScrollPane3.getHeight()));
+            } else if (listfilm.size() < 5) {
+                jScrollPane3.setSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                jScrollPane3.setMinimumSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                jScrollPane3.setPreferredSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+                jScrollPane3.setMaximumSize(new Dimension(listfilm.size() * 256, jScrollPane3.getHeight()));
+            } else {
+                jScrollPane3.setSize(new Dimension(1280, jScrollPane3.getHeight()));
+                jScrollPane3.setMinimumSize(new Dimension(1280, jScrollPane3.getHeight()));
+                jScrollPane3.setPreferredSize(new Dimension(1280, jScrollPane3.getHeight()));
+                jScrollPane3.setMaximumSize(new Dimension(1280, jScrollPane3.getHeight()));
+            }
+
+            for (int i = 0; i < list.size(); i++) {
+                JPanel pnl = new JPanel();
+                pnl.setLayout(new GridLayout(2, 1));
+                pnl.setBackground(Color.WHITE);
+
+                //TextPane chứa tiêu đề
+                JTextPane textPane = new JTextPane();
+                textPane.setText(list.get(i).getTEN_PHIM());
+                StyledDocument style = textPane.getStyledDocument();
+                SimpleAttributeSet align = new SimpleAttributeSet();
+                StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
+                style.setParagraphAttributes(0, style.getLength(), align, false);
+                textPane.setPreferredSize(new Dimension(210, 100));
+                Font f2 = new Font("Segoe UI", Font.BOLD, 17);
+                textPane.setFont(f2);
+
+                //Label chứa hình
+                JLabel lbl = new JLabel();
+                lbl.setSize(new Dimension(210, 250));
+                lbl.setMinimumSize(new Dimension(210, 250));
+                lbl.setPreferredSize(new Dimension(210, 250));
+                lbl.setMaximumSize(new Dimension(210, 250));
+                String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
+                lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + list.get(i).getPOSTER()));
+                pnl.add(lbl);
+                pnl.add(textPane);
+                pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                //Thêm sự kiện click vào film show chi tiết phim
+                PHIM p = list.get(i);
+                pnl.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (e.getClickCount() == 1 && !e.isConsumed()) {
+                            if (ctp.isVisible()) {
+                                ctp.setVisible(false);
+                                ctp.setVisible(true);
+                                ctp.fillToChiTietPhim(p);
+                            } else {
+                                ctp.setVisible(true);
+                                ctp.fillToChiTietPhim(p);
+                            }
+
+                        }
+                    }
+                });
+                pnl_SlideFilm.add(pnl);
+            }
+        } else {
+            pnl_SlideFilm.removeAll();
+            jScrollPane3.setSize(new Dimension(1280, jScrollPane3.getHeight()));
+            jScrollPane3.setMinimumSize(new Dimension(1280, jScrollPane3.getHeight()));
+            jScrollPane3.setPreferredSize(new Dimension(1280, jScrollPane3.getHeight()));
+            jScrollPane3.setMaximumSize(new Dimension(1280, jScrollPane3.getHeight()));
             JPanel pnl = new JPanel();
             pnl.setLayout(new GridLayout(2, 1));
+            pnl.setBackground(Color.WHITE);
 
-            //TextPane chứa tiêu đề
+            JLabel lbl = new JLabel();
+            lbl.setBackground(Color.WHITE);
+
             JTextPane textPane = new JTextPane();
-            textPane.setText(list.get(i).getTEN_PHIM());
+            textPane.setSize(new Dimension(jScrollPane3.getWidth(), 100));
+            textPane.setMinimumSize(new Dimension(jScrollPane3.getWidth(), 100));
+            textPane.setPreferredSize(new Dimension(jScrollPane3.getWidth(), 100));
+            textPane.setMaximumSize(new Dimension(jScrollPane3.getWidth(), 100));
+            textPane.setOpaque(false);
+            textPane.setBorder(BorderFactory.createEmptyBorder());
+            textPane.setBackground(new Color(0, 0, 0, 0));
+
             StyledDocument style = textPane.getStyledDocument();
             SimpleAttributeSet align = new SimpleAttributeSet();
             StyleConstants.setAlignment(align, StyleConstants.ALIGN_CENTER);
             style.setParagraphAttributes(0, style.getLength(), align, false);
-            textPane.setPreferredSize(new Dimension(210, 100));
-            Font f2 = new Font("Segoe UI", Font.BOLD, 17);
+            Font f2 = new Font("Segoe UI", Font.BOLD, 28);
             textPane.setFont(f2);
+            textPane.setText("KHÔNG CÓ KẾT QUẢ");
 
-            //Label chứa hình
-            JLabel lbl = new JLabel();
-            lbl.setSize(new Dimension(210, 250));
-            lbl.setMinimumSize(new Dimension(210, 250));
-            lbl.setPreferredSize(new Dimension(210, 250));
-            lbl.setMaximumSize(new Dimension(210, 250));
-            String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
-            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + list.get(i).getPOSTER()));
             pnl.add(lbl);
             pnl.add(textPane);
-            pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            //Thêm sự kiện click vào film show chi tiết phim
-            PHIM p = list.get(i);
-            pnl.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (e.getClickCount() == 1 && !e.isConsumed()) {
-                        if (ctp.isVisible()) {
-                            ctp.setVisible(false);
-                            ctp.setVisible(true);
-                            ctp.fillToChiTietPhim(p);
-                        } else {
-                            ctp.setVisible(true);
-                            ctp.fillToChiTietPhim(p);
-                        }
-
-                    }
-                }
-            });
-
             pnl_SlideFilm.add(pnl);
         }
+
+        pnl_SlideFilm.revalidate();
+        pnl_SlideFilm.repaint();
     }
-    
+
+    private void timKiemPhim() {
+        String theloai = "", quocgia = "", ngayKhoiChieu = null, tim = "";
+        if (!(txt_Search_Film.getText().equals("") || txt_Search_Film.getText().equalsIgnoreCase("Nhập để tìm kiếm..."))) {
+            tim = txt_Search_Film.getText();
+        }
+        if (cbo_TheLoaiFilm.getSelectedIndex() != 0) {
+            theloai = (String) cbo_TheLoaiFilm.getSelectedItem();
+        }
+        if (cbo_QuocGia_Film.getSelectedIndex() != 0) {
+            quocgia = (String) cbo_QuocGia_Film.getSelectedItem();
+        }
+        if (cbo_NgayKhoiChieu.getSelectedIndex() != 0) {
+            ngayKhoiChieu = (String) cbo_NgayKhoiChieu.getSelectedItem();
+        }
+
+        listfilm = qlphimdao.searchTenPhim(tim, theloai, quocgia, ngayKhoiChieu);
+        FillDataTimkiem(listfilm);
+    }
+
     private void lbl_TimKiemPhimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TimKiemPhimMouseClicked
         // TODO add your handling code here:
-//        String tim = txt_Search_Film.getText();
-//        if(tim.equals("") && tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() == 0
-//                && cbo_QuocGia_Film.getSelectedIndex() == 0 && cbo_NgayKhoiChieu.getSelectedIndex() == 0) {
-//            pnl_SlideFilm.removeAll();
-//            FillToPanelFilm();
-//        } else {
-//            List<PHIM> listSearch;
-//            if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0
-//                && cbo_QuocGia_Film.getSelectedIndex() != 0 && cbo_NgayKhoiChieu.getSelectedIndex() != 0) {
-//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "", cbo_QuocGia_Film.getSelectedItem() + "", cbo_NgayKhoiChieu.getSelectedItem() + "");
-//                pnl_SlideFilm.removeAll();
-//                FillDataTimkiem(listSearch);
-//            } else if (!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0
-//                && cbo_QuocGia_Film.getSelectedIndex() != 0) {
-//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "", cbo_QuocGia_Film.getSelectedItem() + "", null);
-//                pnl_SlideFilm.removeAll();
-//                FillDataTimkiem(listSearch);
-//            } else if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...") && cbo_TheLoaiFilm.getSelectedIndex() != 0) {
-//                listSearch = qlphimdao.searchTenPhim(tim, cbo_TheLoaiFilm.getSelectedItem() + "","", null);
-//                pnl_SlideFilm.removeAll();
-//                FillDataTimkiem(listSearch);
-//            } else if(!tim.equals("") && !tim.equalsIgnoreCase("Nhập để tìm kiếm...")) {
-//                listSearch = qlphimdao.searchTenPhim(tim,"","", null);
-//                pnl_SlideFilm.removeAll();
-//                FillDataTimkiem(listSearch);
-//            }
-//        }
+        timKiemPhim();
     }//GEN-LAST:event_lbl_TimKiemPhimMouseClicked
 
     private void lbl_TimKiemDoAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_TimKiemDoAnMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_TimKiemDoAnMouseClicked
+
+    private void cbo_TheLoaiFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_TheLoaiFilmActionPerformed
+        timKiemPhim();
+    }//GEN-LAST:event_cbo_TheLoaiFilmActionPerformed
+
+    private void cbo_QuocGia_FilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_QuocGia_FilmActionPerformed
+        // TODO add your handling code here:
+        timKiemPhim();
+    }//GEN-LAST:event_cbo_QuocGia_FilmActionPerformed
+
+    private void cbo_NgayKhoiChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_NgayKhoiChieuActionPerformed
+        // TODO add your handling code here:
+        timKiemPhim();
+    }//GEN-LAST:event_cbo_NgayKhoiChieuActionPerformed
 
     /**
      * @param args the command line arguments

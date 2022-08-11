@@ -465,22 +465,24 @@
                         <Component class="javax.swing.JComboBox" name="cbo_TheLoaiFilm">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="12">
+                              <StringArray count="11">
                                 <StringItem index="0" value="TH&#x1ec2; LO&#x1ea0;I"/>
                                 <StringItem index="1" value="SI&#xca;U ANH H&#xd9;NG"/>
                                 <StringItem index="2" value="KHOA H&#x1ecc;C VI&#x1ec4;N T&#x1af;&#x1ede;NG"/>
-                                <StringItem index="3" value="PHI KHOA H&#x1ecc;C"/>
-                                <StringItem index="4" value="HO&#x1ea0;T H&#xcc;NH"/>
-                                <StringItem index="5" value="PHI&#xca;U L&#x1af;U"/>
-                                <StringItem index="6" value="H&#xc0;I K&#x1eca;CH"/>
-                                <StringItem index="7" value="T&#xcc;NH C&#x1ea2;M"/>
-                                <StringItem index="8" value="GI&#x1eac;T G&#xc2;N"/>
-                                <StringItem index="9" value="KINH D&#x1eca;"/>
-                                <StringItem index="10" value="T&#x1af;&#x1ede;NG T&#x1af;&#x1ee2;NG"/>
-                                <StringItem index="11" value="T&#x1ed8;I &#xc1;C"/>
+                                <StringItem index="3" value="HO&#x1ea0;T H&#xcc;NH"/>
+                                <StringItem index="4" value="PHI&#xca;U L&#x1af;U"/>
+                                <StringItem index="5" value="H&#xc0;I K&#x1eca;CH"/>
+                                <StringItem index="6" value="T&#xcc;NH C&#x1ea2;M"/>
+                                <StringItem index="7" value="GI&#x1eac;T G&#xc2;N"/>
+                                <StringItem index="8" value="KINH D&#x1eca;"/>
+                                <StringItem index="9" value="T&#x1af;&#x1ede;NG T&#x1af;&#x1ee2;NG"/>
+                                <StringItem index="10" value="T&#x1ed8;I &#xc1;C"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_TheLoaiFilmActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -496,6 +498,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_QuocGia_FilmActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -512,6 +517,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_NgayKhoiChieuActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>

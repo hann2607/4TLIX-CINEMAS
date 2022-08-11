@@ -26,7 +26,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     String SELECT_ALL_SQL = "SELECT * FROM PHIM";
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
     String SELECT_BY_TEN_PHIM_SQL = "SELECT * FROM PHIM WHERE TEN_PHIM LIKE ?";
-    String SP_TimKiem_PHIM = "{call SP_Timkiem_PHIM @TEN_PHIM = ?, @LOAIPHIM = ?, @QUOCGIA = ?, @NGAY_CONG_CHIEU = ?}";
+    String SP_TimKiem_PHIM = "{call SP_Timkiem_PHIM (?, ?, ?, ?)}";
     @Override
     public void insert(PHIM entity) {
         try {
