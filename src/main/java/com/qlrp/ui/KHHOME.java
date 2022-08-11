@@ -19,7 +19,6 @@ import com.qlrp.entity.VEDAT;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import com.qlrp.utils.setUIJScroll;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -879,7 +878,6 @@ public class KHHOME extends javax.swing.JFrame {
         this.setIconImage(XImage.getAppIcon());
         this.setCursor(XImage.setCursor());
 
-//        setImageFilm();
         setPlaceHolder(txt_Search_Film, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_DoAn, "Nhập để tìm kiếm...");
         setPlaceHolder(txt_Search_KhuyenMai, "Nhập để tìm kiếm...");
@@ -888,7 +886,7 @@ public class KHHOME extends javax.swing.JFrame {
         table = tbl_GioHang;
         lbl = lbl_Cart_TongTien;
         sl = btn_SoLuong;
-//        setImageSlide();
+
         RunSlide();
         CustomUIJScroll(jScrollPane1);
         CustomUIJScroll(jScrollPane2);
@@ -913,14 +911,9 @@ public class KHHOME extends javax.swing.JFrame {
     int i = 1;
     String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\";
     File f = new File("");
-//    private void setImageSlide() {
-//        File f = new File("");
-//        String duongdanBanner = "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\video poster\\";
-//        lbl_poster.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanBanner + "poster" + i + ".jpg"));
-//    }
 
     //Sự kiện refresh Phim, DoAn, KhuyenMai để nút next và prev show on top
-    public class ListenAdditionsScrolledPhim implements ChangeListener {
+    private class ListenAdditionsScrolledPhim implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -950,7 +943,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
     }
 
-    public class ListenAdditionsScrolledDoAn implements ChangeListener {
+    private class ListenAdditionsScrolledDoAn implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -961,7 +954,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
     }
 
-    public class ListenAdditionsScrolledKhuyenMai implements ChangeListener {
+    private class ListenAdditionsScrolledKhuyenMai implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -1014,8 +1007,6 @@ public class KHHOME extends javax.swing.JFrame {
         jscroll.getHorizontalScrollBar().setCursor(new Cursor(HAND_CURSOR));
     }
 
-    boolean isShowChiTietPhim = false;
-
     private void FillToPanelFilm() {
         listfilm = qlphimdao.selectAll();
         for (int i = 0; i < listfilm.size(); i++) {
@@ -1034,14 +1025,14 @@ public class KHHOME extends javax.swing.JFrame {
             textPane.setFont(f2);
 
             //Label chứa hình
-            JLabel lbl = new JLabel();
-            lbl.setSize(new Dimension(210, 250));
-            lbl.setMinimumSize(new Dimension(210, 250));
-            lbl.setPreferredSize(new Dimension(210, 250));
-            lbl.setMaximumSize(new Dimension(210, 250));
+            JLabel lblHinh = new JLabel();
+            lblHinh.setSize(new Dimension(210, 250));
+            lblHinh.setMinimumSize(new Dimension(210, 250));
+            lblHinh.setPreferredSize(new Dimension(210, 250));
+            lblHinh.setMaximumSize(new Dimension(210, 250));
             String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
-            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listfilm.get(i).getPOSTER()));
-            pnl.add(lbl);
+            lblHinh.setIcon(XImage.ResizeImage(lblHinh.getWidth(), lblHinh.getHeight(), duongdanPoster + listfilm.get(i).getPOSTER()));
+            pnl.add(lblHinh);
             pnl.add(textPane);
             pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             //Thêm sự kiện click vào film show chi tiết phim
@@ -1086,14 +1077,14 @@ public class KHHOME extends javax.swing.JFrame {
             textPane.setFont(f2);
 
             //Label chứa hình
-            JLabel lbl = new JLabel();
-            lbl.setSize(new Dimension(210, 250));
-            lbl.setMinimumSize(new Dimension(210, 250));
-            lbl.setPreferredSize(new Dimension(210, 250));
-            lbl.setMaximumSize(new Dimension(210, 250));
+            JLabel lblHinh = new JLabel();
+            lblHinh.setSize(new Dimension(210, 250));
+            lblHinh.setMinimumSize(new Dimension(210, 250));
+            lblHinh.setPreferredSize(new Dimension(210, 250));
+            lblHinh.setMaximumSize(new Dimension(210, 250));
             String duongdanPoster = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\PHIM\\POSTER\\";
-            lbl.setIcon(XImage.ResizeImage(lbl.getWidth(), lbl.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
-            pnl.add(lbl);
+            lblHinh.setIcon(XImage.ResizeImage(lblHinh.getWidth(), lblHinh.getHeight(), duongdanPoster + listDoAn.get(i).getHINH()));
+            pnl.add(lblHinh);
             pnl.add(textPane);
             pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -1150,22 +1141,6 @@ public class KHHOME extends javax.swing.JFrame {
             pnl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             pnl.setBackground(Color.WHITE);
 
-//            DOAN da = listDoAn.get(i);
-//            pnl.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mousePressed(MouseEvent e) {
-//                    if (e.getClickCount() == 1 && !e.isConsumed()) {
-//                        if(ctda.isVisible()) {
-//                            ctda.setVisible(false);
-//                            ctda.setVisible(true);
-//                            ctda.fillToChiTietDoAn(da);
-//                        } else {
-//                            ctda.setVisible(true);
-//                            ctda.fillToChiTietDoAn(da);
-//                        } 
-//                    }
-//                }
-//            });
             pnl_slideKhuyenMai.add(pnl);
         }
 
@@ -1274,9 +1249,6 @@ public class KHHOME extends javax.swing.JFrame {
     private void btn_nextPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nextPhimActionPerformed
         // TODO add your handling code here:
         int valueScroll = jScrollPane3.getHorizontalScrollBar().getValue();
-        int w = 210;
-        int khoangtrang = 56;
-        int size = listfilm.size();
         // vitri max = 266
         int vitrihientai = (((valueScroll / 266) + 5) * 210) + ((((valueScroll / 266) + 5) - 1) * 56);
         int vitritieptheo = (((valueScroll / 266) + 6) * 210) + ((((valueScroll / 266) + 6) - 1) * 56);

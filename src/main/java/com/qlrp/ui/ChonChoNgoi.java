@@ -982,13 +982,6 @@ public class ChonChoNgoi extends javax.swing.JFrame {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() == 1 && !e.isConsumed()) {
-//                        if (listButtonGhe.size() <= 4) {
-//                            listButtonGhe.add(button);
-//                        } else {
-//                            listButtonGhe.remove(0);
-//                            listButtonGhe.add(button);
-//                        }
-
                         eventClickButtonChonGhe(GHE, button);
                     }
 

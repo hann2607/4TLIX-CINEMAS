@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  *
  * @author duong
  */
-public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
+public class QLNVDAO extends QLRPDAO<NHANVIEN, String> {
+
     String INSERT_SQL = "INSERT INTO NHANVIEN (MA_NHAN_VIEN, HO_TEN, EMAIL, SDT, DIA_CHI, GIOI_TINH, CCCD_CMND, HINH, NGAY_VAO_LAM, TRANG_THAI, TEN_VAI_TRO, MAT_KHAU) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     String UPDATE_SQL = "UPDATE NHANVIEN SET HO_TEN=?, EMAIL=?, SDT=?, DIA_CHI=?, GIOI_TINH=?, CCCD_CMND=?, HINH=?, NGAY_VAO_LAM=?, TRANG_THAI=?, TEN_VAI_TRO=?, MAT_KHAU=? WHERE MA_NHAN_VIEN=?";
@@ -26,11 +27,12 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
     String SELECT_BY_ID_SQL = "SELECT * FROM NHANVIEN WHERE MA_NHAN_VIEN LIKE ?";
     String SELECT_By_Role_SQL = "SELECT * FROM NHANVIEN WHERE TEN_VAI_TRO = ?";
     String SELECT_By_GMAIL_SQL = "SELECT * FROM NHANVIEN WHERE EMAIL like ?";
+
     @Override
     public void insert(NHANVIEN entity) {
         try {
-            XJdbc.update(INSERT_SQL, entity.getMA_NHAN_VIEN(), entity.getHO_TEN(), entity.getEMAIL(), entity.getSDT(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getCCCD_CMND(), 
-                                        entity.getHINH(), entity.getNGAY_VAO_LAM(), entity.isTRANG_THAI(), entity.getTEN_VAI_TRO(), entity.getMAT_KHAU());
+            XJdbc.update(INSERT_SQL, entity.getMA_NHAN_VIEN(), entity.getHO_TEN(), entity.getEMAIL(), entity.getSDT(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getCCCD_CMND(),
+                    entity.getHINH(), entity.getNGAY_VAO_LAM(), entity.isTRANG_THAI(), entity.getTEN_VAI_TRO(), entity.getMAT_KHAU());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,8 +41,8 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
     @Override
     public void update(NHANVIEN entity) {
         try {
-            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.getEMAIL(), entity.getSDT(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getCCCD_CMND(), 
-                                        entity.getHINH(), entity.getNGAY_VAO_LAM(), entity.isTRANG_THAI(), entity.getTEN_VAI_TRO(), entity.getMAT_KHAU(), entity.getMA_NHAN_VIEN());
+            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.getEMAIL(), entity.getSDT(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getCCCD_CMND(),
+                    entity.getHINH(), entity.getNGAY_VAO_LAM(), entity.isTRANG_THAI(), entity.getTEN_VAI_TRO(), entity.getMAT_KHAU(), entity.getMA_NHAN_VIEN());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,7 +110,7 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
         }
         return list;
     }
-    
+
     public List<NHANVIEN> searchGmail(String gmail) {
         List<NHANVIEN> list = this.selectbySql(SELECT_By_GMAIL_SQL, "%" + gmail + "%");
         if (list.isEmpty()) {
@@ -116,13 +118,13 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String>  {
         }
         return list;
     }
-    
+
     public List<NHANVIEN> listNHANVIEN_Role(int id) {
-        List<NHANVIEN> list = this.selectbySql(SELECT_By_Role_SQL,id);
+        List<NHANVIEN> list = this.selectbySql(SELECT_By_Role_SQL, id);
         if (list.isEmpty()) {
             return null;
         }
         return list;
     }
-    
+
 }

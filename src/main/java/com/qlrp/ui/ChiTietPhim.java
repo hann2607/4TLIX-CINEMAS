@@ -6,7 +6,6 @@ package com.qlrp.ui;
 
 import com.qlrp.dao.QLSUATCHIEUDAO;
 import com.qlrp.entity.PHIM;
-import com.qlrp.entity.SUATCHIEU;
 import com.qlrp.utils.XImage;
 import java.awt.Color;
 import java.io.File;
@@ -564,7 +563,7 @@ public class ChiTietPhim extends javax.swing.JFrame {
                 datVe.fillToFormDatVe(p);
                 datVe.SetVisible();
                 datVe.clearForm();
-            } 
+            }
         } else {
             JOptionPane.showMessageDialog(this, "PHIM NÀY HIỆN CHƯA CHIẾU TẠI RẠP,  \n CHÚNG TÔI VÔ CÙNG XIN LỖI VÌ SỰ BẤT TIỆN NÀY!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
         }

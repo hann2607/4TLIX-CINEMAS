@@ -9,7 +9,6 @@ import com.qlrp.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +26,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
     String SELECT_BY_ID_SQL = "SELECT * FROM PHIM WHERE MA_PHIM=?";
     String SELECT_BY_TEN_PHIM_SQL = "SELECT * FROM PHIM WHERE TEN_PHIM LIKE ?";
     String SP_TimKiem_PHIM = "{call SP_Timkiem_PHIM (?, ?, ?, ?)}";
+
     @Override
     public void insert(PHIM entity) {
         try {
@@ -66,7 +66,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
         }
         return list.get(0);
     }
-    
+
     public PHIM selectebyTenPhim(String Phim) {
         List<PHIM> list = this.selectbySql(SELECT_BY_TEN_PHIM_SQL, Phim);
         if (list.isEmpty()) {
@@ -82,7 +82,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
 
     @Override
     public List<PHIM> selectbySql(String sql, Object... args) {
-        List<PHIM> list = new ArrayList<PHIM>();
+        List<PHIM> list = new ArrayList<>();
         ResultSet rs;
         try {
             rs = XJdbc.query(sql, args);
@@ -113,7 +113,7 @@ public class QLPHIMDAO extends QLRPDAO<PHIM, String> {
             throw new RuntimeException(ex);
         }
     }
-    
+
     public List<PHIM> searchTenPhim(String TEN_PHIM, String LOAIPHIM, String QUOCGIA, String Ngay_CONG_CHIEU) {
         List<PHIM> list = this.selectbySql(SP_TimKiem_PHIM, "%" + TEN_PHIM + "%", "%" + LOAIPHIM + "%", "%" + QUOCGIA + "%", Ngay_CONG_CHIEU);
         if (list.isEmpty()) {

@@ -22,7 +22,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.sql.Time;
@@ -32,20 +31,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -697,6 +692,13 @@ public class DatVe extends javax.swing.JFrame {
         } else {
             if (txt_GheNgoi.getText().equals("") || txt_GheNgoi.getText() == null || MaGhe.size() < sp_SoLuong.getValue().hashCode()) {
                 loi += "BẠN PHẢI CHỌN ĐỦ SỐ GHẾ! \n";
+            } else if (MaGhe.size() > sp_SoLuong.getValue().hashCode()) {
+                loi += "BẠN ÐÃ CHỌN DƯ GHẾ VUI LÒNG CHỌN LẠI! \n";
+                listGiaGhe = null;
+                MaGhe = null;
+                giaGhe = 0;
+                tongtien();
+                txt_GheNgoi.setText("");
             } else {
                 List<GHENGOI> listghengoi = new ArrayList<>();
                 String maPC = cbo_PhongChieu.getSelectedItem() + "";
@@ -730,6 +732,22 @@ public class DatVe extends javax.swing.JFrame {
         sp_SoLuong.addChangeListener((ChangeEvent e) -> {
             if (sp_SoLuong.getValue().hashCode() > 0) {
                 btn_ChonGheNgoi.setEnabled(true);
+                if (MaGhe != null && (MaGhe.size() > sp_SoLuong.getValue().hashCode()) && listGiaGhe != null) {
+                    giaGhe = giaGhe - listGiaGhe.get(listGiaGhe.size() - 1);
+                    MaGhe.remove(MaGhe.size() - 1);
+                    listGiaGhe.remove(listGiaGhe.size() - 1);
+                    tongtien();
+                    String ghe = "";
+                    for (int i = 0; i < MaGhe.size(); i++) {
+                        if (i == 0) {
+                            ghe += MaGhe.get(i);
+                        } else {
+                            ghe += ", " + MaGhe.get(i);
+                        }
+                    }
+                    txt_GheNgoi.setText(ghe);
+
+                }
             } else {
                 validateForm();
                 sp_SoLuong.setValue(1);
@@ -748,6 +766,7 @@ public class DatVe extends javax.swing.JFrame {
     public void clearForm() {
         MaGhe = null;
         listGiaGhe = null;
+        giaGhe = 0;
         sp_SoLuong.setValue(1);
         txt_GheNgoi.setText("");
         lbl_DinhDangPhim.setText("");
@@ -803,18 +822,13 @@ public class DatVe extends javax.swing.JFrame {
             tt += giohang_phim.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererMovie());
-//        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
-//        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox()));
 
         for (GIOHANG_DOAN giohang_doan : listDoAn) {
             model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ", "X"});
             tt += giohang_doan.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatVe.ImageRendererFood());
-//        table.getColumnModel().getColumn(4).setCellRenderer(new DatVe.ButtonRenderer());
-//        table.getColumnModel().getColumn(4).setCellEditor(new DatVe.ButtonEditor(new JCheckBox())); 
         table.getColumnModel().getColumn(4).setCellRenderer(r);
-
         KHHOME.Instance.sl.setText((listDoAn.size() + listphim.size()) + "");
         KHHOME.Instance.lbl.setText(formatter.format(tt) + " VNĐ");
     }
@@ -868,68 +882,6 @@ public class DatVe extends javax.swing.JFrame {
         }
     }
 
-    private class ButtonRenderer extends RSButton implements TableCellRenderer {
-
-        //CONSTRUCTOR
-        public ButtonRenderer() {
-            //SET BUTTON PROPERTIES
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object obj,
-                boolean selected, boolean focused, int row, int col) {
-
-            //SET PASSED OBJECT AS BUTTON TEXT
-            setText((obj == null) ? "" : obj.toString());
-
-            return this;
-        }
-
-    }
-
-    private class ButtonEditor extends DefaultCellEditor {
-
-        protected RSButton btn;
-        private String lbl;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
-            btn = new RSButton();
-            btn.setBackground(new Color(255, 255, 255));
-            btn.setOpaque(true);
-            String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
-            btn.setIcon(XImage.ResizeImage(32, 32, url));
-
-            //WHEN BUTTON IS CLICKED
-            btn.addActionListener((ActionEvent e) -> {
-                if (KHHOME.Instance.table.getSelectedRow() != -1) {
-                    List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
-                    List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
-                    if (KHHOME.Instance.table.getSelectedRow() < listphim.size()) {
-                        listphim.remove(KHHOME.Instance.table.getSelectedRow());
-                    }
-                    getInfo.listSP_PHIM = listphim;
-                    fillToCart(KHHOME.Instance.table);
-                    KHHOME.Instance.table.clearSelection();
-                }
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            lbl = (value == null) ? "" : value.toString();
-            btn.setText(lbl);
-            return btn;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            return lbl;
-        }
-    }
-
     private void addToListSP_PHIM() {
         GIOHANG_PHIM giohang = new GIOHANG_PHIM();
 
@@ -943,7 +895,7 @@ public class DatVe extends javax.swing.JFrame {
         giohang.setPOSTER(phim.getPOSTER());
 
         List<GIOHANG_PHIM> list = getInfo.listSP_PHIM;
-        
+
         list.add(giohang);
         getInfo.listSP_PHIM = list;
     }
@@ -978,8 +930,8 @@ public class DatVe extends javax.swing.JFrame {
                 VEDAT vd = getformToVeDat();
                 qlvedatdao.insert(vd);
                 JOptionPane.showMessageDialog(this, "THÊM THÀNH CÔNG!", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
+                clearForm();
                 this.setVisible(false);
-                
             }
         } catch (Exception e) {
         }

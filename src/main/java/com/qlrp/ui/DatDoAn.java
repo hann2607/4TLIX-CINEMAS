@@ -19,21 +19,17 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.text.DecimalFormat;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -386,18 +382,13 @@ public class DatDoAn extends javax.swing.JFrame {
             tt += giohang_phim.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererMovie());
-//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
-//        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
 
         for (GIOHANG_DOAN giohang_doan : getInfo.listSP_DOAN) {
             model.addRow(new Object[]{giohang_doan.getHINH(), giohang_doan.getTEN_SAN_PHAM(), giohang_doan.getSO_LUONG() + " - " + giohang_doan.getKICH_CO(), formatter.format(giohang_doan.getGIA()) + " VNĐ", "X"});
             tt += giohang_doan.getGIA();
         }
         table.getColumnModel().getColumn(0).setCellRenderer(new DatDoAn.ImageRendererFood());
-//        table.getColumnModel().getColumn(4).setCellRenderer(new DatDoAn.ButtonRenderer());
-//        table.getColumnModel().getColumn(4).setCellEditor(new DatDoAn.ButtonEditor(new JCheckBox()));
         table.getColumnModel().getColumn(4).setCellRenderer(r);
-
         KHHOME.Instance.sl.setText((getInfo.listSP_PHIM.size() + getInfo.listSP_DOAN.size()) + "");
         KHHOME.Instance.lbl.setText(formatter.format(tt) + " VNĐ");
     }
@@ -451,66 +442,10 @@ public class DatDoAn extends javax.swing.JFrame {
         }
     }
 
-    private class ButtonRenderer extends RSButton implements TableCellRenderer {
-
-        //CONSTRUCTOR
-        public ButtonRenderer() {
-            //SET BUTTON PROPERTIES
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object obj,
-                boolean selected, boolean focused, int row, int col) {
-
-            //SET PASSED OBJECT AS BUTTON TEXT
-            setText((obj == null) ? "" : obj.toString());
-
-            return this;
-        }
-
-    }
-
-    private class ButtonEditor extends DefaultCellEditor {
-
-        protected RSButton btn;
-        private String lbl;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
-            btn = new RSButton();
-            btn.setBackground(new Color(255, 255, 255));
-            btn.setOpaque(true);
-            String url = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\KHHome\\icon\\close_70px.png";
-            btn.setIcon(XImage.ResizeImage(32, 32, url));
-
-            //WHEN BUTTON IS CLICKED
-            btn.addActionListener((ActionEvent e) -> {
-
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            lbl = (value == null) ? "" : value.toString();
-            btn.setText(lbl);
-            return btn;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            return lbl;
-        }
-
-    }
-
     private void lbl_ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_ExitMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_lbl_ExitMouseClicked
-
-    boolean isThemVaoGioHang = false;
 
     private void sp_SoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyReleased
         // TODO add your handling code here:
@@ -547,13 +482,10 @@ public class DatDoAn extends javax.swing.JFrame {
                 sp_SoLuong.setValue(1);
                 tongtien();
             }
-
             if (doan.getSOLUONG() != 0 && cbo_KichCo.getSelectedIndex() == 0) {
                 loi += "VUI LÒNG CHỌN KÍCH CỠ! \n";
             }
-
         }
-
         if (!loi.equals("")) {
             JOptionPane.showMessageDialog(this, loi, "LỖI", JOptionPane.ERROR_MESSAGE);
             return false;

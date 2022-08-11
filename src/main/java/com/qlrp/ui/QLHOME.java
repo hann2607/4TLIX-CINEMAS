@@ -29,12 +29,9 @@ import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -121,6 +118,18 @@ public class QLHOME extends javax.swing.JFrame {
         btn_CaiDat = new javax.swing.JButton();
         btn_QLSC = new javax.swing.JButton();
         pnl_Main = new javax.swing.JPanel();
+        pnl_AccountManagement = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        btn_QLNV_Search = new javax.swing.JButton();
+        lbl_AccMana_search = new javax.swing.JLabel();
+        txt_AccMana_search = new javax.swing.JTextField();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pnl_AccountMana_ShowListAcc = new javax.swing.JPanel();
+        btn_AccountMana_Add = new com.k33ptoo.components.KButton();
+        btn_AccountMana_Refresh = new com.k33ptoo.components.KButton();
+        btn_AccountMana_sendMail = new com.k33ptoo.components.KButton();
         pnl_CustomerManagement = new javax.swing.JPanel();
         btn_QLKH_Search = new javax.swing.JButton();
         txt_CUSMANA_Search = new javax.swing.JTextField();
@@ -149,18 +158,6 @@ public class QLHOME extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         btn_QLDA_Search = new javax.swing.JButton();
         txt_QLDA_search = new javax.swing.JTextField();
-        pnl_AccountManagement = new javax.swing.JPanel();
-        jPanel = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        btn_QLNV_Search = new javax.swing.JButton();
-        lbl_AccMana_search = new javax.swing.JLabel();
-        txt_AccMana_search = new javax.swing.JTextField();
-        jPanel17 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        pnl_AccountMana_ShowListAcc = new javax.swing.JPanel();
-        btn_AccountMana_Add = new com.k33ptoo.components.KButton();
-        btn_AccountMana_Refresh = new com.k33ptoo.components.KButton();
-        btn_AccountMana_sendMail = new com.k33ptoo.components.KButton();
         pnl_IntergratedManagement = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         cbo_IntergratedMana_chart = new javax.swing.JComboBox<>();
@@ -886,6 +883,170 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_Main.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        pnl_AccountManagement.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_QLNV_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
+        btn_QLNV_Search.setContentAreaFilled(false);
+        btn_QLNV_Search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_QLNV_Search.setFocusPainted(false);
+        btn_QLNV_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QLNV_SearchActionPerformed(evt);
+            }
+        });
+        jPanel16.add(btn_QLNV_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 60, 50));
+
+        lbl_AccMana_search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_AccMana_searchMouseClicked(evt);
+            }
+        });
+        jPanel16.add(lbl_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 40, 40));
+
+        txt_AccMana_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_AccMana_search.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        txt_AccMana_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_AccMana_searchActionPerformed(evt);
+            }
+        });
+        txt_AccMana_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_AccMana_searchKeyReleased(evt);
+            }
+        });
+        jPanel16.add(txt_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 890, 50));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 585, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        pnl_AccountMana_ShowListAcc.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout(1, 0));
+        jScrollPane1.setViewportView(pnl_AccountMana_ShowListAcc);
+
+        btn_AccountMana_Add.setText("THÊM");
+        btn_AccountMana_Add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_Add.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_Add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_Add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Add.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_Add.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_AddActionPerformed(evt);
+            }
+        });
+
+        btn_AccountMana_Refresh.setText("LÀM MỚI");
+        btn_AccountMana_Refresh.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_Refresh.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_Refresh.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Refresh.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_Refresh.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_Refresh.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_Refresh.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_RefreshActionPerformed(evt);
+            }
+        });
+
+        btn_AccountMana_sendMail.setText("GỬI MAIL");
+        btn_AccountMana_sendMail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_AccountMana_sendMail.setkEndColor(new java.awt.Color(0, 112, 192));
+        btn_AccountMana_sendMail.setkHoverEndColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_sendMail.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_AccountMana_sendMail.setkHoverStartColor(new java.awt.Color(0, 30, 153));
+        btn_AccountMana_sendMail.setkPressedColor(new java.awt.Color(153, 153, 153));
+        btn_AccountMana_sendMail.setkStartColor(new java.awt.Color(0, 79, 174));
+        btn_AccountMana_sendMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AccountMana_sendMailActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnl_AccountManagementLayout = new javax.swing.GroupLayout(pnl_AccountManagement);
+        pnl_AccountManagement.setLayout(pnl_AccountManagementLayout);
+        pnl_AccountManagementLayout.setHorizontalGroup(
+            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_AccountManagementLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnl_AccountManagementLayout.setVerticalGroup(
+            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_AccountManagementLayout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pnl_Main.add(pnl_AccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
+
         pnl_CustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
         pnl_CustomerManagement.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         pnl_CustomerManagement.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -1218,170 +1379,6 @@ public class QLHOME extends javax.swing.JFrame {
         pnl_QLDoAn.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 60));
 
         pnl_Main.add(pnl_QLDoAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
-
-        pnl_AccountManagement.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_QLNV_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/Employee/loupe.png"))); // NOI18N
-        btn_QLNV_Search.setContentAreaFilled(false);
-        btn_QLNV_Search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_QLNV_Search.setFocusPainted(false);
-        btn_QLNV_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_QLNV_SearchActionPerformed(evt);
-            }
-        });
-        jPanel16.add(btn_QLNV_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 60, 50));
-
-        lbl_AccMana_search.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbl_AccMana_searchMouseClicked(evt);
-            }
-        });
-        jPanel16.add(lbl_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 40, 40));
-
-        txt_AccMana_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_AccMana_search.setMargin(new java.awt.Insets(2, 10, 2, 6));
-        txt_AccMana_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_AccMana_searchActionPerformed(evt);
-            }
-        });
-        txt_AccMana_search.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_AccMana_searchKeyReleased(evt);
-            }
-        });
-        jPanel16.add(txt_AccMana_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 890, 50));
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        pnl_AccountMana_ShowListAcc.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_AccountMana_ShowListAcc.setLayout(new java.awt.GridLayout(1, 0));
-        jScrollPane1.setViewportView(pnl_AccountMana_ShowListAcc);
-
-        btn_AccountMana_Add.setText("THÊM");
-        btn_AccountMana_Add.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_AccountMana_Add.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_AccountMana_Add.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_Add.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_AccountMana_Add.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_Add.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_AccountMana_Add.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_AccountMana_Add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AccountMana_AddActionPerformed(evt);
-            }
-        });
-
-        btn_AccountMana_Refresh.setText("LÀM MỚI");
-        btn_AccountMana_Refresh.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_AccountMana_Refresh.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_AccountMana_Refresh.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_Refresh.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_AccountMana_Refresh.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_Refresh.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_AccountMana_Refresh.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_AccountMana_Refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AccountMana_RefreshActionPerformed(evt);
-            }
-        });
-
-        btn_AccountMana_sendMail.setText("GỬI MAIL");
-        btn_AccountMana_sendMail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_AccountMana_sendMail.setkEndColor(new java.awt.Color(0, 112, 192));
-        btn_AccountMana_sendMail.setkHoverEndColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_sendMail.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btn_AccountMana_sendMail.setkHoverStartColor(new java.awt.Color(0, 30, 153));
-        btn_AccountMana_sendMail.setkPressedColor(new java.awt.Color(153, 153, 153));
-        btn_AccountMana_sendMail.setkStartColor(new java.awt.Color(0, 79, 174));
-        btn_AccountMana_sendMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AccountMana_sendMailActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addComponent(btn_AccountMana_Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_AccountMana_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_AccountMana_sendMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout pnl_AccountManagementLayout = new javax.swing.GroupLayout(pnl_AccountManagement);
-        pnl_AccountManagement.setLayout(pnl_AccountManagementLayout);
-        pnl_AccountManagementLayout.setHorizontalGroup(
-            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_AccountManagementLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnl_AccountManagementLayout.setVerticalGroup(
-            pnl_AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_AccountManagementLayout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        pnl_Main.add(pnl_AccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
 
         pnl_IntergratedManagement.setBackground(new java.awt.Color(255, 255, 255));
 

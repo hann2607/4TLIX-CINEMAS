@@ -11,6 +11,7 @@ import com.qlrp.utils.XImage;
 import static com.qlrp.utils.XImage.ResizeImage;
 import java.io.File;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -543,6 +544,19 @@ public class NewEmployee extends javax.swing.JFrame {
         }
 
     }
+    
+    private void autoCreateMaVe() {
+        String manv;
+        while (true) {
+            Random rand = new Random();
+            int ranNum = rand.nextInt(100000) + 1;
+            manv = "NV" + ranNum;
+            if (qlnvdao.selectebyID(manv) == null) {
+                break;
+            }
+        }
+        txt_MaNV.setText(manv);
+    }
 
     String duongDanImage = null;
 
@@ -688,6 +702,8 @@ public class NewEmployee extends javax.swing.JFrame {
             btn_Delete.setEnabled(false);
             btn_Edit.setVisible(false);
             btn_Delete.setVisible(false);
+            autoCreateMaVe();
+            txt_MaNV.setEditable(false);
         } else {
             btn_Add.setEnabled(false);
             btn_Add.setVisible(false);
@@ -756,43 +772,12 @@ public class NewEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_AddressActionPerformed
 
-//    boolean isHidePass = true;
-//    boolean isHideConfirmPass = true;
-//
-//    private void showPass() {
-//        String duongdanEmployee = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\";
-//        if (isHidePass) {
-//            txt_Password.setEchoChar((char) 0);
-//            btn_ShowPass.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanEmployee + "icons8_eye_25px.png"));
-//            isHidePass = false;
-//        } else {
-//            txt_Password.setEchoChar('*');
-//            btn_ShowPass.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanEmployee + "icons8_hide_25px.png"));
-//            isHidePass = true;
-//        }
-//    }
-//
-//    private void showConfirmPass() {
-//        String duongdanEmployee = "\\src\\main\\resources\\com\\qlrp\\icon\\Employee\\";
-//        if (isHideConfirmPass) {
-//            txt_ConfirmPassword.setEchoChar((char) 0);
-//            btn_ShowComfirnPass.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanEmployee + "icons8_eye_25px.png"));
-//            isHideConfirmPass = false;
-//        } else {
-//            txt_ConfirmPassword.setEchoChar('*');
-//            btn_ShowComfirnPass.setIcon(new ImageIcon(f.getAbsolutePath() + duongdanEmployee + "icons8_hide_25px.png"));
-//            isHideConfirmPass = true;
-//        }
-//    }
-
     private void btn_ShowComfirnPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ShowComfirnPassActionPerformed
         // TODO add your handling code here:
-        //        showConfirmPass();
     }//GEN-LAST:event_btn_ShowComfirnPassActionPerformed
 
     private void btn_ShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ShowPassActionPerformed
         // TODO add your handling code here:
-        //        showPass();
     }//GEN-LAST:event_btn_ShowPassActionPerformed
 
     
