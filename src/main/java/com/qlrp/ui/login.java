@@ -118,7 +118,7 @@ public class login extends javax.swing.JFrame {
         pnl_containerLeft.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/logo-4tlix2.png"))); // NOI18N
-        pnl_containerLeft.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 68, -1, 110));
+        pnl_containerLeft.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 310, 110));
 
         btn_newAcc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_newAcc.setText("TẠO TÀI KHOẢN MỚI");

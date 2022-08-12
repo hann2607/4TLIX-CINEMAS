@@ -27,6 +27,7 @@ import static java.awt.Frame.HAND_CURSOR;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -325,6 +326,11 @@ public class KHHOME extends javax.swing.JFrame {
 
         txt_Search_Film.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txt_Search_Film.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        txt_Search_Film.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_Search_FilmKeyPressed(evt);
+            }
+        });
         jPanel5.add(txt_Search_Film, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 865, 50));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -438,12 +444,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -1474,6 +1480,13 @@ public class KHHOME extends javax.swing.JFrame {
         // TODO add your handling code here:
         timKiemPhim();
     }//GEN-LAST:event_cbo_NgayKhoiChieuActionPerformed
+
+    private void txt_Search_FilmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Search_FilmKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            timKiemPhim();
+        }
+    }//GEN-LAST:event_txt_Search_FilmKeyPressed
 
     /**
      * @param args the command line arguments
