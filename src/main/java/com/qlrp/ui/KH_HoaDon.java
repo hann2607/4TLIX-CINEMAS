@@ -89,7 +89,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         lbl_maHD.setText(maHD);
     }
 
-    private void autoCreateMaHDCT() {
+    private String autoCreateMaHDCT() {
         String maHDCT;
         while (true) {
             Random rand = new Random();
@@ -99,7 +99,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                 break;
             }
         }
-        lbl_maHDCT.setText(maHDCT);
+        return maHDCT;
     }
 
     public void fillThongTin_HoaDon() {
@@ -109,7 +109,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         lbl_sdt.setText(kh.getSDT());
         lbl_email.setText(kh.getEMAIL());
         autoCreateMaHD();
-        autoCreateMaHDCT();
         lbl_thoiGian.setText(java.time.LocalDate.now() + "");
         fillPhimToTable_HoaDon();
     }
@@ -140,7 +139,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             model.addRow(new Object[]{da.getSO_LUONG() + " size " + da.getKICH_CO(), da.getTEN_SAN_PHAM(), da.getGIA()});
         }
         total();
-        getData();
     }
 
     private class WordWrapeCellRender extends JTextArea implements TableCellRenderer {
@@ -183,7 +181,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         kh.setSDT(lbl_sdt.getText());
         kh.setEMAIL(lbl_email.getText());
         kh.setMAHD(lbl_maHD.getText());
-        kh.setMAHDCT(lbl_maHDCT.getText());
+//        kh.setMAHDCT(lbl_maHDCT.getText());
         kh.setTHOIGIAN(lbl_thoiGian.getText());
         kh.setTONGTIEN(lbl_tongtien.getText());
         return kh;
@@ -191,17 +189,17 @@ public final class KH_HoaDon extends javax.swing.JFrame {
 
     private void getData() {
         // Lấy dữ liệu ra 
-        HOADON_CT ct = new HOADON_CT();
+        listHDCT = new ArrayList<>();
         HOADON_KH kh = getForm();
         model = (DefaultTableModel) tbl_HoaDon.getModel();
-        ct.setMAHDCT(kh.getMAHDCT());
-        ct.setMAHD(kh.getMAHD());
         for (int i = 0; i < model.getRowCount(); i++) {
+            HOADON_CT ct = new HOADON_CT();
+            ct.setMAHDCT(autoCreateMaHDCT());
+            ct.setMAHD(kh.getMAHD());
             ct.setSL_KICHCO(model.getValueAt(i, 0) + "");
             ct.setTENSP(model.getValueAt(i, 1) + "");
             ct.setDONGIA(model.getValueAt(i, 2) + "");
             listHDCT.add(ct);
-            hdctdao.insert(ct);
         }
 
     }
@@ -213,8 +211,18 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             if (hdkhdao.selectebyID(kh.getMAHD()) == null) {
                 hdkhdao.insert(kh);
                 getData();
+                for (HOADON_CT hoadon_ct : listHDCT) {
+                    hdctdao.insert(hoadon_ct);
+                }
                 // send mail
                 sendMail();
+                DefaultTableModel modelHome = (DefaultTableModel) KHHOME.Instance.table.getModel();
+                modelHome.setRowCount(0);
+                model.fireTableDataChanged();
+                getInfo.listSP_DOAN = new ArrayList<>();
+                getInfo.listSP_PHIM = new ArrayList<>();
+                KHHOME.Instance.setSLTongTien();
+
 //                MsgBox.alert(this, "Xác nhận thành công. Sử dụng mã QR được gửi qua email khi đến check in tại rạp!");
                 this.dispose();
             } else {
@@ -222,7 +230,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             }
         }
     }
-    int index = 0;
+    
     String duongDanImage = null;
     File f = new File("");
 
@@ -230,10 +238,10 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         HOADON_KH kh = getForm();
         try {
             //chuyen noi dung thanh QR_Code
-            ByteArrayOutputStream out = QRCode.from(kh.getMAHDCT()).to(ImageType.PNG).stream();
+            ByteArrayOutputStream out = QRCode.from(kh.getMAHD()).to(ImageType.PNG).stream();
 
             // tao duong dan luu anh
-            String file_name = kh.getMAHDCT();
+            String file_name = kh.getMAHD();
             duongDanImage = f.getAbsolutePath() + "\\src\\main\\resources\\com\\qlrp\\image\\QRcode\\";
 
             //xuat file anh
@@ -276,14 +284,21 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             String to = lbl_email.getText();
 
             String subject = ("Successful booking information ( " + kh.getTHOIGIAN() + ",Order ID: " + kh.getMAHD() + ")");
-
-            String body
-                    = "4TLIX CINEMAS TRÂN TRỌNG THÔNG BÁO  \n"
-                    + "Thông tin hóa đơn: " + kh.getMAHDCT() + "\n"
-                    + listHDCT.get(index).getSL_KICHCO() + "\n" //                  
-                    + listHDCT.get(index).getTENSP() + "\n"
-                    + kh.getTONGTIEN()
-                    + "Vui lòng đưa mã QR này cho nhân viên khi đến check in tại rạp.";
+             String body = "";
+            if (listHDCT != null) {
+               body +=  "4TLIX CINEMAS TRÂN TRỌNG THÔNG BÁO  \n"
+                        + "THÔNG TIN HÓA ĐƠN: " + kh.getMAHD()+ "\n"
+                        + "================================== \n";
+                for (HOADON_CT hoadon_ct : listHDCT) {
+                    body += "SẢN PHẨM: " + hoadon_ct.getTENSP() + "\n"
+                            + "THÔNG TIN: " + hoadon_ct.getSL_KICHCO() + "\n"
+                            + "ĐƠN GIÁ: " + formatter.format(Double.valueOf(hoadon_ct.getDONGIA())) + " VNĐ"
+                            + "\n================================== \n";
+                }
+                body += lbl_tongtien.getText().toUpperCase() + "\n"
+                        + "================================== \n"
+                        + "Vui lòng đưa mã QR này cho nhân viên khi đến check in tại rạp.";
+            }
 
             Message msg = new MimeMessage(ss);
 
@@ -348,8 +363,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btn_huyBo = new com.k33ptoo.components.KButton();
         btn_xacNhan = new com.k33ptoo.components.KButton();
-        lbl_maHDCT = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HÓA ĐƠN");
@@ -463,7 +476,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_thoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 590, 520));
@@ -521,14 +534,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_xacNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 650, 170, 50));
-
-        lbl_maHDCT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbl_maHDCT.setText("HD001");
-        jPanel1.add(lbl_maHDCT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 110, 24));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setText("MÃ HDCT:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 275, 24));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -591,7 +596,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_huyBo;
     private com.k33ptoo.components.KButton btn_xacNhan;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -603,7 +607,6 @@ public final class KH_HoaDon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_email;
     private javax.swing.JLabel lbl_maHD;
-    private javax.swing.JLabel lbl_maHDCT;
     private javax.swing.JLabel lbl_sdt;
     private javax.swing.JLabel lbl_tenKH;
     private javax.swing.JLabel lbl_thoiGian;

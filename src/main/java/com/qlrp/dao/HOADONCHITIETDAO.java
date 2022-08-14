@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  */
 public class HOADONCHITIETDAO extends QLRPDAO<HOADON_CT, String> {
 
-    String INSERT_SQL = "{call SP_insert_HOADON_CT (?, ?, ?, ?, ?)}";
+    String INSERT_SQL = "INSERT INTO HOADON_CT(MA_HDCT, MA_HOA_DON, SL_KICH_CO, TEN_SP, DON_GIA)"
+            + "VALUES (?, ? ,? , ? , ? )";
 //    String UPDATE_SQL = "UPDATE HOADON_CT SET SL_KICH_CO=?, TEN_SP=?,  DON_GIA=? WHERE MA_HDCT=?";
 //    String DELETE_SQL = "DELETE FROM HOADON_CT WHERE MA_HOA_DON=?";
     String SELECT_ALL_SQL = "SELECT * FROM HOADON_CT";
@@ -30,7 +31,7 @@ public class HOADONCHITIETDAO extends QLRPDAO<HOADON_CT, String> {
         try {
             XJdbc.update(INSERT_SQL, entity.getMAHDCT(), entity.getMAHD(), entity.getSL_KICHCO(), entity.getTENSP(),entity.getDONGIA());
         } catch (SQLException ex) {
-            Logger.getLogger(HOADONKHACHHANGDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HOADONCHITIETDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

@@ -1188,21 +1188,24 @@ public class KHHOME extends javax.swing.JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
-                List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
-                for (GIOHANG_DOAN giohang_doan : listda) {
-                    DOAN da = qldadao.selectebyID(giohang_doan.getTEN_SAN_PHAM());
-                    qldadao.updateSL(giohang_doan.getSO_LUONG() + da.getSOLUONG(), giohang_doan.getTEN_SAN_PHAM());
-                }
-                for (GIOHANG_PHIM giohang_phim : listphim) {
-                    String[] arrGhe = giohang_phim.getGHE_NGOI().split(",");
-                    for (String string : arrGhe) {
-                        qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
+                DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
+                if (model.getRowCount() > 0) {
+                    List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+                    List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+                    for (GIOHANG_DOAN giohang_doan : listda) {
+                        DOAN da = qldadao.selectebyID(giohang_doan.getTEN_SAN_PHAM());
+                        qldadao.updateSL(giohang_doan.getSO_LUONG() + da.getSOLUONG(), giohang_doan.getTEN_SAN_PHAM());
                     }
+                    for (GIOHANG_PHIM giohang_phim : listphim) {
+                        String[] arrGhe = giohang_phim.getGHE_NGOI().split(",");
+                        for (String string : arrGhe) {
+                            qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
+                        }
 
-                }
-                for (VEDAT vd : getInfo.listVEDAT) {
-                    qlvedatdao.delete(vd.getMA_VE_DAT());
+                    }
+                    for (VEDAT vd : getInfo.listVEDAT) {
+                        qlvedatdao.delete(vd.getMA_VE_DAT());
+                    }
                 }
             }
         });
@@ -1269,13 +1272,34 @@ public class KHHOME extends javax.swing.JFrame {
         pnl_cart.setVisible(false);
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
-    private void btn_Cart_XoaHetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_XoaHetActionPerformed
-        // TODO add your handling code here:
+    public void clearCart() {
         DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
         model.setRowCount(0);
         model.fireTableDataChanged();
+        List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+        List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+        for (GIOHANG_DOAN giohang_doan : listda) {
+            DOAN da = qldadao.selectebyID(giohang_doan.getTEN_SAN_PHAM());
+            qldadao.updateSL(giohang_doan.getSO_LUONG() + da.getSOLUONG(), giohang_doan.getTEN_SAN_PHAM());
+        }
+        for (GIOHANG_PHIM giohang_phim : listphim) {
+            String[] arrGhe = giohang_phim.getGHE_NGOI().split(",");
+            for (String string : arrGhe) {
+                qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
+            }
+
+        }
+        for (VEDAT vd : getInfo.listVEDAT) {
+            qlvedatdao.delete(vd.getMA_VE_DAT());
+        }
         getInfo.listSP_PHIM.clear();
         getInfo.listSP_DOAN.clear();
+        setSLTongTien();
+    }
+
+    private void btn_Cart_XoaHetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_XoaHetActionPerformed
+        // TODO add your handling code here:
+        clearCart();
     }//GEN-LAST:event_btn_Cart_XoaHetActionPerformed
 
     private void btn_Cart_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Cart_ThanhToanActionPerformed
@@ -1287,7 +1311,7 @@ public class KHHOME extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_Cart_ThanhToanActionPerformed
 
-    private void setSLTongTien() {
+    public void setSLTongTien() {
         double tt = 0;
         for (GIOHANG_PHIM giohang_phim : getInfo.listSP_PHIM) {
             tt += giohang_phim.getGIA();
