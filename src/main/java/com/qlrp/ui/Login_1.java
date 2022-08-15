@@ -6,6 +6,7 @@ package com.qlrp.ui;
 
 import com.qlrp.component.PanelCover;
 import com.qlrp.component.PanelDangNhapDangKy;
+import com.qlrp.utils.Auth;
 import com.qlrp.utils.XImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,8 +42,14 @@ public class Login_1 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
-        
-        login = new PanelDangNhapDangKy();
+        ActionListener eventLogin = (ActionEvent ae) -> {
+            if(Auth.cus != null || Auth.user != null) {
+                closeForm();
+                SplashScreen sp = new SplashScreen();
+                sp.setVisible(true);
+            }  
+        };
+        login = new PanelDangNhapDangKy(eventLogin);
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -112,12 +119,12 @@ public class Login_1 extends javax.swing.JFrame {
         });
     }
     
-    ;
+    
     
     public void closeForm() {
 //        this.dispose();
-//        this.setVisible(false);
-        this.hide();
+//        this.hide();
+    this.setVisible(false);
 //        this.show(false);
         // or DetailsForm.Hide();
         // or DetailsForm.Dispose();

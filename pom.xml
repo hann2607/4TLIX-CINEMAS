@@ -247,11 +247,12 @@
             <version>SNAPSHOT</version>
         </dependency>
         
-        <dependency>
+        <!--        <dependency>
             <groupId>com.capcha</groupId>
             <artifactId>JCapcha</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
+        
         
         <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout -->
         <dependency>
@@ -260,11 +261,18 @@
             <version>3.7.4</version>
         </dependency>
 
-        <dependency>
+        <!--        <dependency>
             <groupId>com.TimingFramework</groupId>
             <artifactId>TimingFramework</artifactId>
             <version>0.5.5</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.java.dev.timingframework</groupId>
+            <artifactId>timingframework</artifactId>
+            <version>1.0</version>
         </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
 
         
     </dependencies>

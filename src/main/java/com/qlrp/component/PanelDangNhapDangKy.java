@@ -48,9 +48,9 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
     QLNVDAO qlnvdao = new QLNVDAO();
     QLKHDAO qlkhdao = new QLKHDAO();
 
-    public PanelDangNhapDangKy() {
+    public PanelDangNhapDangKy(ActionListener eventLogin) {
         initComponents();
-        initDangNhap();
+        initDangNhap(eventLogin);
         initDangKy();
         pnl_QuenMK.setVisible(false);
         init();
@@ -161,7 +161,7 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
 
     }
 
-    private void initDangNhap() {
+    private void initDangNhap(ActionListener eventLogin) {
         pnl_DangNhap.setLayout(new MigLayout("wrap", "push[center]push", "push[]35[]20[]20[]10[]35[]push"));
 
         //Tieu de
@@ -216,6 +216,9 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                initQuenMK();
+                    Login_1 login_1 = new Login_1();
+                    login_1.closeForm();
+                    System.out.println("1");
             }
         });
 
@@ -226,6 +229,7 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
         btn_dangNhap.setFont(new Font("Tahoma", 1, 15));
         btn_dangNhap.setText("ĐĂNG NHẬP");
         pnl_DangNhap.add(btn_dangNhap, "w 50%, h 7%");
+        btn_dangNhap.addActionListener(eventLogin);
         btn_dangNhap.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -248,21 +252,13 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
                 JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
             } else {
                 MsgBox.alert(this, "ĐĂNG NHẬP THÀNH CÔNG!");
-                SplashScreen sp = new SplashScreen();
                 Auth.cus = cus;
-                sp.setVisible(true);
-                Login_1 login = new Login_1();
-                login.closeForm();
             }
         } else if (!mk.equals(epl.getMAT_KHAU())) {
             JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
         } else {
             MsgBox.alert(this, "ĐĂNG NHẬP THÀNH CÔNG!");
-            SplashScreen sp = new SplashScreen();
             Auth.user = epl;
-            sp.setVisible(true);
-            Login_1 login = new Login_1();
-            login.closeForm();
         }
     }
 
