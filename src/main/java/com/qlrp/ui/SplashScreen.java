@@ -14,9 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class SplashScreen extends javax.swing.JFrame implements Runnable {
 
-    /**
-     * Creates new form splashloading
-     */
+    
     public SplashScreen() {
         initComponents();
         runLoading();
@@ -48,7 +46,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
         LoadingBar.setForeground(new java.awt.Color(229, 79, 109));
         jPanel1.add(LoadingBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1100, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 470));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

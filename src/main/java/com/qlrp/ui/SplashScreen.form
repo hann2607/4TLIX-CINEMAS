@@ -58,7 +58,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/qlbh/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"/>
+              <Image iconType="3" name="/com/qlrp/icon/login/SPIDER-MAN- NO WAY HOME - Official Trailer (HD)_8.gif"/>
             </Property>
           </Properties>
           <Constraints>

@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=D:\4TLIX\src\main\resources\com\qlrp\lib\CaptchaLib.jar -DgroupId=com.capcha -DartifactId=capcha -Dversion=1.0 -Dpackaging=jar

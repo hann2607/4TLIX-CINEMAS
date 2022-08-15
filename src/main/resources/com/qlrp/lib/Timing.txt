@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=D:\4TLIX\src\main\resources\com\qlrp\lib\TimingFramework-0.55.jar -DgroupId=com.TimingFramework -DartifactId=TimingFramework -Dversion=0.5.5 -Dpackaging=jar

@@ -226,7 +226,7 @@
             <artifactId>RSButtonGradiente</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RojeruSan.lib</artifactId>
             <version>SNAPSHOT</version>
@@ -236,7 +236,7 @@
             <artifactId>RojeruSan.parte1</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>RSPanelGradiente</artifactId>
             <version>SNAPSHOT</version>
@@ -246,6 +246,27 @@
             <artifactId>RojeruSan.lib</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.capcha</groupId>
+            <artifactId>JCapcha</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout -->
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout</artifactId>
+            <version>3.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.TimingFramework</groupId>
+            <artifactId>TimingFramework</artifactId>
+            <version>0.5.5</version>
+        </dependency>
+
+        
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
