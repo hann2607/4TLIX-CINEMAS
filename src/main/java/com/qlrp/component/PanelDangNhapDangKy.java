@@ -9,7 +9,7 @@ import com.qlrp.dao.QLNVDAO;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
 import com.qlrp.ui.Login_1;
-import com.qlrp.ui.SplashScreen;
+import com.qlrp.ui.QuenMatKhau;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.MsgBox;
 import java.awt.Color;
@@ -215,10 +215,8 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
         cmdForget.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                initQuenMK();
-                    Login_1 login_1 = new Login_1();
-                    login_1.closeForm();
-                    System.out.println("1");
+                QuenMatKhau qmk = new QuenMatKhau();
+                qmk.setVisible(true);
             }
         });
 

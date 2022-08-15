@@ -126,8 +126,7 @@ public class Login_1 extends javax.swing.JFrame {
 //        this.hide();
     this.setVisible(false);
 //        this.show(false);
-        // or DetailsForm.Hide();
-        // or DetailsForm.Dispose();
+
     }
     
     @SuppressWarnings("unchecked")

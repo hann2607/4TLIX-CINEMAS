@@ -4,8 +4,23 @@
  */
 package com.qlrp.ui;
 
+import com.k33ptoo.components.KButton;
+import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.Properties;
+import java.util.Random;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -13,9 +28,10 @@ import javax.swing.JPanel;
  */
 public class QuenMatKhau extends javax.swing.JFrame {
 
-    /**
-     * Creates new form QuenMatKhau
-     */
+    Timer timer;
+    int sec = 60;
+    String maXN;
+
     public QuenMatKhau() {
         initComponents();
         init();
@@ -28,18 +44,104 @@ public class QuenMatKhau extends javax.swing.JFrame {
         showPanelMenu(pnl_QuenMK);
     }
 
-    private void showPanelMenu(JPanel pnl) {
+    public void showPanelMenu(JPanel pnl) {
         // Ẩn tất cả các form còn lại
         pnl_QuenMK.setVisible(false);
         pnl_QuenTK.setVisible(false);
         pnl_VerifyMail.setVisible(false);
+        pnl_DoiMK.setVisible(false);
 
         // show form lên khi click vào menu
         pnl.setVisible(true);
+    }
 
-        jPanel1.revalidate();
-        jPanel1.repaint();
+    private boolean validateFormDoiMK() {
+        String loi = "";
 
+        if (txt_maXN.getText().equals("")) {
+            loi += "Vui lòng nhập mã xác nhận! \n";
+        } else if (!txt_maXN.getText().equalsIgnoreCase(maXN)) {
+            loi += "Mã xác nhận không chính xác! \n";
+        }
+
+        if (txt_MKmoi.equals("")) {
+            loi += "Vui lòng nhập mật khẩu! \n";
+        } else if (!txt_MKmoi.getText().equalsIgnoreCase(txt_xacNhanMKmoi.getText())) {
+            loi += "Xác nhận mật khẩu không khớp! \n";
+        }
+
+        if (!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateFormQuenMKvaTK() {
+        String loi = "";
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if (txt_mail.getText().equals("")) {
+            loi += "Vui lòng nhập Email! \n";
+        } else if (!txt_mail.getText().matches(EMAIL_PATTERN)) {
+            loi += "Email không đúng định dạng! \n";
+        }
+
+        if (!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    public String verifyCode() {
+        String vrCode;
+        while (true) {
+            Random rand = new Random();
+            int ranNum = rand.nextInt(100000) + 1;
+            if (ranNum > 10000) {
+                vrCode = ranNum + "";
+                maXN = vrCode;
+                break;
+            }
+        }
+        return vrCode;
+    }
+
+    public void sendVerifyMail(String toEmail, String code) {
+        try {
+            // Thiet lap ket noi
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+            p.put("mail.smtp.port", 587);
+
+            // Tai khoan login gmail
+            String accoutName = "4tlixcompany@gmail.com";
+            String accoutPass = "ssqbkkkbdcokwtcr";
+
+            Session ss = Session.getInstance(p,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                    return new javax.mail.PasswordAuthentication(accoutName, accoutPass);
+                }
+            });
+
+            Message message = new MimeMessage(ss);
+            message.setFrom(new InternetAddress(accoutName));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            message.setSubject("Verify Code");
+            String body = code + " là mã xác nhận cho yêu cầu của bạn";
+            message.setContent(body, "text/plain; charset=UTF-8");
+            Transport.send(message);
+            JOptionPane.showMessageDialog(this, "Đã gửi mã xác nhận!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -68,6 +170,19 @@ public class QuenMatKhau extends javax.swing.JFrame {
         btn_huyXN = new com.k33ptoo.components.KButton();
         btn_reSendMail = new com.k33ptoo.components.KButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lbl_diaChiEmail = new javax.swing.JLabel();
+        pnl_DoiMK = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_xacNhanMKmoi = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        btn_XNquenTK1 = new com.k33ptoo.components.KButton();
+        btn_huyQuenTK1 = new com.k33ptoo.components.KButton();
+        btn_reSendMXN = new com.k33ptoo.components.KButton();
+        txt_MKmoi = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        lbl_timer = new javax.swing.JLabel();
+        txt_maXN = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        jLabel10 = new javax.swing.JLabel();
+        lbl_diaChiEmailDoiMK = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -82,6 +197,11 @@ public class QuenMatKhau extends javax.swing.JFrame {
         txt_mail.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
         txt_mail.setPlaceholder("Email");
         txt_mail.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        txt_mail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_mailKeyPressed(evt);
+            }
+        });
 
         btn_XNQuenMK.setText("XÁC NHẬN");
         btn_XNQuenMK.setToolTipText("");
@@ -136,7 +256,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         pnl_QuenMKLayout.setHorizontalGroup(
             pnl_QuenMKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuenMKLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(130, 130, 130)
                 .addGroup(pnl_QuenMKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnl_QuenMKLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
@@ -148,12 +268,12 @@ public class QuenMatKhau extends javax.swing.JFrame {
                         .addComponent(btn_XNQuenMK, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_QuenTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         pnl_QuenMKLayout.setVerticalGroup(
             pnl_QuenMKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuenMKLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,10 +285,12 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     .addComponent(btn_huyQuenMK, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_QuenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnl_QuenMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(pnl_QuenMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 560, 350));
+
+        pnl_QuenTK.setPreferredSize(new java.awt.Dimension(560, 350));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("QUÊN TÀI KHOẢN");
@@ -230,7 +352,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         pnl_QuenTKLayout.setHorizontalGroup(
             pnl_QuenTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuenTKLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(130, 130, 130)
                 .addGroup(pnl_QuenTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnl_QuenTKLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
@@ -238,16 +360,16 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     .addComponent(txt_mail1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_QuenTKLayout.createSequentialGroup()
                         .addComponent(btn_huyQuenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_XNquenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_QuenMK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         pnl_QuenTKLayout.setVerticalGroup(
             pnl_QuenTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuenTKLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel5)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +384,9 @@ public class QuenMatKhau extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnl_QuenTK, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        jPanel1.add(pnl_QuenTK, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 560, -1));
+
+        pnl_VerifyMail.setPreferredSize(new java.awt.Dimension(560, 350));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setText("NHẬP MÃ XÁC NHẬN");
@@ -319,6 +443,12 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Gửi lại mã trong: 60");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Vui lòng nhập mã xác nhận được gửi qua email:");
+
+        lbl_diaChiEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_diaChiEmail.setText("asd@email.com");
+
         javax.swing.GroupLayout pnl_VerifyMailLayout = new javax.swing.GroupLayout(pnl_VerifyMail);
         pnl_VerifyMail.setLayout(pnl_VerifyMailLayout);
         pnl_VerifyMailLayout.setHorizontalGroup(
@@ -329,24 +459,32 @@ public class QuenMatKhau extends javax.swing.JFrame {
                         .addGap(151, 151, 151)
                         .addComponent(jLabel6))
                     .addGroup(pnl_VerifyMailLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(130, 130, 130)
+                        .addGroup(pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4)
-                            .addGroup(pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_mail2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_VerifyMailLayout.createSequentialGroup()
-                                    .addComponent(btn_huyXN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                    .addComponent(btn_XacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btn_reSendMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_mail2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnl_VerifyMailLayout.createSequentialGroup()
+                                .addComponent(btn_huyXN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addComponent(btn_XacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_reSendMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(pnl_VerifyMailLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_diaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         pnl_VerifyMailLayout.setVerticalGroup(
             pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_VerifyMailLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
+                .addGroup(pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lbl_diaChiEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_mail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(pnl_VerifyMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -354,30 +492,142 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     .addComponent(btn_huyXN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_reSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnl_VerifyMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        jPanel1.add(pnl_VerifyMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 560, 350));
+
+        pnl_DoiMK.setPreferredSize(new java.awt.Dimension(560, 350));
+        pnl_DoiMK.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setText("ĐỔI MẬT KHẨU");
+        pnl_DoiMK.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 11, -1, -1));
+
+        txt_xacNhanMKmoi.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
+        txt_xacNhanMKmoi.setPlaceholder("Nhập lại mật khẩu mới");
+        txt_xacNhanMKmoi.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_DoiMK.add(txt_xacNhanMKmoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 184, 310, 35));
+
+        btn_XNquenTK1.setText("XÁC NHẬN");
+        btn_XNquenTK1.setToolTipText("");
+        btn_XNquenTK1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_XNquenTK1.setkEndColor(new java.awt.Color(22, 21, 26));
+        btn_XNquenTK1.setkHoverColor(new java.awt.Color(220, 20, 60));
+        btn_XNquenTK1.setkHoverEndColor(new java.awt.Color(220, 20, 60));
+        btn_XNquenTK1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_XNquenTK1.setkHoverStartColor(new java.awt.Color(22, 21, 26));
+        btn_XNquenTK1.setkStartColor(new java.awt.Color(220, 20, 60));
+        btn_XNquenTK1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XNquenTK1ActionPerformed(evt);
+            }
+        });
+        pnl_DoiMK.add(btn_XNquenTK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 140, 40));
+
+        btn_huyQuenTK1.setText("QUAY LẠI");
+        btn_huyQuenTK1.setToolTipText("");
+        btn_huyQuenTK1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_huyQuenTK1.setkEndColor(new java.awt.Color(22, 21, 26));
+        btn_huyQuenTK1.setkHoverColor(new java.awt.Color(220, 20, 60));
+        btn_huyQuenTK1.setkHoverEndColor(new java.awt.Color(220, 20, 60));
+        btn_huyQuenTK1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_huyQuenTK1.setkHoverStartColor(new java.awt.Color(22, 21, 26));
+        btn_huyQuenTK1.setkStartColor(new java.awt.Color(220, 20, 60));
+        btn_huyQuenTK1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_huyQuenTK1ActionPerformed(evt);
+            }
+        });
+        pnl_DoiMK.add(btn_huyQuenTK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 140, 40));
+
+        btn_reSendMXN.setText("GỬI LẠI MÃ XÁC NHẬN");
+        btn_reSendMXN.setToolTipText("");
+        btn_reSendMXN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_reSendMXN.setkEndColor(new java.awt.Color(22, 21, 26));
+        btn_reSendMXN.setkHoverColor(new java.awt.Color(220, 20, 60));
+        btn_reSendMXN.setkHoverEndColor(new java.awt.Color(220, 20, 60));
+        btn_reSendMXN.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btn_reSendMXN.setkHoverStartColor(new java.awt.Color(22, 21, 26));
+        btn_reSendMXN.setkStartColor(new java.awt.Color(220, 20, 60));
+        btn_reSendMXN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reSendMXNActionPerformed(evt);
+            }
+        });
+        pnl_DoiMK.add(btn_reSendMXN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 288, 310, 40));
+
+        txt_MKmoi.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCK);
+        txt_MKmoi.setPlaceholder("Nhập mật khẩu mới");
+        txt_MKmoi.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_DoiMK.add(txt_MKmoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 131, 310, 35));
+
+        lbl_timer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbl_timer.setText("Gửi lại mã trong: 60");
+        pnl_DoiMK.add(lbl_timer, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 334, -1, -1));
+
+        txt_maXN.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.VERIFIED_USER);
+        txt_maXN.setPlaceholder("Mã xác nhận");
+        txt_maXN.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        pnl_DoiMK.add(txt_maXN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 78, 310, 35));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Vui lòng nhập mã xác nhận được gửi đến email:");
+        pnl_DoiMK.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 300, -1));
+
+        lbl_diaChiEmailDoiMK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_diaChiEmailDoiMK.setText("asd@email.com");
+        pnl_DoiMK.add(lbl_diaChiEmailDoiMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 220, -1));
+
+        jPanel1.add(pnl_DoiMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void checkTimer(KButton btn) {
+        btn_reSendMXN.setEnabled(false);
+        lbl_timer.setVisible(false);
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lbl_timer.setVisible(true);
+                sec--;
+                lbl_timer.setText("Gửi lại mã trong: " + sec);
+                if (sec == 0) {
+                    timer.stop();
+                    sec = 60;
+                    lbl_timer.setVisible(false);
+                    btn.setEnabled(true);
+                }
+            }
+        });
+        timer.start();
+    }
 
     private void btn_XNQuenMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XNQuenMKActionPerformed
-        // TODO add your handling code here:
+        if (validateFormQuenMKvaTK()) {
+            showPanelMenu(pnl_DoiMK);
+            lbl_diaChiEmailDoiMK.setText(txt_mail.getText());
+            sendVerifyMail(txt_mail.getText(), verifyCode());
+            checkTimer(btn_reSendMXN);
+        }
     }//GEN-LAST:event_btn_XNQuenMKActionPerformed
 
     private void btn_huyQuenMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyQuenMKActionPerformed
@@ -411,6 +661,34 @@ public class QuenMatKhau extends javax.swing.JFrame {
     private void btn_reSendMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reSendMailActionPerformed
 //        showPanelMenu(pnl_QuenTK);
     }//GEN-LAST:event_btn_reSendMailActionPerformed
+
+    private void btn_XNquenTK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XNquenTK1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_XNquenTK1ActionPerformed
+
+    private void btn_huyQuenTK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyQuenTK1ActionPerformed
+        // TODO add your handling code here:
+        showPanelMenu(pnl_QuenMK);
+    }//GEN-LAST:event_btn_huyQuenTK1ActionPerformed
+
+    private void btn_reSendMXNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reSendMXNActionPerformed
+        // TODO add your handling code here:
+        if (btn_reSendMXN.isEnabled()) {
+            sendVerifyMail(lbl_diaChiEmailDoiMK.getText(), verifyCode());
+            checkTimer(btn_reSendMXN);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Chưa thể gửi lại mã lúc này!");
+        }
+    }//GEN-LAST:event_btn_reSendMXNActionPerformed
+
+    private void txt_mailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_mailKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            showPanelMenu(pnl_DoiMK);
+            lbl_diaChiEmailDoiMK.setText(txt_mail.getText());
+            sendVerifyMail(txt_mail.getText(), verifyCode());
+        }
+    }//GEN-LAST:event_txt_mailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -452,23 +730,36 @@ public class QuenMatKhau extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btn_QuenTK;
     private com.k33ptoo.components.KButton btn_XNQuenMK;
     private com.k33ptoo.components.KButton btn_XNquenTK;
+    private com.k33ptoo.components.KButton btn_XNquenTK1;
     private com.k33ptoo.components.KButton btn_XacNhan;
     private com.k33ptoo.components.KButton btn_huyQuenMK;
     private com.k33ptoo.components.KButton btn_huyQuenTK;
+    private com.k33ptoo.components.KButton btn_huyQuenTK1;
     private com.k33ptoo.components.KButton btn_huyXN;
+    private com.k33ptoo.components.KButton btn_reSendMXN;
     private com.k33ptoo.components.KButton btn_reSendMail;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_diaChiEmail;
+    private javax.swing.JLabel lbl_diaChiEmailDoiMK;
+    private javax.swing.JLabel lbl_timer;
+    private javax.swing.JPanel pnl_DoiMK;
     private javax.swing.JPanel pnl_QuenMK;
     private javax.swing.JPanel pnl_QuenTK;
     private javax.swing.JPanel pnl_VerifyMail;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txt_MKmoi;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txt_maXN;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail1;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail2;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txt_xacNhanMKmoi;
     // End of variables declaration//GEN-END:variables
 }
