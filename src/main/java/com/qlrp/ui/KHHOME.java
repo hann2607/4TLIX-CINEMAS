@@ -16,6 +16,8 @@ import com.qlrp.entity.GIOHANG_PHIM;
 import com.qlrp.entity.KHUYENMAI;
 import com.qlrp.entity.PHIM;
 import com.qlrp.entity.VEDAT;
+import com.qlrp.utils.Auth;
+import com.qlrp.utils.MsgBox;
 import com.qlrp.utils.XImage;
 import com.qlrp.utils.getInfo;
 import com.qlrp.utils.setUIJScroll;
@@ -395,6 +397,11 @@ public class KHHOME extends javax.swing.JFrame {
         btn_Avatar.setContentAreaFilled(false);
         btn_Avatar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Avatar.setFocusPainted(false);
+        btn_Avatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AvatarActionPerformed(evt);
+            }
+        });
         jPanel5.add(btn_Avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, -1, 130));
 
         btn_Cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/image/KHHome/icon/icons8_add_shopping_cart_70px.png"))); // NOI18N
@@ -444,12 +451,12 @@ public class KHHOME extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jScrollPane3AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jScrollPane3AncestorMoved(evt);
             }
         });
         jScrollPane3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -1511,6 +1518,36 @@ public class KHHOME extends javax.swing.JFrame {
             timKiemPhim();
         }
     }//GEN-LAST:event_txt_Search_FilmKeyPressed
+
+    private void btn_AvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvatarActionPerformed
+        // TODO add your handling code here:
+        Login lg = new Login();
+        if (MsgBox.confirm(this, "Bạn chắc chắn muốn đăng xuất?")) {
+            this.dispose();
+            Auth.cus = null;
+            Auth.user = null;
+            DefaultTableModel model = (DefaultTableModel) tbl_GioHang.getModel();
+            if (model.getRowCount() > 0) {
+                List<GIOHANG_DOAN> listda = getInfo.listSP_DOAN;
+                List<GIOHANG_PHIM> listphim = getInfo.listSP_PHIM;
+                for (GIOHANG_DOAN giohang_doan : listda) {
+                    DOAN da = qldadao.selectebyID(giohang_doan.getTEN_SAN_PHAM());
+                    qldadao.updateSL(giohang_doan.getSO_LUONG() + da.getSOLUONG(), giohang_doan.getTEN_SAN_PHAM());
+                }
+                for (GIOHANG_PHIM giohang_phim : listphim) {
+                    String[] arrGhe = giohang_phim.getGHE_NGOI().split(",");
+                    for (String string : arrGhe) {
+                        qlghengoidao.updateGheToFormKHHome(string.trim(), giohang_phim.getPHONG_CHIEU(), false);
+                    }
+
+                }
+                for (VEDAT vd : getInfo.listVEDAT) {
+                    qlvedatdao.delete(vd.getMA_VE_DAT());
+                }
+            }
+            lg.setVisible(true);
+        }
+    }//GEN-LAST:event_btn_AvatarActionPerformed
 
     /**
      * @param args the command line arguments
