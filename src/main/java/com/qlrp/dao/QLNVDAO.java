@@ -22,6 +22,7 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String> {
     String INSERT_SQL = "INSERT INTO NHANVIEN (MA_NHAN_VIEN, HO_TEN, EMAIL, SDT, DIA_CHI, GIOI_TINH, CCCD_CMND, HINH, NGAY_VAO_LAM, TRANG_THAI, TEN_VAI_TRO, MAT_KHAU) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     String UPDATE_SQL = "UPDATE NHANVIEN SET HO_TEN=?, EMAIL=?, SDT=?, DIA_CHI=?, GIOI_TINH=?, CCCD_CMND=?, HINH=?, NGAY_VAO_LAM=?, TRANG_THAI=?, TEN_VAI_TRO=?, MAT_KHAU=? WHERE MA_NHAN_VIEN=?";
+    String UPDATE_NEW_PASSWORD = "UPDATE NHANVIEN SET MAT_KHAU=? WHERE EMAIL=?";
     String DELETE_SQL = "DELETE FROM NHANVIEN WHERE MA_NHAN_VIEN=?";
     String SELECT_ALL_SQL = "SELECT * FROM NHANVIEN";
     String SELECT_BY_ID_SQL = "SELECT * FROM NHANVIEN WHERE MA_NHAN_VIEN LIKE ?";
@@ -111,7 +112,7 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String> {
         return list;
     }
 
-    public List<NHANVIEN> searchGmail(String gmail) {
+    public List<NHANVIEN> searchEmail(String gmail) {
         List<NHANVIEN> list = this.selectbySql(SELECT_By_GMAIL_SQL, "%" + gmail + "%");
         if (list.isEmpty()) {
             return null;
@@ -127,4 +128,11 @@ public class QLNVDAO extends QLRPDAO<NHANVIEN, String> {
         return list;
     }
 
+    public void update_MAT_KHAU(NHANVIEN entity) {
+        try {
+            XJdbc.update(UPDATE_NEW_PASSWORD, entity.getMAT_KHAU(), entity.getEMAIL());
+        } catch (SQLException ex) {
+            Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

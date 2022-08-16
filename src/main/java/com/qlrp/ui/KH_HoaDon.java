@@ -270,7 +270,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
 
             // Tai khoan login gmail
             String accoutName = "4tlixcompany@gmail.com";
-            String accoutPass = "ssqbkkkbdcokwtcr";
+            String accoutPass = "gridwsubjhidwukc";
 
             Session ss = Session.getInstance(p,
                     new javax.mail.Authenticator() {

@@ -140,11 +140,6 @@ public class NHANVIEN {
     public void setCCCD_CMND(String CCCD_CMND) {
         this.CCCD_CMND = CCCD_CMND;
     }
-
-    
-
-
-
     @Override
     public String toString() {
         //return this.MANV+" ("+this.HOTENNV+")"; //lấy tên để hiển thị trong cbo

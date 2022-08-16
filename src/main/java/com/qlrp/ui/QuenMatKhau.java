@@ -5,11 +5,14 @@
 package com.qlrp.ui;
 
 import com.k33ptoo.components.KButton;
-import com.qlrp.utils.MsgBox;
+import com.qlrp.dao.QLKHDAO;
+import com.qlrp.dao.QLNVDAO;
+import com.qlrp.entity.KHACHHANG;
+import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.Message;
@@ -31,6 +34,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
     Timer timer;
     int sec = 60;
     String maXN;
+    QLNVDAO qlnvdao = new QLNVDAO();
+    QLKHDAO qlkhdao = new QLKHDAO();
 
     public QuenMatKhau() {
         initComponents();
@@ -64,7 +69,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
             loi += "Mã xác nhận không chính xác! \n";
         }
 
-        if (txt_MKmoi.equals("")) {
+        if (txt_MKmoi.getText().equals("")) {
             loi += "Vui lòng nhập mật khẩu! \n";
         } else if (!txt_MKmoi.getText().equalsIgnoreCase(txt_xacNhanMKmoi.getText())) {
             loi += "Xác nhận mật khẩu không khớp! \n";
@@ -77,14 +82,49 @@ public class QuenMatKhau extends javax.swing.JFrame {
         return true;
     }
 
-    private boolean validateFormQuenMKvaTK() {
+    private boolean validateFormQuenTK() {
         String loi = "";
+
+        List<NHANVIEN> nv = qlnvdao.searchEmail(txt_mail.getText());
+        List<KHACHHANG> kh = qlkhdao.searchEmail(txt_mail.getText());
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if (txt_mailQuenTK.getText().equals("")) {
+            loi += "Vui lòng nhập Email! \n";
+        } else if (!txt_mailQuenTK.getText().matches(EMAIL_PATTERN)) {
+            loi += "Email không đúng định dạng! \n";
+        }
+
+        if (kh == null) {
+            if (nv == null) {
+                loi += "Tài khoản này chưa được đăng ký! \n";
+            }
+        }
+
+        if (!loi.equals("")) {
+            JOptionPane.showMessageDialog(this, loi, "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateFormQuenMK() {
+        String loi = "";
+
+        List<NHANVIEN> nv = qlnvdao.searchEmail(txt_mail.getText());
+        List<KHACHHANG> kh = qlkhdao.searchEmail(txt_mail.getText());
 
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         if (txt_mail.getText().equals("")) {
             loi += "Vui lòng nhập Email! \n";
         } else if (!txt_mail.getText().matches(EMAIL_PATTERN)) {
             loi += "Email không đúng định dạng! \n";
+        }
+
+        if (kh == null) {
+            if (nv == null) {
+                loi += "Tài khoản này chưa được đăng ký! \n";
+            }
         }
 
         if (!loi.equals("")) {
@@ -119,8 +159,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
             p.put("mail.smtp.port", 587);
 
             // Tai khoan login gmail
-            String accoutName = "4tlixcompany@gmail.com";
-            String accoutPass = "ssqbkkkbdcokwtcr";
+            String accoutName = "4TLIXCINEMAS@gmail.com";
+            String accoutPass = "gridwsubjhidwukc";
 
             Session ss = Session.getInstance(p,
                     new javax.mail.Authenticator() {
@@ -129,12 +169,19 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     return new javax.mail.PasswordAuthentication(accoutName, accoutPass);
                 }
             });
-
+            String body = "";
             Message message = new MimeMessage(ss);
             message.setFrom(new InternetAddress(accoutName));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            message.setSubject("Verify Code");
-            String body = code + " là mã xác nhận cho yêu cầu của bạn";
+
+            if (pnl_DoiMK.isVisible()) {
+                message.setSubject("Verify Code");
+                body += code + " là mã xác nhận cho yêu cầu của bạn.";
+            } else if (pnl_QuenTK.isVisible()) {
+                message.setSubject("Account information");
+                body += code + " là tên đăng nhập tài khoản của bạn.";
+            }
+
             message.setContent(body, "text/plain; charset=UTF-8");
             Transport.send(message);
             JOptionPane.showMessageDialog(this, "Đã gửi mã xác nhận!");
@@ -158,7 +205,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         pnl_QuenTK = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txt_mail1 = new RSMaterialComponent.RSTextFieldMaterialIcon();
+        txt_mailQuenTK = new RSMaterialComponent.RSTextFieldMaterialIcon();
         btn_XNquenTK = new com.k33ptoo.components.KButton();
         btn_huyQuenTK = new com.k33ptoo.components.KButton();
         btn_QuenMK = new com.k33ptoo.components.KButton();
@@ -197,11 +244,6 @@ public class QuenMatKhau extends javax.swing.JFrame {
         txt_mail.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
         txt_mail.setPlaceholder("Email");
         txt_mail.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
-        txt_mail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_mailKeyPressed(evt);
-            }
-        });
 
         btn_XNQuenMK.setText("XÁC NHẬN");
         btn_XNQuenMK.setToolTipText("");
@@ -295,9 +337,9 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("QUÊN TÀI KHOẢN");
 
-        txt_mail1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
-        txt_mail1.setPlaceholder("Email");
-        txt_mail1.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
+        txt_mailQuenTK.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EMAIL);
+        txt_mailQuenTK.setPlaceholder("Email");
+        txt_mailQuenTK.setPositionIcon(rojeru_san.efectos.ValoresEnum.POSITIONICON.RIGHT);
 
         btn_XNquenTK.setText("XÁC NHẬN");
         btn_XNquenTK.setToolTipText("");
@@ -357,7 +399,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
                     .addGroup(pnl_QuenTKLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jLabel5))
-                    .addComponent(txt_mail1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_mailQuenTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_QuenTKLayout.createSequentialGroup()
                         .addComponent(btn_huyQuenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -374,7 +416,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(txt_mail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_mailQuenTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(pnl_QuenTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_XNquenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -621,8 +663,95 @@ public class QuenMatKhau extends javax.swing.JFrame {
         timer.start();
     }
 
+    private KHACHHANG getformKH() {
+        KHACHHANG kh = new KHACHHANG();
+        kh.setEMAIL(lbl_diaChiEmailDoiMK.getText());
+        kh.setMAT_KHAU(txt_xacNhanMKmoi.getText());
+        return kh;
+    }
+
+    private NHANVIEN getformNV() {
+        NHANVIEN nv = new NHANVIEN();
+        nv.setEMAIL(lbl_diaChiEmailDoiMK.getText());
+        nv.setMAT_KHAU(txt_xacNhanMKmoi.getText());
+        return nv;
+    }
+
+    private void upDatePassWord(String Email) {
+
+        List<NHANVIEN> nv = qlnvdao.searchEmail(Email);
+        List<KHACHHANG> kh = qlkhdao.searchEmail(Email);
+
+        if (kh == null) {
+            if (nv == null) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy Email này!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    if (validateFormDoiMK()) {
+                        // cap nhat password nhan vien
+                        NHANVIEN nvv = getformNV();
+                        qlnvdao.update_MAT_KHAU(nvv);
+                        JOptionPane.showMessageDialog(this, "Cập nhật thành công!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Cập nhật thất bại!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            try {
+                if (validateFormDoiMK()) {
+                    // cap nhat password khach hang
+                    KHACHHANG khh = getformKH();
+                    qlkhdao.update_MAT_KHAU(khh);
+                    JOptionPane.showMessageDialog(this, "Cập nhật thành công!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String remindAcc(String Email) {
+        String tenDN = null;
+        List<NHANVIEN> ListNV = new QLNVDAO().searchEmail(Email);
+        List<KHACHHANG> ListKH = new QLKHDAO().searchEmail(Email);
+
+        if (ListKH == null) {
+            if (ListNV == null) {
+                try {
+                    for (NHANVIEN nv : ListNV) {
+                        tenDN = nv.getSDT() + "";
+                    }
+                    JOptionPane.showMessageDialog(this, "Thông tin đã được gửi đến email của bạn!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
+                    return tenDN;
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin tài khoản của bạn!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            try {
+                for (KHACHHANG kh : ListKH) {
+                    tenDN = kh.getSDT() + "";
+                }
+                JOptionPane.showMessageDialog(this, "Thông tin đã được gửi đến email của bạn!", "Thông báo!", JOptionPane.INFORMATION_MESSAGE);
+                return tenDN;
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin tài khoản của bạn!", "Lỗi!", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     private void btn_XNQuenMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XNQuenMKActionPerformed
-        if (validateFormQuenMKvaTK()) {
+        if (validateFormQuenMK()) {
             showPanelMenu(pnl_DoiMK);
             lbl_diaChiEmailDoiMK.setText(txt_mail.getText());
             sendVerifyMail(txt_mail.getText(), verifyCode());
@@ -639,11 +768,13 @@ public class QuenMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_QuenTKActionPerformed
 
     private void btn_XNquenTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XNquenTKActionPerformed
-        // TODO add your handling code here:
+        if (validateFormQuenTK()) {
+            sendVerifyMail(txt_mailQuenTK.getText(), remindAcc(txt_mailQuenTK.getText()));
+        }
     }//GEN-LAST:event_btn_XNquenTKActionPerformed
 
     private void btn_huyQuenTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyQuenTKActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btn_huyQuenTKActionPerformed
 
     private void btn_QuenMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QuenMKActionPerformed
@@ -663,7 +794,10 @@ public class QuenMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_reSendMailActionPerformed
 
     private void btn_XNquenTK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XNquenTK1ActionPerformed
-        // TODO add your handling code here:
+        if (validateFormDoiMK()) {
+            upDatePassWord(lbl_diaChiEmailDoiMK.getText());
+        }
+
     }//GEN-LAST:event_btn_XNquenTK1ActionPerformed
 
     private void btn_huyQuenTK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyQuenTK1ActionPerformed
@@ -676,19 +810,10 @@ public class QuenMatKhau extends javax.swing.JFrame {
         if (btn_reSendMXN.isEnabled()) {
             sendVerifyMail(lbl_diaChiEmailDoiMK.getText(), verifyCode());
             checkTimer(btn_reSendMXN);
-
         } else {
             JOptionPane.showMessageDialog(this, "Chưa thể gửi lại mã lúc này!");
         }
     }//GEN-LAST:event_btn_reSendMXNActionPerformed
-
-    private void txt_mailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_mailKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            showPanelMenu(pnl_DoiMK);
-            lbl_diaChiEmailDoiMK.setText(txt_mail.getText());
-            sendVerifyMail(txt_mail.getText(), verifyCode());
-        }
-    }//GEN-LAST:event_txt_mailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -758,8 +883,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_MKmoi;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_maXN;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail;
-    private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail1;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_mail2;
+    private RSMaterialComponent.RSTextFieldMaterialIcon txt_mailQuenTK;
     private RSMaterialComponent.RSTextFieldMaterialIcon txt_xacNhanMKmoi;
     // End of variables declaration//GEN-END:variables
 }

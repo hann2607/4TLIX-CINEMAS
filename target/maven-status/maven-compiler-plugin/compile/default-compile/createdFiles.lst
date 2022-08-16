@@ -17,6 +17,7 @@ com\qlrp\ui\QLHOME$41.class
 com\qlrp\ui\KHHOME$1.class
 com\qlrp\component\PanelDangNhapDangKy$3.class
 com\qlrp\ui\DatVe.class
+com\qlrp\ui\QuenMatKhau$11.class
 com\qlrp\component\MyPasswordField.class
 com\qlrp\ui\Login_1$1.class
 com\qlrp\ui\QLHOME$14.class
@@ -90,6 +91,7 @@ com\qlrp\dao\QLNVDAO.class
 com\qlrp\ui\QLHOME$29.class
 com\qlrp\entity\BANNER.class
 com\qlrp\dao\QLBANNERDAO.class
+com\qlrp\ui\QuenMatKhau$14.class
 com\qlrp\ui\SplashScreen$1.class
 com\qlrp\ui\QLHOME$8.class
 com\qlrp\ui\QLHOME$30.class
@@ -106,6 +108,7 @@ com\qlrp\ui\KHHOME$ListenAdditionsScrolledKhuyenMai.class
 com\qlrp\ui\ChiTietPhim$1.class
 com\qlrp\ui\QLHOME$44.class
 com\qlrp\ui\NewCustomer$4.class
+com\qlrp\ui\QuenMatKhau$13.class
 com\qlrp\dao\HOADONKHACHHANGDAO.class
 com\qlrp\ui\QLHOME$37.class
 com\qlrp\ui\KHHOME$ListenAdditionsScrolledDoAn.class
@@ -134,6 +137,7 @@ com\qlrp\ui\KHHOME$16.class
 com\qlrp\ui\ThemKhuyenMai$6.class
 com\qlrp\dao\QLHOADONDAO.class
 com\qlrp\dao\CHITIETHOADONDAO.class
+com\qlrp\ui\QuenMatKhau$12.class
 com\qlrp\ui\QLHOME$32.class
 com\qlrp\ui\QLHOME$7.class
 com\qlrp\ui\THemSC$3.class
@@ -205,6 +209,7 @@ com\qlrp\entity\VEDAT.class
 com\qlrp\ui\QLHOME$26.class
 com\qlrp\ui\QLHOME$66.class
 com\qlrp\ui\KHHOME$12.class
+com\qlrp\ui\QuenMatKhau$15.class
 com\qlrp\ui\SplashScreen.class
 com\qlrp\component\PanelVerifyCode$1.class
 com\qlrp\ui\NewCustomer$9.class

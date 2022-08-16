@@ -559,7 +559,7 @@ public class SendMail extends javax.swing.JFrame {
     private void btn_QLNV_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QLNV_SearchActionPerformed
         // TODO add your handling code here:
         if(!txt_searchMail.getText().equals("")) {
-            listNV = qlnvdao.searchGmail(txt_searchMail.getText());
+            listNV = qlnvdao.searchEmail(txt_searchMail.getText());
             if(listNV != null) {
                 fillToListMail(listNV);
             } else {

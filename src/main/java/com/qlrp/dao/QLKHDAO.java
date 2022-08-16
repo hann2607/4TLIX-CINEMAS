@@ -5,7 +5,6 @@
 package com.qlrp.dao;
 
 import com.qlrp.entity.KHACHHANG;
-import com.qlrp.entity.NHANVIEN;
 import com.qlrp.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,11 +24,13 @@ public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
     String DELETE_SQL = "DELETE FROM KHACHHANG WHERE SDT=?";
     String SELECT_ALL_SQL = "SELECT * FROM KHACHHANG";
     String SELECT_BY_ID_SQL = "SELECT * FROM KHACHHANG WHERE SDT LIKE ?";
+    String SELECT_By_EMAIL_SQL = "SELECT * FROM KHACHHANG WHERE EMAIL LIKE ?";
+    String UPDATE_PASSWORD = "UPDATE KHACHHANG SET MAT_KHAU=? WHERE EMAIL=?";
 
     @Override
     public void insert(KHACHHANG entity) {
         try {
-            XJdbc.update(INSERT_SQL, entity.getSDT(), entity.getHO_TEN(), entity.getEMAIL(),entity.getDIA_CHI(), entity.isGIOI_TINH() , entity.getMAT_KHAU());
+            XJdbc.update(INSERT_SQL, entity.getSDT(), entity.getHO_TEN(), entity.getEMAIL(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getMAT_KHAU());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,7 +39,7 @@ public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
     @Override
     public void update(KHACHHANG entity) {
         try {
-            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.getEMAIL(),entity.getDIA_CHI(), entity.isGIOI_TINH() , entity.getMAT_KHAU(), entity.getSDT());
+            XJdbc.update(UPDATE_SQL, entity.getHO_TEN(), entity.getEMAIL(), entity.getDIA_CHI(), entity.isGIOI_TINH(), entity.getMAT_KHAU(), entity.getSDT());
         } catch (SQLException ex) {
             Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,7 +102,20 @@ public class QLKHDAO extends QLRPDAO<KHACHHANG, String> {
         return list;
     }
 
+    public List<KHACHHANG> searchEmail(String Email) {
+        List<KHACHHANG> list = this.selectbySql(SELECT_By_EMAIL_SQL, "%" + Email + "%");
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
+    }
 
-
+    public void update_MAT_KHAU(KHACHHANG entity) {
+        try {
+            XJdbc.update(UPDATE_PASSWORD, entity.getMAT_KHAU(), entity.getEMAIL());
+        } catch (SQLException ex) {
+            Logger.getLogger(QLNVDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
