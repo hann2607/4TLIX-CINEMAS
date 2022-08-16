@@ -56,8 +56,8 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <Component id="lbl_Image" pref="304" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="lbl_Image" pref="294" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -75,7 +75,7 @@
         <Component class="javax.swing.JLabel" name="lbl_Image">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/qlbh/icon/login/logo-4tlix2.png"/>
+              <Image iconType="3" name="/com/qlrp/icon/login/logo-4tlix2.png"/>
             </Property>
           </Properties>
         </Component>

@@ -228,7 +228,7 @@ public class KHHOME extends javax.swing.JFrame {
         jLabel5.setText("GIỎ HÀNG");
 
         lbl_Cart_TongTien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_Cart_TongTien.setText("TỔNG TIỀN: 300.000 VNĐ");
+        lbl_Cart_TongTien.setText("TỔNG TIỀN: 0 VNĐ");
 
         btn_Cart_XoaHet.setText("XÓA HẾT");
         btn_Cart_XoaHet.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N

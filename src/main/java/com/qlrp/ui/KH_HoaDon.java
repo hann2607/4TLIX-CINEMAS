@@ -269,7 +269,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
             p.put("mail.smtp.port", 587);
 
             // Tai khoan login gmail
-            String accoutName = "4tlixcompany@gmail.com";
+            String accoutName = "4tlixcinemas@gmail.com";
             String accoutPass = "gridwsubjhidwukc";
 
             Session ss = Session.getInstance(p,
@@ -280,7 +280,7 @@ public final class KH_HoaDon extends javax.swing.JFrame {
                 }
             });
 
-            String from = "4tlixcompany@gmail.com";
+            String from = "4tlixcinemas@gmail.com";
             String to = lbl_email.getText();
 
             String subject = ("Successful booking information ( " + kh.getTHOIGIAN() + ",Order ID: " + kh.getMAHD() + ")");

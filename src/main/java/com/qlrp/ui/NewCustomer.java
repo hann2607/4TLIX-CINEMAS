@@ -82,14 +82,14 @@ public class NewCustomer extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbl_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlbh/icon/login/logo-4tlix2.png"))); // NOI18N
+        lbl_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/qlrp/icon/login/logo-4tlix2.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 304, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(

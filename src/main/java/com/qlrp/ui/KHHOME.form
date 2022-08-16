@@ -284,7 +284,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="18" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="T&#x1ed4;NG TI&#x1ec0;N: 300.000 VN&#x110;"/>
+                        <Property name="text" type="java.lang.String" value="T&#x1ed4;NG TI&#x1ec0;N: 0 VN&#x110;"/>
                       </Properties>
                     </Component>
                     <Component class="rojerusan.RSMaterialButtonRectangle" name="btn_Cart_XoaHet">

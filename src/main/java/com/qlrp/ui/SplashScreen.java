@@ -8,6 +8,7 @@ import com.qlrp.utils.Auth;
 import com.qlrp.utils.XImage;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author duong
@@ -81,7 +82,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable {
                 kh.setVisible(true);
             }
         } else {
-            if(Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân viên Bán Hàng")) {
+            if(Auth.user.getTEN_VAI_TRO().equalsIgnoreCase("Nhân Viên Bán Hàng")) {
                 KHHOME kh = new KHHOME();
                 kh.setVisible(true);
                 kh.refeshForm();

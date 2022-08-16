@@ -19,7 +19,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class Login_1 extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     
     private MigLayout layout;
     private PanelCover cover;
@@ -30,7 +30,7 @@ public class Login_1 extends javax.swing.JFrame {
     private final double loginSize = 60;
     private final DecimalFormat df = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     
-    public Login_1() {
+    public Login() {
         initComponents();
         init();
     }
@@ -171,7 +171,7 @@ public class Login_1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Login_1().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

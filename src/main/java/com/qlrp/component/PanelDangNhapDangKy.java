@@ -8,7 +8,7 @@ import com.qlrp.dao.QLKHDAO;
 import com.qlrp.dao.QLNVDAO;
 import com.qlrp.entity.KHACHHANG;
 import com.qlrp.entity.NHANVIEN;
-import com.qlrp.ui.Login_1;
+import com.qlrp.ui.Login;
 import com.qlrp.ui.QuenMatKhau;
 import com.qlrp.utils.Auth;
 import com.qlrp.utils.MsgBox;
@@ -191,7 +191,7 @@ public class PanelDangNhapDangKy extends javax.swing.JLayeredPane {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    Login_1 login = new Login_1();
+                    Login login = new Login();
                     tk = txt_taiKhoan.getText().trim();
                     mk = String.valueOf(txt_Pass.getPassword());
                     dangNhap();
