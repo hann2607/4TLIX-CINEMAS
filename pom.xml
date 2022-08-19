@@ -40,7 +40,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <ClasspathPrefix>libs</ClasspathPrefix>
-                            <mainClass>com.qlrp.ui.login</mainClass>
+                            <mainClass>com.qlrp.ui.Login</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -52,7 +52,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.qlrp.ui.login</mainClass>
+                            <mainClass>com.qlrp.ui.Login</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

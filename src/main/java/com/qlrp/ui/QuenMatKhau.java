@@ -159,8 +159,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
             p.put("mail.smtp.port", 587);
 
             // Tai khoan login gmail
-            String accoutName = "4TLIXCINEMAS@gmail.com";
-            String accoutPass = "gridwsubjhidwukc";
+            String accoutName = "4TLIXCINEMAS2@gmail.com";
+            String accoutPass = "xuasoxklaaylazdp";
 
             Session ss = Session.getInstance(p,
                     new javax.mail.Authenticator() {
