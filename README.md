@@ -1,4 +1,4 @@
-                                                  #CINEMAS MANAGEMENT
+                                                  CINEMAS MANAGEMENT
 
 1. USE CASE
 
